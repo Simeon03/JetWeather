@@ -1,6 +1,10 @@
 package com.example.jetweather
 
 import androidx.lifecycle.ViewModel
+import com.example.jetweather.data.CurrentWeatherData
+import com.example.jetweather.data.WeatherData
+import com.example.jetweather.model.WeatherApiService
+import com.example.jetweather.model.WeatherInstance
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

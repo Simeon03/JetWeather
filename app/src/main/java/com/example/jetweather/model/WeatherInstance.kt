@@ -1,4 +1,4 @@
-package com.example.jetweather
+package com.example.jetweather.model
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

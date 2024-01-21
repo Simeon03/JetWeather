@@ -1,6 +1,7 @@
-package com.example.jetweather
+package com.example.jetweather.model
 
-import retrofit2.Call
+import com.example.jetweather.data.CurrentWeatherData
+import com.example.jetweather.data.WeatherData
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
