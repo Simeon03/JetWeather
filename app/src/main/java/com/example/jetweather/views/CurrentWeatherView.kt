@@ -15,36 +15,30 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.example.jetweather.data.CurrentWeatherData
 import com.example.jetweather.WeatherViewModel
-import com.example.jetweather.data.TodayWeatherData
+import com.example.jetweather.data.CurrentWeather
 import com.example.jetweather.ui.theme.Typography
 import com.example.jetweather.weatherCode
 
 @Composable
 fun CurrentWeatherView(viewModel: WeatherViewModel) {
     // State for current weather data
-    var currentWeatherData by remember { mutableStateOf<CurrentWeatherData?>(null) }
-    var todayWeatherData by remember { mutableStateOf<TodayWeatherData?>(null) }
+    var currentWeather by remember { mutableStateOf<CurrentWeather?>(null) }
 
     // Fetch and observe current weather data
     LaunchedEffect(Unit) {
-        viewModel.fetchCurrentWeatherData().collect { data ->
-            currentWeatherData = data
-        }
-        
-        viewModel.fetchTodayWeatherData().collect { data ->
-            todayWeatherData = data
+        viewModel.fetchWeatherData().collect { data ->
+            currentWeather = data
         }
     }
 
-    val currentTemperature = currentWeatherData?.current?.temperature2m
-    val temperatureSuffix = currentWeatherData?.currentUnits?.temperature2m
-    val fullTemperature = "${currentTemperature?.toInt()} $temperatureSuffix"
-    val currentWeatherCode = weatherCode[currentWeatherData?.current?.weatherCode].toString()
+    val currentTemperature = currentWeather?.data?.temperature?.toInt()
+    val temperatureSuffix = currentWeather?.weatherFormat?.temperatureUnit
+    val fullTemperature = "$currentTemperature $temperatureSuffix"
+    val currentWeatherCode = weatherCode[currentWeather?.data?.weatherCode].toString()
     
-    val minTemp = todayWeatherData?.todayTempData?.temperature2mMin?.get(0)?.toInt()
-    val maxTemp = todayWeatherData?.todayTempData?.temperature2mMax?.get(0)?.toInt()
+    val minTemp = currentWeather?.maxMinTemperature?.minTemperature?.get(0)?.toInt()
+    val maxTemp = currentWeather?.maxMinTemperature?.maxTemperature?.get(0)?.toInt()
     val minMaxTemp = "$minTemp $temperatureSuffix / $maxTemp $temperatureSuffix"
 
     // UI layout
