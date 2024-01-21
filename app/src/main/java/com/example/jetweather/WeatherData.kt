@@ -25,3 +25,15 @@ data class DailyData(
     @SerializedName("temperature_2m_max") val temperature2mMax: List<Double>,
     @SerializedName("temperature_2m_min") val temperature2mMin: List<Double>
 )
+
+data class CurrentWeatherData(
+    val latitude: Double,
+    val longitude: Double,
+    val current: CurrentWeather,
+)
+
+data class CurrentWeather(
+    val time: String,
+    @SerializedName("temperature_2m") val temperature2m: Float,
+    @SerializedName("weather_code") val weatherCode: Int,
+)

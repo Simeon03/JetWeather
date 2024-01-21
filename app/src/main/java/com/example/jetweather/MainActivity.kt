@@ -46,13 +46,18 @@ fun fetchWeatherData() {
     val weatherApi = WeatherInstance.getInstance().create(WeatherApiService::class.java)
     CoroutineScope(Dispatchers.IO).launch {
         val response = weatherApi.getWeatherData(52.52f, 13.41f, "temperature_2m_max,temperature_2m_min")
+        val currentWeather = weatherApi.getCurrentWeather(52.52f, 13.41f, "temperature_2m,weather_code")
         if (response.isSuccessful) {
             // Extracting the body from the response
             val weatherData = response.body()
+            val currentWeatherData = currentWeather.body()
 
             // Log the result (assuming weatherData is correctly parsed)
             Log.d("Weather", weatherData.toString())
             Log.d("Weather", response.toString())
+
+            Log.d("Current Weather", currentWeather.toString())
+            Log.d("Current Weather", currentWeatherData.toString())
         } else {
             // Handle request error
             Log.e("WeatherError", "Error: ${response.code()}")
