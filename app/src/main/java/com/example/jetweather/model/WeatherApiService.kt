@@ -7,17 +7,25 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface WeatherApiService {
-    @GET("/v1/forecast?")
+    @GET(ENDPOINT)
     suspend fun getWeatherData(
-        @Query("latitude") latitude: Float,
-        @Query("longitude") longitude: Float,
-        @Query("daily") daily: String,
+        @Query(LATITUDE) latitude: Float,
+        @Query(LONGITUDE) longitude: Float,
+        @Query(DAILY) daily: String,
     ): Response<WeatherData>
 
-    @GET("/v1/forecast?")
+    @GET(ENDPOINT)
     suspend fun getCurrentWeather(
-        @Query("latitude") latitude: Float,
-        @Query("longitude") longitude: Float,
-        @Query("current") current: String,
+        @Query(LATITUDE) latitude: Float,
+        @Query(LONGITUDE) longitude: Float,
+        @Query(CURRENT) current: String,
     ): Response<CurrentWeatherData>
+
+    companion object {
+        const val ENDPOINT = "/v1/forecast?"
+        const val LATITUDE = "latitude"
+        const val LONGITUDE = "longitude"
+        const val DAILY = "daily"
+        const val CURRENT = "current"
+    }
 }

@@ -4,11 +4,11 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object WeatherInstance {
-    private const val baseUrl = "https://api.open-meteo.com/"
+    private const val BASE_URL = "https://api.open-meteo.com/"
 
     fun getInstance(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(baseUrl)
+            .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
