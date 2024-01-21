@@ -1,6 +1,5 @@
 package com.example.jetweather.views
 
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -22,7 +21,7 @@ import com.example.jetweather.ui.theme.Typography
 import com.example.jetweather.weatherCode
 
 @Composable
-fun CurrentWeatherView(modifier: Modifier = Modifier, viewModel: WeatherViewModel) {
+fun CurrentWeatherView(viewModel: WeatherViewModel) {
     // State for current weather data
     var currentWeatherData by remember { mutableStateOf<CurrentWeatherData?>(null) }
 
@@ -33,17 +32,18 @@ fun CurrentWeatherView(modifier: Modifier = Modifier, viewModel: WeatherViewMode
         }
     }
 
+    val currentTemperature = currentWeatherData?.current?.temperature2m
+    val temperatureSuffix = currentWeatherData?.currentUnits?.temperature2m
+    val fullTemperature = "${currentTemperature?.toInt()} $temperatureSuffix"
+    val currentWeatherCode = weatherCode[currentWeatherData?.current?.weatherCode].toString()
+
     // UI layout
     Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(Color.LightGray), // Background to visualize the column area
+        modifier = Modifier.fillMaxWidth().background(Color.LightGray),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        currentWeatherData?.let {
-            CurrentTemperature(text = "${it.current.temperature2m}${it.currentUnits.temperature2m}")
-            CurrentWeatherCode(text = "${weatherCode[it.current.weatherCode]}")
-        }
+        CurrentTemperature(text = fullTemperature)
+        CurrentWeatherCode(text = currentWeatherCode)
     }
 }
 

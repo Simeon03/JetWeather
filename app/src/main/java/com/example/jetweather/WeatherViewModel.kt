@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 
 class WeatherViewModel : ViewModel() {
+
     private val weatherApi = WeatherInstance.getInstance().create(WeatherApiService::class.java)
 
     fun fetchWeatherData(): Flow<WeatherData> = flow {
