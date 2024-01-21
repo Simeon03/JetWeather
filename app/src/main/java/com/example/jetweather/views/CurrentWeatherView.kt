@@ -1,9 +1,8 @@
 package com.example.jetweather.views
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
@@ -20,6 +19,7 @@ import androidx.compose.ui.unit.dp
 import com.example.jetweather.data.CurrentWeatherData
 import com.example.jetweather.WeatherViewModel
 import com.example.jetweather.ui.theme.Typography
+import com.example.jetweather.weatherCode
 
 @Composable
 fun CurrentWeatherView(modifier: Modifier = Modifier, viewModel: WeatherViewModel) {
@@ -42,6 +42,7 @@ fun CurrentWeatherView(modifier: Modifier = Modifier, viewModel: WeatherViewMode
     ) {
         currentWeatherData?.let {
             CurrentTemperature(text = "${it.current.temperature2m}${it.currentUnits.temperature2m}")
+            CurrentWeatherCode(text = "${weatherCode[it.current.weatherCode]}")
         }
     }
 }
@@ -52,6 +53,16 @@ fun CurrentTemperature(text: String) {
         text = text,
         style = Typography.titleLarge,
         color = Color(255, 255, 255),
-        modifier = Modifier.padding(20.dp)
+        modifier = Modifier.padding(10.dp)
+    )
+}
+
+@Composable
+fun CurrentWeatherCode(text: String) {
+    Text(
+        text = text,
+        style = Typography.bodyLarge,
+        color = Color(255, 255, 255),
+        modifier = Modifier.padding(5.dp)
     )
 }
