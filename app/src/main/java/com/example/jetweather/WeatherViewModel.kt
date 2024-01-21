@@ -21,4 +21,21 @@ class WeatherViewModel : ViewModel() {
             // Handle error
         }
     }.flowOn(Dispatchers.IO)
+
+    fun fetchCurrentTemperature(currentWeather: CurrentWeather?): String {
+        val currentTemperature = currentWeather?.data?.temperature?.toInt()
+        val temperatureSuffix = currentWeather?.weatherFormat?.temperatureUnit
+        return "$currentTemperature $temperatureSuffix"
+    }
+
+    fun fetchMinMaxTemperature(currentWeather: CurrentWeather?): String {
+        val minTemp = currentWeather?.maxMinTemperature?.minTemperature?.get(0)?.toInt()
+        val maxTemp = currentWeather?.maxMinTemperature?.maxTemperature?.get(0)?.toInt()
+        val temperatureSuffix = currentWeather?.weatherFormat?.temperatureUnit
+        return "$minTemp $temperatureSuffix / $maxTemp $temperatureSuffix"
+    }
+
+    fun fetchWeatherStatus(currentWeather: CurrentWeather?): String {
+        return weatherCode[currentWeather?.data?.weatherCode].toString()
+    }
 }

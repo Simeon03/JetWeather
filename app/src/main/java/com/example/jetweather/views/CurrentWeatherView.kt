@@ -18,7 +18,6 @@ import androidx.compose.ui.unit.dp
 import com.example.jetweather.WeatherViewModel
 import com.example.jetweather.data.CurrentWeather
 import com.example.jetweather.ui.theme.Typography
-import com.example.jetweather.weatherCode
 
 @Composable
 fun CurrentWeatherView(viewModel: WeatherViewModel) {
@@ -32,15 +31,6 @@ fun CurrentWeatherView(viewModel: WeatherViewModel) {
         }
     }
 
-    val currentTemperature = currentWeather?.data?.temperature?.toInt()
-    val temperatureSuffix = currentWeather?.weatherFormat?.temperatureUnit
-    val fullTemperature = "$currentTemperature $temperatureSuffix"
-    val currentWeatherCode = weatherCode[currentWeather?.data?.weatherCode].toString()
-    
-    val minTemp = currentWeather?.maxMinTemperature?.minTemperature?.get(0)?.toInt()
-    val maxTemp = currentWeather?.maxMinTemperature?.maxTemperature?.get(0)?.toInt()
-    val minMaxTemp = "$minTemp $temperatureSuffix / $maxTemp $temperatureSuffix"
-
     // UI layout
     Column(
         modifier = Modifier
@@ -48,9 +38,9 @@ fun CurrentWeatherView(viewModel: WeatherViewModel) {
             .background(Color.LightGray),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        CurrentTemperature(text = fullTemperature)
-        CurrentWeatherCode(text = currentWeatherCode)
-        CurrentWeatherCode(text = minMaxTemp)
+        CurrentTemperature(text = viewModel.fetchCurrentTemperature(currentWeather))
+        CurrentWeatherCode(text = viewModel.fetchWeatherStatus(currentWeather))
+        CurrentWeatherCode(text = viewModel.fetchMinMaxTemperature(currentWeather))
     }
 }
 
