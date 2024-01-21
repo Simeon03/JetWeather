@@ -6,6 +6,9 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -22,10 +25,10 @@ class MainActivity : ComponentActivity() {
         setContent {
             JetWeatherTheme {
                 viewModel = ViewModelProvider(this)[WeatherViewModel::class.java]
-                Column (
-                    modifier = Modifier.fillMaxSize().background(Color.DarkGray),
-                ) {
-                    CurrentWeatherView(viewModel = viewModel)
+                LazyColumn() {
+                    item {
+                        CurrentWeatherView(viewModel = viewModel)
+                    }
                 }
             }
         }
@@ -35,7 +38,9 @@ class MainActivity : ComponentActivity() {
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
-    JetWeatherTheme {
+    lateinit var viewModel: WeatherViewModel
 
+    JetWeatherTheme {
+        CurrentWeatherView(viewModel = viewModel)
     }
 }

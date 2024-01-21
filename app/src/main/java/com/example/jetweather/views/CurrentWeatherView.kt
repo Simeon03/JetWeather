@@ -1,6 +1,9 @@
 package com.example.jetweather.views
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -9,9 +12,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import com.example.jetweather.data.CurrentWeatherData
 import com.example.jetweather.WeatherViewModel
+import com.example.jetweather.ui.theme.Typography
 
 @Composable
 fun CurrentWeatherView(modifier: Modifier = Modifier, viewModel: WeatherViewModel) {
@@ -26,9 +32,19 @@ fun CurrentWeatherView(modifier: Modifier = Modifier, viewModel: WeatherViewMode
     }
 
     // UI layout
-    Column(modifier = modifier.fillMaxWidth()) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .fillMaxHeight(0.4f)
+            .background(Color.LightGray), // Background to visualize the column area
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         currentWeatherData?.let {
-            Text(text = "${it.current.temperature2m}${it.currentUnits.temperature2m}")
+            Text(
+                text = "${it.current.temperature2m}${it.currentUnits.temperature2m}",
+                style = Typography.titleLarge,
+                modifier = Modifier.align(Alignment.CenterHorizontally) // Align text directly
+            )
         }
     }
 }
