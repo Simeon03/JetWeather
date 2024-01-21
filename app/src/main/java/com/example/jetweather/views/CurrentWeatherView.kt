@@ -1,5 +1,6 @@
 package com.example.jetweather.views
 
+import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Text
@@ -27,8 +28,8 @@ fun CurrentWeatherView(modifier: Modifier = Modifier, viewModel: WeatherViewMode
 
     // UI layout
     Column(modifier = modifier.fillMaxWidth()) {
-        currentWeatherData?.current?.temperature2m?.let { temperature ->
-            Text(text = "${temperature}C")
+        currentWeatherData?.let {
+            Text(text = "${it.current.temperature2m}${it.currentUnits.temperature2m}")
         }
     }
 }
