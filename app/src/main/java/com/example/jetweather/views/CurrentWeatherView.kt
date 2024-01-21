@@ -44,7 +44,10 @@ fun CurrentWeatherView(modifier: Modifier = Modifier, viewModel: WeatherViewMode
             Text(
                 text = "${it.current.temperature2m}${it.currentUnits.temperature2m}",
                 style = Typography.titleLarge,
-                modifier = Modifier.align(Alignment.CenterHorizontally).padding(20.dp) // Align text directly
+                color = Color(255, 255, 255),
+                modifier = Modifier
+                    .align(Alignment.CenterHorizontally)
+                    .padding(20.dp)
             )
         }
     }
