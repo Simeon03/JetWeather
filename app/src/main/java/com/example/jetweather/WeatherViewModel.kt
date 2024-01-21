@@ -2,7 +2,7 @@ package com.example.jetweather
 
 import androidx.lifecycle.ViewModel
 import com.example.jetweather.data.CurrentWeatherData
-import com.example.jetweather.data.WeatherData
+import com.example.jetweather.data.TodayWeatherData
 import com.example.jetweather.model.WeatherApiService
 import com.example.jetweather.model.WeatherInstance
 import kotlinx.coroutines.Dispatchers
@@ -14,8 +14,8 @@ class WeatherViewModel : ViewModel() {
 
     private val weatherApi = WeatherInstance.getInstance().create(WeatherApiService::class.java)
 
-    fun fetchWeatherData(): Flow<WeatherData> = flow {
-        val response = weatherApi.getWeatherData(52.52f, 13.41f, "temperature_2m_max,temperature_2m_min")
+    fun fetchTodayWeatherData(): Flow<TodayWeatherData> = flow {
+        val response = weatherApi.getTodayWeatherData(52.52f, 13.41f, "temperature_2m_max,temperature_2m_min")
         if (response.isSuccessful) {
             response.body()?.let { emit(it) }
         } else {
