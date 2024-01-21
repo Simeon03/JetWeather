@@ -33,10 +33,8 @@ fun CurrentWeatherView(viewModel: WeatherViewModel) {
 
     // UI layout
     Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(Color.LightGray),
-        horizontalAlignment = Alignment.CenterHorizontally
+        modifier = Modifier.fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         CurrentTemperature(text = viewModel.fetchCurrentTemperature(currentWeather))
         CurrentWeatherCode(text = viewModel.fetchWeatherStatus(currentWeather))
