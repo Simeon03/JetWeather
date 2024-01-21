@@ -15,9 +15,6 @@ import com.example.jetweather.ui.theme.JetWeatherTheme
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import okhttp3.OkHttpClient
-import okhttp3.Request
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,28 +43,19 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 }
 
 fun fetchWeatherData() {
+    val weatherApi = WeatherInstance.getInstance().create(WeatherApiService::class.java)
     CoroutineScope(Dispatchers.IO).launch {
-        val client = OkHttpClient()
+        val response = weatherApi.getWeatherData(52.52f, 13.41f, "temperature_2m_max,temperature_2m_min")
+        if (response.isSuccessful) {
+            // Extracting the body from the response
+            val weatherData = response.body()
 
-        // Replace with your specific URL and parameters
-        val request = Request.Builder()
-            .url("https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.405&hourly=temperature")
-            .build()
-
-        try {
-            val response = client.newCall(request).execute()
-            val responseData = response.body?.string()
-
-            if (response.isSuccessful && responseData != null) {
-                // Handle the response
-                withContext(Dispatchers.Main) {
-                    Log.d("Data", responseData)
-                }
-            } else {
-                // Handle the error
-            }
-        } catch (_: Exception) {
-
+            // Log the result (assuming weatherData is correctly parsed)
+            Log.d("Weather", weatherData.toString())
+            Log.d("Weather", response.toString())
+        } else {
+            // Handle request error
+            Log.e("WeatherError", "Error: ${response.code()}")
         }
     }
 }
