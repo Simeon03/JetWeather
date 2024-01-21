@@ -41,14 +41,17 @@ fun CurrentWeatherView(modifier: Modifier = Modifier, viewModel: WeatherViewMode
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         currentWeatherData?.let {
-            Text(
-                text = "${it.current.temperature2m}${it.currentUnits.temperature2m}",
-                style = Typography.titleLarge,
-                color = Color(255, 255, 255),
-                modifier = Modifier
-                    .align(Alignment.CenterHorizontally)
-                    .padding(20.dp)
-            )
+            CurrentTemperature(text = "${it.current.temperature2m}${it.currentUnits.temperature2m}")
         }
     }
+}
+
+@Composable
+fun CurrentTemperature(text: String) {
+    Text(
+        text = text,
+        style = Typography.titleLarge,
+        color = Color(255, 255, 255),
+        modifier = Modifier.padding(20.dp)
+    )
 }
