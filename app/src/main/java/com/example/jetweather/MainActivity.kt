@@ -1,10 +1,13 @@
 package com.example.jetweather
 
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBarsPadding
@@ -28,6 +31,7 @@ import com.example.jetweather.views.WeeklyWeatherView
 class MainActivity : ComponentActivity() {
 
     private lateinit var viewModel: WeatherViewModel
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -52,6 +56,7 @@ class MainActivity : ComponentActivity() {
                     ) {
                         item {
                             CurrentWeatherView(viewModel = viewModel)
+                            Spacer(modifier = Modifier.padding(8.dp))
                             WeeklyWeatherView(viewModel = viewModel)
                         }
                     }

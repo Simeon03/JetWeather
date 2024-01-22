@@ -57,7 +57,7 @@ fun WeeklyWeatherView(viewModel: WeatherViewModel) {
 @Composable
 fun DailyWeatherView(minTemp: Int, maxTemp: Int, date: String, weatherCode: String) {
     Row(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth().padding(2.dp, 8.dp),
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
         Text(
@@ -70,7 +70,8 @@ fun DailyWeatherView(minTemp: Int, maxTemp: Int, date: String, weatherCode: Stri
             text = weatherCode,
             modifier = Modifier.weight(1f),
             textAlign = TextAlign.Start,
-            style = Typography.bodyMedium
+            style = Typography.bodyMedium,
+            maxLines = 1,
         )
         Text(
             text = "$minTemp/$maxTemp",
