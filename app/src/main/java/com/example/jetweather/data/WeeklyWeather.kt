@@ -12,6 +12,7 @@ data class WeeklyWeather(
 
 data class DailyTemperature(
     @SerializedName("time") val time: List<String>,
+    @SerializedName("weather_code") val weatherCode: List<Int>,
     @SerializedName("temperature_2m_max") val maxTemperature: List<Float>,
     @SerializedName("temperature_2m_min") val minTemperature: List<Float>,
 )

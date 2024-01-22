@@ -48,4 +48,8 @@ class WeatherViewModel : ViewModel() {
     fun fetchWeatherStatus(currentWeather: CurrentWeather?): String {
         return weatherCode[currentWeather?.data?.weatherCode].toString()
     }
+
+    fun fetchDailyMaxTemperature(weeklyWeather: WeeklyWeather?): List<Float> {
+        return weeklyWeather?.dailyTemperature?.maxTemperature ?: emptyList()
+    }
 }
