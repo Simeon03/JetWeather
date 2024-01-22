@@ -1,6 +1,7 @@
 package com.example.jetweather.model
 
 import com.example.jetweather.data.CurrentWeather
+import com.example.jetweather.data.WeeklyWeather
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -16,6 +17,14 @@ interface WeatherApiService {
         @Query(TIMEZONE) timezone: String = "auto",
         @Query(FORECAST_DAYS) forecastDays: Int = 1,
     ): Response<CurrentWeather>
+
+    @GET(ENDPOINT)
+    suspend fun getWeeklyWeatherData(
+        @Query(LATITUDE) latitude: Float,
+        @Query(LONGITUDE) longitude: Float,
+        @Query(TIMEZONE) timezone: String = "auto",
+        @Query(DAILY) daily: String = "weather_code,temperature_2m_max,temperature_2m_min",
+    ): Response<WeeklyWeather>
 
     companion object {
         const val ENDPOINT = "/v1/forecast?"

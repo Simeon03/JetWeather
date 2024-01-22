@@ -9,7 +9,7 @@ data class CurrentWeather(
     @SerializedName("current_units") val weatherFormat: WeatherFormat,
     @SerializedName("current") val data: Data,
     @SerializedName("daily_units") val maxMinTemperatureUnit: MaxMinTemperatureUnit,
-    @SerializedName("daily") val maxMinTemperature: MaxMinTemperature,
+    @SerializedName("daily") val maxMinTemperature: DailyTemperature,
 )
 
 data class WeatherFormat(
