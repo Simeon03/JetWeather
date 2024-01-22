@@ -23,6 +23,7 @@ import com.example.jetweather.ui.theme.Gradient4
 import com.example.jetweather.ui.theme.Gradient5
 import com.example.jetweather.ui.theme.JetWeatherTheme
 import com.example.jetweather.views.CurrentWeatherView
+import com.example.jetweather.views.WeeklyWeatherView
 
 class MainActivity : ComponentActivity() {
 
@@ -51,6 +52,7 @@ class MainActivity : ComponentActivity() {
                     ) {
                         item {
                             CurrentWeatherView(viewModel = viewModel)
+                            WeeklyWeatherView(viewModel = viewModel)
                         }
                     }
                 }
