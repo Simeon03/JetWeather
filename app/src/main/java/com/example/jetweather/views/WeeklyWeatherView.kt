@@ -17,7 +17,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.jetweather.WeatherViewModel
@@ -42,22 +41,29 @@ fun WeeklyWeatherView(viewModel: WeatherViewModel) {
                 .padding(4.dp)
         ) {
             for (i in 0..6) {
-                DailyWeatherView(
-                    minTemp = viewModel.fetchDailyMinTemperature(weeklyWeather, i),
-                    maxTemp = viewModel.fetchDailyMaxTemperature(weeklyWeather, i),
-                    date = viewModel.fetchDayOfWeek(weeklyWeather, i),
-                    weatherCode = viewModel.fetchDailyWeatherCode(weeklyWeather, i)
-                )
+                WeeklyWeatherStats(viewModel = viewModel, weeklyWeather = weeklyWeather, index = i)
             }
         }
     }
+}
 
+@RequiresApi(Build.VERSION_CODES.O)
+@Composable
+fun WeeklyWeatherStats(viewModel: WeatherViewModel, weeklyWeather: WeeklyWeather?, index: Int) {
+    DailyWeatherView(
+        minTemp = viewModel.fetchDailyMinTemperature(weeklyWeather, index),
+        maxTemp = viewModel.fetchDailyMaxTemperature(weeklyWeather, index),
+        date = viewModel.fetchDayOfWeek(weeklyWeather, index),
+        weatherCode = viewModel.fetchDailyWeatherCode(weeklyWeather, index)
+    )
 }
 
 @Composable
 fun DailyWeatherView(minTemp: Int, maxTemp: Int, date: String, weatherCode: String) {
     Row(
-        modifier = Modifier.fillMaxWidth().padding(2.dp, 8.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(2.dp, 8.dp),
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
         Text(
