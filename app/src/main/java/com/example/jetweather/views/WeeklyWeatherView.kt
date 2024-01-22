@@ -1,6 +1,8 @@
 package com.example.jetweather.views
 
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -16,8 +18,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.example.jetweather.WeatherViewModel
 import com.example.jetweather.data.WeeklyWeather
+import com.example.jetweather.getDayOfWeek
 import com.example.jetweather.weatherCode
+import java.util.Date
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun WeeklyWeatherView(viewModel: WeatherViewModel) {
     var weeklyWeather by remember { mutableStateOf<WeeklyWeather?>(null) }
@@ -40,10 +45,9 @@ fun WeeklyWeatherView(viewModel: WeatherViewModel) {
                     .fillMaxWidth()
                     .background(Color.Gray)
             ) {
-                Text(text = weeklyWeather?.dailyTemperature?.time?.get(i).toString())
+                Text(text = getDayOfWeek(weeklyWeather?.dailyTemperature?.time?.get(i) ?: "2023-01-01"))
                 Text(text = weatherCode[weeklyWeather?.dailyTemperature?.weatherCode?.get(i)].toString())
-                Text(text = weeklyWeather?.dailyTemperature?.maxTemperature?.get(i).toString())
-                Text(text = weeklyWeather?.dailyTemperature?.minTemperature?.get(i).toString())
+                Text(text = "${weeklyWeather?.dailyTemperature?.maxTemperature?.get(i)?.toInt()}/${weeklyWeather?.dailyTemperature?.minTemperature?.get(i)?.toInt()}")
             }
         }
     }
