@@ -1,4 +1,4 @@
-package com.example.jetweather
+package com.example.jetweather.helper
 
 val weatherCode = mapOf(
     0 to "Clear Sky",

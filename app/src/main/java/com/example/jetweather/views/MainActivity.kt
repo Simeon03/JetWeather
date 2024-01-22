@@ -1,4 +1,4 @@
-package com.example.jetweather
+package com.example.jetweather.views
 
 import android.os.Build
 import android.os.Bundle
@@ -15,7 +15,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModelProvider
@@ -25,8 +24,9 @@ import com.example.jetweather.ui.theme.Gradient3
 import com.example.jetweather.ui.theme.Gradient4
 import com.example.jetweather.ui.theme.Gradient5
 import com.example.jetweather.ui.theme.JetWeatherTheme
-import com.example.jetweather.views.CurrentWeatherView
-import com.example.jetweather.views.WeeklyWeatherView
+import com.example.jetweather.viewmodel.WeatherViewModel
+import com.example.jetweather.views.currentweather.CurrentWeatherView
+import com.example.jetweather.views.weeklyweather.WeeklyWeatherView
 
 class MainActivity : ComponentActivity() {
 

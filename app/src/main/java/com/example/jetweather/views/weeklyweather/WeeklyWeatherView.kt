@@ -1,8 +1,7 @@
-package com.example.jetweather.views
+package com.example.jetweather.views.weeklyweather
 
 import android.os.Build
 import androidx.annotation.RequiresApi
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -19,7 +18,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.example.jetweather.WeatherViewModel
+import com.example.jetweather.viewmodel.WeatherViewModel
 import com.example.jetweather.data.WeeklyWeather
 import com.example.jetweather.ui.theme.Typography
 
@@ -47,43 +46,3 @@ fun WeeklyWeatherView(viewModel: WeatherViewModel) {
     }
 }
 
-@RequiresApi(Build.VERSION_CODES.O)
-@Composable
-fun WeeklyWeatherStats(viewModel: WeatherViewModel, weeklyWeather: WeeklyWeather?, index: Int) {
-    DailyWeatherView(
-        minTemp = viewModel.fetchDailyMinTemperature(weeklyWeather, index),
-        maxTemp = viewModel.fetchDailyMaxTemperature(weeklyWeather, index),
-        date = viewModel.fetchDayOfWeek(weeklyWeather, index),
-        weatherCode = viewModel.fetchDailyWeatherCode(weeklyWeather, index)
-    )
-}
-
-@Composable
-fun DailyWeatherView(minTemp: Int, maxTemp: Int, date: String, weatherCode: String) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(2.dp, 8.dp),
-        horizontalArrangement = Arrangement.SpaceEvenly
-    ) {
-        Text(
-            text = date,
-            modifier = Modifier.weight(1f),
-            textAlign = TextAlign.Start,
-            style = Typography.bodyLarge
-        )
-        Text(
-            text = weatherCode,
-            modifier = Modifier.weight(1f),
-            textAlign = TextAlign.Start,
-            style = Typography.bodyMedium,
-            maxLines = 1,
-        )
-        Text(
-            text = "$minTemp/$maxTemp",
-            modifier = Modifier.weight(1f),
-            textAlign = TextAlign.Start,
-            style = Typography.bodyLarge
-        )
-    }
-}

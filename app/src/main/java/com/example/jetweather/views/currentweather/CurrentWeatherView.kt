@@ -1,6 +1,5 @@
-package com.example.jetweather.views
+package com.example.jetweather.views.currentweather
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -15,7 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.example.jetweather.WeatherViewModel
+import com.example.jetweather.viewmodel.WeatherViewModel
 import com.example.jetweather.data.CurrentWeather
 import com.example.jetweather.ui.theme.Typography
 
@@ -40,24 +39,4 @@ fun CurrentWeatherView(viewModel: WeatherViewModel) {
         CurrentWeatherCode(text = viewModel.fetchWeatherStatus(currentWeather))
         CurrentWeatherCode(text = viewModel.fetchMinMaxTemperature(currentWeather))
     }
-}
-
-@Composable
-fun CurrentTemperature(text: String) {
-    Text(
-        text = text,
-        style = Typography.titleLarge,
-        color = Color(255, 255, 255),
-        modifier = Modifier.padding(10.dp)
-    )
-}
-
-@Composable
-fun CurrentWeatherCode(text: String) {
-    Text(
-        text = text,
-        style = Typography.bodyLarge,
-        color = Color(255, 255, 255),
-        modifier = Modifier.padding(5.dp)
-    )
 }

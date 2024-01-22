@@ -1,10 +1,12 @@
-package com.example.jetweather
+package com.example.jetweather.viewmodel
 
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import com.example.jetweather.data.CurrentWeather
 import com.example.jetweather.data.WeeklyWeather
+import com.example.jetweather.helper.getDayOfWeek
+import com.example.jetweather.helper.weatherCode
 import com.example.jetweather.model.WeatherApiService
 import com.example.jetweather.model.WeatherInstance
 import kotlinx.coroutines.Dispatchers
