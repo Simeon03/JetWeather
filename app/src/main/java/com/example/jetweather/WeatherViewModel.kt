@@ -1,5 +1,7 @@
 package com.example.jetweather
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import com.example.jetweather.data.CurrentWeather
 import com.example.jetweather.data.WeeklyWeather
@@ -49,7 +51,20 @@ class WeatherViewModel : ViewModel() {
         return weatherCode[currentWeather?.data?.weatherCode].toString()
     }
 
-    fun fetchDailyMaxTemperature(weeklyWeather: WeeklyWeather?): List<Float> {
-        return weeklyWeather?.dailyTemperature?.maxTemperature ?: emptyList()
+    fun fetchDailyMaxTemperature(weeklyWeather: WeeklyWeather?, index: Int): Int {
+        return weeklyWeather?.dailyTemperature?.maxTemperature?.get(index)?.toInt() ?: 0
+    }
+
+    fun fetchDailyMinTemperature(weeklyWeather: WeeklyWeather?, index: Int): Int {
+        return weeklyWeather?.dailyTemperature?.minTemperature?.get(index)?.toInt() ?: 0
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun fetchDayOfWeek(weeklyWeather: WeeklyWeather?, index: Int): String {
+        return getDayOfWeek(weeklyWeather?.dailyTemperature?.time?.get(index) ?: "2023-02-01")
+    }
+
+    fun fetchDailyWeatherCode(weeklyWeather: WeeklyWeather?, index: Int): String {
+        return weatherCode[weeklyWeather?.dailyTemperature?.weatherCode?.get(index)] ?: "0"
     }
 }
