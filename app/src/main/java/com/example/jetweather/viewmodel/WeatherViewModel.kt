@@ -66,7 +66,11 @@ class WeatherViewModel : ViewModel() {
         return getDayOfWeek(weeklyWeather?.dailyTemperature?.time?.get(index) ?: "2023-02-01")
     }
 
-    fun fetchDailyWeatherCode(weeklyWeather: WeeklyWeather?, index: Int): String {
+    fun fetchDailyWeatherCode(weeklyWeather: WeeklyWeather?, index: Int): Int {
+        return weeklyWeather?.dailyTemperature?.weatherCode?.get(index) ?: 0
+    }
+
+    fun fetchDailyWeatherCodeDesc(weeklyWeather: WeeklyWeather?, index: Int): String {
         return weatherCode[weeklyWeather?.dailyTemperature?.weatherCode?.get(index)] ?: "0"
     }
 }
