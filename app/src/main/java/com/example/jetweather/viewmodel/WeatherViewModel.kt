@@ -5,6 +5,7 @@ import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import com.example.jetweather.data.CurrentWeather
 import com.example.jetweather.data.WeeklyWeather
+import com.example.jetweather.helper.formatTemp
 import com.example.jetweather.helper.getDayOfWeek
 import com.example.jetweather.helper.weatherCode
 import com.example.jetweather.model.WeatherApiService
@@ -39,14 +40,20 @@ class WeatherViewModel : ViewModel() {
     fun fetchCurrentTemperature(currentWeather: CurrentWeather?): String {
         val currentTemperature = currentWeather?.data?.temperature?.toInt()
         val temperatureSuffix = currentWeather?.weatherFormat?.temperatureUnit
-        return "$currentTemperature$temperatureSuffix"
+        val formattedTemp = formatTemp(temperatureSuffix ?: "")
+        return "$currentTemperature$formattedTemp"
     }
 
     fun fetchMinMaxTemperature(currentWeather: CurrentWeather?): String {
         val minTemp = currentWeather?.maxMinTemperature?.minTemperature?.get(0)?.toInt()
         val maxTemp = currentWeather?.maxMinTemperature?.maxTemperature?.get(0)?.toInt()
         val temperatureSuffix = currentWeather?.weatherFormat?.temperatureUnit
-        return "$minTemp$temperatureSuffix / $maxTemp$temperatureSuffix"
+        val formattedTemp = formatTemp(temperatureSuffix ?: "")
+        return "$minTemp$formattedTemp/$maxTemp$formattedTemp"
+    }
+
+    fun fetchTempSuffix(weeklyWeather: WeeklyWeather?): String {
+        return weeklyWeather?.maxMinTemperatureUnit?.maxTemperatureUnit ?: ""
     }
 
     fun fetchWeatherStatus(currentWeather: CurrentWeather?): String {
