@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
@@ -20,25 +21,31 @@ fun DailyWeatherView(minTemp: Int, maxTemp: Int, tempSuffix: String, date: Strin
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(2.dp, 8.dp),
-        horizontalArrangement = Arrangement.SpaceEvenly
+            .padding(2.dp, 4.dp),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
             text = date,
-            modifier = Modifier.weight(1f),
+            modifier = Modifier
+                .weight(3f)
+                .padding(start = 8.dp),
             textAlign = TextAlign.Start,
-            style = Typography.bodyLarge
+            style = Typography.titleSmall,
         )
         Icon(
             painter = painterResource(id = weatherCodeIcon(weatherCode)),
             contentDescription = weatherCodeDesc,
             tint = androidx.compose.ui.graphics.Color.Unspecified,
+            modifier = Modifier.weight(1f)
         )
         Text(
-            text = "$minTemp${formatTemp(tempSuffix)}/$maxTemp${formatTemp(tempSuffix)}",
-            modifier = Modifier.weight(1f),
-            textAlign = TextAlign.Start,
-            style = Typography.bodyLarge
+            text = "$maxTemp${formatTemp(tempSuffix)}/$minTemp${formatTemp(tempSuffix)}",
+            modifier = Modifier
+                .weight(2f)
+                .padding(end = 8.dp),
+            textAlign = TextAlign.End,
+            style = Typography.titleSmall
         )
     }
 }
