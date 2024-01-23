@@ -56,7 +56,7 @@ class MainActivity : ComponentActivity() {
                     ) {
                         item {
                             CurrentWeatherView(viewModel = viewModel)
-                            Spacer(modifier = Modifier.padding(8.dp))
+                            Spacer(modifier = Modifier.padding(vertical = 24.dp))
                             WeeklyWeatherView(viewModel = viewModel)
                         }
                     }

@@ -36,12 +36,11 @@ fun WeeklyWeatherView(viewModel: WeatherViewModel) {
 
     val gradientColors = listOf(
         Gradient1.copy(alpha = 0.8f),
-        Gradient2.copy(alpha = 0.6f)
+        Gradient2.copy(alpha = 0.7f)
     )
 
     Card(
         shape = RoundedCornerShape(12.dp),
-        modifier = Modifier.padding(4.dp)
     ) {
         Box(modifier = Modifier.fillMaxWidth().background(Brush.verticalGradient(gradientColors))) {
             Column(
