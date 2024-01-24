@@ -2,6 +2,7 @@ package com.example.jetweather.views
 
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.RequiresApi
@@ -13,6 +14,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.tooling.preview.Preview
@@ -27,6 +29,7 @@ import com.example.jetweather.ui.theme.JetWeatherTheme
 import com.example.jetweather.viewmodel.WeatherViewModel
 import com.example.jetweather.views.currentweather.CurrentWeatherView
 import com.example.jetweather.views.weeklyweather.WeeklyWeatherView
+import kotlinx.coroutines.flow.collect
 
 class MainActivity : ComponentActivity() {
 
@@ -43,6 +46,12 @@ class MainActivity : ComponentActivity() {
                     startY = 0f,
                     endY = Float.POSITIVE_INFINITY
                 )
+
+                LaunchedEffect(Unit) {
+                    viewModel.fetchLocationData().collect() { data ->
+                        Log.d("Location Fetched Lol", data.latlng.toString())
+                    }
+                }
 
                 Box(
                     modifier = Modifier

@@ -1,8 +1,11 @@
 package com.example.jetweather.viewmodel
 
 import android.os.Build
+import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
+import com.example.jetweather.BuildConfig
+import com.example.jetweather.Geolocate
 import com.example.jetweather.data.CurrentWeather
 import com.example.jetweather.data.WeeklyWeather
 import com.example.jetweather.helper.formatTemp
@@ -18,6 +21,7 @@ import kotlinx.coroutines.flow.flowOn
 class WeatherViewModel : ViewModel() {
 
     private val weatherApi = WeatherInstance.getInstance().create(WeatherApiService::class.java)
+    private val googleMapsApi = WeatherInstance.getMapsInstance().create(WeatherApiService::class.java)
 
     fun fetchWeatherData(): Flow<CurrentWeather> = flow {
         val response = weatherApi.getWeatherData(52.52f, 13.41f)
@@ -30,6 +34,16 @@ class WeatherViewModel : ViewModel() {
 
     fun fetchWeeklyWeatherData(): Flow<WeeklyWeather> = flow {
         val response = weatherApi.getWeeklyWeatherData(52.52f, 13.41f)
+        if (response.isSuccessful) {
+            response.body()?.let { emit(it) }
+        } else {
+            // Handle error
+            Log.d("Location not feteched", response.toString())
+        }
+    }.flowOn(Dispatchers.IO)
+
+    fun fetchLocationData(): Flow<Geolocate> = flow {
+        val response = weatherApi.getLocationData(listOf(52.52f, 13.41f), BuildConfig.GOOGLE_MAPS_API_KEY)
         if (response.isSuccessful) {
             response.body()?.let { emit(it) }
         } else {
