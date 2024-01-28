@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.jetweather.data.CurrentWeather
 import com.example.jetweather.data.WeeklyWeather
-import com.example.jetweather.helper.formatTemp
 import com.example.jetweather.helper.getDayOfWeek
 import com.example.jetweather.helper.weatherCode
 import com.example.jetweather.model.RetrofitInstance
@@ -26,11 +25,15 @@ class WeatherViewModel(private val repo: WeatherRepository) : ViewModel() {
     var currentTempText = MutableStateFlow("Fetch")
     var currentLocationText = MutableStateFlow("Location")
     var currentWeatherStatusText = MutableStateFlow("Status")
+    var currentMinTempText = MutableStateFlow(0)
+    var currentMaxTempText = MutableStateFlow(0)
 
     init {
         fetchCurrentTemperature()
         fetchLocationText()
         fetchCurrentWeatherStatus()
+        fetchCurrentMinTemp()
+        fetchCurrentMaxTemp()
     }
 
     private fun fetchLocationText() {
@@ -57,12 +60,20 @@ class WeatherViewModel(private val repo: WeatherRepository) : ViewModel() {
         }
     }
 
-    fun fetchMinMaxTemperature(currentWeather: CurrentWeather?): String {
-        val minTemp = currentWeather?.maxMinTemperature?.minTemperature?.get(0)?.toInt()
-        val maxTemp = currentWeather?.maxMinTemperature?.maxTemperature?.get(0)?.toInt()
-        val temperatureSuffix = currentWeather?.weatherFormat?.temperatureUnit
-        val formattedTemp = formatTemp(temperatureSuffix ?: "")
-        return "$minTemp$formattedTemp/$maxTemp$formattedTemp"
+    private fun fetchCurrentMinTemp() {
+        viewModelScope.launch {
+            repo.fetchCurrentMinTempText().collect() {
+                currentMinTempText.value = it
+            }
+        }
+    }
+
+    private fun fetchCurrentMaxTemp() {
+        viewModelScope.launch {
+            repo.fetchCurrentMaxTempText().collect() {
+                currentMaxTempText.value = it
+            }
+        }
     }
 
     fun fetchTempSuffix(weeklyWeather: WeeklyWeather?): String {

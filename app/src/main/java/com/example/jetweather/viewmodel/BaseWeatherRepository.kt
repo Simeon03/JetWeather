@@ -47,4 +47,26 @@ class BaseWeatherRepository(
             emit("Current temperature not found")
         }
     }.flowOn(Dispatchers.IO)
+
+    override fun fetchCurrentMinTempText(): Flow<Int> = flow {
+        val response = weatherApi.getWeatherData(52.52f,13.41f)
+        val minTemp = response.body()?.maxMinTemperature?.minTemperature?.get(0)?.toInt()
+
+        if (response.isSuccessful) {
+            minTemp?.let { emit(it) }
+        } else {
+            emit(0)
+        }
+    }.flowOn(Dispatchers.IO)
+
+    override fun fetchCurrentMaxTempText(): Flow<Int> = flow {
+        val response = weatherApi.getWeatherData(52.52f,13.41f)
+        val maxTemp = response.body()?.maxMinTemperature?.maxTemperature?.get(0)?.toInt()
+
+        if (response.isSuccessful) {
+            maxTemp?.let { emit(it) }
+        } else {
+            emit(0)
+        }
+    }.flowOn(Dispatchers.IO)
 }
