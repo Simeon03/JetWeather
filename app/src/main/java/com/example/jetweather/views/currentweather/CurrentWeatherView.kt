@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -17,6 +18,7 @@ import com.example.jetweather.viewmodel.WeatherViewModel
 fun CurrentWeatherView(viewModel: WeatherViewModel) {
     // State for current weather data
     var currentWeather by remember { mutableStateOf<CurrentWeather?>(null) }
+    val currentTemp by viewModel.currentTempText.collectAsState()
 
     // Fetch and observe current weather data
     LaunchedEffect(Unit) {
@@ -30,7 +32,7 @@ fun CurrentWeatherView(viewModel: WeatherViewModel) {
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        CurrentTemperature(text = viewModel.fetchCurrentTemperature(currentWeather))
+        CurrentTemperature(text = currentTemp)
         CurrentWeatherCode(text = viewModel.fetchWeatherStatus(currentWeather))
         CurrentWeatherCode(text = viewModel.fetchMinMaxTemperature(currentWeather))
     }

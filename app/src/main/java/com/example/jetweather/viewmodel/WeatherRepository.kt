@@ -6,4 +6,7 @@ interface WeatherRepository {
 
     fun fetchLocationText(): Flow<String>
 
+    fun fetchCurrentTemperatureText(): Flow<String>
+
+
 }

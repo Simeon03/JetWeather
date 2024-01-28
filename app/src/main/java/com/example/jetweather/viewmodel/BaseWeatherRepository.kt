@@ -14,11 +14,24 @@ class BaseWeatherRepository(
     override fun fetchLocationText(): Flow<String> = flow {
         val response = googleMapsApi.getLocationData("52.52,13.41")
         val location = response.body()?.results?.get(0)?.addressComponents?.get(0)?.shortName
+
         if (response.isSuccessful) {
             location?.let { emit(it) }
         } else {
-            // Handle error appropriately
             emit("Location not available")
         }
+
+    }.flowOn(Dispatchers.IO)
+
+    override fun fetchCurrentTemperatureText(): Flow<String> = flow {
+        val response = weatherApi.getWeatherData(52.52f,13.41f)
+        val currentTemp = response.body()?.data?.temperature?.toInt()
+
+        if (response.isSuccessful) {
+            emit("$currentTemp°")
+        } else {
+            emit("Current temperature not found")
+        }
+
     }.flowOn(Dispatchers.IO)
 }
