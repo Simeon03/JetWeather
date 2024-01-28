@@ -1,5 +1,7 @@
 package com.example.jetweather.views.location
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Text
@@ -12,9 +14,12 @@ import androidx.compose.ui.text.style.TextAlign
 import com.example.jetweather.ui.theme.Typography
 import com.example.jetweather.viewmodel.WeatherViewModel
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun LocationView(viewModel: WeatherViewModel) {
-    val locationText by viewModel.currentLocationText.collectAsState()
+    val weatherData by viewModel.weatherData.collectAsState()
+
+    val locationText = weatherData.location
 
     Column {
         Text(

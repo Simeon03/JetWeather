@@ -5,102 +5,71 @@ import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+
+data class WeatherData(
+    val currentTemp: String,
+    val location: String,
+    val weatherStatus: String,
+    val currentMinTemp: Int,
+    val currentMaxTemp: Int,
+    val weeklyMinTemp: List<Int>,
+    val weeklyMaxTemp: List<Int>,
+    val dayOfWeek: List<String>,
+    val weeklyWeatherCode: List<Int>
+)
 
 @RequiresApi(Build.VERSION_CODES.O)
 class WeatherViewModel(private val repo: WeatherRepository) : ViewModel() {
 
-    var currentTempText = MutableStateFlow("Fetch")
-    var currentLocationText = MutableStateFlow("Location")
-    var currentWeatherStatusText = MutableStateFlow("Status")
-    var currentMinTempText = MutableStateFlow(0)
-    var currentMaxTempText = MutableStateFlow(0)
-    var weeklyMinTempText = MutableStateFlow(listOf(0, 1, 2, 3, 4, 5, 6))
-    var weeklyMaxTempText = MutableStateFlow(listOf(0, 1, 2, 3, 4, 5, 6))
-    var dayOfWeek = MutableStateFlow(listOf("2023-02-01", "2023-02-01", "2023-02-01", "2023-02-01", "2023-02-01", "2023-02-01", "2023-02-01", "2023-02-01"))
-    var weeklyWeatherCode = MutableStateFlow(listOf(0, 1, 2, 3, 4, 5, 6))
+    var weatherData = MutableStateFlow(WeatherData(
+        "Fetch",
+        "Location",
+        "Status",
+        0,
+        0,
+        listOf(0, 1, 2, 3, 4, 5, 6),
+        listOf(0, 1, 2, 3, 4, 5, 6),
+        listOf("2023-02-01", "2023-02-01", "2023-02-01", "2023-02-01", "2023-02-01", "2023-02-01", "2023-02-01"),
+        listOf(0, 1, 2, 3, 4, 5, 6),
+    ))
+    var isLoading = MutableStateFlow(true)
 
     init {
-        fetchCurrentTemperature()
-        fetchLocationText()
-        fetchCurrentWeatherStatus()
-        fetchCurrentMinTemp()
-        fetchCurrentMaxTemp()
-        fetchWeeklyMinTemp()
-        fetchWeeklyMaxTemp()
-        fetchDayOfWeek()
-        fetchWeeklyWeatherCode()
+        fetchWeatherData()
     }
 
-    private fun fetchLocationText() {
+    private fun fetchWeatherData() {
         viewModelScope.launch {
-            repo.fetchLocationText().collect {
-                currentLocationText.value = it
-            }
-        }
-    }
+            isLoading.value = true
+            try {
+                // Fetch all data and update weatherData state
+                val locationText = repo.fetchLocationText().first()
+                val currentTempText = repo.fetchCurrentTemperatureText().first()
+                val weatherStatusText = repo.fetchCurrentWeatherStatusText().first()
+                val currentMinTempText = repo.fetchCurrentMinTempText().first()
+                val currentMaxTempText = repo.fetchCurrentMaxTempText().first()
+                val weeklyMinTempText = repo.fetchWeeklyMinTempText().first()
+                val weeklyMaxTempText = repo.fetchWeeklyMaxTempText().first()
+                val dayOfWeekText = repo.fetchDayOfWeek().first()
+                val weeklyWeatherCodeText = repo.fetchWeeklyWeatherCode().first()
 
-    private fun fetchCurrentTemperature() {
-        viewModelScope.launch {
-            repo.fetchCurrentTemperatureText().collect {
-                currentTempText.value = it
-            }
-        }
-    }
-
-    private fun fetchCurrentWeatherStatus() {
-        viewModelScope.launch {
-            repo.fetchCurrentWeatherStatusText().collect {
-                currentWeatherStatusText.value = it
-            }
-        }
-    }
-
-    private fun fetchCurrentMinTemp() {
-        viewModelScope.launch {
-            repo.fetchCurrentMinTempText().collect() {
-                currentMinTempText.value = it
-            }
-        }
-    }
-
-    private fun fetchCurrentMaxTemp() {
-        viewModelScope.launch {
-            repo.fetchCurrentMaxTempText().collect() {
-                currentMaxTempText.value = it
-            }
-        }
-    }
-
-    private fun fetchWeeklyMinTemp() {
-        viewModelScope.launch {
-            repo.fetchWeeklyMinTempText().collect {
-                weeklyMinTempText.value = it
-            }
-        }
-    }
-
-    private fun fetchWeeklyMaxTemp() {
-        viewModelScope.launch {
-            repo.fetchWeeklyMaxTempText().collect {
-                weeklyMaxTempText.value = it
-            }
-        }
-    }
-
-    @RequiresApi(Build.VERSION_CODES.O)
-    private fun fetchDayOfWeek() {
-        viewModelScope.launch {
-            repo.fetchDayOfWeek().collect {
-                dayOfWeek.value = it
-            }
-        }
-    }
-
-    private fun fetchWeeklyWeatherCode() {
-        viewModelScope.launch {
-            repo.fetchWeeklyWeatherCode().collect {
-                weeklyWeatherCode.value = it
+                weatherData.value = WeatherData(
+                    currentTemp = currentTempText,
+                    location = locationText,
+                    weatherStatus = weatherStatusText,
+                    currentMinTemp = currentMinTempText,
+                    currentMaxTemp = currentMaxTempText,
+                    weeklyMinTemp = weeklyMinTempText,
+                    weeklyMaxTemp = weeklyMaxTempText,
+                    dayOfWeek = dayOfWeekText,
+                    weeklyWeatherCode = weeklyWeatherCodeText,
+                )
+            } catch (e: Exception) {
+                // Handle errors appropriately
+            } finally {
+                isLoading.value = false
             }
         }
     }

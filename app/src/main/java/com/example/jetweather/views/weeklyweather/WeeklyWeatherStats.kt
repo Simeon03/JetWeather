@@ -12,10 +12,12 @@ import com.example.jetweather.viewmodel.WeatherViewModel
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun WeeklyWeatherStats(viewModel: WeatherViewModel, index: Int) {
-    val weeklyMinTemp by viewModel.weeklyMinTempText.collectAsState()
-    val weeklyMaxTemp by viewModel.weeklyMaxTempText.collectAsState()
-    val dayOfWeek by viewModel.dayOfWeek.collectAsState()
-    val weeklyWeatherCode by viewModel.weeklyWeatherCode.collectAsState()
+    val weatherData by viewModel.weatherData.collectAsState()
+
+    val weeklyMinTemp = weatherData.weeklyMinTemp
+    val weeklyMaxTemp = weatherData.weeklyMaxTemp
+    val dayOfWeek = weatherData.dayOfWeek
+    val weeklyWeatherCode = weatherData.weeklyWeatherCode
 
     DailyWeatherView(
         minTemp = weeklyMinTemp[index],

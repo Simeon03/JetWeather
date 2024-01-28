@@ -1,5 +1,7 @@
 package com.example.jetweather.views.currentweather
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
@@ -9,13 +11,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.example.jetweather.viewmodel.WeatherViewModel
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun CurrentWeatherView(viewModel: WeatherViewModel) {
     // State for current weather data
-    val currentWeatherStatus by viewModel.currentWeatherStatusText.collectAsState()
-    val currentTemp by viewModel.currentTempText.collectAsState()
-    val currentMinTemp by viewModel.currentMinTempText.collectAsState()
-    val currentMaxTemp by viewModel.currentMaxTempText.collectAsState()
+    val weatherData by viewModel.weatherData.collectAsState()
+
+    val currentWeatherStatus = weatherData.weatherStatus
+    val currentTemp = weatherData.currentTemp
+    val currentMinTemp = weatherData.currentMinTemp
+    val currentMaxTemp = weatherData.currentMaxTemp
 
     val currentMinMaxTemp = "$currentMinTemp°/$currentMaxTemp°"
 
