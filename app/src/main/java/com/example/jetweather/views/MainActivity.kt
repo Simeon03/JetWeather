@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
@@ -48,9 +49,7 @@ class MainActivity : ComponentActivity() {
                 )
 
                 LaunchedEffect(Unit) {
-                    viewModel.fetchLocationData().collect() { data ->
-                        Log.d("Location Fetched Lol", data.latlng.toString())
-                    }
+                    viewModel.fetchLocationData().collect().toString()
                 }
 
                 Box(

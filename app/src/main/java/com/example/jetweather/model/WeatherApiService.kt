@@ -29,7 +29,7 @@ interface WeatherApiService {
 
     @GET(GOOGLE_MAPS_ENDPOINT)
     suspend fun getLocationData(
-        @Query("latlng") latlng: List<Float>,
+        @Query("latlng") latlng: String,
         @Query("key") apiKey: String,
     ): Response<Geolocate>
 

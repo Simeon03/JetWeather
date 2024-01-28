@@ -38,16 +38,18 @@ class WeatherViewModel : ViewModel() {
             response.body()?.let { emit(it) }
         } else {
             // Handle error
-            Log.d("Location not feteched", response.toString())
         }
     }.flowOn(Dispatchers.IO)
 
     fun fetchLocationData(): Flow<Geolocate> = flow {
-        val response = weatherApi.getLocationData(listOf(52.52f, 13.41f), BuildConfig.GOOGLE_MAPS_API_KEY)
+        val response = googleMapsApi.getLocationData("52.52,13.41", BuildConfig.GOOGLE_MAPS_API_KEY)
         if (response.isSuccessful) {
             response.body()?.let { emit(it) }
+            Log.d("Location Fetched Lol", response.body()?.results?.get(0)?.addressComponents?.get(0)?.shortName.toString())
+            Log.d("Location Fetched Lol", response.toString())
         } else {
             // Handle error
+            Log.d("Location not fetched", response.toString())
         }
     }.flowOn(Dispatchers.IO)
 
