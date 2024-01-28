@@ -18,6 +18,7 @@ import com.example.jetweather.viewmodel.WeatherViewModel
 fun CurrentWeatherView(viewModel: WeatherViewModel) {
     // State for current weather data
     var currentWeather by remember { mutableStateOf<CurrentWeather?>(null) }
+    val currentWeatherStatus by viewModel.currentWeatherStatusText.collectAsState()
     val currentTemp by viewModel.currentTempText.collectAsState()
 
     // Fetch and observe current weather data
@@ -33,7 +34,7 @@ fun CurrentWeatherView(viewModel: WeatherViewModel) {
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         CurrentTemperature(text = currentTemp)
-        CurrentWeatherCode(text = viewModel.fetchWeatherStatus(currentWeather))
+        CurrentWeatherCode(text = currentWeatherStatus)
         CurrentWeatherCode(text = viewModel.fetchMinMaxTemperature(currentWeather))
     }
 }

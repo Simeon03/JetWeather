@@ -8,5 +8,5 @@ interface WeatherRepository {
 
     fun fetchCurrentTemperatureText(): Flow<String>
 
-
+    fun fetchCurrentWeatherStatusText(): Flow<String>
 }

@@ -25,10 +25,12 @@ class WeatherViewModel(private val repo: WeatherRepository) : ViewModel() {
 
     var currentTempText = MutableStateFlow("Fetch")
     var currentLocationText = MutableStateFlow("Location")
+    var currentWeatherStatusText = MutableStateFlow("Status")
 
     init {
         fetchCurrentTemperature()
         fetchLocationText()
+        fetchCurrentWeatherStatus()
     }
 
     fun fetchWeatherData(): Flow<CurrentWeather> = flow {
@@ -61,6 +63,14 @@ class WeatherViewModel(private val repo: WeatherRepository) : ViewModel() {
         viewModelScope.launch {
             repo.fetchCurrentTemperatureText().collect {
                 currentTempText.value = it
+            }
+        }
+    }
+
+    private fun fetchCurrentWeatherStatus() {
+        viewModelScope.launch {
+            repo.fetchCurrentWeatherStatusText().collect {
+                currentWeatherStatusText.value = it
             }
         }
     }

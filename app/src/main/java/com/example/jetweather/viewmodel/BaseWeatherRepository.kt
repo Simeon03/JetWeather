@@ -1,5 +1,6 @@
 package com.example.jetweather.viewmodel
 
+import com.example.jetweather.helper.weatherCode
 import com.example.jetweather.model.apiservice.LocationApiService
 import com.example.jetweather.model.apiservice.WeatherApiService
 import kotlinx.coroutines.Dispatchers
@@ -33,5 +34,17 @@ class BaseWeatherRepository(
             emit("Current temperature not found")
         }
 
+    }.flowOn(Dispatchers.IO)
+
+    override fun fetchCurrentWeatherStatusText(): Flow<String> = flow {
+        val response = weatherApi.getWeatherData(52.52f,13.41f)
+        val currentWeatherCode = response.body()?.data?.weatherCode
+        val currentWeatherStatus = weatherCode[currentWeatherCode]
+
+        if (response.isSuccessful) {
+            emit("$currentWeatherStatus°")
+        } else {
+            emit("Current temperature not found")
+        }
     }.flowOn(Dispatchers.IO)
 }
