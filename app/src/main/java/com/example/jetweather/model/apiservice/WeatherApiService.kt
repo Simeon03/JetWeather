@@ -1,6 +1,5 @@
-package com.example.jetweather.model
+package com.example.jetweather.model.apiservice
 
-import com.example.jetweather.data.Geolocate
 import com.example.jetweather.data.CurrentWeather
 import com.example.jetweather.data.WeeklyWeather
 import retrofit2.Response
@@ -27,15 +26,8 @@ interface WeatherApiService {
         @Query(DAILY) daily: String = "weather_code,temperature_2m_max,temperature_2m_min",
     ): Response<WeeklyWeather>
 
-    @GET(GOOGLE_MAPS_ENDPOINT)
-    suspend fun getLocationData(
-        @Query("latlng") latlng: String,
-        @Query("key") apiKey: String,
-    ): Response<Geolocate>
-
     companion object {
         const val ENDPOINT = "/v1/forecast?"
-        const val GOOGLE_MAPS_ENDPOINT = "/maps/api/geocode/json?"
         const val LATITUDE = "latitude"
         const val LONGITUDE = "longitude"
         const val DAILY = "daily"
