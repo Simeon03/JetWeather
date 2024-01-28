@@ -33,24 +33,6 @@ class WeatherViewModel(private val repo: WeatherRepository) : ViewModel() {
         fetchCurrentWeatherStatus()
     }
 
-    fun fetchWeatherData(): Flow<CurrentWeather> = flow {
-        val response = weatherApi.getWeatherData(52.52f, 13.41f)
-        if (response.isSuccessful) {
-            response.body()?.let { emit(it) }
-        } else {
-            // Handle error
-        }
-    }.flowOn(Dispatchers.IO)
-
-    fun fetchWeeklyWeatherData(): Flow<WeeklyWeather> = flow {
-        val response = weatherApi.getWeeklyWeatherData(52.52f, 13.41f)
-        if (response.isSuccessful) {
-            response.body()?.let { emit(it) }
-        } else {
-            // Handle error
-        }
-    }.flowOn(Dispatchers.IO)
-
     private fun fetchLocationText() {
         viewModelScope.launch {
             repo.fetchLocationText().collect {
@@ -87,10 +69,6 @@ class WeatherViewModel(private val repo: WeatherRepository) : ViewModel() {
         return weeklyWeather?.maxMinTemperatureUnit?.maxTemperatureUnit ?: ""
     }
 
-    fun fetchWeatherStatus(currentWeather: CurrentWeather?): String {
-        return weatherCode[currentWeather?.data?.weatherCode].toString()
-    }
-
     fun fetchDailyMaxTemperature(weeklyWeather: WeeklyWeather?, index: Int): Int {
         return weeklyWeather?.dailyTemperature?.maxTemperature?.get(index)?.toInt() ?: 0
     }
@@ -111,6 +89,25 @@ class WeatherViewModel(private val repo: WeatherRepository) : ViewModel() {
     fun fetchDailyWeatherCodeDesc(weeklyWeather: WeeklyWeather?, index: Int): String {
         return weatherCode[weeklyWeather?.dailyTemperature?.weatherCode?.get(index)] ?: "0"
     }
+
+    fun fetchWeatherData(): Flow<CurrentWeather> = flow {
+        val response = weatherApi.getWeatherData(52.52f, 13.41f)
+        if (response.isSuccessful) {
+            response.body()?.let { emit(it) }
+        } else {
+            // Handle error
+        }
+    }.flowOn(Dispatchers.IO)
+
+
+    fun fetchWeeklyWeatherData(): Flow<WeeklyWeather> = flow {
+        val response = weatherApi.getWeeklyWeatherData(52.52f, 13.41f)
+        if (response.isSuccessful) {
+            response.body()?.let { emit(it) }
+        } else {
+            // Handle error
+        }
+    }.flowOn(Dispatchers.IO)
 
     companion object {
         private const val OPEN_METEO_BASE_API = "https://api.open-meteo.com/"
