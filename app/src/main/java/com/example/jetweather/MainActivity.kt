@@ -15,6 +15,8 @@ import com.example.jetweather.viewmodel.BaseWeatherRepository
 import com.example.jetweather.viewmodel.WeatherViewModel
 import com.example.jetweather.views.MainView
 import com.example.jetweather.views.currentweather.CurrentWeatherView
+import kotlinx.coroutines.delay
+import okhttp3.internal.wait
 
 class MainActivity : ComponentActivity() {
 

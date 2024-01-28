@@ -11,16 +11,21 @@ import com.example.jetweather.viewmodel.WeatherViewModel
 @Composable
 fun CurrentWeatherView(viewModel: WeatherViewModel) {
     val weatherData by viewModel.weatherData.collectAsState()
+    val weatherDataLoading by viewModel.isLoading.collectAsState()
 
     val currentWeatherStatus = weatherData.weatherStatus
     val currentTemp = weatherData.currentTemp
     val currentMinTemp = weatherData.currentMinTemp
     val currentMaxTemp = weatherData.currentMaxTemp
+    val currentLocation = weatherData.location
 
-    CurrentWeatherStatsView(
-        currentTemp = currentTemp,
-        currentWeatherStatus = currentWeatherStatus,
-        currentMinTemp = currentMinTemp,
-        currentMaxTemp = currentMaxTemp,
-    )
+    if (!weatherDataLoading) {
+        CurrentWeatherStatsView(
+            currentLocation = currentLocation,
+            currentTemp = currentTemp,
+            currentWeatherStatus = currentWeatherStatus,
+            currentMinTemp = currentMinTemp,
+            currentMaxTemp = currentMaxTemp,
+        )
+    }
 }

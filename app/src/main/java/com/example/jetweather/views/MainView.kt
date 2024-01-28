@@ -20,7 +20,6 @@ import com.example.jetweather.ui.theme.Gradient4
 import com.example.jetweather.ui.theme.Gradient5
 import com.example.jetweather.viewmodel.WeatherViewModel
 import com.example.jetweather.views.currentweather.CurrentWeatherView
-import com.example.jetweather.views.location.LocationView
 import com.example.jetweather.views.weeklyweather.WeeklyWeatherView
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -42,7 +41,6 @@ fun MainView(viewModel: WeatherViewModel) {
             modifier = Modifier.padding(20.dp)
         ) {
             item {
-                LocationView(viewModel = viewModel)
                 CurrentWeatherView(viewModel = viewModel)
                 Spacer(modifier = Modifier.padding(vertical = 24.dp))
                 WeeklyWeatherView(viewModel = viewModel)
