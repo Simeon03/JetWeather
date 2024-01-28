@@ -4,7 +4,6 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.jetweather.data.CurrentWeather
 import com.example.jetweather.data.WeeklyWeather
 import com.example.jetweather.helper.getDayOfWeek
 import com.example.jetweather.helper.weatherCode
@@ -76,10 +75,6 @@ class WeatherViewModel(private val repo: WeatherRepository) : ViewModel() {
         }
     }
 
-    fun fetchTempSuffix(weeklyWeather: WeeklyWeather?): String {
-        return weeklyWeather?.maxMinTemperatureUnit?.maxTemperatureUnit ?: ""
-    }
-
     fun fetchDailyMaxTemperature(weeklyWeather: WeeklyWeather?, index: Int): Int {
         return weeklyWeather?.dailyTemperature?.maxTemperature?.get(index)?.toInt() ?: 0
     }
@@ -100,16 +95,6 @@ class WeatherViewModel(private val repo: WeatherRepository) : ViewModel() {
     fun fetchDailyWeatherCodeDesc(weeklyWeather: WeeklyWeather?, index: Int): String {
         return weatherCode[weeklyWeather?.dailyTemperature?.weatherCode?.get(index)] ?: "0"
     }
-
-    fun fetchWeatherData(): Flow<CurrentWeather> = flow {
-        val response = weatherApi.getWeatherData(52.52f, 13.41f)
-        if (response.isSuccessful) {
-            response.body()?.let { emit(it) }
-        } else {
-            // Handle error
-        }
-    }.flowOn(Dispatchers.IO)
-
 
     fun fetchWeeklyWeatherData(): Flow<WeeklyWeather> = flow {
         val response = weatherApi.getWeeklyWeatherData(52.52f, 13.41f)

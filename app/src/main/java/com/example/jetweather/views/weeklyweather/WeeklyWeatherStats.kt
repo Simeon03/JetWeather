@@ -12,7 +12,6 @@ fun WeeklyWeatherStats(viewModel: WeatherViewModel, weeklyWeather: WeeklyWeather
     DailyWeatherView(
         minTemp = viewModel.fetchDailyMinTemperature(weeklyWeather, index),
         maxTemp = viewModel.fetchDailyMaxTemperature(weeklyWeather, index),
-        tempSuffix = viewModel.fetchTempSuffix(weeklyWeather),
         date = viewModel.fetchDayOfWeek(weeklyWeather, index),
         weatherCode = viewModel.fetchDailyWeatherCode(weeklyWeather, index),
         weatherCodeDesc = viewModel.fetchDailyWeatherCodeDesc(weeklyWeather, index),

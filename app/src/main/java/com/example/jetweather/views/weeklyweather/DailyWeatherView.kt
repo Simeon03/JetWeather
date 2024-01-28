@@ -12,12 +12,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.example.jetweather.helper.formatTemp
 import com.example.jetweather.helper.weatherCodeIcon
 import com.example.jetweather.ui.theme.Typography
 
 @Composable
-fun DailyWeatherView(minTemp: Int, maxTemp: Int, tempSuffix: String, date: String, weatherCode: Int, weatherCodeDesc: String) {
+fun DailyWeatherView(
+    minTemp: Int,
+    maxTemp: Int,
+    date: String,
+    weatherCode: Int,
+    weatherCodeDesc: String
+) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -40,7 +45,7 @@ fun DailyWeatherView(minTemp: Int, maxTemp: Int, tempSuffix: String, date: Strin
             modifier = Modifier.weight(1f)
         )
         Text(
-            text = "$maxTemp${formatTemp(tempSuffix)}/$minTemp${formatTemp(tempSuffix)}",
+            text = "$maxTemp°/$minTemp°",
             modifier = Modifier
                 .weight(2f)
                 .padding(end = 8.dp),
