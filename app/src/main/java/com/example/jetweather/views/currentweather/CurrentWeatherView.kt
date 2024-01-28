@@ -14,7 +14,6 @@ import com.example.jetweather.viewmodel.WeatherViewModel
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun CurrentWeatherView(viewModel: WeatherViewModel) {
-    // State for current weather data
     val weatherData by viewModel.weatherData.collectAsState()
 
     val currentWeatherStatus = weatherData.weatherStatus
@@ -24,7 +23,6 @@ fun CurrentWeatherView(viewModel: WeatherViewModel) {
 
     val currentMinMaxTemp = "$currentMinTemp°/$currentMaxTemp°"
 
-    // UI layout
     Column(
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
