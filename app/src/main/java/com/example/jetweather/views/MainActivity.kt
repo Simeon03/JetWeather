@@ -2,7 +2,6 @@ package com.example.jetweather.views
 
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.RequiresApi
@@ -13,7 +12,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
@@ -29,6 +27,7 @@ import com.example.jetweather.ui.theme.Gradient5
 import com.example.jetweather.ui.theme.JetWeatherTheme
 import com.example.jetweather.viewmodel.WeatherViewModel
 import com.example.jetweather.views.currentweather.CurrentWeatherView
+import com.example.jetweather.views.location.LocationView
 import com.example.jetweather.views.weeklyweather.WeeklyWeatherView
 import kotlinx.coroutines.flow.collect
 
@@ -48,10 +47,6 @@ class MainActivity : ComponentActivity() {
                     endY = Float.POSITIVE_INFINITY
                 )
 
-                LaunchedEffect(Unit) {
-                    viewModel.fetchLocationData().collect().toString()
-                }
-
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
@@ -62,6 +57,7 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier.padding(20.dp)
                     ) {
                         item {
+                            LocationView(viewModel = viewModel)
                             CurrentWeatherView(viewModel = viewModel)
                             Spacer(modifier = Modifier.padding(vertical = 24.dp))
                             WeeklyWeatherView(viewModel = viewModel)

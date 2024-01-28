@@ -45,16 +45,13 @@ class WeatherViewModel : ViewModel() {
         val response = googleMapsApi.getLocationData("52.52,13.41", BuildConfig.GOOGLE_MAPS_API_KEY)
         if (response.isSuccessful) {
             response.body()?.let { emit(it) }
-            Log.d("Location Fetched Lol", response.body()?.results?.get(0)?.addressComponents?.get(0)?.shortName.toString())
-            Log.d("Location Fetched Lol", response.toString())
         } else {
-            // Handle error
             Log.d("Location not fetched", response.toString())
         }
     }.flowOn(Dispatchers.IO)
 
-    fun fetchLocationName(geolocate: Geolocate): String {
-        return geolocate.results[0].addressComponents[0].shortName
+    fun fetchLocationName(geolocate: Geolocate?): String {
+        return geolocate?.results?.get(0)?.addressComponents?.get(0)?.shortName ?: "Location"
     }
 
     fun fetchCurrentTemperature(currentWeather: CurrentWeather?): String {
