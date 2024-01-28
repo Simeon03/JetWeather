@@ -18,17 +18,17 @@ import com.example.jetweather.viewmodel.WeatherViewModel
 
 @Composable
 fun LocationView(viewModel: WeatherViewModel) {
-    var location by remember { mutableStateOf<Geolocation?>(null) }
+    var locationText by remember { mutableStateOf("Fetching data...") }
 
     LaunchedEffect(Unit) {
-        viewModel.fetchLocationData().collect { data ->
-            location = data
+        viewModel.fetchLocationText().collect {
+            locationText = it
         }
     }
 
     Column {
         Text(
-            text = viewModel.fetchLocationName(location),
+            text = locationText,
             modifier = Modifier.fillMaxWidth(),
             textAlign = TextAlign.Center,
             style = Typography.bodyLarge,

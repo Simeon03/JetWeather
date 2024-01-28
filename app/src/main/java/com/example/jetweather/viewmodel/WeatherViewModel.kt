@@ -43,17 +43,18 @@ class WeatherViewModel : ViewModel() {
         }
     }.flowOn(Dispatchers.IO)
 
-    fun fetchLocationData(): Flow<Geolocation> = flow {
+    fun fetchLocationText(): Flow<String> = flow {
         val response = googleMapsApi.getLocationData("52.52,13.41")
+        val location = response.body()?.results?.get(0)?.addressComponents?.get(0)?.shortName
         if (response.isSuccessful) {
-            response.body()?.let { emit(it) }
+            location?.let { emit(it) }
         } else {
             Log.d("Location not fetched", response.toString())
         }
     }.flowOn(Dispatchers.IO)
 
     fun fetchLocationName(geolocation: Geolocation?): String {
-        return geolocation?.results?.get(0)?.addressComponents?.get(0)?.shortName ?: "Location"
+        return geolocation?.results?.get(0)?.addressComponents?.get(0)?.shortName ?: "Fetching location..."
     }
 
     fun fetchCurrentTemperature(currentWeather: CurrentWeather?): String {
