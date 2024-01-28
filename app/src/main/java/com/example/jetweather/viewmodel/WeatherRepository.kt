@@ -17,4 +17,8 @@ interface WeatherRepository {
     fun fetchWeeklyMinTempText(): Flow<List<Int>>
 
     fun fetchWeeklyMaxTempText(): Flow<List<Int>>
+
+    fun fetchDayOfWeek(): Flow<List<String>>
+
+    fun fetchWeeklyWeatherCode(): Flow<List<Int>>
 }

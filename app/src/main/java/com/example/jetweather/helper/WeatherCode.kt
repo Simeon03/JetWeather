@@ -1,6 +1,6 @@
 package com.example.jetweather.helper
 
-val weatherCode = mapOf(
+val weatherCode = mapOf<Int, String>(
     0 to "Clear Sky",
     1 to "Clear",
     2 to "Partly Cloudy",
