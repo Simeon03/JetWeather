@@ -59,8 +59,7 @@ class MainActivity : ComponentActivity() {
                         .systemBarsPadding()
                 ) {
                     LazyColumn(
-                        modifier = Modifier
-                            .padding(20.dp)
+                        modifier = Modifier.padding(20.dp)
                     ) {
                         item {
                             CurrentWeatherView(viewModel = viewModel)

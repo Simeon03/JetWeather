@@ -53,6 +53,10 @@ class WeatherViewModel : ViewModel() {
         }
     }.flowOn(Dispatchers.IO)
 
+    fun fetchLocationName(geolocate: Geolocate): String {
+        return geolocate.results[0].addressComponents[0].shortName
+    }
+
     fun fetchCurrentTemperature(currentWeather: CurrentWeather?): String {
         val currentTemperature = currentWeather?.data?.temperature?.toInt()
         val temperatureSuffix = currentWeather?.weatherFormat?.temperatureUnit
