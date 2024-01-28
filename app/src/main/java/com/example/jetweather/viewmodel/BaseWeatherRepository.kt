@@ -46,6 +46,7 @@ class BaseWeatherRepository(
         } else {
             emit("Current temperature not found")
         }
+
     }.flowOn(Dispatchers.IO)
 
     override fun fetchCurrentMinTempText(): Flow<Int> = flow {
@@ -57,6 +58,7 @@ class BaseWeatherRepository(
         } else {
             emit(0)
         }
+
     }.flowOn(Dispatchers.IO)
 
     override fun fetchCurrentMaxTempText(): Flow<Int> = flow {
@@ -68,6 +70,7 @@ class BaseWeatherRepository(
         } else {
             emit(0)
         }
+
     }.flowOn(Dispatchers.IO)
 
     override fun fetchWeeklyMinTempText(): Flow<List<Int>> = flow {
@@ -91,6 +94,7 @@ class BaseWeatherRepository(
         } else {
             emit(emptyList<Int>())
         }
+
     }.flowOn(Dispatchers.IO)
     override fun fetchDayOfWeek(): Flow<List<String>> = flow {
         val response = weatherApi.getWeeklyWeatherData(52.52f,13.41f)

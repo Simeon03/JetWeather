@@ -29,6 +29,6 @@ fun CurrentWeatherView(viewModel: WeatherViewModel) {
     ) {
         CurrentTemperature(text = currentTemp)
         CurrentWeatherCode(text = currentWeatherStatus)
-        CurrentWeatherCode(text = currentMinMaxTemp)
+        CurrentMinMaxTemp(text = currentMinMaxTemp)
     }
 }
