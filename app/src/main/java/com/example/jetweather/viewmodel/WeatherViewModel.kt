@@ -5,7 +5,7 @@ import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import com.example.jetweather.BuildConfig
-import com.example.jetweather.Geolocate
+import com.example.jetweather.data.Geolocate
 import com.example.jetweather.data.CurrentWeather
 import com.example.jetweather.data.WeeklyWeather
 import com.example.jetweather.helper.formatTemp

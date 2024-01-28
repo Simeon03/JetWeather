@@ -43,11 +43,7 @@ fun WeeklyWeatherView(viewModel: WeatherViewModel) {
         shape = RoundedCornerShape(12.dp),
     ) {
         Box(modifier = Modifier.fillMaxWidth().background(Brush.verticalGradient(gradientColors))) {
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(4.dp)
-            ) {
+            Column(modifier = Modifier.fillMaxWidth().padding(4.dp)) {
                 for (i in 0..6) {
                     WeeklyWeatherStats(viewModel = viewModel, weeklyWeather = weeklyWeather, index = i)
                 }

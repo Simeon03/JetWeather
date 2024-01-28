@@ -1,4 +1,4 @@
-package com.example.jetweather.views
+package com.example.jetweather
 
 import android.os.Build
 import android.os.Bundle
@@ -8,9 +8,9 @@ import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.ViewModelProvider
-import com.example.jetweather.MainView
 import com.example.jetweather.ui.theme.JetWeatherTheme
 import com.example.jetweather.viewmodel.WeatherViewModel
+import com.example.jetweather.views.MainView
 import com.example.jetweather.views.currentweather.CurrentWeatherView
 
 class MainActivity : ComponentActivity() {

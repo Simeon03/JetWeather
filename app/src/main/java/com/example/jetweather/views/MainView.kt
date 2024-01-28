@@ -1,4 +1,4 @@
-package com.example.jetweather
+package com.example.jetweather.views
 
 import android.os.Build
 import androidx.annotation.RequiresApi

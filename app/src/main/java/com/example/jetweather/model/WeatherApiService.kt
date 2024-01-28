@@ -1,6 +1,6 @@
 package com.example.jetweather.model
 
-import com.example.jetweather.Geolocate
+import com.example.jetweather.data.Geolocate
 import com.example.jetweather.data.CurrentWeather
 import com.example.jetweather.data.WeeklyWeather
 import retrofit2.Response
