@@ -13,4 +13,8 @@ interface WeatherRepository {
     fun fetchCurrentMinTempText(): Flow<Int>
 
     fun fetchCurrentMaxTempText(): Flow<Int>
+
+    fun fetchWeeklyMinTempText(): Flow<List<Int>>
+
+    fun fetchWeeklyMaxTempText(): Flow<List<Int>>
 }

@@ -69,4 +69,27 @@ class BaseWeatherRepository(
             emit(0)
         }
     }.flowOn(Dispatchers.IO)
+
+    override fun fetchWeeklyMinTempText(): Flow<List<Int>> = flow {
+        val response = weatherApi.getWeeklyWeatherData(52.52f,13.41f)
+        val weeklyMinTemp = response.body()?.dailyTemperature?.minTemperature?.map { it.toInt() }
+
+        if (response.isSuccessful) {
+            weeklyMinTemp?.let { emit(it) }
+        } else {
+            emit(emptyList<Int>())
+        }
+
+    }.flowOn(Dispatchers.IO)
+
+    override fun fetchWeeklyMaxTempText(): Flow<List<Int>> = flow {
+        val response = weatherApi.getWeeklyWeatherData(52.52f,13.41f)
+        val weeklyMaxTemp = response.body()?.dailyTemperature?.maxTemperature?.map { it.toInt() }
+
+        if (response.isSuccessful) {
+            weeklyMaxTemp?.let { emit(it) }
+        } else {
+            emit(emptyList<Int>())
+        }
+    }.flowOn(Dispatchers.IO)
 }

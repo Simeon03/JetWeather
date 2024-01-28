@@ -26,6 +26,8 @@ class WeatherViewModel(private val repo: WeatherRepository) : ViewModel() {
     var currentWeatherStatusText = MutableStateFlow("Status")
     var currentMinTempText = MutableStateFlow(0)
     var currentMaxTempText = MutableStateFlow(0)
+    var weeklyMinTempText = MutableStateFlow(listOf(0, 1, 2, 3, 4, 5, 6))
+    var weeklyMaxTempText = MutableStateFlow(listOf(0, 1, 2, 3, 4, 5, 6))
 
     init {
         fetchCurrentTemperature()
@@ -33,6 +35,8 @@ class WeatherViewModel(private val repo: WeatherRepository) : ViewModel() {
         fetchCurrentWeatherStatus()
         fetchCurrentMinTemp()
         fetchCurrentMaxTemp()
+        fetchWeeklyMinTemp()
+        fetchWeeklyMaxTemp()
     }
 
     private fun fetchLocationText() {
@@ -75,13 +79,22 @@ class WeatherViewModel(private val repo: WeatherRepository) : ViewModel() {
         }
     }
 
-    fun fetchDailyMaxTemperature(weeklyWeather: WeeklyWeather?, index: Int): Int {
-        return weeklyWeather?.dailyTemperature?.maxTemperature?.get(index)?.toInt() ?: 0
+    private fun fetchWeeklyMinTemp() {
+        viewModelScope.launch {
+            repo.fetchWeeklyMinTempText().collect {
+                weeklyMinTempText.value = it
+            }
+        }
     }
 
-    fun fetchDailyMinTemperature(weeklyWeather: WeeklyWeather?, index: Int): Int {
-        return weeklyWeather?.dailyTemperature?.minTemperature?.get(index)?.toInt() ?: 0
+    private fun fetchWeeklyMaxTemp() {
+        viewModelScope.launch {
+            repo.fetchWeeklyMaxTempText().collect {
+                weeklyMaxTempText.value = it
+            }
+        }
     }
+
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun fetchDayOfWeek(weeklyWeather: WeeklyWeather?, index: Int): String {
