@@ -2,7 +2,7 @@ package com.example.jetweather.data
 
 import com.google.gson.annotations.SerializedName
 
-data class Geolocate(
+data class Geolocation(
     @SerializedName("results") val results: List<Result>
 )
 

@@ -4,7 +4,7 @@ import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
-import com.example.jetweather.data.Geolocate
+import com.example.jetweather.data.Geolocation
 import com.example.jetweather.data.CurrentWeather
 import com.example.jetweather.data.WeeklyWeather
 import com.example.jetweather.helper.formatTemp
@@ -43,7 +43,7 @@ class WeatherViewModel : ViewModel() {
         }
     }.flowOn(Dispatchers.IO)
 
-    fun fetchLocationData(): Flow<Geolocate> = flow {
+    fun fetchLocationData(): Flow<Geolocation> = flow {
         val response = googleMapsApi.getLocationData("52.52,13.41")
         if (response.isSuccessful) {
             response.body()?.let { emit(it) }
@@ -52,8 +52,8 @@ class WeatherViewModel : ViewModel() {
         }
     }.flowOn(Dispatchers.IO)
 
-    fun fetchLocationName(geolocate: Geolocate?): String {
-        return geolocate?.results?.get(0)?.addressComponents?.get(0)?.shortName ?: "Location"
+    fun fetchLocationName(geolocation: Geolocation?): String {
+        return geolocation?.results?.get(0)?.addressComponents?.get(0)?.shortName ?: "Location"
     }
 
     fun fetchCurrentTemperature(currentWeather: CurrentWeather?): String {
