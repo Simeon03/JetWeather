@@ -42,9 +42,9 @@ class BaseWeatherRepository(
         val currentWeatherStatus = weatherCode[currentWeatherCode]
 
         if (response.isSuccessful) {
-            emit("$currentWeatherStatus°")
+            emit("$currentWeatherStatus")
         } else {
-            emit("Current temperature not found")
+            emit("Current weather status not found")
         }
 
     }.flowOn(Dispatchers.IO)

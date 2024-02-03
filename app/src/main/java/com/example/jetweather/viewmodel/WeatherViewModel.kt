@@ -24,15 +24,15 @@ data class WeatherData(
 class WeatherViewModel(private val repo: WeatherRepository) : ViewModel() {
 
     var weatherData = MutableStateFlow(WeatherData(
-        "Fetch",
-        "Location",
-        "Status",
-        0,
-        0,
-        listOf(0, 1, 2, 3, 4, 5, 6),
-        listOf(0, 1, 2, 3, 4, 5, 6),
-        listOf("2023-02-01", "2023-02-01", "2023-02-01", "2023-02-01", "2023-02-01", "2023-02-01", "2023-02-01"),
-        listOf(0, 1, 2, 3, 4, 5, 6),
+        STRING_PLACEHOLDER,
+        STRING_PLACEHOLDER,
+        STRING_PLACEHOLDER,
+        INT_PLACEHOLDER,
+        INT_PLACEHOLDER,
+        LIST_INT_PLACEHOLDER,
+        LIST_INT_PLACEHOLDER,
+        LIST_STRING_PLACEHOLDER,
+        LIST_INT_PLACEHOLDER,
     ))
     var isLoading = MutableStateFlow(true)
 
@@ -72,5 +72,12 @@ class WeatherViewModel(private val repo: WeatherRepository) : ViewModel() {
                 isLoading.value = false
             }
         }
+    }
+
+    companion object {
+        private const val STRING_PLACEHOLDER = "Fetch"
+        private const val INT_PLACEHOLDER = 0
+        private val LIST_INT_PLACEHOLDER = listOf(0, 1, 2, 3, 4, 5, 6)
+        private val LIST_STRING_PLACEHOLDER = listOf("2023-02-01", "2023-02-01", "2023-02-01", "2023-02-01", "2023-02-01", "2023-02-01", "2023-02-01")
     }
 }

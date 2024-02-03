@@ -15,8 +15,6 @@ import com.example.jetweather.viewmodel.BaseWeatherRepository
 import com.example.jetweather.viewmodel.WeatherViewModel
 import com.example.jetweather.views.MainView
 import com.example.jetweather.views.currentweather.CurrentWeatherView
-import kotlinx.coroutines.delay
-import okhttp3.internal.wait
 
 class MainActivity : ComponentActivity() {
 
@@ -31,10 +29,10 @@ class MainActivity : ComponentActivity() {
             LocationApiService::class.java
         )
         val weatherRepository = BaseWeatherRepository(weatherApi, googleMapsApi)
+        val viewModel = WeatherViewModel(weatherRepository)
 
         setContent {
             JetWeatherTheme {
-                val viewModel = WeatherViewModel(weatherRepository)
                 MainView(viewModel = viewModel)
             }
         }
@@ -46,6 +44,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
