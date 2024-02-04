@@ -17,7 +17,8 @@ data class WeatherData(
     val weeklyMinTemp: List<Int>,
     val weeklyMaxTemp: List<Int>,
     val dayOfWeek: List<String>,
-    val weeklyWeatherCode: List<Int>
+    val weeklyWeatherCode: List<Int>,
+    val hourlyTemperature: List<Float>,
 )
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -33,6 +34,7 @@ class WeatherViewModel(private val repo: WeatherRepository) : ViewModel() {
         LIST_INT_PLACEHOLDER,
         LIST_STRING_PLACEHOLDER,
         LIST_INT_PLACEHOLDER,
+        LIST_FLOAT_PLACEHOLDER,
     ))
     var isLoading = MutableStateFlow(true)
 
@@ -55,6 +57,8 @@ class WeatherViewModel(private val repo: WeatherRepository) : ViewModel() {
                 val dayOfWeekText = repo.fetchDayOfWeek().first()
                 val weeklyWeatherCodeText = repo.fetchWeeklyWeatherCode().first()
 
+                val hourlyTemperatureText = repo.fetchHourlyTemperature().first()
+
                 weatherData.value = WeatherData(
                     currentTemp = currentTempText,
                     location = locationText,
@@ -65,6 +69,7 @@ class WeatherViewModel(private val repo: WeatherRepository) : ViewModel() {
                     weeklyMaxTemp = weeklyMaxTempText,
                     dayOfWeek = dayOfWeekText,
                     weeklyWeatherCode = weeklyWeatherCodeText,
+                    hourlyTemperature = hourlyTemperatureText,
                 )
             } catch (e: Exception) {
                 // Handle errors appropriately
@@ -79,5 +84,6 @@ class WeatherViewModel(private val repo: WeatherRepository) : ViewModel() {
         private const val INT_PLACEHOLDER = 0
         private val LIST_INT_PLACEHOLDER = listOf(0, 1, 2, 3, 4, 5, 6)
         private val LIST_STRING_PLACEHOLDER = listOf("2023-02-01", "2023-02-01", "2023-02-01", "2023-02-01", "2023-02-01", "2023-02-01", "2023-02-01")
+        private val LIST_FLOAT_PLACEHOLDER = listOf(0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f)
     }
 }

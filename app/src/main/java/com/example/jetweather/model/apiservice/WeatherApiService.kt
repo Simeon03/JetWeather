@@ -1,6 +1,7 @@
 package com.example.jetweather.model.apiservice
 
 import com.example.jetweather.data.CurrentWeather
+import com.example.jetweather.data.HourlyWeather
 import com.example.jetweather.data.WeeklyWeather
 import retrofit2.Response
 import retrofit2.http.GET
@@ -26,6 +27,14 @@ interface WeatherApiService {
         @Query(DAILY) daily: String = "weather_code,temperature_2m_max,temperature_2m_min",
     ): Response<WeeklyWeather>
 
+    @GET(ENDPOINT)
+    suspend fun getHourlyData(
+        @Query(LATITUDE) latitude: Float,
+        @Query(LONGITUDE) longitude: Float,
+        @Query(HOURLY) hourly: String = "temperature_2m,relative_humidity_2m,weather_code",
+        @Query(FORECAST_DAYS) forecastDays: Int = 1,
+    ): Response<HourlyWeather>
+
     companion object {
         const val ENDPOINT = "/v1/forecast?"
         const val LATITUDE = "latitude"
@@ -34,5 +43,6 @@ interface WeatherApiService {
         const val CURRENT = "current"
         const val FORECAST_DAYS = "forecast_days"
         const val TIMEZONE = "timezone"
+        const val HOURLY = "hourly"
     }
 }
