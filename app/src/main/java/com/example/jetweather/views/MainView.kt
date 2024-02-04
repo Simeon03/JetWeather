@@ -20,6 +20,7 @@ import com.example.jetweather.ui.theme.Gradient4
 import com.example.jetweather.ui.theme.Gradient5
 import com.example.jetweather.viewmodel.WeatherViewModel
 import com.example.jetweather.views.currentweather.CurrentWeatherView
+import com.example.jetweather.views.hourlyweather.HourlyWeatherView
 import com.example.jetweather.views.weeklyweather.WeeklyWeatherView
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -44,6 +45,8 @@ fun MainView(viewModel: WeatherViewModel) {
                 CurrentWeatherView(viewModel = viewModel)
                 Spacer(modifier = Modifier.padding(vertical = 24.dp))
                 WeeklyWeatherView(viewModel = viewModel)
+                Spacer(modifier = Modifier.padding(vertical = 24.dp))
+                HourlyWeatherView(viewModel)
             }
         }
     }
