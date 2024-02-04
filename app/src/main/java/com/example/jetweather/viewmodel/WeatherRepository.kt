@@ -1,28 +1,12 @@
 package com.example.jetweather.viewmodel
 
-import kotlinx.coroutines.flow.Flow
+import com.example.jetweather.viewmodel.repositories.CurrentWeatherRepository
+import com.example.jetweather.viewmodel.repositories.HourlyWeatherRepository
+import com.example.jetweather.viewmodel.repositories.LocationRepository
+import com.example.jetweather.viewmodel.repositories.WeeklyWeatherRepository
 
-interface WeatherRepository {
-
-    fun fetchLocationText(): Flow<String>
-
-    fun fetchCurrentTemperatureText(): Flow<String>
-
-    fun fetchCurrentWeatherStatusText(): Flow<String>
-
-    fun fetchCurrentMinTempText(): Flow<Int>
-
-    fun fetchCurrentMaxTempText(): Flow<Int>
-
-    fun fetchWeeklyMinTempText(): Flow<List<Int>>
-
-    fun fetchWeeklyMaxTempText(): Flow<List<Int>>
-
-    fun fetchDayOfWeek(): Flow<List<String>>
-
-    fun fetchWeeklyWeatherCode(): Flow<List<Int>>
-
-    fun fetchHourlyTemperature(): Flow<List<Float>>
-
-    fun fetchHourlyTime(): Flow<List<String>>
-}
+interface WeatherRepository :
+    CurrentWeatherRepository,
+    WeeklyWeatherRepository,
+    HourlyWeatherRepository,
+    LocationRepository

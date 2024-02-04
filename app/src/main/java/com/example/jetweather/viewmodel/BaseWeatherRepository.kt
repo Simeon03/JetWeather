@@ -96,6 +96,7 @@ class BaseWeatherRepository(
         }
 
     }.flowOn(Dispatchers.IO)
+
     override fun fetchDayOfWeek(): Flow<List<String>> = flow {
         val response = weatherApi.getWeeklyWeatherData(52.52f,13.41f)
         val dayOfWeek = response.body()?.dailyTemperature?.time?.map { it }
