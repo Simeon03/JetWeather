@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 data class WeatherData(
     val currentTemp: String,
     val location: String,
-    val weatherStatus: String,
+    val weatherStatus: String?,
     val currentMinTemp: Int,
     val currentMaxTemp: Int,
     val weeklyMinTemp: List<Int>,

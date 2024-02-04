@@ -7,142 +7,118 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import retrofit2.Response
 
 class BaseWeatherRepository(
     private val weatherApi: WeatherApiService,
     private val googleMapsApi: LocationApiService
 ): WeatherRepository {
+
     override fun fetchLocationText(): Flow<String> = flow {
-        val response = googleMapsApi.getLocationData("52.52,13.41")
-        val location = response.body()?.results?.get(0)?.addressComponents?.get(0)?.shortName
-
-        if (response.isSuccessful) {
-            location?.let { emit(it) }
-        } else {
-            emit("Location not available")
-        }
-
+        handleResponse(
+            response = googleMapsApi.getLocationData("$LATITUDE,$LONGITUDE"),
+            onSuccess = { location -> emit(location.results[0].addressComponents[0].shortName) },
+            onError = { emit(LOCATION_NOT_AVAILABLE) }
+        )
     }.flowOn(Dispatchers.IO)
 
     override fun fetchCurrentTemperatureText(): Flow<String> = flow {
-        val response = weatherApi.getWeatherData(52.52f,13.41f)
-        val currentTemp = response.body()?.data?.temperature?.toInt()
-
-        if (response.isSuccessful) {
-            emit("$currentTemp°")
-        } else {
-            emit("Current temperature not found")
-        }
-
+        handleResponse(
+            response = weatherApi.getWeatherData(LATITUDE, LONGITUDE),
+            onSuccess = { weatherData -> emit("${weatherData.data.temperature.toInt()}°") },
+            onError = { emit(TEMP_NOT_FOUND) }
+        )
     }.flowOn(Dispatchers.IO)
 
-    override fun fetchCurrentWeatherStatusText(): Flow<String> = flow {
-        val response = weatherApi.getWeatherData(52.52f,13.41f)
-        val currentWeatherCode = response.body()?.data?.weatherCode
-        val currentWeatherStatus = weatherCode[currentWeatherCode]
-
-        if (response.isSuccessful) {
-            emit("$currentWeatherStatus")
-        } else {
-            emit("Current weather status not found")
-        }
-
+    override fun fetchCurrentWeatherStatusText(): Flow<String?> = flow {
+        handleResponse(
+            response = weatherApi.getWeatherData(LATITUDE, LONGITUDE),
+            onSuccess = { weatherData -> emit(weatherCode[weatherData.data.weatherCode]) },
+            onError = { emit(WEATHER_STATUS_NOT_FOUND) }
+        )
     }.flowOn(Dispatchers.IO)
 
     override fun fetchCurrentMinTempText(): Flow<Int> = flow {
-        val response = weatherApi.getWeatherData(52.52f,13.41f)
-        val minTemp = response.body()?.maxMinTemperature?.minTemperature?.get(0)?.toInt()
-
-        if (response.isSuccessful) {
-            minTemp?.let { emit(it) }
-        } else {
-            emit(0)
-        }
-
+        handleResponse(
+            response = weatherApi.getWeatherData(LATITUDE, LONGITUDE),
+            onSuccess = { weatherData -> emit(weatherData.maxMinTemperature.minTemperature[0].toInt()) },
+            onError = { emit(0) }
+        )
     }.flowOn(Dispatchers.IO)
 
     override fun fetchCurrentMaxTempText(): Flow<Int> = flow {
-        val response = weatherApi.getWeatherData(52.52f,13.41f)
-        val maxTemp = response.body()?.maxMinTemperature?.maxTemperature?.get(0)?.toInt()
-
-        if (response.isSuccessful) {
-            maxTemp?.let { emit(it) }
-        } else {
-            emit(0)
-        }
-
+        handleResponse(
+            response = weatherApi.getWeatherData(LATITUDE, LONGITUDE),
+            onSuccess = { weatherData -> emit(weatherData.maxMinTemperature.maxTemperature[0].toInt()) },
+            onError = { emit(0) }
+        )
     }.flowOn(Dispatchers.IO)
 
     override fun fetchWeeklyMinTempText(): Flow<List<Int>> = flow {
-        val response = weatherApi.getWeeklyWeatherData(52.52f,13.41f)
-        val weeklyMinTemp = response.body()?.dailyTemperature?.minTemperature?.map { it.toInt() }
-
-        if (response.isSuccessful) {
-            weeklyMinTemp?.let { emit(it) }
-        } else {
-            emit(emptyList<Int>())
-        }
-
+        handleResponse(
+            response = weatherApi.getWeeklyWeatherData(LATITUDE, LONGITUDE),
+            onSuccess = { weeklyWeatherData -> emit(weeklyWeatherData.dailyTemperature.minTemperature.map { it.toInt() }) },
+            onError = { emit(emptyList<Int>()) }
+        )
     }.flowOn(Dispatchers.IO)
 
     override fun fetchWeeklyMaxTempText(): Flow<List<Int>> = flow {
-        val response = weatherApi.getWeeklyWeatherData(52.52f,13.41f)
-        val weeklyMaxTemp = response.body()?.dailyTemperature?.maxTemperature?.map { it.toInt() }
-
-        if (response.isSuccessful) {
-            weeklyMaxTemp?.let { emit(it) }
-        } else {
-            emit(emptyList<Int>())
-        }
-
+        handleResponse(
+            response = weatherApi.getWeeklyWeatherData(LATITUDE, LONGITUDE),
+            onSuccess = { weeklyWeatherData -> emit(weeklyWeatherData.dailyTemperature.maxTemperature.map { it.toInt() }) },
+            onError = { emit(emptyList<Int>()) }
+        )
     }.flowOn(Dispatchers.IO)
 
     override fun fetchDayOfWeek(): Flow<List<String>> = flow {
-        val response = weatherApi.getWeeklyWeatherData(52.52f,13.41f)
-        val dayOfWeek = response.body()?.dailyTemperature?.time?.map { it }
-
-        if (response.isSuccessful) {
-            dayOfWeek?.let { emit((it)) }
-        } else {
-            emit(emptyList<String>())
-        }
-
+        handleResponse(
+            response = weatherApi.getWeeklyWeatherData(LATITUDE, LONGITUDE),
+            onSuccess = { weeklyWeatherData -> emit(weeklyWeatherData.dailyTemperature.time.map { it }) },
+            onError = { emit(emptyList<String>()) }
+        )
     }.flowOn(Dispatchers.IO)
 
     override fun fetchWeeklyWeatherCode(): Flow<List<Int>> = flow {
-        val response = weatherApi.getWeeklyWeatherData(52.52f,13.41f)
-        val dayOfWeek = response.body()?.dailyTemperature?.weatherCode?.map { it }
-
-        if (response.isSuccessful) {
-            dayOfWeek?.let { emit(it) }
-        } else {
-            emit(emptyList<Int>())
-        }
-
+        handleResponse(
+            response = weatherApi.getWeeklyWeatherData(LATITUDE, LONGITUDE),
+            onSuccess = { weeklyWeatherData -> emit(weeklyWeatherData.dailyTemperature.weatherCode.map { it }) },
+            onError = { emit(emptyList<Int>()) }
+        )
     }.flowOn(Dispatchers.IO)
 
     override fun fetchHourlyTemperature(): Flow<List<Float>> = flow {
-        val response = weatherApi.getHourlyData(52.52f,13.41f)
-        val hourlyTemp = response.body()?.hourly?.temperature?.map { it }
-
-        if (response.isSuccessful) {
-            hourlyTemp?.let { emit((it)) }
-        } else {
-            emit(emptyList<Float>())
-        }
-
+        handleResponse(
+            response = weatherApi.getHourlyData(LATITUDE, LONGITUDE),
+            onSuccess = { hourlyData -> emit(hourlyData.hourly.temperature.map { it }) },
+            onError = { emit(emptyList<Float>()) }
+        )
     }.flowOn(Dispatchers.IO)
 
     override fun fetchHourlyTime(): Flow<List<String>> = flow {
-
-        val response = weatherApi.getHourlyData(52.52f,13.41f)
-        val hourlyTime = response.body()?.hourly?.time?.map { it }
-
-        if (response.isSuccessful) {
-            hourlyTime?.let { emit(it) }
-        } else {
-            emit(emptyList<String>())
-        }
-
+        handleResponse(
+            response = weatherApi.getHourlyData(LATITUDE, LONGITUDE),
+            onSuccess = { hourlyData -> emit(hourlyData.hourly.time.map { it }) },
+            onError = { emit(emptyList<String>()) }
+        )
     }.flowOn(Dispatchers.IO)
+
+    private suspend fun <T> handleResponse(
+        response: Response<T>,
+        onSuccess: suspend (T) -> Unit,
+        onError: suspend () -> Unit,
+    ) {
+        if (response.isSuccessful) {
+            response.body()?.let { onSuccess(it) }
+        } else {
+            onError()
+        }
+    }
+
+    companion object {
+        private const val LATITUDE = 52.52f
+        private const val LONGITUDE = 13.41f
+        private const val LOCATION_NOT_AVAILABLE = "Location not available"
+        private const val TEMP_NOT_FOUND = "Current temperature not found"
+        private const val WEATHER_STATUS_NOT_FOUND = "Current weather status not found"
+    }
 }

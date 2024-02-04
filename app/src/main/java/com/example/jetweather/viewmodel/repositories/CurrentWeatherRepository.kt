@@ -6,7 +6,7 @@ interface CurrentWeatherRepository {
 
     fun fetchCurrentTemperatureText(): Flow<String>
 
-    fun fetchCurrentWeatherStatusText(): Flow<String>
+    fun fetchCurrentWeatherStatusText(): Flow<String?>
 
     fun fetchCurrentMinTempText(): Flow<Int>
 
