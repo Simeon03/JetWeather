@@ -23,4 +23,6 @@ interface WeatherRepository {
     fun fetchWeeklyWeatherCode(): Flow<List<Int>>
 
     fun fetchHourlyTemperature(): Flow<List<Float>>
+
+    fun fetchHourlyTime(): Flow<List<String>>
 }

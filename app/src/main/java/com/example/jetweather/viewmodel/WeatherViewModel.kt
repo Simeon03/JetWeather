@@ -19,6 +19,7 @@ data class WeatherData(
     val dayOfWeek: List<String>,
     val weeklyWeatherCode: List<Int>,
     val hourlyTemperature: List<Float>,
+    val hourlyTime: List<String>,
 )
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -35,6 +36,7 @@ class WeatherViewModel(private val repo: WeatherRepository) : ViewModel() {
         LIST_STRING_PLACEHOLDER,
         LIST_INT_PLACEHOLDER,
         LIST_FLOAT_PLACEHOLDER,
+        LIST_STRING_24_PLACEHOLDER,
     ))
     var isLoading = MutableStateFlow(true)
 
@@ -58,6 +60,7 @@ class WeatherViewModel(private val repo: WeatherRepository) : ViewModel() {
                 val weeklyWeatherCodeText = repo.fetchWeeklyWeatherCode().first()
 
                 val hourlyTemperatureText = repo.fetchHourlyTemperature().first()
+                val hourlyTimeText = repo.fetchHourlyTime().first()
 
                 weatherData.value = WeatherData(
                     currentTemp = currentTempText,
@@ -70,6 +73,7 @@ class WeatherViewModel(private val repo: WeatherRepository) : ViewModel() {
                     dayOfWeek = dayOfWeekText,
                     weeklyWeatherCode = weeklyWeatherCodeText,
                     hourlyTemperature = hourlyTemperatureText,
+                    hourlyTime = hourlyTimeText,
                 )
             } catch (e: Exception) {
                 // Handle errors appropriately
@@ -85,5 +89,6 @@ class WeatherViewModel(private val repo: WeatherRepository) : ViewModel() {
         private val LIST_INT_PLACEHOLDER = listOf(0, 1, 2, 3, 4, 5, 6)
         private val LIST_STRING_PLACEHOLDER = listOf("2023-02-01", "2023-02-01", "2023-02-01", "2023-02-01", "2023-02-01", "2023-02-01", "2023-02-01")
         private val LIST_FLOAT_PLACEHOLDER = listOf(0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f)
+        private val LIST_STRING_24_PLACEHOLDER = listOf("0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f")
     }
 }

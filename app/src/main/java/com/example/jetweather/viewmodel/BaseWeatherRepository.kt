@@ -131,4 +131,17 @@ class BaseWeatherRepository(
         }
 
     }.flowOn(Dispatchers.IO)
+
+    override fun fetchHourlyTime(): Flow<List<String>> = flow {
+
+        val response = weatherApi.getHourlyData(52.52f,13.41f)
+        val hourlyTime = response.body()?.hourly?.time?.map { it }
+
+        if (response.isSuccessful) {
+            hourlyTime?.let { emit(it) }
+        } else {
+            emit(emptyList<String>())
+        }
+
+    }.flowOn(Dispatchers.IO)
 }
