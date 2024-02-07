@@ -98,7 +98,7 @@ class BaseWeatherRepository(
         handleResponse(
             response = weatherApi.getHourlyData(LATITUDE, LONGITUDE),
             onSuccess = { hourlyData -> emit(hourlyData.hourly.time.map { it }) },
-            onError = { emit(emptyList<String>()) }
+            onError = { emit(listOf<String>()) }
         )
     }.flowOn(Dispatchers.IO)
 

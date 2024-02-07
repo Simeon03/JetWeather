@@ -89,6 +89,6 @@ class WeatherViewModel(private val repo: WeatherRepository) : ViewModel() {
         private val LIST_INT_PLACEHOLDER = listOf(0, 1, 2, 3, 4, 5, 6)
         private val LIST_STRING_PLACEHOLDER = listOf("2023-02-01", "2023-02-01", "2023-02-01", "2023-02-01", "2023-02-01", "2023-02-01", "2023-02-01")
         private val LIST_FLOAT_PLACEHOLDER = listOf(0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f)
-        private val LIST_STRING_24_PLACEHOLDER = listOf("0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f")
+        private val LIST_STRING_24_PLACEHOLDER = mutableListOf("0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f")
     }
 }

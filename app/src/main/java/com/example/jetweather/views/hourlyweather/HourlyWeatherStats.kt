@@ -9,6 +9,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import com.example.jetweather.viewmodel.WeatherViewModel
 import java.time.LocalDateTime
+import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -16,14 +17,22 @@ import java.time.format.DateTimeFormatter
 fun HourlyWeatherStats(viewModel: WeatherViewModel, index: Int) {
     val weatherData by viewModel.weatherData.collectAsState()
 
-    val fullHourlyTime = weatherData.hourlyTime[index]
-    val unformattedHourlyTime = LocalDateTime.parse(fullHourlyTime, DateTimeFormatter.ISO_DATE_TIME)
-    val formatter24Hour = DateTimeFormatter.ofPattern("HH:mm")
-    val hourlyTime = unformattedHourlyTime.format(formatter24Hour)
+    val fullHourlyTime = weatherData.hourlyTime
+    val mutableListHours = fullHourlyTime.toMutableList()
+    val formattedTimes = formatDateTimeList(mutableListHours)
 
-    val hourlyTemperature = weatherData.hourlyTemperature[index].toInt()
+    val currentTime = LocalTime.now().withMinute(0).withSecond(0).withNano(0)
+    val formatter = DateTimeFormatter.ofPattern("HH:mm")
+    val currentTimeFormatted = currentTime.format(formatter)
 
-    HourlyWeatherSlotView(hourlyTime, hourlyTemperature)
+    val pos = formattedTimes.indexOf(currentTimeFormatted)
+
+    val removedBeforeTimes = formattedTimes.subList(pos, pos + 24)
+
+    val hourTemperatureList = weatherData.hourlyTemperature.subList(pos, pos + 24)
+    val hourlyTemperature = hourTemperatureList[index].toInt()
+
+    HourlyWeatherSlotView(removedBeforeTimes[index], hourlyTemperature)
 }
 
 @Composable
@@ -36,7 +45,18 @@ fun HourlyWeatherSlotView(
             text = time
         )
         Text(
-            text = "$hourlyTemperature"
+            text = "$hourlyTemperature°"
         )
+    }
+}
+
+@RequiresApi(Build.VERSION_CODES.O)
+fun formatDateTimeList(dateTimes: List<String>): List<String> {
+    val inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm")
+    val outputFormatter = DateTimeFormatter.ofPattern("HH:mm")
+
+    return dateTimes.map { dateTimeString ->
+        val dateTime = LocalDateTime.parse(dateTimeString, inputFormatter)
+        dateTime.format(outputFormatter)
     }
 }

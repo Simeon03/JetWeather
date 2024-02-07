@@ -32,7 +32,7 @@ interface WeatherApiService {
         @Query(LATITUDE) latitude: Float,
         @Query(LONGITUDE) longitude: Float,
         @Query(HOURLY) hourly: String = "temperature_2m,relative_humidity_2m,weather_code",
-        @Query(FORECAST_DAYS) forecastDays: Int = 1,
+        @Query(FORECAST_DAYS) forecastDays: Int = 2,
     ): Response<HourlyWeather>
 
     companion object {
