@@ -30,7 +30,7 @@ class BaseWeatherRepository(
 
     override fun fetchCurrentTemperatureText(): Flow<String> = flow {
         handleResponse(
-            response = weatherApi.getWeatherData(LATITUDE, LONGITUDE),
+            response = weatherApi.getCurrentWeather(LATITUDE, LONGITUDE),
             onSuccess = { weatherData -> emit("${weatherData.data.temperature.toInt()}°") },
             onError = { emit(TEMP_NOT_FOUND) }
         )
@@ -38,7 +38,7 @@ class BaseWeatherRepository(
 
     override fun fetchCurrentWeatherStatusText(): Flow<String?> = flow {
         handleResponse(
-            response = weatherApi.getWeatherData(LATITUDE, LONGITUDE),
+            response = weatherApi.getCurrentWeather(LATITUDE, LONGITUDE),
             onSuccess = { weatherData -> emit(weatherCode[weatherData.data.weatherCode]) },
             onError = { emit(WEATHER_STATUS_NOT_FOUND) }
         )
@@ -46,7 +46,7 @@ class BaseWeatherRepository(
 
     override fun fetchCurrentMinTempText(): Flow<Int> = flow {
         handleResponse(
-            response = weatherApi.getWeatherData(LATITUDE, LONGITUDE),
+            response = weatherApi.getCurrentWeather(LATITUDE, LONGITUDE),
             onSuccess = { weatherData -> emit(weatherData.maxMinTemperature.minTemperature[0].toInt()) },
             onError = { emit(0) }
         )
@@ -54,7 +54,7 @@ class BaseWeatherRepository(
 
     override fun fetchCurrentMaxTempText(): Flow<Int> = flow {
         handleResponse(
-            response = weatherApi.getWeatherData(LATITUDE, LONGITUDE),
+            response = weatherApi.getCurrentWeather(LATITUDE, LONGITUDE),
             onSuccess = { weatherData -> emit(weatherData.maxMinTemperature.maxTemperature[0].toInt()) },
             onError = { emit(0) }
         )
@@ -62,7 +62,7 @@ class BaseWeatherRepository(
 
     override fun fetchWeeklyMinTempText(): Flow<List<Int>> = flow {
         handleResponse(
-            response = weatherApi.getWeeklyWeatherData(LATITUDE, LONGITUDE),
+            response = weatherApi.getWeeklyWeather(LATITUDE, LONGITUDE),
             onSuccess = { weeklyWeatherData -> emit(weeklyWeatherData.dailyTemperature.minTemperature.map { it.toInt() }) },
             onError = { emit(emptyList<Int>()) }
         )
@@ -70,7 +70,7 @@ class BaseWeatherRepository(
 
     override fun fetchWeeklyMaxTempText(): Flow<List<Int>> = flow {
         handleResponse(
-            response = weatherApi.getWeeklyWeatherData(LATITUDE, LONGITUDE),
+            response = weatherApi.getWeeklyWeather(LATITUDE, LONGITUDE),
             onSuccess = { weeklyWeatherData -> emit(weeklyWeatherData.dailyTemperature.maxTemperature.map { it.toInt() }) },
             onError = { emit(emptyList<Int>()) }
         )
@@ -78,7 +78,7 @@ class BaseWeatherRepository(
 
     override fun fetchDayOfWeek(): Flow<List<String>> = flow {
         handleResponse(
-            response = weatherApi.getWeeklyWeatherData(LATITUDE, LONGITUDE),
+            response = weatherApi.getWeeklyWeather(LATITUDE, LONGITUDE),
             onSuccess = { weeklyWeatherData -> emit(weeklyWeatherData.dailyTemperature.time.map { it }) },
             onError = { emit(emptyList<String>()) }
         )
@@ -86,7 +86,7 @@ class BaseWeatherRepository(
 
     override fun fetchWeeklyWeatherCode(): Flow<List<Int>> = flow {
         handleResponse(
-            response = weatherApi.getWeeklyWeatherData(LATITUDE, LONGITUDE),
+            response = weatherApi.getWeeklyWeather(LATITUDE, LONGITUDE),
             onSuccess = { weeklyWeatherData -> emit(weeklyWeatherData.dailyTemperature.weatherCode.map { it }) },
             onError = { emit(emptyList<Int>()) }
         )

@@ -10,7 +10,7 @@ import retrofit2.http.Query
 interface WeatherApiService {
 
     @GET(ENDPOINT)
-    suspend fun getWeatherData(
+    suspend fun getCurrentWeather(
         @Query(LATITUDE) latitude: Float,
         @Query(LONGITUDE) longitude: Float,
         @Query(CURRENT) current: String = "temperature_2m,apparent_temperature,weather_code",
@@ -20,7 +20,7 @@ interface WeatherApiService {
     ): Response<CurrentWeather>
 
     @GET(ENDPOINT)
-    suspend fun getWeeklyWeatherData(
+    suspend fun getWeeklyWeather(
         @Query(LATITUDE) latitude: Float,
         @Query(LONGITUDE) longitude: Float,
         @Query(TIMEZONE) timezone: String = "auto",
