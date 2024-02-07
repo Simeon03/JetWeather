@@ -1,4 +1,4 @@
-package com.example.jetweather.views.currentweather
+package com.example.jetweather.views.currentweather.subviews
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text

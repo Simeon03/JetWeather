@@ -1,4 +1,4 @@
-package com.example.jetweather.views.hourlyweather
+package com.example.jetweather.views.hourlyweather.subviews
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
