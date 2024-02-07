@@ -5,6 +5,7 @@ import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import com.example.jetweather.helper.DataFormatter
 import com.example.jetweather.viewmodel.WeatherViewModel
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -14,7 +15,7 @@ fun CurrentWeatherView(viewModel: WeatherViewModel) {
     val weatherDataLoading by viewModel.isLoading.collectAsState()
 
     val currentWeatherStatus = weatherData.weatherStatus
-    val currentTemp = weatherData.currentTemp
+    val currentTemp = DataFormatter.formatTemperatureText(weatherData.currentTemp)
     val currentMinTemp = weatherData.currentMinTemp
     val currentMaxTemp = weatherData.currentMaxTemp
     val currentLocation = weatherData.location

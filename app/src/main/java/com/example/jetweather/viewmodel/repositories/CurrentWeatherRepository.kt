@@ -4,7 +4,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface CurrentWeatherRepository {
 
-    fun fetchCurrentTemperatureText(): Flow<String>
+    fun fetchCurrentTemperature(): Flow<Float>
 
     fun fetchCurrentWeatherStatusText(): Flow<String?>
 

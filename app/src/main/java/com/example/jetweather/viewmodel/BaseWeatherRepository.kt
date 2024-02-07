@@ -28,11 +28,11 @@ class BaseWeatherRepository(
         )
     }.flowOn(Dispatchers.IO)
 
-    override fun fetchCurrentTemperatureText(): Flow<String> = flow {
+    override fun fetchCurrentTemperature(): Flow<Float> = flow {
         handleResponse(
             response = weatherApi.getCurrentWeather(LATITUDE, LONGITUDE),
-            onSuccess = { weatherData -> emit("${weatherData.data.temperature.toInt()}°") },
-            onError = { emit(TEMP_NOT_FOUND) }
+            onSuccess = { weatherData -> emit(weatherData.data.temperature) },
+            onError = { emit(0f) }
         )
     }.flowOn(Dispatchers.IO)
 

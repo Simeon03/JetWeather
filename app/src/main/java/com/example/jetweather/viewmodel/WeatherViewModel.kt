@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 data class WeatherData(
-    val currentTemp: String,
+    val currentTemp: Float,
     val location: String,
     val weatherStatus: String?,
     val currentMinTemp: Int,
@@ -26,7 +26,7 @@ data class WeatherData(
 class WeatherViewModel(private val repo: WeatherRepository) : ViewModel() {
 
     var weatherData = MutableStateFlow(WeatherData(
-        STRING_PLACEHOLDER,
+        0f,
         STRING_PLACEHOLDER,
         STRING_PLACEHOLDER,
         INT_PLACEHOLDER,
@@ -50,7 +50,7 @@ class WeatherViewModel(private val repo: WeatherRepository) : ViewModel() {
             try {
                 // Fetch all data and update weatherData state
                 val locationText = repo.fetchLocationText().first()
-                val currentTempText = repo.fetchCurrentTemperatureText().first()
+                val currentTemp = repo.fetchCurrentTemperature().first()
                 val weatherStatusText = repo.fetchCurrentWeatherStatusText().first()
                 val currentMinTempText = repo.fetchCurrentMinTempText().first()
                 val currentMaxTempText = repo.fetchCurrentMaxTempText().first()
@@ -63,7 +63,7 @@ class WeatherViewModel(private val repo: WeatherRepository) : ViewModel() {
                 val hourlyTimeText = repo.fetchHourlyTime().first()
 
                 weatherData.value = WeatherData(
-                    currentTemp = currentTempText,
+                    currentTemp = currentTemp,
                     location = locationText,
                     weatherStatus = weatherStatusText,
                     currentMinTemp = currentMinTempText,
