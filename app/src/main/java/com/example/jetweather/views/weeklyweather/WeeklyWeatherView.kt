@@ -21,23 +21,29 @@ import com.example.jetweather.viewmodel.WeatherViewModel
 fun WeeklyWeatherView(viewModel: WeatherViewModel) {
     val weatherDataLoading by viewModel.isLoading.collectAsState()
 
-    val gradientColors = listOf(
-        Gradient1.copy(alpha = 0.8f),
-        Gradient2.copy(alpha = 0.7f)
-    )
+    if (!weatherDataLoading) { WeatherCardContent(viewModel) }
+}
 
-    if (!weatherDataLoading) {
-        Card(
-            shape = RoundedCornerShape(12.dp),
-        ) {
-            Box(modifier = Modifier.fillMaxWidth().background(Brush.verticalGradient(gradientColors))) {
-                Column(modifier = Modifier.fillMaxWidth().padding(4.dp)) {
-                    for (i in 0..6) {
-                        WeeklyWeatherStats(viewModel = viewModel, index = i)
-                    }
+@Composable
+fun WeatherCardContent(viewModel: WeatherViewModel) {
+    Card(
+        shape = RoundedCornerShape(12.dp),
+    ) {
+        Box(modifier = Modifier.fillMaxWidth().background(gradientBackground())) {
+            Column(modifier = Modifier.fillMaxWidth().padding(4.dp)) {
+                for (i in 0..6) {
+                    WeeklyWeatherStats(viewModel = viewModel, index = i)
                 }
             }
         }
     }
 }
 
+@Composable
+fun gradientBackground(): Brush {
+    val gradientColors = listOf(
+        Gradient1.copy(alpha = 0.8f),
+        Gradient2.copy(alpha = 0.7f)
+    )
+    return Brush.verticalGradient(gradientColors)
+}
