@@ -6,4 +6,8 @@ object DataFormatter {
         return temp.toInt().toString() + "°"
     }
 
+    fun formatWeatherCodeText(weatherCodeNumber: Int): String {
+        return weatherCode[weatherCodeNumber] ?: "Unknown"
+    }
+
 }

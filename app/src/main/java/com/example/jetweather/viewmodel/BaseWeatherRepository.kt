@@ -3,7 +3,6 @@ package com.example.jetweather.viewmodel
 import android.os.Build
 import androidx.annotation.RequiresApi
 import com.example.jetweather.data.HourlyWeather
-import com.example.jetweather.helper.weatherCode
 import com.example.jetweather.model.apiservice.LocationApiService
 import com.example.jetweather.model.apiservice.WeatherApiService
 import kotlinx.coroutines.Dispatchers
@@ -20,7 +19,7 @@ class BaseWeatherRepository(
     private val googleMapsApi: LocationApiService
 ): WeatherRepository {
 
-    override fun fetchLocationText(): Flow<String> = flow {
+    override fun fetchLocation(): Flow<String> = flow {
         handleResponse(
             response = googleMapsApi.getLocationData("$LATITUDE,$LONGITUDE"),
             onSuccess = { location -> emit(location.results[0].addressComponents[0].shortName) },
@@ -36,11 +35,11 @@ class BaseWeatherRepository(
         )
     }.flowOn(Dispatchers.IO)
 
-    override fun fetchCurrentWeatherStatusText(): Flow<String?> = flow {
+    override fun fetchCurrentWeatherStatus(): Flow<Int?> = flow {
         handleResponse(
             response = weatherApi.getCurrentWeather(LATITUDE, LONGITUDE),
-            onSuccess = { weatherData -> emit(weatherCode[weatherData.data.weatherCode]) },
-            onError = { emit(WEATHER_STATUS_NOT_FOUND) }
+            onSuccess = { weatherData -> emit(weatherData.data.weatherCode) },
+            onError = { emit(0) }
         )
     }.flowOn(Dispatchers.IO)
 
