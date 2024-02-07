@@ -1,11 +1,10 @@
 package com.example.jetweather.views
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -33,18 +32,14 @@ fun MainView(viewModel: WeatherViewModel) {
         modifier = Modifier
             .fillMaxSize()
             .background(gradient)
-            .systemBarsPadding()
     ) {
         LazyColumn(
-            modifier = Modifier.padding(20.dp)
+            modifier = Modifier.padding(20.dp),
+            verticalArrangement = Arrangement.spacedBy(32.dp)
         ) {
-            item {
-                CurrentWeatherView(viewModel = viewModel)
-                Spacer(modifier = Modifier.padding(vertical = 24.dp))
-                WeeklyWeatherView(viewModel = viewModel)
-                Spacer(modifier = Modifier.padding(vertical = 24.dp))
-                HourlyWeatherView(viewModel)
-            }
+            item { CurrentWeatherView(viewModel = viewModel) }
+            item { WeeklyWeatherView(viewModel = viewModel) }
+            item { HourlyWeatherView(viewModel = viewModel) }
         }
     }
 }
