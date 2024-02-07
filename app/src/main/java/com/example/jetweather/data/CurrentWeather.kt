@@ -29,8 +29,3 @@ data class MaxMinTemperatureUnit(
     @SerializedName("temperature_2m_max") val maxTemperatureUnit: String,
     @SerializedName("temperature_2m_min") val minTemperatureUnit: String,
 )
-
-data class MaxMinTemperature(
-    @SerializedName("temperature_2m_max") val maxTemperature: List<Float>,
-    @SerializedName("temperature_2m_min") val minTemperature: List<Float>,
-)
