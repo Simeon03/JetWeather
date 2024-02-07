@@ -1,7 +1,5 @@
 package com.example.jetweather.views.hourlyweather
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -20,7 +18,6 @@ import com.example.jetweather.ui.theme.Gradient1
 import com.example.jetweather.ui.theme.Gradient2
 import com.example.jetweather.viewmodel.WeatherViewModel
 
-@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun HourlyWeatherView(viewModel: WeatherViewModel) {
     val weatherDataLoading by viewModel.isLoading.collectAsState()

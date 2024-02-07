@@ -1,14 +1,11 @@
 package com.example.jetweather.views.currentweather
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import com.example.jetweather.helper.DataFormatter
 import com.example.jetweather.viewmodel.WeatherViewModel
 
-@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun CurrentWeatherView(viewModel: WeatherViewModel) {
     val weatherData by viewModel.weatherData.collectAsState()

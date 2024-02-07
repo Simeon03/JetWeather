@@ -1,7 +1,5 @@
 package com.example.jetweather.views.weeklyweather
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -19,7 +17,6 @@ import com.example.jetweather.ui.theme.Gradient1
 import com.example.jetweather.ui.theme.Gradient2
 import com.example.jetweather.viewmodel.WeatherViewModel
 
-@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun WeeklyWeatherView(viewModel: WeatherViewModel) {
     val weatherDataLoading by viewModel.isLoading.collectAsState()

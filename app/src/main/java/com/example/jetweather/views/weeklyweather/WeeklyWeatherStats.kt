@@ -1,7 +1,5 @@
 package com.example.jetweather.views.weeklyweather
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -9,7 +7,6 @@ import com.example.jetweather.helper.DataFormatter
 import com.example.jetweather.helper.getDayOfWeek
 import com.example.jetweather.viewmodel.WeatherViewModel
 
-@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun WeeklyWeatherStats(viewModel: WeatherViewModel, index: Int) {
     val weatherData by viewModel.weatherData.collectAsState()

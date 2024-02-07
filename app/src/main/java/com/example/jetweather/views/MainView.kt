@@ -1,7 +1,5 @@
 package com.example.jetweather.views
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Spacer
@@ -23,7 +21,6 @@ import com.example.jetweather.views.currentweather.CurrentWeatherView
 import com.example.jetweather.views.hourlyweather.HourlyWeatherView
 import com.example.jetweather.views.weeklyweather.WeeklyWeatherView
 
-@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun MainView(viewModel: WeatherViewModel) {
     val gradient = Brush.verticalGradient(

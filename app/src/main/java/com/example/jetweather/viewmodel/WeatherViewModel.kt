@@ -1,7 +1,5 @@
 package com.example.jetweather.viewmodel
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -22,7 +20,6 @@ data class WeatherData(
     val hourlyTime: List<String>,
 )
 
-@RequiresApi(Build.VERSION_CODES.O)
 class WeatherViewModel(private val repo: WeatherRepository) : ViewModel() {
 
     var weatherData = MutableStateFlow(WeatherData(

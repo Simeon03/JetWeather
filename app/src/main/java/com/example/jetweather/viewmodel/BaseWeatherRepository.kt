@@ -1,7 +1,5 @@
 package com.example.jetweather.viewmodel
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import com.example.jetweather.data.HourlyWeather
 import com.example.jetweather.model.apiservice.LocationApiService
 import com.example.jetweather.model.apiservice.WeatherApiService
@@ -91,7 +89,6 @@ class BaseWeatherRepository(
         )
     }.flowOn(Dispatchers.IO)
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun fetchHourlyTemperature(): Flow<List<Float>> = flow {
         handleResponse(
             response = weatherApi.getHourlyData(LATITUDE, LONGITUDE),
@@ -104,7 +101,6 @@ class BaseWeatherRepository(
         )
     }.flowOn(Dispatchers.IO)
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun fetchHourlyTime(): Flow<List<String>> = flow {
         handleResponse(
             response = weatherApi.getHourlyData(LATITUDE, LONGITUDE),
@@ -130,7 +126,6 @@ class BaseWeatherRepository(
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     private fun getNextDayHours(hourlyData: HourlyWeather): Int {
         val formattedTimes = formattedHoursTime(hourlyData)
 
@@ -141,7 +136,6 @@ class BaseWeatherRepository(
         return formattedTimes.indexOf(currentTimeFormatted)
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     private fun formattedHoursTime(hourlyData: HourlyWeather): List<String> {
         val allHours = hourlyData.hourly.time
         val mutableListHours = allHours.toMutableList()
@@ -149,8 +143,7 @@ class BaseWeatherRepository(
         return formatDateTimeList(mutableListHours)
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    fun formatDateTimeList(dateTimes: List<String>): List<String> {
+    private fun formatDateTimeList(dateTimes: List<String>): List<String> {
         val inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm")
         val outputFormatter = DateTimeFormatter.ofPattern("HH:mm")
 
@@ -159,7 +152,6 @@ class BaseWeatherRepository(
             dateTime.format(outputFormatter)
         }
     }
-
 
     companion object {
         private const val LATITUDE = 52.52f
