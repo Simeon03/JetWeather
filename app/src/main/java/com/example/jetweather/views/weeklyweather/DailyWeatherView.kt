@@ -11,8 +11,8 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun DailyWeatherView(
-    minTemp: Int,
-    maxTemp: Int,
+    minTemp: String,
+    maxTemp: String,
     date: String,
     weatherCode: Int,
     weatherCodeDesc: String

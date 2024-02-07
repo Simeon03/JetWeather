@@ -14,8 +14,8 @@ data class WeatherData(
     val weatherStatus: Int?,
     val currentMinTemp: Float,
     val currentMaxTemp: Float,
-    val weeklyMinTemp: List<Int>,
-    val weeklyMaxTemp: List<Int>,
+    val weeklyMinTemp: List<Float>,
+    val weeklyMaxTemp: List<Float>,
     val dayOfWeek: List<String>,
     val weeklyWeatherCode: List<Int>,
     val hourlyTemperature: List<Float>,
@@ -31,8 +31,8 @@ class WeatherViewModel(private val repo: WeatherRepository) : ViewModel() {
         INT_PLACEHOLDER,
         0f,
         0f,
-        LIST_INT_PLACEHOLDER,
-        LIST_INT_PLACEHOLDER,
+        listOf(0f, 0f, 0f, 0f, 0f, 0f, 0f),
+        listOf(0f, 0f, 0f, 0f, 0f, 0f, 0f),
         LIST_STRING_PLACEHOLDER,
         LIST_INT_PLACEHOLDER,
         LIST_FLOAT_PLACEHOLDER,
@@ -54,8 +54,8 @@ class WeatherViewModel(private val repo: WeatherRepository) : ViewModel() {
                 val weatherStatus = repo.fetchCurrentWeatherStatus().first()
                 val currentMinTemp = repo.fetchCurrentMinTemp().first()
                 val currentMaxTemp = repo.fetchCurrentMaxTemp().first()
-                val weeklyMinTempText = repo.fetchWeeklyMinTempText().first()
-                val weeklyMaxTempText = repo.fetchWeeklyMaxTempText().first()
+                val weeklyMinTemp = repo.fetchWeeklyMinTemp().first()
+                val weeklyMaxTemp = repo.fetchWeeklyMaxTemp().first()
                 val dayOfWeekText = repo.fetchDayOfWeek().first()
                 val weeklyWeatherCodeText = repo.fetchWeeklyWeatherCode().first()
 
@@ -68,8 +68,8 @@ class WeatherViewModel(private val repo: WeatherRepository) : ViewModel() {
                     weatherStatus = weatherStatus,
                     currentMinTemp = currentMinTemp,
                     currentMaxTemp = currentMaxTemp,
-                    weeklyMinTemp = weeklyMinTempText,
-                    weeklyMaxTemp = weeklyMaxTempText,
+                    weeklyMinTemp = weeklyMinTemp,
+                    weeklyMaxTemp = weeklyMaxTemp,
                     dayOfWeek = dayOfWeekText,
                     weeklyWeatherCode = weeklyWeatherCodeText,
                     hourlyTemperature = hourlyTemperatureText,

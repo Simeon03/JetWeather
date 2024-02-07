@@ -4,9 +4,9 @@ import kotlinx.coroutines.flow.Flow
 
 interface WeeklyWeatherRepository {
 
-    fun fetchWeeklyMinTempText(): Flow<List<Int>>
+    fun fetchWeeklyMinTemp(): Flow<List<Float>>
 
-    fun fetchWeeklyMaxTempText(): Flow<List<Int>>
+    fun fetchWeeklyMaxTemp(): Flow<List<Float>>
 
     fun fetchDayOfWeek(): Flow<List<String>>
 
