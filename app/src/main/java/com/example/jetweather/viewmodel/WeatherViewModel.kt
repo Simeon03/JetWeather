@@ -56,11 +56,11 @@ class WeatherViewModel(private val repo: WeatherRepository) : ViewModel() {
                 val currentMaxTemp = repo.fetchCurrentMaxTemp().first()
                 val weeklyMinTemp = repo.fetchWeeklyMinTemp().first()
                 val weeklyMaxTemp = repo.fetchWeeklyMaxTemp().first()
-                val dayOfWeekText = repo.fetchDayOfWeek().first()
-                val weeklyWeatherCodeText = repo.fetchWeeklyWeatherCode().first()
+                val dayOfWeek = repo.fetchDayOfWeek().first()
+                val weeklyWeatherCode = repo.fetchWeeklyWeatherCode().first()
 
-                val hourlyTemperatureText = repo.fetchHourlyTemperature().first()
-                val hourlyTimeText = repo.fetchHourlyTime().first()
+                val hourlyTemperature = repo.fetchHourlyTemperature().first()
+                val hourlyTime = repo.fetchHourlyTime().first()
 
                 weatherData.value = WeatherData(
                     currentTemp = currentTemp,
@@ -70,10 +70,10 @@ class WeatherViewModel(private val repo: WeatherRepository) : ViewModel() {
                     currentMaxTemp = currentMaxTemp,
                     weeklyMinTemp = weeklyMinTemp,
                     weeklyMaxTemp = weeklyMaxTemp,
-                    dayOfWeek = dayOfWeekText,
-                    weeklyWeatherCode = weeklyWeatherCodeText,
-                    hourlyTemperature = hourlyTemperatureText,
-                    hourlyTime = hourlyTimeText,
+                    dayOfWeek = dayOfWeek,
+                    weeklyWeatherCode = weeklyWeatherCode,
+                    hourlyTemperature = hourlyTemperature,
+                    hourlyTime = hourlyTime,
                 )
             } catch (e: Exception) {
                 // Handle errors appropriately

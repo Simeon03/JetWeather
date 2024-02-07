@@ -78,7 +78,7 @@ class BaseWeatherRepository(
     override fun fetchDayOfWeek(): Flow<List<String>> = flow {
         handleResponse(
             response = weatherApi.getWeeklyWeather(LATITUDE, LONGITUDE),
-            onSuccess = { weeklyWeatherData -> emit(weeklyWeatherData.dailyTemperature.time.map { it }) },
+            onSuccess = { weeklyWeatherData -> emit(weeklyWeatherData.dailyTemperature.time) },
             onError = { emit(emptyList<String>()) }
         )
     }.flowOn(Dispatchers.IO)
@@ -86,7 +86,7 @@ class BaseWeatherRepository(
     override fun fetchWeeklyWeatherCode(): Flow<List<Int>> = flow {
         handleResponse(
             response = weatherApi.getWeeklyWeather(LATITUDE, LONGITUDE),
-            onSuccess = { weeklyWeatherData -> emit(weeklyWeatherData.dailyTemperature.weatherCode.map { it }) },
+            onSuccess = { weeklyWeatherData -> emit(weeklyWeatherData.dailyTemperature.weatherCode) },
             onError = { emit(emptyList<Int>()) }
         )
     }.flowOn(Dispatchers.IO)

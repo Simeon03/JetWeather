@@ -10,4 +10,8 @@ object DataFormatter {
         return weatherCode[weatherCodeNumber] ?: "Unknown"
     }
 
+    fun formatWeatherCodeIcon(weatherCodeNumber: Int): Int {
+        return weatherCodeIcon(weatherCodeNumber)
+    }
+
 }
