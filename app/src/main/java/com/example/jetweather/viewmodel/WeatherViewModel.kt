@@ -12,8 +12,8 @@ data class WeatherData(
     val currentTemp: Float,
     val location: String,
     val weatherStatus: Int?,
-    val currentMinTemp: Int,
-    val currentMaxTemp: Int,
+    val currentMinTemp: Float,
+    val currentMaxTemp: Float,
     val weeklyMinTemp: List<Int>,
     val weeklyMaxTemp: List<Int>,
     val dayOfWeek: List<String>,
@@ -29,8 +29,8 @@ class WeatherViewModel(private val repo: WeatherRepository) : ViewModel() {
         0f,
         STRING_PLACEHOLDER,
         INT_PLACEHOLDER,
-        INT_PLACEHOLDER,
-        INT_PLACEHOLDER,
+        0f,
+        0f,
         LIST_INT_PLACEHOLDER,
         LIST_INT_PLACEHOLDER,
         LIST_STRING_PLACEHOLDER,
@@ -52,8 +52,8 @@ class WeatherViewModel(private val repo: WeatherRepository) : ViewModel() {
                 val location = repo.fetchLocation().first()
                 val currentTemp = repo.fetchCurrentTemperature().first()
                 val weatherStatus = repo.fetchCurrentWeatherStatus().first()
-                val currentMinTempText = repo.fetchCurrentMinTempText().first()
-                val currentMaxTempText = repo.fetchCurrentMaxTempText().first()
+                val currentMinTemp = repo.fetchCurrentMinTemp().first()
+                val currentMaxTemp = repo.fetchCurrentMaxTemp().first()
                 val weeklyMinTempText = repo.fetchWeeklyMinTempText().first()
                 val weeklyMaxTempText = repo.fetchWeeklyMaxTempText().first()
                 val dayOfWeekText = repo.fetchDayOfWeek().first()
@@ -66,8 +66,8 @@ class WeatherViewModel(private val repo: WeatherRepository) : ViewModel() {
                     currentTemp = currentTemp,
                     location = location,
                     weatherStatus = weatherStatus,
-                    currentMinTemp = currentMinTempText,
-                    currentMaxTemp = currentMaxTempText,
+                    currentMinTemp = currentMinTemp,
+                    currentMaxTemp = currentMaxTemp,
                     weeklyMinTemp = weeklyMinTempText,
                     weeklyMaxTemp = weeklyMaxTempText,
                     dayOfWeek = dayOfWeekText,

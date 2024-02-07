@@ -16,8 +16,8 @@ fun CurrentWeatherView(viewModel: WeatherViewModel) {
 
     val currentWeatherStatus = DataFormatter.formatWeatherCodeText(weatherData.weatherStatus ?: 0)
     val currentTemp = DataFormatter.formatTemperatureText(weatherData.currentTemp)
-    val currentMinTemp = weatherData.currentMinTemp
-    val currentMaxTemp = weatherData.currentMaxTemp
+    val currentMinTemp = DataFormatter.formatTemperatureText(weatherData.currentMinTemp)
+    val currentMaxTemp = DataFormatter.formatTemperatureText(weatherData.currentMaxTemp)
     val currentLocation = weatherData.location
 
     if (!weatherDataLoading) {

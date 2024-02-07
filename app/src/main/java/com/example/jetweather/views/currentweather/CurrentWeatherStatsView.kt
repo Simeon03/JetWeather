@@ -14,8 +14,8 @@ fun CurrentWeatherStatsView(
     currentLocation: String,
     currentTemp: String,
     currentWeatherStatus: String?,
-    currentMinTemp: Int,
-    currentMaxTemp: Int,
+    currentMinTemp: String,
+    currentMaxTemp: String,
 ) {
     Column(
         modifier = Modifier.fillMaxWidth(),
@@ -24,6 +24,6 @@ fun CurrentWeatherStatsView(
         LocationView(location = currentLocation)
         CurrentTemperature(text = currentTemp)
         CurrentWeatherCode(text = currentWeatherStatus ?: "N/A")
-        CurrentMinMaxTemp(text = "$currentMinTemp°/$currentMaxTemp°")
+        CurrentMinMaxTemp(text = "$currentMinTemp/$currentMaxTemp")
     }
 }

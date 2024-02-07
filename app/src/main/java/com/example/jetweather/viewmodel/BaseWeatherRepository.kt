@@ -43,19 +43,19 @@ class BaseWeatherRepository(
         )
     }.flowOn(Dispatchers.IO)
 
-    override fun fetchCurrentMinTempText(): Flow<Int> = flow {
+    override fun fetchCurrentMinTemp(): Flow<Float> = flow {
         handleResponse(
             response = weatherApi.getCurrentWeather(LATITUDE, LONGITUDE),
-            onSuccess = { weatherData -> emit(weatherData.maxMinTemperature.minTemperature[0].toInt()) },
-            onError = { emit(0) }
+            onSuccess = { weatherData -> emit(weatherData.maxMinTemperature.minTemperature[0]) },
+            onError = { emit(0f) }
         )
     }.flowOn(Dispatchers.IO)
 
-    override fun fetchCurrentMaxTempText(): Flow<Int> = flow {
+    override fun fetchCurrentMaxTemp(): Flow<Float> = flow {
         handleResponse(
             response = weatherApi.getCurrentWeather(LATITUDE, LONGITUDE),
-            onSuccess = { weatherData -> emit(weatherData.maxMinTemperature.maxTemperature[0].toInt()) },
-            onError = { emit(0) }
+            onSuccess = { weatherData -> emit(weatherData.maxMinTemperature.maxTemperature[0]) },
+            onError = { emit(0f) }
         )
     }.flowOn(Dispatchers.IO)
 

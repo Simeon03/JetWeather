@@ -8,8 +8,8 @@ interface CurrentWeatherRepository {
 
     fun fetchCurrentWeatherStatus(): Flow<Int?>
 
-    fun fetchCurrentMinTempText(): Flow<Int>
+    fun fetchCurrentMinTemp(): Flow<Float>
 
-    fun fetchCurrentMaxTempText(): Flow<Int>
+    fun fetchCurrentMaxTemp(): Flow<Float>
 
 }
