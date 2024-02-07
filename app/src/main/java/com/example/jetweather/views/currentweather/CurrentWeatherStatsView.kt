@@ -10,7 +10,7 @@ import androidx.compose.ui.Modifier
 fun CurrentWeatherStatsView(
     currentLocation: String,
     currentTemp: String,
-    currentWeatherStatus: String?,
+    currentWeatherStatus: String,
     currentMinTemp: String,
     currentMaxTemp: String,
 ) {
@@ -18,9 +18,9 @@ fun CurrentWeatherStatsView(
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        LocationView(location = currentLocation)
+        LocationView(text = currentLocation)
         CurrentTemperature(text = currentTemp)
-        CurrentWeatherCode(text = currentWeatherStatus ?: "N/A")
+        CurrentWeatherCode(text = currentWeatherStatus)
         CurrentMinMaxTemp(text = "$currentMinTemp/$currentMaxTemp")
     }
 }

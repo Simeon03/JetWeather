@@ -7,9 +7,9 @@ import androidx.compose.ui.text.style.TextAlign
 import com.example.jetweather.ui.theme.Typography
 
 @Composable
-fun DayOfWeatherView(date: String, modifier: Modifier = Modifier) {
+fun DayOfWeatherView(text: String, modifier: Modifier = Modifier) {
     Text(
-        text = date,
+        text = text,
         modifier = modifier,
         textAlign = TextAlign.Start,
         style = Typography.titleSmall,

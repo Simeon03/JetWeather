@@ -9,7 +9,7 @@ fun HourlyWeatherSlotView(
     hourlyTemperature: String,
 ) {
     Column {
-        HourlyWeatherSlotHourView(time = time)
-        HourlyWeatherSlotTemperatureView(temperature = hourlyTemperature)
+        HourlyWeatherSlotHourView(text = time)
+        HourlyWeatherSlotTemperatureView(text = hourlyTemperature)
     }
 }

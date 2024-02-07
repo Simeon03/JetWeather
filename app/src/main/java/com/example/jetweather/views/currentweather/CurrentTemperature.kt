@@ -13,7 +13,7 @@ fun CurrentTemperature(text: String) {
     Text(
         text = text,
         style = Typography.titleLarge,
-        color = Color(255, 255, 255),
+        color = Color.White,
         modifier = Modifier.padding(10.dp)
     )
 }

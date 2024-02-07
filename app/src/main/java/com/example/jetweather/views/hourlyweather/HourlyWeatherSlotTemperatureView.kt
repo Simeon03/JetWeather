@@ -6,9 +6,9 @@ import androidx.compose.ui.text.style.TextAlign
 import com.example.jetweather.ui.theme.Typography
 
 @Composable
-fun HourlyWeatherSlotTemperatureView(temperature: String) {
+fun HourlyWeatherSlotTemperatureView(text: String) {
     Text(
-        text = temperature,
+        text = text,
         style = Typography.titleSmall,
         textAlign = TextAlign.Center,
     )

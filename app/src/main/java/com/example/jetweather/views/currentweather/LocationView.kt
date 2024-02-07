@@ -9,9 +9,9 @@ import androidx.compose.ui.text.style.TextAlign
 import com.example.jetweather.ui.theme.Typography
 
 @Composable
-fun LocationView(location: String) {
+fun LocationView(text: String) {
     Text(
-        text = location,
+        text = text,
         modifier = Modifier.fillMaxWidth(),
         textAlign = TextAlign.Center,
         style = Typography.bodyLarge,

@@ -25,7 +25,7 @@ fun DailyWeatherView(
         verticalAlignment = Alignment.CenterVertically
     ) {
         DayOfWeatherView(
-            date = date,
+            text = date,
             modifier = Modifier
                 .weight(3f)
                 .padding(start = 8.dp),
