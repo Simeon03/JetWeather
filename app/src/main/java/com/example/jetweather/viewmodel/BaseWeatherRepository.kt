@@ -3,22 +3,17 @@ package com.example.jetweather.viewmodel
 import com.example.jetweather.constants.Constants.LATITUDE
 import com.example.jetweather.constants.Constants.LOCATION_NOT_AVAILABLE
 import com.example.jetweather.constants.Constants.LONGITUDE
-import com.example.jetweather.data.weather.HourlyWeather
 import com.example.jetweather.model.apiservice.LocationApiService
 import com.example.jetweather.model.apiservice.WeatherApiService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
-import retrofit2.Response
-import java.time.LocalDateTime
-import java.time.LocalTime
-import java.time.format.DateTimeFormatter
 
 class BaseWeatherRepository(
     private val weatherApi: WeatherApiService,
     private val googleMapsApi: LocationApiService
-): WeatherRepository {
+): WeatherRepository, BaseWeatherRepoHelpers() {
 
     override fun fetchCurrentLocation(): Flow<String> = flow {
         handleResponse(
@@ -147,44 +142,4 @@ class BaseWeatherRepository(
             onError = { emit(listOf<Int>()) }
         )
     }.flowOn(Dispatchers.IO)
-
-    // Helper functions
-    private suspend fun <T> handleResponse(
-        response: Response<T>,
-        onSuccess: suspend (T) -> Unit,
-        onError: suspend () -> Unit,
-    ) {
-        if (response.isSuccessful) {
-            response.body()?.let { onSuccess(it) }
-        } else {
-            onError()
-        }
-    }
-
-    private fun getNextDayHours(hourlyData: HourlyWeather): Int {
-        val formattedTimes = formattedHoursTime(hourlyData)
-
-        val currentTime = LocalTime.now().withMinute(0).withSecond(0).withNano(0)
-        val formatter = DateTimeFormatter.ofPattern("HH:mm")
-        val currentTimeFormatted = currentTime.format(formatter)
-
-        return formattedTimes.indexOf(currentTimeFormatted)
-    }
-
-    private fun formattedHoursTime(hourlyData: HourlyWeather): List<String> {
-        val allHours = hourlyData.hourly.time
-        val mutableListHours = allHours.toMutableList()
-
-        return formatDateTimeList(mutableListHours)
-    }
-
-    private fun formatDateTimeList(dateTimes: List<String>): List<String> {
-        val inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm")
-        val outputFormatter = DateTimeFormatter.ofPattern("HH:mm")
-
-        return dateTimes.map { dateTimeString ->
-            val dateTime = LocalDateTime.parse(dateTimeString, inputFormatter)
-            dateTime.format(outputFormatter)
-        }
-    }
 }
