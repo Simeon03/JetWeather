@@ -21,6 +21,10 @@ object DataFormatter {
         return weatherIcon(weatherCodeNumber)
     }
 
+    fun formatRelativeHumidityText(humidity: Int): String {
+        return ((humidity / 10) * 10).toString() + "%"
+    }
+
     fun getDayOfWeek(dateStr: String): String {
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
         val date = LocalDate.parse(dateStr, formatter)
@@ -66,12 +70,12 @@ object DataFormatter {
 
     private fun weatherText(weatherCode: Int): String {
         return when (weatherCode) {
-            0 -> "Clear Sky"
-            1 -> "Clear"
-            2 -> "Partly Cloudy"
-            3 -> "Overcast"
-            45 -> "Fog"
-            48 -> "Fog"
+            0 -> "Clear Sky" // Sunny
+            1 -> "Clear" // Sunny
+            2 -> "Partly Cloudy" // Cloudy
+            3 -> "Overcast" // Cloudy
+            45 -> "Fog" // Foggy
+            48 -> "Fog" // Foggy
             51 -> "Light Drizzle"
             53 -> "Drizzle"
             55 -> "Heavy Drizzle"
@@ -85,7 +89,7 @@ object DataFormatter {
             71 -> "Light Snowfall"
             73 -> "Snowfall"
             75 -> "Heavy Snowfall"
-            77 -> "Snow Grains"
+            77 -> "Snow Grains" // wat
             80 -> "Light Rain Showers"
             81 -> "Rain Showers"
             82 -> "Heavy Rain Showers"

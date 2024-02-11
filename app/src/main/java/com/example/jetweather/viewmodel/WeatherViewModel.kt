@@ -29,6 +29,7 @@ data class WeatherData(
     val hourlyWeatherStatus: List<Int>,
     val sunriseTime: List<String>,
     val sunsetTime: List<String>,
+    val hourlyHumidity: List<Int>,
 )
 
 class WeatherViewModel(private val repo: WeatherRepository) : ViewModel() {
@@ -48,6 +49,7 @@ class WeatherViewModel(private val repo: WeatherRepository) : ViewModel() {
         LIST_INT_PLACEHOLDER,
         LIST_FULL_DATE_TIME_PLACEHOLDER,
         LIST_FULL_DATE_TIME_PLACEHOLDER,
+        LIST_INT_PLACEHOLDER,
     ))
     var isLoading = MutableStateFlow(true)
 
@@ -73,6 +75,7 @@ class WeatherViewModel(private val repo: WeatherRepository) : ViewModel() {
                 val hourlyTemperature = repo.fetchHourlyTemperature().first()
                 val hourlyTime = repo.fetchHourlyTime().first()
                 val hourlyWeatherStatus = repo.fetchHourlyWeatherStatus().first()
+                val hourlyHumidity = repo.fetchHourlyHumidity().first()
 
                 val sunriseTime = repo.fetchSunriseTime().first()
                 val sunsetTime = repo.fetchSunsetTime().first()
@@ -92,6 +95,7 @@ class WeatherViewModel(private val repo: WeatherRepository) : ViewModel() {
                     hourlyWeatherStatus = hourlyWeatherStatus,
                     sunriseTime = sunriseTime,
                     sunsetTime = sunsetTime,
+                    hourlyHumidity = hourlyHumidity,
                 )
             } catch (e: Exception) {
                 // Handle errors appropriately

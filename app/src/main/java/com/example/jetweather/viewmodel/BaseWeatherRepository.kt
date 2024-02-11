@@ -140,6 +140,14 @@ class BaseWeatherRepository(
         )
     }.flowOn(Dispatchers.IO)
 
+    override fun fetchHourlyHumidity(): Flow<List<Int>> = flow {
+        handleResponse(
+            response = weatherApi.getHourlyData(LATITUDE, LONGITUDE),
+            onSuccess = { weatherData -> emit(weatherData.hourly.relativeHumidity) },
+            onError = { emit(listOf<Int>()) }
+        )
+    }.flowOn(Dispatchers.IO)
+
     // Helper functions
     private suspend fun <T> handleResponse(
         response: Response<T>,
