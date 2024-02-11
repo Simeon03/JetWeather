@@ -33,8 +33,7 @@ fun DailyWeatherView(
             modifier = Modifier.weight(1f),
         )
         DailyMinMaxTempView(
-            minTemp = minTemp,
-            maxTemp = maxTemp,
+            text = "$minTemp/$maxTemp",
             modifier = Modifier.weight(2f),
         )
     }

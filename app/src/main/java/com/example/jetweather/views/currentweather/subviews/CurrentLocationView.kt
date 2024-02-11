@@ -2,7 +2,6 @@ package com.example.jetweather.views.currentweather.subviews
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import com.example.jetweather.ui.theme.Typography
 
@@ -12,6 +11,5 @@ fun CurrentLocationView(text: String) {
         text = text,
         textAlign = TextAlign.Center,
         style = Typography.bodyLarge,
-        color = Color.White,
     )
 }

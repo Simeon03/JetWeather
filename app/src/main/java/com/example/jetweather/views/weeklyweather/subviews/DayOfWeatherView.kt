@@ -11,7 +11,7 @@ fun DayOfWeatherView(text: String, modifier: Modifier = Modifier) {
     Text(
         text = text,
         modifier = modifier,
-        textAlign = TextAlign.Start,
         style = Typography.titleSmall,
+        textAlign = TextAlign.Start,
     )
 }

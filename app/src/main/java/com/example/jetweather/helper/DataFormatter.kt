@@ -35,8 +35,7 @@ object DataFormatter {
         return dateTime.format(DateTimeFormatter.ofPattern("HH:mm"))
     }
 
-    fun getPercentageOfDay(timeStr: String): Float {
-        val dateTime = LocalDateTime.parse(timeStr)
+    private fun getPercentageFromHour(dateTime: LocalDateTime): Float {
         val formatted = dateTime.format(DateTimeFormatter.ofPattern("HH:mm"))
         val time = formatted.split(":")
         val hour = time[0].toFloat()
@@ -44,13 +43,14 @@ object DataFormatter {
         return (hour + (minute / 60)) / 24
     }
 
+    fun getPercentageOfDay(timeStr: String): Float {
+        val dateTime = LocalDateTime.parse(timeStr)
+        return getPercentageFromHour(dateTime)
+    }
+
     fun getCurrentTimePercentage(): Float {
         val dateTime = LocalDateTime.now()
-        val formatted = dateTime.format(DateTimeFormatter.ofPattern("HH:mm"))
-        val time = formatted.split(":")
-        val hour = time[0].toFloat()
-        val minute = time[1].toFloat()
-        return (hour + (minute / 60)) / 24
+        return getPercentageFromHour(dateTime)
     }
 
     fun weatherIcon(weatherCode: Int): Int {

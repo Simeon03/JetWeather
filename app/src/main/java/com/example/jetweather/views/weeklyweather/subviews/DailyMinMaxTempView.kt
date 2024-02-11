@@ -7,11 +7,11 @@ import androidx.compose.ui.text.style.TextAlign
 import com.example.jetweather.ui.theme.Typography
 
 @Composable
-fun DailyMinMaxTempView(minTemp: String, maxTemp: String, modifier: Modifier = Modifier) {
+fun DailyMinMaxTempView(text: String, modifier: Modifier = Modifier) {
     Text(
-        text = "$maxTemp/$minTemp",
+        text = text,
         modifier = modifier,
-        textAlign = TextAlign.End,
-        style = Typography.titleSmall
+        style = Typography.titleSmall,
+        textAlign = TextAlign.End
     )
 }
