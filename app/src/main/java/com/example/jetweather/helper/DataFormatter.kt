@@ -35,6 +35,15 @@ object DataFormatter {
         return dateTime.format(DateTimeFormatter.ofPattern("HH:mm"))
     }
 
+    fun getPercentageOfDay(timeStr: String): Float {
+        val dateTime = LocalDateTime.parse(timeStr)
+        val formatted = dateTime.format(DateTimeFormatter.ofPattern("HH:mm"))
+        val time = formatted.split(":")
+        val hour = time[0].toFloat()
+        val minute = time[1].toFloat()
+        return (hour + (minute / 60)) / 24
+    }
+
     fun weatherIcon(weatherCode: Int): Int {
         return when (weatherCode) {
             0, 1 -> R.drawable.sunny
