@@ -10,41 +10,32 @@ import java.util.Locale
 object DataFormatter {
 
     fun formatTemperatureText(temp: Float): String {
-        return temp.toInt().toString() + "°"
-    }
-
-    fun formatWeatherCodeText(weatherCode: Int): String {
-        return weatherText(weatherCode)
-    }
-
-    fun formatWeatherCodeIcon(weatherCodeNumber: Int): Int {
-        return weatherIcon(weatherCodeNumber)
+        val roundedTemp = temp.toInt()
+        return "$roundedTemp°"
     }
 
     fun formatRelativeHumidityText(humidity: Int): String {
-        return ((humidity / 10) * 10).toString() + "%"
+        val roundedHumidity = ((humidity / 10) * 10)
+        return "$roundedHumidity%"
     }
 
-    fun getDayOfWeek(dateStr: String): String {
+    fun formatWeatherCodeToText(weatherCode: Int): String {
+        return weatherText(weatherCode)
+    }
+
+    fun formatWeatherCodeToIcon(weatherCodeNumber: Int): Int {
+        return weatherIcon(weatherCodeNumber)
+    }
+
+    fun formatDay(dateStr: String): String {
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
         val date = LocalDate.parse(dateStr, formatter)
         return date.dayOfWeek.getDisplayName(TextStyle.FULL, Locale.getDefault())
     }
 
-    fun getTimeOfDay(timeStr: String): String {
-        // Parse the complete date-time
+    fun formatTime(timeStr: String): String {
         val dateTime = LocalDateTime.parse(timeStr)
-
-        // Format to extract only the time part
         return dateTime.format(DateTimeFormatter.ofPattern("HH:mm"))
-    }
-
-    private fun getPercentageFromHour(dateTime: LocalDateTime): Float {
-        val formatted = dateTime.format(DateTimeFormatter.ofPattern("HH:mm"))
-        val time = formatted.split(":")
-        val hour = time[0].toFloat()
-        val minute = time[1].toFloat()
-        return (hour + (minute / 60)) / 24
     }
 
     fun getPercentageOfDay(timeStr: String): Float {
@@ -66,6 +57,14 @@ object DataFormatter {
             95, 96, 99 -> R.drawable.thunderstorm
             else -> R.drawable.cloudy
         }
+    }
+
+    private fun getPercentageFromHour(dateTime: LocalDateTime): Float {
+        val formatted = dateTime.format(DateTimeFormatter.ofPattern("HH:mm"))
+        val time = formatted.split(":")
+        val hour = time[0].toFloat()
+        val minute = time[1].toFloat()
+        return (hour + (minute / 60)) / 24
     }
 
     private fun weatherText(weatherCode: Int): String {

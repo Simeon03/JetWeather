@@ -5,7 +5,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import com.example.jetweather.helper.DataFormatter.formatRelativeHumidityText
 import com.example.jetweather.helper.DataFormatter.formatTemperatureText
-import com.example.jetweather.helper.DataFormatter.formatWeatherCodeText
+import com.example.jetweather.helper.DataFormatter.formatWeatherCodeToText
 import com.example.jetweather.viewmodel.WeatherViewModel
 
 @Composable
@@ -18,7 +18,7 @@ fun FullHourlyWeatherView(
     val hours = weatherData.hourlyTime[index]
     val temps = formatTemperatureText(weatherData.hourlyTemperature[index])
     val weatherStatus = weatherData.hourlyWeatherStatus[index]
-    val weatherStatusDesc = formatWeatherCodeText(weatherStatus)
+    val weatherStatusDesc = formatWeatherCodeToText(weatherStatus)
     val relativeHumidity = formatRelativeHumidityText(weatherData.hourlyHumidity[index])
 
     HourlyWeatherLayoutView(

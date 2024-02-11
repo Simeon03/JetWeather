@@ -18,8 +18,8 @@ data class WeatherData(
     val currentWeatherStatus: Int? = INT,
     val currentMinTemp: Float = FLOAT,
     val currentMaxTemp: Float = FLOAT,
-    val currentSunriseTime: List<String> = LIST_STRING,
-    val currentSunsetTime: List<String> = LIST_STRING,
+    val currentSunriseTime: String = STRING,
+    val currentSunsetTime: String = STRING,
     val weeklyMinTemp: List<Float> = LIST_FLOAT,
     val weeklyMaxTemp: List<Float> = LIST_FLOAT,
     val weeklyDay: List<String> = LIST_STRING,
@@ -48,8 +48,8 @@ class WeatherViewModel(private val repo: WeatherRepository) : ViewModel() {
                 val currentWeatherStatus = repo.fetchCurrentWeatherStatus().first()
                 val currentMinTemp = repo.fetchCurrentMinTemp().first()
                 val currentMaxTemp = repo.fetchCurrentMaxTemp().first()
-                val currentSunriseTime = repo.fetchSunriseTime().first()
-                val currentSunsetTime = repo.fetchSunsetTime().first()
+                val currentSunriseTime = repo.fetchCurrentSunriseTime().first()
+                val currentSunsetTime = repo.fetchCurrentSunsetTime().first()
 
                 val weeklyMinTemp = repo.fetchWeeklyMinTemp().first()
                 val weeklyMaxTemp = repo.fetchWeeklyMaxTemp().first()

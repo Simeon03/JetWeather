@@ -7,7 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.example.jetweather.helper.DataFormatter.formatWeatherCodeText
+import com.example.jetweather.helper.DataFormatter.formatWeatherCodeToText
 import com.example.jetweather.helper.DataFormatter.weatherIcon
 
 @Composable
@@ -17,7 +17,7 @@ fun HourlyWeatherIconView(
 ) {
     Icon(
         painter = painterResource(id = weatherIcon(weatherCode)),
-        contentDescription = formatWeatherCodeText(weatherCode),
+        contentDescription = formatWeatherCodeToText(weatherCode),
         tint = Color.Unspecified,
         modifier = modifier.size(28.dp)
     )
