@@ -1,6 +1,6 @@
 package com.example.jetweather.constants
 
-object PlaceholderConstants {
+object Placeholder {
     const val STRING = "Fetch"
     const val INT = 0
     const val FLOAT = 0f

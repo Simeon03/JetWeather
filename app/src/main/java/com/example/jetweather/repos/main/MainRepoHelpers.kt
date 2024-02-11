@@ -1,4 +1,4 @@
-package com.example.jetweather.viewmodel
+package com.example.jetweather.repos.main
 
 import com.example.jetweather.data.weather.HourlyWeather
 import retrofit2.Response
@@ -6,7 +6,7 @@ import java.time.LocalDateTime
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 
-open class BaseWeatherRepoHelpers {
+open class MainRepoHelpers {
     suspend fun <T> handleResponse(
         response: Response<T>,
         onSuccess: suspend (T) -> Unit,

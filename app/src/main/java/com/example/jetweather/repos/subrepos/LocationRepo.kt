@@ -1,8 +1,8 @@
-package com.example.jetweather.viewmodel.repositories
+package com.example.jetweather.repos.subrepos
 
 import kotlinx.coroutines.flow.Flow
 
-interface LocationRepository {
+interface LocationRepo {
 
     fun fetchCurrentLocation(): Flow<String>
 

@@ -1,6 +1,6 @@
 package com.example.jetweather.constants
 
-object DataConstants {
+object Data {
 
     const val LATITUDE = "latitude"
     const val LONGITUDE = "longitude"

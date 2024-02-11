@@ -5,11 +5,11 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import com.example.jetweather.helper.DataFormatter.formatRelativeHumidityText
 import com.example.jetweather.helper.DataFormatter.formatTemperatureText
-import com.example.jetweather.viewmodel.WeatherViewModel
+import com.example.jetweather.viewmodel.MainViewModel
 
 @Composable
 fun HourlyWeatherInfo(
-    viewModel: WeatherViewModel,
+    viewModel: MainViewModel,
     index: Int
 ) {
     val weatherData by viewModel.weatherData.collectAsState()

@@ -1,4 +1,4 @@
-package com.example.jetweather.model.apiservice
+package com.example.jetweather.model.api
 
 import com.example.jetweather.data.weather.CurrentWeather
 import com.example.jetweather.data.weather.HourlyWeather
@@ -7,7 +7,7 @@ import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface WeatherApiService {
+interface OpenMeteo {
 
     @GET(ENDPOINT)
     suspend fun getCurrentWeather(

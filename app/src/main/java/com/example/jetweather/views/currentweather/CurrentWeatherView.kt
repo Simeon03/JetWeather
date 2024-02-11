@@ -5,11 +5,11 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import com.example.jetweather.helper.DataFormatter.formatTemperatureText
 import com.example.jetweather.helper.DataFormatter.formatWeatherCodeToText
-import com.example.jetweather.viewmodel.WeatherViewModel
+import com.example.jetweather.viewmodel.MainViewModel
 import com.example.jetweather.views.currentweather.layouts.CurrentWeatherInfo
 
 @Composable
-fun CurrentWeatherView(viewModel: WeatherViewModel) {
+fun CurrentWeatherView(viewModel: MainViewModel) {
     val weatherData by viewModel.weatherData.collectAsState()
 
     val currentWeatherStatus = formatWeatherCodeToText(weatherData.currentWeatherStatus ?: 0)

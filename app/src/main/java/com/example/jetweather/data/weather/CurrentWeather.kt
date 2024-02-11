@@ -1,18 +1,18 @@
 package com.example.jetweather.data.weather
 
-import com.example.jetweather.constants.DataConstants.APPARENT_TEMPERATURE
-import com.example.jetweather.constants.DataConstants.CURRENT_UNITS
-import com.example.jetweather.constants.DataConstants.CURRENT_WEATHER_STATUS
-import com.example.jetweather.constants.DataConstants.DAILY_UNITS
-import com.example.jetweather.constants.DataConstants.DAILY_WEATHER
-import com.example.jetweather.constants.DataConstants.LATITUDE
-import com.example.jetweather.constants.DataConstants.LONGITUDE
-import com.example.jetweather.constants.DataConstants.MAX_TEMP_UNIT
-import com.example.jetweather.constants.DataConstants.MIN_TEMP_UNIT
-import com.example.jetweather.constants.DataConstants.TEMPERATURE
-import com.example.jetweather.constants.DataConstants.TIME
-import com.example.jetweather.constants.DataConstants.TIMEZONE
-import com.example.jetweather.constants.DataConstants.WEATHER_CODE
+import com.example.jetweather.constants.Data.APPARENT_TEMPERATURE
+import com.example.jetweather.constants.Data.CURRENT_UNITS
+import com.example.jetweather.constants.Data.CURRENT_WEATHER_STATUS
+import com.example.jetweather.constants.Data.DAILY_UNITS
+import com.example.jetweather.constants.Data.DAILY_WEATHER
+import com.example.jetweather.constants.Data.LATITUDE
+import com.example.jetweather.constants.Data.LONGITUDE
+import com.example.jetweather.constants.Data.MAX_TEMP_UNIT
+import com.example.jetweather.constants.Data.MIN_TEMP_UNIT
+import com.example.jetweather.constants.Data.TEMPERATURE
+import com.example.jetweather.constants.Data.TIME
+import com.example.jetweather.constants.Data.TIMEZONE
+import com.example.jetweather.constants.Data.WEATHER_CODE
 import com.google.gson.annotations.SerializedName
 
 data class CurrentWeather(

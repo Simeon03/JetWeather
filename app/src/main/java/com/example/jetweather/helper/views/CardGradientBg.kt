@@ -6,13 +6,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun CardWithGradientBackground(
+fun CardGradientBg(
     content: @Composable () -> Unit
 ) {
     Card(
         shape = RoundedCornerShape(12.dp)
     ) {
-        GradientBackgroundBox {
+        BoxGradientBg {
             content()
         }
     }

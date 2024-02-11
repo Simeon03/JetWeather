@@ -7,13 +7,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.jetweather.helper.views.CardWithGradientBackground
-import com.example.jetweather.viewmodel.WeatherViewModel
+import com.example.jetweather.helper.views.CardGradientBg
+import com.example.jetweather.viewmodel.MainViewModel
 import com.example.jetweather.views.dailyweather.layouts.DailyWeatherInfo
 
 @Composable
-fun DailyWeatherView(viewModel: WeatherViewModel) {
-    CardWithGradientBackground {
+fun DailyWeatherView(viewModel: MainViewModel) {
+    CardGradientBg {
         Column(
             modifier = Modifier.padding(12.dp),
             horizontalAlignment = Alignment.CenterHorizontally,

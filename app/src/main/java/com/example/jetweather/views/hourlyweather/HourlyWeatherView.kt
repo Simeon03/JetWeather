@@ -7,13 +7,13 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.jetweather.helper.views.CardWithGradientBackground
-import com.example.jetweather.viewmodel.WeatherViewModel
+import com.example.jetweather.helper.views.CardGradientBg
+import com.example.jetweather.viewmodel.MainViewModel
 import com.example.jetweather.views.hourlyweather.layouts.HourlyWeatherInfo
 
 @Composable
-fun HourlyWeatherView(viewModel: WeatherViewModel) {
-    CardWithGradientBackground {
+fun HourlyWeatherView(viewModel: MainViewModel) {
+    CardGradientBg {
         LazyRow(
             modifier = Modifier
                 .fillMaxWidth()

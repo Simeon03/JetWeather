@@ -1,7 +1,7 @@
 package com.example.jetweather.constants
 
-object ApiConstants {
-    const val OPEN_METEO_BASE_API = "https://api.open-meteo.com/"
+object Api {
+    const val OPEN_METEO_BASE_URL = "https://api.open-meteo.com/"
     const val GOOGLE_MAPS_BASE_URL = "https://maps.googleapis.com/"
 
     const val GOOGLE_MAPS_COORDS = "latlng"

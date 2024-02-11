@@ -6,10 +6,10 @@ import androidx.compose.runtime.getValue
 import com.example.jetweather.helper.DataFormatter.formatDay
 import com.example.jetweather.helper.DataFormatter.formatTemperatureText
 import com.example.jetweather.helper.DataFormatter.formatWeatherCodeToIcon
-import com.example.jetweather.viewmodel.WeatherViewModel
+import com.example.jetweather.viewmodel.MainViewModel
 
 @Composable
-fun DailyWeatherInfo(viewModel: WeatherViewModel, index: Int) {
+fun DailyWeatherInfo(viewModel: MainViewModel, index: Int) {
     val weatherData by viewModel.weatherData.collectAsState()
 
     val weeklyMinTemp = formatTemperatureText(weatherData.weeklyMinTemp[index])

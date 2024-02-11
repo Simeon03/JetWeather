@@ -17,14 +17,14 @@ import com.example.jetweather.ui.theme.Gradient2
 import com.example.jetweather.ui.theme.Gradient3
 import com.example.jetweather.ui.theme.Gradient4
 import com.example.jetweather.ui.theme.Gradient5
-import com.example.jetweather.viewmodel.WeatherViewModel
+import com.example.jetweather.viewmodel.MainViewModel
 import com.example.jetweather.views.currentDaylight.DaylightView
 import com.example.jetweather.views.currentweather.CurrentWeatherView
 import com.example.jetweather.views.dailyweather.DailyWeatherView
 import com.example.jetweather.views.hourlyweather.HourlyWeatherView
 
 @Composable
-fun FullMainView(viewModel: WeatherViewModel) {
+fun FullMainView(viewModel: MainViewModel) {
     val weatherDataLoading by viewModel.isLoading.collectAsState()
 
     val gradient = Brush.verticalGradient(

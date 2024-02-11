@@ -5,14 +5,14 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.jetweather.constants.ApiConstants.GOOGLE_MAPS_BASE_URL
-import com.example.jetweather.constants.ApiConstants.OPEN_METEO_BASE_API
+import com.example.jetweather.constants.Api.GOOGLE_MAPS_BASE_URL
+import com.example.jetweather.constants.Api.OPEN_METEO_BASE_URL
 import com.example.jetweather.model.RetrofitInstance
-import com.example.jetweather.model.apiservice.LocationApiService
-import com.example.jetweather.model.apiservice.WeatherApiService
+import com.example.jetweather.model.api.GoogleMaps
+import com.example.jetweather.model.api.OpenMeteo
+import com.example.jetweather.repos.main.MainRepo
 import com.example.jetweather.ui.theme.JetWeatherTheme
-import com.example.jetweather.viewmodel.BaseWeatherRepository
-import com.example.jetweather.viewmodel.WeatherViewModel
+import com.example.jetweather.viewmodel.MainViewModel
 import com.example.jetweather.views.FullMainView
 
 class MainActivity : ComponentActivity() {
@@ -20,14 +20,14 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val weatherApi = RetrofitInstance.getInstance(OPEN_METEO_BASE_API).create(
-            WeatherApiService::class.java
+        val weatherApi = RetrofitInstance.get(OPEN_METEO_BASE_URL).create(
+            OpenMeteo::class.java
         )
-        val googleMapsApi = RetrofitInstance.getInstance(GOOGLE_MAPS_BASE_URL).create(
-            LocationApiService::class.java
+        val googleMapsApi = RetrofitInstance.get(GOOGLE_MAPS_BASE_URL).create(
+            GoogleMaps::class.java
         )
-        val weatherRepository = BaseWeatherRepository(weatherApi, googleMapsApi)
-        val viewModel = WeatherViewModel(weatherRepository)
+        val weatherRepository = MainRepo(weatherApi, googleMapsApi)
+        val viewModel = MainViewModel(weatherRepository)
 
         setContent {
             JetWeatherTheme {
@@ -40,7 +40,7 @@ class MainActivity : ComponentActivity() {
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
-    lateinit var viewModel: WeatherViewModel
+    lateinit var viewModel: MainViewModel
     JetWeatherTheme {
         FullMainView(viewModel = viewModel)
     }

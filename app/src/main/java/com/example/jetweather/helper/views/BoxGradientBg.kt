@@ -6,12 +6,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
 @Composable
-fun GradientBackgroundBox(
+fun BoxGradientBg(
     content: @Composable () -> Unit
 ) {
     Box(
         modifier = Modifier
-            .background(gradientBackground())
+            .background(cardGradientColors())
     ) {
         content()
     }

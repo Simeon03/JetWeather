@@ -2,12 +2,13 @@ package com.example.jetweather.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.jetweather.constants.PlaceholderConstants.FLOAT
-import com.example.jetweather.constants.PlaceholderConstants.INT
-import com.example.jetweather.constants.PlaceholderConstants.LIST_FLOAT
-import com.example.jetweather.constants.PlaceholderConstants.LIST_INT
-import com.example.jetweather.constants.PlaceholderConstants.LIST_STRING
-import com.example.jetweather.constants.PlaceholderConstants.STRING
+import com.example.jetweather.constants.Placeholder.FLOAT
+import com.example.jetweather.constants.Placeholder.INT
+import com.example.jetweather.constants.Placeholder.LIST_FLOAT
+import com.example.jetweather.constants.Placeholder.LIST_INT
+import com.example.jetweather.constants.Placeholder.LIST_STRING
+import com.example.jetweather.constants.Placeholder.STRING
+import com.example.jetweather.repos.AllRepos
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
@@ -30,7 +31,7 @@ data class WeatherData(
     val hourlyHumidity: List<Int> = LIST_INT,
 )
 
-class WeatherViewModel(private val repo: WeatherRepository) : ViewModel() {
+class MainViewModel(private val repo: AllRepos) : ViewModel() {
 
     var weatherData = MutableStateFlow(WeatherData())
     var isLoading = MutableStateFlow(true)

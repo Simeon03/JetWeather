@@ -1,19 +1,20 @@
-package com.example.jetweather.viewmodel
+package com.example.jetweather.repos.main
 
-import com.example.jetweather.constants.Constants.LATITUDE
-import com.example.jetweather.constants.Constants.LOCATION_NOT_AVAILABLE
-import com.example.jetweather.constants.Constants.LONGITUDE
-import com.example.jetweather.model.apiservice.LocationApiService
-import com.example.jetweather.model.apiservice.WeatherApiService
+import com.example.jetweather.constants.Main.LATITUDE
+import com.example.jetweather.constants.Main.LOCATION_NOT_AVAILABLE
+import com.example.jetweather.constants.Main.LONGITUDE
+import com.example.jetweather.model.api.GoogleMaps
+import com.example.jetweather.model.api.OpenMeteo
+import com.example.jetweather.repos.AllRepos
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 
-class BaseWeatherRepository(
-    private val weatherApi: WeatherApiService,
-    private val googleMapsApi: LocationApiService
-): WeatherRepository, BaseWeatherRepoHelpers() {
+class MainRepo(
+    private val weatherApi: OpenMeteo,
+    private val googleMapsApi: GoogleMaps
+): AllRepos, MainRepoHelpers() {
 
     override fun fetchCurrentLocation(): Flow<String> = flow {
         handleResponse(
