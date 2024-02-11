@@ -18,10 +18,10 @@ import com.example.jetweather.ui.theme.Gradient3
 import com.example.jetweather.ui.theme.Gradient4
 import com.example.jetweather.ui.theme.Gradient5
 import com.example.jetweather.viewmodel.WeatherViewModel
-import com.example.jetweather.views.currentDaylight.main.FullTodaySunTimeView
-import com.example.jetweather.views.currentweather.main.FullCurrentWeatherView
-import com.example.jetweather.views.dailyweather.main.FullDailyWeatherCardView
-import com.example.jetweather.views.hourlyweather.main.FullHourlyWeatherCardView
+import com.example.jetweather.views.currentDaylight.DaylightView
+import com.example.jetweather.views.currentweather.CurrentWeatherView
+import com.example.jetweather.views.dailyweather.DailyWeatherView
+import com.example.jetweather.views.hourlyweather.HourlyWeatherView
 
 @Composable
 fun FullMainView(viewModel: WeatherViewModel) {
@@ -43,10 +43,10 @@ fun FullMainView(viewModel: WeatherViewModel) {
                 modifier = Modifier.padding(20.dp),
                 verticalArrangement = Arrangement.spacedBy(32.dp)
             ) {
-                item { FullCurrentWeatherView(viewModel = viewModel) }
-                item { FullDailyWeatherCardView(viewModel = viewModel) }
-                item { FullHourlyWeatherCardView(viewModel = viewModel) }
-                item { FullTodaySunTimeView(viewModel = viewModel) }
+                item { CurrentWeatherView(viewModel = viewModel) }
+                item { DailyWeatherView(viewModel = viewModel) }
+                item { HourlyWeatherView(viewModel = viewModel) }
+                item { DaylightView(viewModel = viewModel) }
             }
         }
     }
