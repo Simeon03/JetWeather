@@ -11,7 +11,7 @@ fun CustomProgressBar(
     sunsetPercentage: Float,
     currentTimePercentage: Float
 ) {
-    val barHeight = 20.dp
+    val barHeight = 16.dp
     ProgressBarContainer(barHeight = barHeight) {
         ProgressBarCanvas(sunrisePercentage, sunsetPercentage, currentTimePercentage, barHeight)
     }
