@@ -1,15 +1,15 @@
-package com.example.jetweather.views.todaysun.subviews
+package com.example.jetweather.views.todaysun.subviews.labeltime
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun TimeView(
-    text: String,
-) {
+fun TimeView(text: String) {
+    val fontSize = 28.sp
+
     Text(
         text = text,
-        fontSize = 28.sp,
+        fontSize = fontSize,
     )
 }

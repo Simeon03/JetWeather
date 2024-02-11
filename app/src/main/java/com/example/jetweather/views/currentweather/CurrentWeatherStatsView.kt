@@ -5,10 +5,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.example.jetweather.views.currentweather.subviews.CurrentMinMaxTemp
-import com.example.jetweather.views.currentweather.subviews.CurrentTemperature
-import com.example.jetweather.views.currentweather.subviews.CurrentWeatherCode
-import com.example.jetweather.views.currentweather.subviews.LocationView
+import com.example.jetweather.views.currentweather.subviews.CurrentLocationView
+import com.example.jetweather.views.currentweather.subviews.CurrentMinMaxTempView
+import com.example.jetweather.views.currentweather.subviews.CurrentTemperatureView
+import com.example.jetweather.views.currentweather.subviews.CurrentWeatherStatusView
 
 @Composable
 fun CurrentWeatherStatsView(
@@ -22,9 +22,9 @@ fun CurrentWeatherStatsView(
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        LocationView(text = currentLocation)
-        CurrentTemperature(text = currentTemp)
-        CurrentWeatherCode(text = currentWeatherStatus)
-        CurrentMinMaxTemp(text = "$currentMinTemp/$currentMaxTemp")
+        CurrentLocationView(text = currentLocation)
+        CurrentTemperatureView(text = currentTemp)
+        CurrentWeatherStatusView(text = currentWeatherStatus)
+        CurrentMinMaxTempView(text = "$currentMinTemp/$currentMaxTemp")
     }
 }

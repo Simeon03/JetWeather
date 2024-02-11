@@ -14,13 +14,17 @@ import androidx.compose.ui.unit.Dp
 
 @Composable
 fun ProgressBarContainer(barHeight: Dp, content: @Composable () -> Unit) {
+    val shape = RoundedCornerShape(100)
+    val bgColor = Color.DarkGray.copy(alpha = 0.9f)
+    val contentAlignment = Alignment.CenterStart
+
     Box(
         modifier = Modifier
             .fillMaxWidth()
             .height(barHeight)
-            .clip(RoundedCornerShape(100)) // Circular corners
-            .background(Color.DarkGray.copy(alpha = 0.9f)), // Background color for the whole bar
-        contentAlignment = Alignment.CenterStart
+            .clip(shape)
+            .background(bgColor),
+        contentAlignment = contentAlignment
     ) {
         content()
     }

@@ -13,8 +13,8 @@ object DataFormatter {
         return temp.toInt().toString() + "°"
     }
 
-    fun formatWeatherCodeText(weatherCodeNumber: Int): String {
-        return weatherText(weatherCodeNumber)
+    fun formatWeatherCodeText(weatherCode: Int): String {
+        return weatherText(weatherCode)
     }
 
     fun formatWeatherCodeIcon(weatherCodeNumber: Int): Int {

@@ -11,7 +11,7 @@ import com.example.jetweather.helper.CardWithGradientBackground
 import com.example.jetweather.viewmodel.WeatherViewModel
 
 @Composable
-fun HourlyWeatherView(viewModel: WeatherViewModel) {
+fun FullHourlyWeatherCardView(viewModel: WeatherViewModel) {
     CardWithGradientBackground {
         LazyRow(
             modifier = Modifier
@@ -20,7 +20,7 @@ fun HourlyWeatherView(viewModel: WeatherViewModel) {
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             items(24) { index ->
-                HourlyWeatherStats(viewModel = viewModel, index = index)
+                FullHourlyWeatherView(viewModel = viewModel, index = index)
             }
         }
     }

@@ -9,11 +9,11 @@ import androidx.compose.ui.unit.dp
 import com.example.jetweather.ui.theme.Typography
 
 @Composable
-fun CurrentMinMaxTemp(text: String) {
+fun CurrentWeatherStatusView(text: String) {
     Text(
         text = text,
         style = Typography.bodyLarge,
-        color = Color.Gray,
+        color = Color.White,
         modifier = Modifier.padding(5.dp)
     )
 }

@@ -11,16 +11,19 @@ import com.example.jetweather.views.hourlyweather.subviews.HourlyWeatherSlotHour
 import com.example.jetweather.views.hourlyweather.subviews.HourlyWeatherSlotTemperatureView
 
 @Composable
-fun HourlyWeatherSlotView(
-    time: String,
-    hourlyTemperature: String,
-    weatherCode: Int,
-    weatherCodeDesc: String,
+fun HourlyWeatherLayoutView(
+    hours: String,
+    temps: String,
+    weatherStatus: Int,
+    weatherStatusDesc: String,
     modifier: Modifier = Modifier,
 ) {
-    Column(verticalArrangement = Arrangement.spacedBy(8.dp), horizontalAlignment = Alignment.CenterHorizontally) {
-        HourlyWeatherSlotHourView(text = time)
-        HourlyWeatherIconView(weatherCode = weatherCode, weatherCodeDesc = weatherCodeDesc, modifier = modifier)
-        HourlyWeatherSlotTemperatureView(text = hourlyTemperature)
+    Column(
+        verticalArrangement = Arrangement.spacedBy(8.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        HourlyWeatherSlotHourView(text = hours)
+        HourlyWeatherIconView(weatherCode = weatherStatus, weatherCodeDesc = weatherStatusDesc, modifier = modifier)
+        HourlyWeatherSlotTemperatureView(text = temps)
     }
 }

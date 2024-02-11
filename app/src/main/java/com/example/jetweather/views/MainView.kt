@@ -19,9 +19,9 @@ import com.example.jetweather.ui.theme.Gradient4
 import com.example.jetweather.ui.theme.Gradient5
 import com.example.jetweather.viewmodel.WeatherViewModel
 import com.example.jetweather.views.currentweather.FullCurrentWeatherView
-import com.example.jetweather.views.hourlyweather.HourlyWeatherView
+import com.example.jetweather.views.hourlyweather.FullHourlyWeatherCardView
 import com.example.jetweather.views.todaysun.FullTodaySunTimeView
-import com.example.jetweather.views.weeklyweather.WeatherCardContentView
+import com.example.jetweather.views.weeklyweather.FullDailyWeatherCardView
 
 @Composable
 fun FullMainView(viewModel: WeatherViewModel) {
@@ -44,8 +44,8 @@ fun FullMainView(viewModel: WeatherViewModel) {
                 verticalArrangement = Arrangement.spacedBy(32.dp)
             ) {
                 item { FullCurrentWeatherView(viewModel = viewModel) }
-                item { WeatherCardContentView(viewModel = viewModel) }
-                item { HourlyWeatherView(viewModel = viewModel) }
+                item { FullDailyWeatherCardView(viewModel = viewModel) }
+                item { FullHourlyWeatherCardView(viewModel = viewModel) }
                 item { FullTodaySunTimeView(viewModel = viewModel) }
             }
         }

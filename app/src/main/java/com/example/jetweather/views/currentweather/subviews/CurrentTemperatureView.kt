@@ -1,20 +1,19 @@
 package com.example.jetweather.views.currentweather.subviews
 
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import com.example.jetweather.ui.theme.Typography
 
 @Composable
-fun LocationView(text: String) {
+fun CurrentTemperatureView(text: String) {
     Text(
         text = text,
-        modifier = Modifier.fillMaxWidth(),
-        textAlign = TextAlign.Center,
-        style = Typography.bodyLarge,
+        style = Typography.titleLarge,
         color = Color.White,
+        modifier = Modifier.padding(10.dp)
     )
 }

@@ -7,8 +7,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.example.jetweather.views.todaysun.subviews.CustomProgressBar
 import com.example.jetweather.views.todaysun.subviews.FullSunsetSunriseStatsView
-import com.example.jetweather.views.todaysun.subviews.customprogressbar.CustomProgressBar
 
 @Composable
 fun TodaySunTimeStatsLayoutView(

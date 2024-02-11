@@ -11,15 +11,18 @@ import com.example.jetweather.ui.theme.SunGradient2
 import com.example.jetweather.ui.theme.SunGradient3
 
 fun DrawScope.sunsetSunriseBar(innerRectangleWidth: Float, innerRectangleOffset: Float, outerRectangleSize: Size, cornerRadius: Dp) {
-    // Define gradient for the inner rectangle
-    val innerGradient = Brush.horizontalGradient(
-        colors = listOf(SunGradient1, SunGradient2, SunGradient3)
-    )
-    // Draw inner rectangle with gradient
+    val gradientColor = listOf(SunGradient1, SunGradient2, SunGradient3)
+    val innerGradient = Brush.horizontalGradient(colors = gradientColor)
+    val width = innerRectangleWidth
+    val height = outerRectangleSize.height
+    val size = Size(width = width, height = height)
+    val offset = Offset(x = innerRectangleOffset, y = 0f)
+    val cornerRadius = cornerRadius.toPx()
+
     drawRoundRect(
         brush = innerGradient,
-        topLeft = Offset(x = innerRectangleOffset, y = 0f),
-        size = Size(width = innerRectangleWidth, height = outerRectangleSize.height),
-        cornerRadius = CornerRadius(cornerRadius.toPx())
+        topLeft = offset,
+        size = size,
+        cornerRadius = CornerRadius(cornerRadius)
     )
 }

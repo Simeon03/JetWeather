@@ -9,15 +9,15 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun ProgressBarCanvas(sunrise: Float, sunset: Float, currentTime: Float, barHeight: Dp) {
-    val cornerRadius = 100.dp // Circular corners
     Canvas(modifier = Modifier.fillMaxSize()) {
+        val cornerRadius = 100.dp
         val outerRectangleSize = size
         val innerRectangleWidth = outerRectangleSize.width * (sunset - sunrise)
         val innerRectangleOffset = outerRectangleSize.width * sunrise
         val circleCenter = outerRectangleSize.width * currentTime
         val circleRadius = barHeight.toPx()
 
-        fullDayBar(outerRectangleSize, cornerRadius)
+        allDayBar(outerRectangleSize, cornerRadius)
         sunsetSunriseBar(innerRectangleWidth, innerRectangleOffset, outerRectangleSize, cornerRadius)
         currentTimeIndicator(circleCenter, circleRadius, outerRectangleSize)
     }
