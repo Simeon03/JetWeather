@@ -1,4 +1,4 @@
-package com.example.jetweather.helper
+package com.example.jetweather.helpers
 
 import com.example.jetweather.R
 import java.time.LocalDate

@@ -1,4 +1,4 @@
-package com.example.jetweather.helper.views
+package com.example.jetweather.helpers.views
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card

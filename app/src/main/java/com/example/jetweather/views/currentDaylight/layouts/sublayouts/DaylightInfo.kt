@@ -6,7 +6,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.example.jetweather.views.currentDaylight.texts.LabelTime
+import com.example.jetweather.views.currentDaylight.texts.DaylightLabelTime
 
 @Composable
 fun DaylightInfo(
@@ -21,7 +21,7 @@ fun DaylightInfo(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceAround,
     ) {
-        LabelTime(labelText = sunriseLabel, timeText = sunriseTime)
-        LabelTime(labelText = sunsetLabel, timeText = sunsetTime)
+        DaylightLabelTime(labelText = sunriseLabel, timeText = sunriseTime)
+        DaylightLabelTime(labelText = sunsetLabel, timeText = sunsetTime)
     }
 }

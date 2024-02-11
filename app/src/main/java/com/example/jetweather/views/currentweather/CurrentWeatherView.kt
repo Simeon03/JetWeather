@@ -3,8 +3,8 @@ package com.example.jetweather.views.currentweather
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import com.example.jetweather.helper.DataFormatter.formatTemperatureText
-import com.example.jetweather.helper.DataFormatter.formatWeatherCodeToText
+import com.example.jetweather.helpers.DataFormatter.formatTemperatureText
+import com.example.jetweather.helpers.DataFormatter.formatWeatherCodeToText
 import com.example.jetweather.viewmodel.MainViewModel
 import com.example.jetweather.views.currentweather.layouts.CurrentWeatherInfo
 

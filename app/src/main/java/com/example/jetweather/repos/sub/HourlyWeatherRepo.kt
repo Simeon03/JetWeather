@@ -1,4 +1,4 @@
-package com.example.jetweather.repos.subrepos
+package com.example.jetweather.repos.sub
 
 import kotlinx.coroutines.flow.Flow
 

@@ -1,4 +1,4 @@
-package com.example.jetweather.helper.views
+package com.example.jetweather.helpers.views
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Brush

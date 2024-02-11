@@ -5,12 +5,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 
 @Composable
-fun LabelTime(
+fun DaylightLabelTime(
     labelText: String,
     timeText: String
 ) {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
-        Label(text = labelText)
-        Time(text = timeText)
+        DaylightLabel(text = labelText)
+        DaylightTime(text = timeText)
     }
 }

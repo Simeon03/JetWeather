@@ -2,12 +2,12 @@ package com.example.jetweather.views.currentDaylight.texts
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import com.example.jetweather.ui.theme.Typography
+import androidx.compose.ui.unit.sp
 
 @Composable
-fun Label(text: String) {
+fun DaylightTime(text: String) {
     Text(
         text = text,
-        style = Typography.labelLarge,
+        fontSize = 28.sp,
     )
 }
