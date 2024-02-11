@@ -1,4 +1,4 @@
-package com.example.jetweather.views.hourlyweather
+package com.example.jetweather.views.hourlyweather.main
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxWidth

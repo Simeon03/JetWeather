@@ -1,4 +1,4 @@
-package com.example.jetweather.views.currentDaylight.subviews.customprogressbar
+package com.example.jetweather.helper.views.customprogressbar
 
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Size
@@ -7,7 +7,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.unit.Dp
 
-fun DrawScope.allDayBar(outerRectangleSize: Size, cornerRadius: Dp) {
+fun DrawScope.fullBar(outerRectangleSize: Size, cornerRadius: Dp) {
     val gradientColors = listOf(Color.DarkGray.copy(alpha = 0.9f), Color.DarkGray.copy(alpha = 0.9f))
 
     val outerGradient = Brush.horizontalGradient(colors = gradientColors)

@@ -1,4 +1,4 @@
-package com.example.jetweather.views.currentweather
+package com.example.jetweather.views.currentweather.main
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState

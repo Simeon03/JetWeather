@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.example.jetweather.views.currentDaylight.subviews.labeltime.LabelTimeView
 
 @Composable
 fun FullDaylightStatsView(sunriseTime: String, sunsetTime: String) {

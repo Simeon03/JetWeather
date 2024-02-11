@@ -1,4 +1,4 @@
-package com.example.jetweather.views.currentDaylight.subviews.customprogressbar
+package com.example.jetweather.helper.views.customprogressbar
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box

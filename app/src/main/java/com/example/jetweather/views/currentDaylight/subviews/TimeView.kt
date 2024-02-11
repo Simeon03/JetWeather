@@ -1,4 +1,4 @@
-package com.example.jetweather.views.currentDaylight.subviews.labeltime
+package com.example.jetweather.views.currentDaylight.subviews
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable

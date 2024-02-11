@@ -1,4 +1,4 @@
-package com.example.jetweather.views.dailyweather
+package com.example.jetweather.views.dailyweather.main
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -9,6 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.jetweather.helper.views.CardWithGradientBackground
 import com.example.jetweather.viewmodel.WeatherViewModel
+import com.example.jetweather.views.dailyweather.FullDailyWeatherView
 
 @Composable
 fun FullDailyWeatherCardView(viewModel: WeatherViewModel) {

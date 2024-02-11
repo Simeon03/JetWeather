@@ -1,5 +1,6 @@
-package com.example.jetweather.views.currentDaylight.subviews.customprogressbar
+package com.example.jetweather.helper.views.customprogressbar
 
+import androidx.compose.ui.graphics.Color
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
@@ -8,7 +9,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun ProgressBarCanvas(sunrise: Float, sunset: Float, currentTime: Float, barHeight: Dp) {
+fun CustomProgressBar(sunrise: Float, sunset: Float, currentTime: Float, barHeight: Dp, gradientColor: List<Color>) {
     Canvas(modifier = Modifier.fillMaxSize()) {
         val cornerRadius = 100.dp
         val outerRectangleSize = size
@@ -17,8 +18,8 @@ fun ProgressBarCanvas(sunrise: Float, sunset: Float, currentTime: Float, barHeig
         val circleCenter = outerRectangleSize.width * currentTime
         val circleRadius = barHeight.toPx()
 
-        allDayBar(outerRectangleSize, cornerRadius)
-        sunsetSunriseBar(innerRectangleWidth, innerRectangleOffset, outerRectangleSize, cornerRadius)
-        currentTimeIndicator(circleCenter, circleRadius, outerRectangleSize)
+        fullBar(outerRectangleSize, cornerRadius)
+        subBar(innerRectangleWidth, innerRectangleOffset, outerRectangleSize, cornerRadius, gradientColor)
+        indicator(circleCenter, circleRadius, outerRectangleSize)
     }
 }

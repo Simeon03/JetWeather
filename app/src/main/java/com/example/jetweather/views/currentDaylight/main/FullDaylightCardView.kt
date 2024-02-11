@@ -1,12 +1,12 @@
-package com.example.jetweather.views.currentDaylight
+package com.example.jetweather.views.currentDaylight.main
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import com.example.jetweather.helper.views.CardWithGradientBackground
 import com.example.jetweather.helper.DataFormatter.getCurrentTimePercentage
 import com.example.jetweather.helper.DataFormatter.getPercentageOfDay
 import com.example.jetweather.helper.DataFormatter.getTimeOfDay
+import com.example.jetweather.helper.views.CardWithGradientBackground
 import com.example.jetweather.viewmodel.WeatherViewModel
 
 @Composable
@@ -20,7 +20,7 @@ fun FullTodaySunTimeView(viewModel: WeatherViewModel) {
     val currentTimePercentage = getCurrentTimePercentage()
 
     CardWithGradientBackground {
-        TodaySunTimeStatsLayoutView(
+        FullDaylightView(
             sunriseTime = sunriseTime,
             sunrisePercentage = sunrisePercentage,
             sunsetTime = sunsetTime,

@@ -11,7 +11,7 @@ import com.example.jetweather.views.currentDaylight.subviews.FullDaylightProgres
 import com.example.jetweather.views.currentDaylight.subviews.FullDaylightStatsView
 
 @Composable
-fun TodaySunTimeStatsLayoutView(
+fun FullDaylightView(
     sunriseTime: String,
     sunrisePercentage: Float,
     sunsetTime: String,
