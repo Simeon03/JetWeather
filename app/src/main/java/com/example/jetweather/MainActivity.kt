@@ -13,8 +13,8 @@ import com.example.jetweather.model.apiservice.WeatherApiService
 import com.example.jetweather.ui.theme.JetWeatherTheme
 import com.example.jetweather.viewmodel.BaseWeatherRepository
 import com.example.jetweather.viewmodel.WeatherViewModel
-import com.example.jetweather.views.MainView
-import com.example.jetweather.views.currentweather.CurrentWeatherView
+import com.example.jetweather.views.FullMainView
+import com.example.jetweather.views.currentweather.FullCurrentWeatherView
 
 class MainActivity : ComponentActivity() {
 
@@ -32,7 +32,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             JetWeatherTheme {
-                MainView(viewModel = viewModel)
+                FullMainView(viewModel = viewModel)
             }
         }
     }
@@ -43,6 +43,6 @@ class MainActivity : ComponentActivity() {
 fun GreetingPreview() {
     lateinit var viewModel: WeatherViewModel
     JetWeatherTheme {
-        CurrentWeatherView(viewModel = viewModel)
+        FullCurrentWeatherView(viewModel = viewModel)
     }
 }

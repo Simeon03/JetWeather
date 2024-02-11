@@ -10,13 +10,14 @@ import com.example.jetweather.helper.CardWithGradientBackground
 import com.example.jetweather.viewmodel.WeatherViewModel
 
 @Composable
-fun WeatherCardContent(viewModel: WeatherViewModel) {
+fun WeatherCardContentView(viewModel: WeatherViewModel) {
     CardWithGradientBackground {
         Column(modifier = Modifier
             .fillMaxWidth()
-            .padding(4.dp)) {
+            .padding(4.dp)
+        ) {
             for (i in 0..6) {
-                WeeklyWeatherStats(viewModel = viewModel, index = i)
+                FullWeeklyWeatherStats(viewModel = viewModel, index = i)
             }
         }
     }

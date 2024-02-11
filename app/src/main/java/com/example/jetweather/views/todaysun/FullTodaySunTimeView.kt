@@ -9,9 +9,8 @@ import com.example.jetweather.helper.DataFormatter.getCurrentTimePercentage
 import com.example.jetweather.viewmodel.WeatherViewModel
 
 @Composable
-fun TodaySunTimeView(viewModel: WeatherViewModel) {
+fun FullTodaySunTimeView(viewModel: WeatherViewModel) {
     val weatherData by viewModel.weatherData.collectAsState()
-    val weatherDataLoading by viewModel.isLoading.collectAsState()
 
     val sunriseTime = DataFormatter.getTimeOfDay(weatherData.sunriseTime[0])
     val sunrisePercentage = DataFormatter.getPercentageOfDay(weatherData.sunriseTime[0])
@@ -19,15 +18,13 @@ fun TodaySunTimeView(viewModel: WeatherViewModel) {
     val sunsetPercentage = DataFormatter.getPercentageOfDay(weatherData.sunsetTime[0])
     val currentTimePercentage = getCurrentTimePercentage()
 
-    if (!weatherDataLoading) {
-        CardWithGradientBackground {
-            TodaySunTimeStatsLayoutView(
-                sunriseTime = sunriseTime,
-                sunrisePercentage = sunrisePercentage,
-                sunsetTime = sunsetTime,
-                sunsetPercentage = sunsetPercentage,
-                currentTimePercentage = currentTimePercentage
-            )
-        }
+    CardWithGradientBackground {
+        TodaySunTimeStatsLayoutView(
+            sunriseTime = sunriseTime,
+            sunrisePercentage = sunrisePercentage,
+            sunsetTime = sunsetTime,
+            sunsetPercentage = sunsetPercentage,
+            currentTimePercentage = currentTimePercentage
+        )
     }
 }

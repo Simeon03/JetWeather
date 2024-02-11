@@ -7,7 +7,7 @@ import com.example.jetweather.helper.DataFormatter
 import com.example.jetweather.viewmodel.WeatherViewModel
 
 @Composable
-fun WeeklyWeatherStats(viewModel: WeatherViewModel, index: Int) {
+fun FullWeeklyWeatherStats(viewModel: WeatherViewModel, index: Int) {
     val weatherData by viewModel.weatherData.collectAsState()
 
     val weeklyMinTemp = DataFormatter.formatTemperatureText(weatherData.weeklyMinTemp[index])
