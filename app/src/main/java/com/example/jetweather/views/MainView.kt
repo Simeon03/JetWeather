@@ -18,6 +18,7 @@ import com.example.jetweather.ui.theme.Gradient5
 import com.example.jetweather.viewmodel.WeatherViewModel
 import com.example.jetweather.views.currentweather.CurrentWeatherView
 import com.example.jetweather.views.hourlyweather.HourlyWeatherView
+import com.example.jetweather.views.todaysun.TodaySunTime
 import com.example.jetweather.views.weeklyweather.WeeklyWeatherView
 
 @Composable
@@ -40,6 +41,7 @@ fun MainView(viewModel: WeatherViewModel) {
             item { CurrentWeatherView(viewModel = viewModel) }
             item { WeeklyWeatherView(viewModel = viewModel) }
             item { HourlyWeatherView(viewModel = viewModel) }
+            item { TodaySunTime(viewModel = viewModel) }
         }
     }
 }

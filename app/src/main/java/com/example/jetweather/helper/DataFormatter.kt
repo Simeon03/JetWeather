@@ -2,6 +2,7 @@ package com.example.jetweather.helper
 
 import com.example.jetweather.R
 import java.time.LocalDate
+import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.time.format.TextStyle
 import java.util.Locale
@@ -24,6 +25,14 @@ object DataFormatter {
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
         val date = LocalDate.parse(dateStr, formatter)
         return date.dayOfWeek.getDisplayName(TextStyle.FULL, Locale.getDefault())
+    }
+
+    fun getTimeOfDay(timeStr: String): String {
+        // Parse the complete date-time
+        val dateTime = LocalDateTime.parse(timeStr)
+
+        // Format to extract only the time part
+        return dateTime.format(DateTimeFormatter.ofPattern("HH:mm"))
     }
 
     fun weatherIcon(weatherCode: Int): Int {

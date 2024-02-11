@@ -12,7 +12,7 @@ interface CurrentWeatherRepository {
 
     fun fetchCurrentMaxTemp(): Flow<Float>
 
-    fun fetchSunsetTime(): Flow<String>
+    fun fetchSunsetTime(): Flow<List<String>>
 
-    fun fetchSunriseTime(): Flow<String>
+    fun fetchSunriseTime(): Flow<List<String>>
 }

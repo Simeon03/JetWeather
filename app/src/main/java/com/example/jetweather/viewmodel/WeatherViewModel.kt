@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.jetweather.constants.PlaceholderConstants.FLOAT_PLACEHOLDER
 import com.example.jetweather.constants.PlaceholderConstants.INT_PLACEHOLDER
 import com.example.jetweather.constants.PlaceholderConstants.LIST_FLOAT_PLACEHOLDER
+import com.example.jetweather.constants.PlaceholderConstants.LIST_FULL_DATE_TIME_PLACEHOLDER
 import com.example.jetweather.constants.PlaceholderConstants.LIST_INT_PLACEHOLDER
 import com.example.jetweather.constants.PlaceholderConstants.LIST_STRING_24_PLACEHOLDER
 import com.example.jetweather.constants.PlaceholderConstants.LIST_STRING_PLACEHOLDER
@@ -26,8 +27,8 @@ data class WeatherData(
     val hourlyTemperature: List<Float>,
     val hourlyTime: List<String>,
     val hourlyWeatherStatus: List<Int>,
-    val sunriseTime: String = STRING_PLACEHOLDER,
-    val sunsetTime: String = STRING_PLACEHOLDER,
+    val sunriseTime: List<String>,
+    val sunsetTime: List<String>,
 )
 
 class WeatherViewModel(private val repo: WeatherRepository) : ViewModel() {
@@ -45,6 +46,8 @@ class WeatherViewModel(private val repo: WeatherRepository) : ViewModel() {
         LIST_FLOAT_PLACEHOLDER,
         LIST_STRING_24_PLACEHOLDER,
         LIST_INT_PLACEHOLDER,
+        LIST_FULL_DATE_TIME_PLACEHOLDER,
+        LIST_FULL_DATE_TIME_PLACEHOLDER,
     ))
     var isLoading = MutableStateFlow(true)
 

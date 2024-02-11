@@ -60,19 +60,19 @@ class BaseWeatherRepository(
         )
     }.flowOn(Dispatchers.IO)
 
-    override fun fetchSunsetTime(): Flow<String> = flow {
+    override fun fetchSunsetTime(): Flow<List<String>> = flow {
         handleResponse(
             response = weatherApi.getCurrentWeather(LATITUDE, LONGITUDE),
-            onSuccess = { weatherData -> emit(weatherData.maxMinTemperature.sunsetTime[0]) },
-            onError = { emit("") }
+            onSuccess = { weatherData -> emit(weatherData.maxMinTemperature.sunsetTime) },
+            onError = { emit(listOf<String>()) }
         )
     }.flowOn(Dispatchers.IO)
 
-    override fun fetchSunriseTime(): Flow<String> = flow {
+    override fun fetchSunriseTime(): Flow<List<String>> = flow {
         handleResponse(
             response = weatherApi.getCurrentWeather(LATITUDE, LONGITUDE),
-            onSuccess = { weatherData -> emit(weatherData.maxMinTemperature.sunriseTime[0]) },
-            onError = { emit("") }
+            onSuccess = { weatherData -> emit(weatherData.maxMinTemperature.sunriseTime) },
+            onError = { emit(listOf<String>()) }
         )
     }.flowOn(Dispatchers.IO)
 
