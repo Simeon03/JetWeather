@@ -14,7 +14,7 @@ import com.example.jetweather.ui.theme.JetWeatherTheme
 import com.example.jetweather.viewmodel.BaseWeatherRepository
 import com.example.jetweather.viewmodel.WeatherViewModel
 import com.example.jetweather.views.FullMainView
-import com.example.jetweather.views.currentweather.FullCurrentWeatherView
+import com.example.jetweather.views.currentweather.main.FullCurrentWeatherView
 
 class MainActivity : ComponentActivity() {
 

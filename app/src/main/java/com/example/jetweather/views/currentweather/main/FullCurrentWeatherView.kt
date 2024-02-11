@@ -6,6 +6,7 @@ import androidx.compose.runtime.getValue
 import com.example.jetweather.helper.DataFormatter.formatTemperatureText
 import com.example.jetweather.helper.DataFormatter.formatWeatherCodeText
 import com.example.jetweather.viewmodel.WeatherViewModel
+import com.example.jetweather.views.currentweather.CurrentWeatherStatsView
 
 @Composable
 fun FullCurrentWeatherView(viewModel: WeatherViewModel) {

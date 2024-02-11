@@ -5,16 +5,20 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.DrawScope
 
-fun DrawScope.indicator(circleCenter: Float, circleRadius: Float, outerRectangleSize: Size) {
+fun DrawScope.indicator(
+    pos: Float,
+    radius: Float,
+    size: Size
+) {
     val indicatorColor = Color.White
-    val indicatorRadius = circleRadius / 2
-    val indicatorCenterX = circleCenter
-    val indicatorCenterY = outerRectangleSize.height / 2
-    val indicatorCenter = Offset(x = indicatorCenterX, y = indicatorCenterY)
+    val indicatorRadius = radius / 2
+    val indicatorPosX = pos * 1
+    val indicatorPosY = size.height / 2
+    val indicatorPos = Offset(x = indicatorPosX, y = indicatorPosY)
 
     drawCircle(
         color = indicatorColor,
         radius = indicatorRadius,
-        center = indicatorCenter
+        center = indicatorPos
     )
 }

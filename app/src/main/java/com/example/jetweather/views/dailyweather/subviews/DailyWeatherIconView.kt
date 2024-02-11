@@ -8,10 +8,13 @@ import androidx.compose.ui.res.painterResource
 import com.example.jetweather.helper.DataFormatter
 
 @Composable
-fun DailyWeatherIconView(weatherCode: Int, weatherCodeDesc: String, modifier: Modifier) {
+fun DailyWeatherIconView(
+    weatherCode: Int,
+    modifier: Modifier
+) {
     Icon(
         painter = painterResource(id = DataFormatter.weatherIcon(weatherCode)),
-        contentDescription = weatherCodeDesc,
+        contentDescription = DataFormatter.formatWeatherCodeText(weatherCode),
         tint = Color.Unspecified,
         modifier = modifier
     )

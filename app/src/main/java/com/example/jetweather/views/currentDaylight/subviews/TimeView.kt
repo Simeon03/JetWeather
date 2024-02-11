@@ -5,11 +5,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun TimeView(text: String) {
-    val fontSize = 28.sp
-
+fun TimeView(timeText: String) {
     Text(
-        text = text,
-        fontSize = fontSize,
+        text = timeText,
+        fontSize = 28.sp,
     )
 }

@@ -15,9 +15,15 @@ fun FullDaylightProgressBarView(
     currentTimePercentage: Float
 ) {
     val barHeight = 16.dp
-    val gradientColor = listOf(SunGradient1, SunGradient2, SunGradient3)
+    val sunlightGradientColors = listOf(SunGradient1, SunGradient2, SunGradient3)
 
     ProgressBarContainer(barHeight = barHeight) {
-        CustomProgressBar(sunrisePercentage, sunsetPercentage, currentTimePercentage, barHeight, gradientColor)
+        CustomProgressBar(
+            subBarStart = sunrisePercentage,
+            subBarEnd = sunsetPercentage,
+            indicatorPos = currentTimePercentage,
+            barHeight = barHeight,
+            subBarGradientColor = sunlightGradientColors
+        )
     }
 }

@@ -7,7 +7,10 @@ import androidx.compose.ui.text.style.TextAlign
 import com.example.jetweather.ui.theme.Typography
 
 @Composable
-fun DailyMinMaxTempView(text: String, modifier: Modifier = Modifier) {
+fun DailyMinMaxTempView(
+    text: String,
+    modifier: Modifier = Modifier
+) {
     Text(
         text = text,
         modifier = modifier,

@@ -15,8 +15,7 @@ fun DailyWeatherView(
     minTemp: String,
     maxTemp: String,
     date: String,
-    weatherCode: Int,
-    weatherCodeDesc: String
+    weatherCode: Int
 ) {
     Row(
         modifier = Modifier.fillMaxWidth(),
@@ -29,7 +28,6 @@ fun DailyWeatherView(
         )
         DailyWeatherIconView(
             weatherCode = weatherCode,
-            weatherCodeDesc = weatherCodeDesc,
             modifier = Modifier.weight(1f),
         )
         DailyMinMaxTempView(

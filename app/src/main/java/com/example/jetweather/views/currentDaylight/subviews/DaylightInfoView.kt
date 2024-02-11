@@ -8,7 +8,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 
 @Composable
-fun FullDaylightStatsView(sunriseTime: String, sunsetTime: String) {
+fun FullDaylightStatsView(
+    sunriseTime: String,
+    sunsetTime: String
+) {
     val sunriseLabel = "Sunrise"
     val sunsetLabel = "Sunset"
 
@@ -17,7 +20,7 @@ fun FullDaylightStatsView(sunriseTime: String, sunsetTime: String) {
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceAround,
     ) {
-        LabelTimeView(label = sunriseLabel, time = sunriseTime)
-        LabelTimeView(label = sunsetLabel, time = sunsetTime)
+        LabelTimeView(labelText = sunriseLabel, timeText = sunriseTime)
+        LabelTimeView(labelText = sunsetLabel, timeText = sunsetTime)
     }
 }

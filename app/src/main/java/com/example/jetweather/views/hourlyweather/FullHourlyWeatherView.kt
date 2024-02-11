@@ -9,7 +9,10 @@ import com.example.jetweather.helper.DataFormatter.formatWeatherCodeText
 import com.example.jetweather.viewmodel.WeatherViewModel
 
 @Composable
-fun FullHourlyWeatherView(viewModel: WeatherViewModel, index: Int) {
+fun FullHourlyWeatherView(
+    viewModel: WeatherViewModel,
+    index: Int
+) {
     val weatherData by viewModel.weatherData.collectAsState()
 
     val hours = weatherData.hourlyTime[index]

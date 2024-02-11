@@ -5,9 +5,9 @@ import androidx.compose.runtime.Composable
 import com.example.jetweather.ui.theme.Typography
 
 @Composable
-fun LabelView(text: String) {
+fun LabelView(labelText: String) {
     Text(
-        text = text,
+        text = labelText,
         style = Typography.labelLarge,
     )
 }

@@ -28,7 +28,10 @@ fun HourlyWeatherLayoutView(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         HourlyWeatherSlotHourView(text = hours)
-        HourlyWeatherIconView(weatherCode = weatherStatus, weatherCodeDesc = weatherStatusDesc, modifier = modifier)
+        HourlyWeatherIconView(
+            weatherCode = weatherStatus,
+            modifier = modifier
+        )
         HourlyRelativeHumidityView(text = relativeHumidity)
         HourlyWeatherSlotTemperatureView(text = temps)
     }

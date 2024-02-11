@@ -13,7 +13,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 
 @Composable
-fun ProgressBarContainer(barHeight: Dp, content: @Composable () -> Unit) {
+fun ProgressBarContainer(
+    barHeight: Dp,
+    content: @Composable () -> Unit
+) {
     val shape = RoundedCornerShape(100)
     val bgColor = Color.DarkGray.copy(alpha = 0.9f)
     val contentAlignment = Alignment.CenterStart

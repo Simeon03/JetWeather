@@ -9,6 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.jetweather.helper.views.CardWithGradientBackground
 import com.example.jetweather.viewmodel.WeatherViewModel
+import com.example.jetweather.views.hourlyweather.FullHourlyWeatherView
 
 @Composable
 fun FullHourlyWeatherCardView(viewModel: WeatherViewModel) {

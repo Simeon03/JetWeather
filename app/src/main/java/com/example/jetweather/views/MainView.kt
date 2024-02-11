@@ -18,10 +18,10 @@ import com.example.jetweather.ui.theme.Gradient3
 import com.example.jetweather.ui.theme.Gradient4
 import com.example.jetweather.ui.theme.Gradient5
 import com.example.jetweather.viewmodel.WeatherViewModel
-import com.example.jetweather.views.currentweather.FullCurrentWeatherView
-import com.example.jetweather.views.hourlyweather.FullHourlyWeatherCardView
-import com.example.jetweather.views.currentDaylight.FullTodaySunTimeView
-import com.example.jetweather.views.dailyweather.FullDailyWeatherCardView
+import com.example.jetweather.views.currentDaylight.main.FullTodaySunTimeView
+import com.example.jetweather.views.currentweather.main.FullCurrentWeatherView
+import com.example.jetweather.views.dailyweather.main.FullDailyWeatherCardView
+import com.example.jetweather.views.hourlyweather.main.FullHourlyWeatherCardView
 
 @Composable
 fun FullMainView(viewModel: WeatherViewModel) {

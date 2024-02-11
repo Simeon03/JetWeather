@@ -5,9 +5,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 
 @Composable
-fun LabelTimeView(label: String, time: String) {
+fun LabelTimeView(
+    labelText: String,
+    timeText: String
+) {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
-        LabelView(text = label)
-        TimeView(text = time)
+        LabelView(labelText = labelText)
+        TimeView(timeText = timeText)
     }
 }

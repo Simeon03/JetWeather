@@ -8,6 +8,7 @@ import com.example.jetweather.helper.DataFormatter.getPercentageOfDay
 import com.example.jetweather.helper.DataFormatter.getTimeOfDay
 import com.example.jetweather.helper.views.CardWithGradientBackground
 import com.example.jetweather.viewmodel.WeatherViewModel
+import com.example.jetweather.views.currentDaylight.FullDaylightView
 
 @Composable
 fun FullTodaySunTimeView(viewModel: WeatherViewModel) {

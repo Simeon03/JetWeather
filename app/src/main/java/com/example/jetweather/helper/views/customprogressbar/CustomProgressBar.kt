@@ -1,25 +1,46 @@
 package com.example.jetweather.helper.views.customprogressbar
 
-import androidx.compose.ui.graphics.Color
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun CustomProgressBar(sunrise: Float, sunset: Float, currentTime: Float, barHeight: Dp, gradientColor: List<Color>) {
+fun CustomProgressBar(
+    subBarStart: Float,
+    subBarEnd: Float,
+    indicatorPos: Float,
+    barHeight: Dp,
+    subBarGradientColor: List<Color>,
+) {
     Canvas(modifier = Modifier.fillMaxSize()) {
-        val cornerRadius = 100.dp
-        val outerRectangleSize = size
-        val innerRectangleWidth = outerRectangleSize.width * (sunset - sunrise)
-        val innerRectangleOffset = outerRectangleSize.width * sunrise
-        val circleCenter = outerRectangleSize.width * currentTime
-        val circleRadius = barHeight.toPx()
+        val barsCornerRadius = 100.dp
+        val fullBarSize = size
+        val subBarWidth = fullBarSize.width * (subBarEnd - subBarStart)
+        val subBarOffset = fullBarSize.width * subBarStart
+        val indicatorPos = fullBarSize.width * indicatorPos
+        val indicatorRadius = barHeight.toPx()
 
-        fullBar(outerRectangleSize, cornerRadius)
-        subBar(innerRectangleWidth, innerRectangleOffset, outerRectangleSize, cornerRadius, gradientColor)
-        indicator(circleCenter, circleRadius, outerRectangleSize)
+        fullBar(
+            barSize = fullBarSize,
+            cornerRadius = barsCornerRadius,
+        )
+
+        subBar(
+            width = subBarWidth,
+            offset = subBarOffset,
+            size = fullBarSize,
+            cornerRadius = barsCornerRadius,
+            gradientColors = subBarGradientColor
+        )
+
+        indicator(
+            indicatorPos,
+            indicatorRadius,
+            fullBarSize
+        )
     }
 }
