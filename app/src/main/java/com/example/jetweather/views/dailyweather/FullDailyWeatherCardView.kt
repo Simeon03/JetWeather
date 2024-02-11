@@ -1,4 +1,4 @@
-package com.example.jetweather.views.weeklyweather
+package com.example.jetweather.views.dailyweather
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

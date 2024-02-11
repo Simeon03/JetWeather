@@ -1,4 +1,4 @@
-package com.example.jetweather.views.weeklyweather
+package com.example.jetweather.views.dailyweather
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -6,9 +6,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.example.jetweather.views.weeklyweather.subviews.DailyMinMaxTempView
-import com.example.jetweather.views.weeklyweather.subviews.DailyWeatherIconView
-import com.example.jetweather.views.weeklyweather.subviews.DayOfWeatherView
+import com.example.jetweather.views.dailyweather.subviews.DailyMinMaxTempView
+import com.example.jetweather.views.dailyweather.subviews.DailyWeatherIconView
+import com.example.jetweather.views.dailyweather.subviews.DayOfWeatherView
 
 @Composable
 fun DailyWeatherView(

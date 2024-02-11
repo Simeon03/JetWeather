@@ -1,4 +1,4 @@
-package com.example.jetweather.views.todaysun.subviews.labeltime
+package com.example.jetweather.views.currentDaylight.subviews.labeltime
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable

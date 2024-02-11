@@ -1,12 +1,12 @@
-package com.example.jetweather.views.todaysun.subviews
+package com.example.jetweather.views.currentDaylight.subviews
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.dp
-import com.example.jetweather.views.todaysun.subviews.customprogressbar.ProgressBarCanvas
-import com.example.jetweather.views.todaysun.subviews.customprogressbar.ProgressBarContainer
+import com.example.jetweather.views.currentDaylight.subviews.customprogressbar.ProgressBarCanvas
+import com.example.jetweather.views.currentDaylight.subviews.customprogressbar.ProgressBarContainer
 
 @Composable
-fun CustomProgressBar(
+fun FullDaylightProgressBarView(
     sunrisePercentage: Float,
     sunsetPercentage: Float,
     currentTimePercentage: Float

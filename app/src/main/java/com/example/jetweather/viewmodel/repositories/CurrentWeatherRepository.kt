@@ -15,4 +15,5 @@ interface CurrentWeatherRepository {
     fun fetchSunsetTime(): Flow<List<String>>
 
     fun fetchSunriseTime(): Flow<List<String>>
+
 }

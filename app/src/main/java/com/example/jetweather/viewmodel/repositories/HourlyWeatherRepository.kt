@@ -11,4 +11,5 @@ interface HourlyWeatherRepository {
     fun fetchHourlyWeatherStatus(): Flow<List<Int>>
 
     fun fetchHourlyHumidity(): Flow<List<Int>>
+
 }
