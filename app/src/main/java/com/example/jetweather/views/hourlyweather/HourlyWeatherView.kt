@@ -36,7 +36,7 @@ fun HourlyWeatherView(viewModel: WeatherViewModel) {
                 .background(Brush.verticalGradient(gradientColors))) {
                 LazyRow(
                     modifier = Modifier.fillMaxWidth().padding(16.dp),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    horizontalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
                     items(24) { index ->
                         HourlyWeatherStats(viewModel = viewModel, index = index)
