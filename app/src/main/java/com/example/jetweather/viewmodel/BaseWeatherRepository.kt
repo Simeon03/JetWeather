@@ -60,6 +60,22 @@ class BaseWeatherRepository(
         )
     }.flowOn(Dispatchers.IO)
 
+    override fun fetchSunsetTime(): Flow<String> = flow {
+        handleResponse(
+            response = weatherApi.getCurrentWeather(LATITUDE, LONGITUDE),
+            onSuccess = { weatherData -> emit(weatherData.maxMinTemperature.sunsetTime[0]) },
+            onError = { emit("") }
+        )
+    }.flowOn(Dispatchers.IO)
+
+    override fun fetchSunriseTime(): Flow<String> = flow {
+        handleResponse(
+            response = weatherApi.getCurrentWeather(LATITUDE, LONGITUDE),
+            onSuccess = { weatherData -> emit(weatherData.maxMinTemperature.sunriseTime[0]) },
+            onError = { emit("") }
+        )
+    }.flowOn(Dispatchers.IO)
+
     override fun fetchWeeklyMinTemp(): Flow<List<Float>> = flow {
         handleResponse(
             response = weatherApi.getWeeklyWeather(LATITUDE, LONGITUDE),

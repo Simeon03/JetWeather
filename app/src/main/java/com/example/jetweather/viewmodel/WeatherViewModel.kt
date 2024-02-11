@@ -26,6 +26,8 @@ data class WeatherData(
     val hourlyTemperature: List<Float>,
     val hourlyTime: List<String>,
     val hourlyWeatherStatus: List<Int>,
+    val sunriseTime: String = STRING_PLACEHOLDER,
+    val sunsetTime: String = STRING_PLACEHOLDER,
 )
 
 class WeatherViewModel(private val repo: WeatherRepository) : ViewModel() {
@@ -69,6 +71,9 @@ class WeatherViewModel(private val repo: WeatherRepository) : ViewModel() {
                 val hourlyTime = repo.fetchHourlyTime().first()
                 val hourlyWeatherStatus = repo.fetchHourlyWeatherStatus().first()
 
+                val sunriseTime = repo.fetchSunriseTime().first()
+                val sunsetTime = repo.fetchSunsetTime().first()
+
                 weatherData.value = WeatherData(
                     currentTemp = currentTemp,
                     location = location,
@@ -82,6 +87,8 @@ class WeatherViewModel(private val repo: WeatherRepository) : ViewModel() {
                     hourlyTemperature = hourlyTemperature,
                     hourlyTime = hourlyTime,
                     hourlyWeatherStatus = hourlyWeatherStatus,
+                    sunriseTime = sunriseTime,
+                    sunsetTime = sunsetTime,
                 )
             } catch (e: Exception) {
                 // Handle errors appropriately

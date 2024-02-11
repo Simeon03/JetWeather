@@ -14,7 +14,7 @@ interface WeatherApiService {
         @Query(LATITUDE) latitude: Float,
         @Query(LONGITUDE) longitude: Float,
         @Query(CURRENT) current: String = "temperature_2m,apparent_temperature,weather_code",
-        @Query(DAILY) daily: String = "temperature_2m_max,temperature_2m_min",
+        @Query(DAILY) daily: String = "temperature_2m_max,temperature_2m_min,sunrise,sunset",
         @Query(TIMEZONE) timezone: String = "auto",
         @Query(FORECAST_DAYS) forecastDays: Int = 1,
     ): Response<CurrentWeather>
@@ -24,7 +24,7 @@ interface WeatherApiService {
         @Query(LATITUDE) latitude: Float,
         @Query(LONGITUDE) longitude: Float,
         @Query(TIMEZONE) timezone: String = "auto",
-        @Query(DAILY) daily: String = "weather_code,temperature_2m_max,temperature_2m_min",
+        @Query(DAILY) daily: String = "weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset",
     ): Response<WeeklyWeather>
 
     @GET(ENDPOINT)

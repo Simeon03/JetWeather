@@ -24,5 +24,7 @@ data class DailyTemperature(
     @SerializedName(WEATHER_CODE) val weatherCode: List<Int>,
     @SerializedName(MAX_TEMPERATURE) val maxTemperature: List<Float>,
     @SerializedName(MIN_TEMPERATURE) val minTemperature: List<Float>,
+    @SerializedName("sunrise") val sunriseTime: List<String>,
+    @SerializedName("sunset") val sunsetTime: List<String>,
 )
 
