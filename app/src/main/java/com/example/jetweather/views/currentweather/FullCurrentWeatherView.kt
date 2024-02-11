@@ -11,11 +11,11 @@ import com.example.jetweather.viewmodel.WeatherViewModel
 fun FullCurrentWeatherView(viewModel: WeatherViewModel) {
     val weatherData by viewModel.weatherData.collectAsState()
 
-    val currentWeatherStatus = formatWeatherCodeText(weatherData.weatherStatus ?: 0)
+    val currentWeatherStatus = formatWeatherCodeText(weatherData.currentWeatherStatus ?: 0)
     val currentTemp = formatTemperatureText(weatherData.currentTemp)
     val currentMinTemp = formatTemperatureText(weatherData.currentMinTemp)
     val currentMaxTemp = formatTemperatureText(weatherData.currentMaxTemp)
-    val currentLocation = weatherData.location
+    val currentLocation = weatherData.currentLocation
 
     CurrentWeatherStatsView(
         currentLocation = currentLocation,

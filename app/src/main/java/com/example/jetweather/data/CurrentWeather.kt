@@ -2,7 +2,7 @@ package com.example.jetweather.data
 
 import com.example.jetweather.constants.DataConstants.APPARENT_TEMPERATURE
 import com.example.jetweather.constants.DataConstants.CURRENT_UNITS
-import com.example.jetweather.constants.DataConstants.CURRENT_WEATHER
+import com.example.jetweather.constants.DataConstants.CURRENT_WEATHER_STATUS
 import com.example.jetweather.constants.DataConstants.DAILY_UNITS
 import com.example.jetweather.constants.DataConstants.DAILY_WEATHER
 import com.example.jetweather.constants.DataConstants.LATITUDE
@@ -20,9 +20,9 @@ data class CurrentWeather(
     @SerializedName(LONGITUDE) val longitude: Double,
     @SerializedName(TIMEZONE) val timezone: String,
     @SerializedName(CURRENT_UNITS) val weatherFormat: WeatherFormat,
-    @SerializedName(CURRENT_WEATHER) val data: Data,
+    @SerializedName(CURRENT_WEATHER_STATUS) val currentWeatherStatus: CurrentWeatherStatus,
     @SerializedName(DAILY_UNITS) val maxMinTemperatureUnit: MaxMinTemperatureUnit,
-    @SerializedName(DAILY_WEATHER) val maxMinTemperature: DailyTemperature,
+    @SerializedName(DAILY_WEATHER) val currentWeather: DailyTemperature,
 )
 
 data class WeatherFormat(
@@ -32,7 +32,7 @@ data class WeatherFormat(
     @SerializedName(WEATHER_CODE) val weatherCodeFormat: String,
 )
 
-data class Data(
+data class CurrentWeatherStatus(
     @SerializedName(TEMPERATURE) val temperature: Float,
     @SerializedName(APPARENT_TEMPERATURE) val apparentTemperature: Float,
     @SerializedName(WEATHER_CODE) val weatherCode: Int

@@ -13,10 +13,10 @@ import com.example.jetweather.viewmodel.WeatherViewModel
 fun FullTodaySunTimeView(viewModel: WeatherViewModel) {
     val weatherData by viewModel.weatherData.collectAsState()
 
-    val sunriseTime = getTimeOfDay(weatherData.sunriseTime[0])
-    val sunrisePercentage = getPercentageOfDay(weatherData.sunriseTime[0])
-    val sunsetTime = getTimeOfDay(weatherData.sunsetTime[0])
-    val sunsetPercentage = getPercentageOfDay(weatherData.sunsetTime[0])
+    val sunriseTime = getTimeOfDay(weatherData.currentSunriseTime[0])
+    val sunrisePercentage = getPercentageOfDay(weatherData.currentSunriseTime[0])
+    val sunsetTime = getTimeOfDay(weatherData.currentSunsetTime[0])
+    val sunsetPercentage = getPercentageOfDay(weatherData.currentSunsetTime[0])
     val currentTimePercentage = getCurrentTimePercentage()
 
     CardWithGradientBackground {

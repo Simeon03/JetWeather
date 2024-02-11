@@ -8,8 +8,8 @@ interface WeeklyWeatherRepository {
 
     fun fetchWeeklyMaxTemp(): Flow<List<Float>>
 
-    fun fetchDayOfWeek(): Flow<List<String>>
+    fun fetchWeeklyDay(): Flow<List<String>>
 
-    fun fetchWeeklyWeatherCode(): Flow<List<Int>>
+    fun fetchWeeklyWeatherStatus(): Flow<List<Int>>
 
 }

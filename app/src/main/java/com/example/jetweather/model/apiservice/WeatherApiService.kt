@@ -24,7 +24,7 @@ interface WeatherApiService {
         @Query(LATITUDE) latitude: Float,
         @Query(LONGITUDE) longitude: Float,
         @Query(TIMEZONE) timezone: String = "auto",
-        @Query(DAILY) daily: String = "weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset",
+        @Query(DAILY) daily: String = "weather_code,temperature_2m_max,temperature_2m_min",
     ): Response<WeeklyWeather>
 
     @GET(ENDPOINT)

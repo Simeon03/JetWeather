@@ -14,19 +14,19 @@ import kotlinx.coroutines.launch
 
 data class WeatherData(
     val currentTemp: Float = FLOAT,
-    val location: String = STRING,
-    val weatherStatus: Int? = INT,
+    val currentLocation: String = STRING,
+    val currentWeatherStatus: Int? = INT,
     val currentMinTemp: Float = FLOAT,
     val currentMaxTemp: Float = FLOAT,
+    val currentSunriseTime: List<String> = LIST_STRING,
+    val currentSunsetTime: List<String> = LIST_STRING,
     val weeklyMinTemp: List<Float> = LIST_FLOAT,
     val weeklyMaxTemp: List<Float> = LIST_FLOAT,
-    val dayOfWeek: List<String> = LIST_STRING,
-    val weeklyWeatherCode: List<Int> = LIST_INT,
+    val weeklyDay: List<String> = LIST_STRING,
+    val weeklyWeatherStatus: List<Int> = LIST_INT,
     val hourlyTemperature: List<Float> = LIST_FLOAT,
     val hourlyTime: List<String> = LIST_STRING,
     val hourlyWeatherStatus: List<Int> = LIST_INT,
-    val sunriseTime: List<String> = LIST_STRING,
-    val sunsetTime: List<String> = LIST_STRING,
     val hourlyHumidity: List<Int> = LIST_INT,
 )
 
@@ -43,40 +43,39 @@ class WeatherViewModel(private val repo: WeatherRepository) : ViewModel() {
         viewModelScope.launch {
             isLoading.value = true
             try {
-                val location = repo.fetchLocation().first()
                 val currentTemp = repo.fetchCurrentTemperature().first()
-                val weatherStatus = repo.fetchCurrentWeatherStatus().first()
+                val currentLocation = repo.fetchCurrentLocation().first()
+                val currentWeatherStatus = repo.fetchCurrentWeatherStatus().first()
                 val currentMinTemp = repo.fetchCurrentMinTemp().first()
                 val currentMaxTemp = repo.fetchCurrentMaxTemp().first()
+                val currentSunriseTime = repo.fetchSunriseTime().first()
+                val currentSunsetTime = repo.fetchSunsetTime().first()
 
                 val weeklyMinTemp = repo.fetchWeeklyMinTemp().first()
                 val weeklyMaxTemp = repo.fetchWeeklyMaxTemp().first()
-                val dayOfWeek = repo.fetchDayOfWeek().first()
-                val weeklyWeatherCode = repo.fetchWeeklyWeatherCode().first()
+                val weeklyDay = repo.fetchWeeklyDay().first()
+                val weeklyWeatherStatus = repo.fetchWeeklyWeatherStatus().first()
 
                 val hourlyTemperature = repo.fetchHourlyTemperature().first()
                 val hourlyTime = repo.fetchHourlyTime().first()
                 val hourlyWeatherStatus = repo.fetchHourlyWeatherStatus().first()
                 val hourlyHumidity = repo.fetchHourlyHumidity().first()
 
-                val sunriseTime = repo.fetchSunriseTime().first()
-                val sunsetTime = repo.fetchSunsetTime().first()
-
                 weatherData.value = WeatherData(
                     currentTemp = currentTemp,
-                    location = location,
-                    weatherStatus = weatherStatus,
+                    currentLocation = currentLocation,
+                    currentWeatherStatus = currentWeatherStatus,
                     currentMinTemp = currentMinTemp,
                     currentMaxTemp = currentMaxTemp,
+                    currentSunriseTime = currentSunriseTime,
+                    currentSunsetTime = currentSunsetTime,
                     weeklyMinTemp = weeklyMinTemp,
                     weeklyMaxTemp = weeklyMaxTemp,
-                    dayOfWeek = dayOfWeek,
-                    weeklyWeatherCode = weeklyWeatherCode,
+                    weeklyDay = weeklyDay,
+                    weeklyWeatherStatus = weeklyWeatherStatus,
                     hourlyTemperature = hourlyTemperature,
                     hourlyTime = hourlyTime,
                     hourlyWeatherStatus = hourlyWeatherStatus,
-                    sunriseTime = sunriseTime,
-                    sunsetTime = sunsetTime,
                     hourlyHumidity = hourlyHumidity,
                 )
             } catch (e: Exception) {

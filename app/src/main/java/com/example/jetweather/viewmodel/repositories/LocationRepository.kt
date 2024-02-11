@@ -4,6 +4,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface LocationRepository {
 
-    fun fetchLocation(): Flow<String>
+    fun fetchCurrentLocation(): Flow<String>
 
 }

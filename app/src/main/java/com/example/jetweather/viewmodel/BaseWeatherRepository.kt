@@ -20,7 +20,7 @@ class BaseWeatherRepository(
     private val googleMapsApi: LocationApiService
 ): WeatherRepository {
 
-    override fun fetchLocation(): Flow<String> = flow {
+    override fun fetchCurrentLocation(): Flow<String> = flow {
         handleResponse(
             response = googleMapsApi.getLocationData("$LATITUDE,$LONGITUDE"),
             onSuccess = { location -> emit(location.results[0].addressComponents[0].shortName) },
@@ -31,7 +31,7 @@ class BaseWeatherRepository(
     override fun fetchCurrentTemperature(): Flow<Float> = flow {
         handleResponse(
             response = weatherApi.getCurrentWeather(LATITUDE, LONGITUDE),
-            onSuccess = { weatherData -> emit(weatherData.data.temperature) },
+            onSuccess = { weatherData -> emit(weatherData.currentWeatherStatus.temperature) },
             onError = { emit(0f) }
         )
     }.flowOn(Dispatchers.IO)
@@ -39,7 +39,7 @@ class BaseWeatherRepository(
     override fun fetchCurrentWeatherStatus(): Flow<Int?> = flow {
         handleResponse(
             response = weatherApi.getCurrentWeather(LATITUDE, LONGITUDE),
-            onSuccess = { weatherData -> emit(weatherData.data.weatherCode) },
+            onSuccess = { weatherData -> emit(weatherData.currentWeatherStatus.weatherCode) },
             onError = { emit(0) }
         )
     }.flowOn(Dispatchers.IO)
@@ -47,7 +47,7 @@ class BaseWeatherRepository(
     override fun fetchCurrentMinTemp(): Flow<Float> = flow {
         handleResponse(
             response = weatherApi.getCurrentWeather(LATITUDE, LONGITUDE),
-            onSuccess = { weatherData -> emit(weatherData.maxMinTemperature.minTemperature[0]) },
+            onSuccess = { weatherData -> emit(weatherData.currentWeather.minTemperature[0]) },
             onError = { emit(0f) }
         )
     }.flowOn(Dispatchers.IO)
@@ -55,7 +55,7 @@ class BaseWeatherRepository(
     override fun fetchCurrentMaxTemp(): Flow<Float> = flow {
         handleResponse(
             response = weatherApi.getCurrentWeather(LATITUDE, LONGITUDE),
-            onSuccess = { weatherData -> emit(weatherData.maxMinTemperature.maxTemperature[0]) },
+            onSuccess = { weatherData -> emit(weatherData.currentWeather.maxTemperature[0]) },
             onError = { emit(0f) }
         )
     }.flowOn(Dispatchers.IO)
@@ -63,7 +63,7 @@ class BaseWeatherRepository(
     override fun fetchSunsetTime(): Flow<List<String>> = flow {
         handleResponse(
             response = weatherApi.getCurrentWeather(LATITUDE, LONGITUDE),
-            onSuccess = { weatherData -> emit(weatherData.maxMinTemperature.sunsetTime) },
+            onSuccess = { weatherData -> emit(weatherData.currentWeather.sunsetTime) },
             onError = { emit(listOf<String>()) }
         )
     }.flowOn(Dispatchers.IO)
@@ -71,7 +71,7 @@ class BaseWeatherRepository(
     override fun fetchSunriseTime(): Flow<List<String>> = flow {
         handleResponse(
             response = weatherApi.getCurrentWeather(LATITUDE, LONGITUDE),
-            onSuccess = { weatherData -> emit(weatherData.maxMinTemperature.sunriseTime) },
+            onSuccess = { weatherData -> emit(weatherData.currentWeather.sunriseTime) },
             onError = { emit(listOf<String>()) }
         )
     }.flowOn(Dispatchers.IO)
@@ -92,7 +92,7 @@ class BaseWeatherRepository(
         )
     }.flowOn(Dispatchers.IO)
 
-    override fun fetchDayOfWeek(): Flow<List<String>> = flow {
+    override fun fetchWeeklyDay(): Flow<List<String>> = flow {
         handleResponse(
             response = weatherApi.getWeeklyWeather(LATITUDE, LONGITUDE),
             onSuccess = { weeklyWeatherData -> emit(weeklyWeatherData.dailyTemperature.time) },
@@ -100,7 +100,7 @@ class BaseWeatherRepository(
         )
     }.flowOn(Dispatchers.IO)
 
-    override fun fetchWeeklyWeatherCode(): Flow<List<Int>> = flow {
+    override fun fetchWeeklyWeatherStatus(): Flow<List<Int>> = flow {
         handleResponse(
             response = weatherApi.getWeeklyWeather(LATITUDE, LONGITUDE),
             onSuccess = { weeklyWeatherData -> emit(weeklyWeatherData.dailyTemperature.weatherCode) },

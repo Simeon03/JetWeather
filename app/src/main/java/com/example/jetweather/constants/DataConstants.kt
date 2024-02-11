@@ -6,7 +6,7 @@ object DataConstants {
     const val LONGITUDE = "longitude"
 
     const val HOURLY_WEATHER = "hourly"
-    const val CURRENT_WEATHER = "current"
+    const val CURRENT_WEATHER_STATUS = "current"
     const val DAILY_WEATHER = "daily"
 
     const val MIN_TEMP_UNIT = "temperature_2m_min"

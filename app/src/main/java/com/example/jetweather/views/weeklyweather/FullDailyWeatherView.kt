@@ -12,9 +12,9 @@ fun FullDailyWeatherView(viewModel: WeatherViewModel, index: Int) {
 
     val weeklyMinTemp = DataFormatter.formatTemperatureText(weatherData.weeklyMinTemp[index])
     val weeklyMaxTemp = DataFormatter.formatTemperatureText(weatherData.weeklyMaxTemp[index])
-    val dayOfWeek = DataFormatter.getDayOfWeek(weatherData.dayOfWeek.getOrElse(index) { "2023-02-01" })
-    val weeklyWeatherCode = DataFormatter.formatWeatherCodeIcon(weatherData.weeklyWeatherCode[index])
-    val weeklyWeatherCodeDesc = DataFormatter.formatWeatherCodeText(weatherData.weeklyWeatherCode[index])
+    val dayOfWeek = DataFormatter.getDayOfWeek(weatherData.weeklyDay.getOrElse(index) { "2023-02-01" })
+    val weeklyWeatherCode = DataFormatter.formatWeatherCodeIcon(weatherData.weeklyWeatherStatus[index])
+    val weeklyWeatherCodeDesc = DataFormatter.formatWeatherCodeText(weatherData.weeklyWeatherStatus[index])
 
     DailyWeatherView(
         minTemp = weeklyMinTemp,
