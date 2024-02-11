@@ -2,6 +2,13 @@ package com.example.jetweather.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.jetweather.constants.PlaceholderConstants.FLOAT_PLACEHOLDER
+import com.example.jetweather.constants.PlaceholderConstants.INT_PLACEHOLDER
+import com.example.jetweather.constants.PlaceholderConstants.LIST_FLOAT_PLACEHOLDER
+import com.example.jetweather.constants.PlaceholderConstants.LIST_INT_PLACEHOLDER
+import com.example.jetweather.constants.PlaceholderConstants.LIST_STRING_24_PLACEHOLDER
+import com.example.jetweather.constants.PlaceholderConstants.LIST_STRING_PLACEHOLDER
+import com.example.jetweather.constants.PlaceholderConstants.STRING_PLACEHOLDER
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
@@ -18,22 +25,24 @@ data class WeatherData(
     val weeklyWeatherCode: List<Int>,
     val hourlyTemperature: List<Float>,
     val hourlyTime: List<String>,
+    val hourlyWeatherStatus: List<Int>,
 )
 
 class WeatherViewModel(private val repo: WeatherRepository) : ViewModel() {
 
     var weatherData = MutableStateFlow(WeatherData(
-        0f,
+        FLOAT_PLACEHOLDER,
         STRING_PLACEHOLDER,
         INT_PLACEHOLDER,
-        0f,
-        0f,
-        listOf(0f, 0f, 0f, 0f, 0f, 0f, 0f),
-        listOf(0f, 0f, 0f, 0f, 0f, 0f, 0f),
+        FLOAT_PLACEHOLDER,
+        FLOAT_PLACEHOLDER,
+        LIST_FLOAT_PLACEHOLDER,
+        LIST_FLOAT_PLACEHOLDER,
         LIST_STRING_PLACEHOLDER,
         LIST_INT_PLACEHOLDER,
         LIST_FLOAT_PLACEHOLDER,
         LIST_STRING_24_PLACEHOLDER,
+        LIST_INT_PLACEHOLDER,
     ))
     var isLoading = MutableStateFlow(true)
 
@@ -58,6 +67,7 @@ class WeatherViewModel(private val repo: WeatherRepository) : ViewModel() {
 
                 val hourlyTemperature = repo.fetchHourlyTemperature().first()
                 val hourlyTime = repo.fetchHourlyTime().first()
+                val hourlyWeatherStatus = repo.fetchHourlyWeatherStatus().first()
 
                 weatherData.value = WeatherData(
                     currentTemp = currentTemp,
@@ -71,6 +81,7 @@ class WeatherViewModel(private val repo: WeatherRepository) : ViewModel() {
                     weeklyWeatherCode = weeklyWeatherCode,
                     hourlyTemperature = hourlyTemperature,
                     hourlyTime = hourlyTime,
+                    hourlyWeatherStatus = hourlyWeatherStatus,
                 )
             } catch (e: Exception) {
                 // Handle errors appropriately
@@ -78,14 +89,5 @@ class WeatherViewModel(private val repo: WeatherRepository) : ViewModel() {
                 isLoading.value = false
             }
         }
-    }
-
-    companion object {
-        private const val STRING_PLACEHOLDER = "Fetch"
-        private const val INT_PLACEHOLDER = 0
-        private val LIST_INT_PLACEHOLDER = listOf(0, 1, 2, 3, 4, 5, 6)
-        private val LIST_STRING_PLACEHOLDER = listOf("2023-02-01", "2023-02-01", "2023-02-01", "2023-02-01", "2023-02-01", "2023-02-01", "2023-02-01")
-        private val LIST_FLOAT_PLACEHOLDER = listOf(0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f)
-        private val LIST_STRING_24_PLACEHOLDER = mutableListOf("0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f", "0f")
     }
 }

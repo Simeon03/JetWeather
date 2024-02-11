@@ -1,5 +1,8 @@
 package com.example.jetweather.viewmodel
 
+import com.example.jetweather.constants.Constants.LATITUDE
+import com.example.jetweather.constants.Constants.LOCATION_NOT_AVAILABLE
+import com.example.jetweather.constants.Constants.LONGITUDE
 import com.example.jetweather.data.HourlyWeather
 import com.example.jetweather.model.apiservice.LocationApiService
 import com.example.jetweather.model.apiservice.WeatherApiService
@@ -113,6 +116,14 @@ class BaseWeatherRepository(
         )
     }.flowOn(Dispatchers.IO)
 
+    override fun fetchHourlyWeatherStatus(): Flow<List<Int>> = flow {
+        handleResponse(
+            response = weatherApi.getHourlyData(LATITUDE, LONGITUDE),
+            onSuccess = { weatherData -> emit(weatherData.hourly.weatherCode) },
+            onError = { emit(listOf<Int>()) }
+        )
+    }.flowOn(Dispatchers.IO)
+
     // Helper functions
     private suspend fun <T> handleResponse(
         response: Response<T>,
@@ -151,13 +162,5 @@ class BaseWeatherRepository(
             val dateTime = LocalDateTime.parse(dateTimeString, inputFormatter)
             dateTime.format(outputFormatter)
         }
-    }
-
-    companion object {
-        private const val LATITUDE = 52.52f
-        private const val LONGITUDE = 13.41f
-        private const val LOCATION_NOT_AVAILABLE = "Location not available"
-        private const val TEMP_NOT_FOUND = "Current temperature not found"
-        private const val WEATHER_STATUS_NOT_FOUND = "Current weather status not found"
     }
 }

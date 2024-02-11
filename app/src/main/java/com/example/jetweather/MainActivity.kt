@@ -5,6 +5,8 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.jetweather.constants.ApiConstants.GOOGLE_MAPS_BASE_URL
+import com.example.jetweather.constants.ApiConstants.OPEN_METEO_BASE_API
 import com.example.jetweather.model.RetrofitInstance
 import com.example.jetweather.model.apiservice.LocationApiService
 import com.example.jetweather.model.apiservice.WeatherApiService
@@ -33,11 +35,6 @@ class MainActivity : ComponentActivity() {
                 MainView(viewModel = viewModel)
             }
         }
-    }
-
-    companion object {
-        private const val OPEN_METEO_BASE_API = "https://api.open-meteo.com/"
-        private const val GOOGLE_MAPS_BASE_URL = "https://maps.googleapis.com/"
     }
 }
 

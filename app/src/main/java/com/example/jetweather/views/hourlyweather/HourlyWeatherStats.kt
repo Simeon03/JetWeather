@@ -12,6 +12,8 @@ fun HourlyWeatherStats(viewModel: WeatherViewModel, index: Int) {
 
     val fullHourlyTime = weatherData.hourlyTime[index]
     val fullTemps = DataFormatter.formatTemperatureText(weatherData.hourlyTemperature[index])
+    val fullWeatherCode = weatherData.hourlyWeatherStatus[index]
+    val fullWeatherCodeDesc = DataFormatter.formatWeatherCodeText(fullWeatherCode)
 
-    HourlyWeatherSlotView(fullHourlyTime, fullTemps)
+    HourlyWeatherSlotView(fullHourlyTime, fullTemps, fullWeatherCode, fullWeatherCodeDesc)
 }
