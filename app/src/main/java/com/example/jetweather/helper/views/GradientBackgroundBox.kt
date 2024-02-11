@@ -1,4 +1,4 @@
-package com.example.jetweather.helper
+package com.example.jetweather.helper.views
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box

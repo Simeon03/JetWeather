@@ -3,7 +3,7 @@ package com.example.jetweather.viewmodel
 import com.example.jetweather.constants.Constants.LATITUDE
 import com.example.jetweather.constants.Constants.LOCATION_NOT_AVAILABLE
 import com.example.jetweather.constants.Constants.LONGITUDE
-import com.example.jetweather.data.HourlyWeather
+import com.example.jetweather.data.weather.HourlyWeather
 import com.example.jetweather.model.apiservice.LocationApiService
 import com.example.jetweather.model.apiservice.WeatherApiService
 import kotlinx.coroutines.Dispatchers

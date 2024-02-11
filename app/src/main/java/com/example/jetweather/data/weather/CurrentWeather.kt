@@ -1,4 +1,4 @@
-package com.example.jetweather.data
+package com.example.jetweather.data.weather
 
 import com.example.jetweather.constants.DataConstants.APPARENT_TEMPERATURE
 import com.example.jetweather.constants.DataConstants.CURRENT_UNITS

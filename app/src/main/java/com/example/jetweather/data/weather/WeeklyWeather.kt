@@ -1,4 +1,4 @@
-package com.example.jetweather.data
+package com.example.jetweather.data.weather
 
 import com.example.jetweather.constants.DataConstants.DAILY_UNITS
 import com.example.jetweather.constants.DataConstants.DAILY_WEATHER

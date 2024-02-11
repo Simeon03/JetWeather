@@ -3,7 +3,7 @@ package com.example.jetweather.views.todaysun
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import com.example.jetweather.helper.CardWithGradientBackground
+import com.example.jetweather.helper.views.CardWithGradientBackground
 import com.example.jetweather.helper.DataFormatter.getCurrentTimePercentage
 import com.example.jetweather.helper.DataFormatter.getPercentageOfDay
 import com.example.jetweather.helper.DataFormatter.getTimeOfDay

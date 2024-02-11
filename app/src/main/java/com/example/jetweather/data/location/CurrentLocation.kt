@@ -1,8 +1,8 @@
-package com.example.jetweather.data
+package com.example.jetweather.data.location
 
 import com.google.gson.annotations.SerializedName
 
-data class Geolocation(
+data class CurrentLocation(
     @SerializedName("results") val results: List<Result>
 )
 

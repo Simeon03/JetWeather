@@ -1,8 +1,8 @@
 package com.example.jetweather.model.apiservice
 
-import com.example.jetweather.data.CurrentWeather
-import com.example.jetweather.data.HourlyWeather
-import com.example.jetweather.data.WeeklyWeather
+import com.example.jetweather.data.weather.CurrentWeather
+import com.example.jetweather.data.weather.HourlyWeather
+import com.example.jetweather.data.weather.WeeklyWeather
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

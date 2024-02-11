@@ -7,7 +7,7 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.jetweather.helper.CardWithGradientBackground
+import com.example.jetweather.helper.views.CardWithGradientBackground
 import com.example.jetweather.viewmodel.WeatherViewModel
 
 @Composable
