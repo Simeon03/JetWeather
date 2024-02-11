@@ -21,11 +21,17 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.jetweather.helper.DataFormatter
+import com.example.jetweather.helper.DataFormatter.getCurrentTimePercentage
 import com.example.jetweather.helper.gradientBackground
+import com.example.jetweather.ui.theme.SunGradient1
+import com.example.jetweather.ui.theme.SunGradient2
+import com.example.jetweather.ui.theme.SunGradient3
 import com.example.jetweather.viewmodel.WeatherViewModel
 
 @Composable
@@ -34,6 +40,7 @@ fun TodaySunTime(viewModel: WeatherViewModel) {
 
     val sunriseTime = DataFormatter.getTimeOfDay(weatherData.sunriseTime[0])
     val sunsetTime = DataFormatter.getTimeOfDay(weatherData.sunsetTime[0])
+    val currentTime = getCurrentTimePercentage()
 
     Card(
         shape = RoundedCornerShape(12.dp),
@@ -54,6 +61,7 @@ fun TodaySunTime(viewModel: WeatherViewModel) {
                 CustomProgressBar(
                     DataFormatter.getPercentageOfDay(weatherData.sunriseTime[0]),
                     DataFormatter.getPercentageOfDay(weatherData.sunsetTime[0]),
+                    currentTime,
                 )
             }
         }
@@ -68,49 +76,71 @@ fun SunTimeView(sunriseTime: String, sunsetTime: String) {
         horizontalArrangement = Arrangement.SpaceAround,
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            Text(text = "Sunrise")
-            Text(text = sunriseTime)
+            Text(text = "Sunrise", fontSize = 16.sp, fontWeight = FontWeight.Bold)
+            Text(text = sunriseTime, fontSize = 28.sp)
         }
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            Text(text = "Sunset")
-            Text(text = sunsetTime)
+            Text(text = "Sunset", fontSize = 16.sp, fontWeight = FontWeight.Bold)
+            Text(text = sunsetTime, fontSize = 28.sp)
         }
 
     }
 }
 
 @Composable
-fun CustomProgressBar(sunrise: Float, sunset: Float) {
-    val backgroundColor = Color(0xFF90CAF9) // The color of the background bar
+fun CustomProgressBar(sunrise: Float, sunset: Float, currentTime: Float) {
     val barHeight = 20.dp // The height of the progress bar
-    val cornerRadiusPx = with(LocalDensity.current) { 100.dp.toPx() } // Convert dp to px for the corner radius
+    val cornerRadius = 100.dp // Circular corners
 
     Box(
         modifier = Modifier
             .fillMaxWidth()
             .height(barHeight)
-            .clip(RoundedCornerShape(100)) // Circular corners
-            .background(backgroundColor),
+            .clip(RoundedCornerShape(cornerRadius)) // Apply corner radius
+            .background(Color.DarkGray.copy(0.9f)), // Background color for the whole bar
         contentAlignment = Alignment.CenterStart
     ) {
         Canvas(modifier = Modifier.matchParentSize()) {
             val outerRectangleSize = size
-            val innerRectangleWidth = outerRectangleSize.width * (sunset - sunrise) // Width spans from 0.3f to 0.7f (0.4f width)
-            val innerRectangleOffset = outerRectangleSize.width * sunrise // Start at 30% of the outer width
+            val innerRectangleWidth = outerRectangleSize.width * (sunset - sunrise)
+            val innerRectangleOffset = outerRectangleSize.width * sunrise
+            val circleCenter = outerRectangleSize.width * currentTime
+            val circleRadius = barHeight.value
 
-            // Draw outer rectangle
-            drawRoundRect(
-                color = Color.Blue,
-                size = outerRectangleSize,
-                cornerRadius = CornerRadius(cornerRadiusPx, cornerRadiusPx)
+            // Define gradient for the outer rectangle
+            val outerGradient = Brush.horizontalGradient(
+                colors = listOf(Color.DarkGray.copy(0.9f), Color.DarkGray.copy(0.9f)),
+                startX = 0f,
+                endX = outerRectangleSize.width
             )
 
-            // Draw inner rectangle
+            // Define gradient for the inner rectangle
+            val innerGradient = Brush.horizontalGradient(
+                colors = listOf(SunGradient1, SunGradient2, SunGradient3),
+                startX = innerRectangleOffset,
+                endX = innerRectangleOffset + innerRectangleWidth
+            )
+
+            // Draw outer rectangle with gradient
             drawRoundRect(
-                color = Color.Red,
-                topLeft = Offset(x = innerRectangleOffset, y = 0f), // Start drawing at 30% of the outer width
+                brush = outerGradient,
+                size = outerRectangleSize,
+                cornerRadius = CornerRadius(cornerRadius.toPx())
+            )
+
+            // Draw inner rectangle with gradient
+            drawRoundRect(
+                brush = innerGradient,
+                topLeft = Offset(x = innerRectangleOffset, y = 0f),
                 size = Size(width = innerRectangleWidth, height = outerRectangleSize.height),
-                cornerRadius = CornerRadius(cornerRadiusPx, cornerRadiusPx)
+                cornerRadius = CornerRadius(cornerRadius.toPx())
+            )
+
+            // Draw the circle for the current time
+            drawCircle(
+                color = Color.White,
+                radius = circleRadius,
+                center = Offset(x = circleCenter, y = outerRectangleSize.height / 2)
             )
         }
     }

@@ -44,6 +44,15 @@ object DataFormatter {
         return (hour + (minute / 60)) / 24
     }
 
+    fun getCurrentTimePercentage(): Float {
+        val dateTime = LocalDateTime.now()
+        val formatted = dateTime.format(DateTimeFormatter.ofPattern("HH:mm"))
+        val time = formatted.split(":")
+        val hour = time[0].toFloat()
+        val minute = time[1].toFloat()
+        return (hour + (minute / 60)) / 24
+    }
+
     fun weatherIcon(weatherCode: Int): Int {
         return when (weatherCode) {
             0, 1 -> R.drawable.sunny

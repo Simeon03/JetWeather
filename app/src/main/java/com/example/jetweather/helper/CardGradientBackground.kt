@@ -8,8 +8,8 @@ import com.example.jetweather.ui.theme.Gradient2
 @Composable
 fun gradientBackground(): Brush {
     val gradientColors = listOf(
-        Gradient1.copy(alpha = 1f),
-        Gradient2.copy(alpha = 1f)
+        Gradient1.copy(alpha = 0.5f),
+        Gradient2.copy(alpha = 0.5f)
     )
     return Brush.verticalGradient(gradientColors)
 }
