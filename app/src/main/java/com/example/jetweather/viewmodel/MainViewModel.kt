@@ -8,13 +8,6 @@ import com.example.jetweather.constants.Placeholder.LIST_FLOAT
 import com.example.jetweather.constants.Placeholder.LIST_INT
 import com.example.jetweather.constants.Placeholder.LIST_STRING
 import com.example.jetweather.constants.Placeholder.STRING
-import com.example.jetweather.helpers.DataFormatter.formatDay
-import com.example.jetweather.helpers.DataFormatter.formatRelativeHumidityText
-import com.example.jetweather.helpers.DataFormatter.formatTemperatureText
-import com.example.jetweather.helpers.DataFormatter.formatTime
-import com.example.jetweather.helpers.DataFormatter.formatWeatherCodeToIcon
-import com.example.jetweather.helpers.DataFormatter.formatWeatherCodeToText
-import com.example.jetweather.helpers.DataFormatter.getPercentageOfDay
 import com.example.jetweather.repos.AllRepos
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.first
@@ -38,31 +31,9 @@ data class WeatherData(
     val hourlyHumidity: List<Int> = LIST_INT,
 )
 
-data class WeatherDataText(
-    val currentTemp: String = "0",
-    val currentLocation: String = "Unknown",
-    val currentWeatherStatus: String = "Unknown",
-    val currentMinTemp: String = "0",
-    val currentMaxTemp: String = "0",
-    val currentSunriseTime: String = "Unknown",
-    val currentSunrisePercentage: Float = 0f,
-    val currentSunsetTime: String = "Unknown",
-    val currentSunsetPercentage: Float = 0f,
-    val weeklyMinTemp: List<String> = listOf("0"),
-    val weeklyMaxTemp: List<String> = listOf("0"),
-    val weeklyDay: List<String> = listOf("Unknown"),
-    val weeklyWeatherStatus: List<Int> = listOf(0),
-    val hourlyTemperature: List<String> = listOf("0"),
-    val hourlyTime: List<String> = listOf("Unknown"),
-    val hourlyWeatherStatus: List<Int> = listOf(0),
-    val hourlyHumidity: List<String> = listOf("0"),
-
-    )
-
 class MainViewModel(private val repo: AllRepos) : ViewModel() {
 
-    private var weatherData = MutableStateFlow(WeatherData())
-    var weatherDataText = MutableStateFlow(WeatherDataText())
+    var weatherData = MutableStateFlow(WeatherData())
     var isLoading = MutableStateFlow(true)
 
     init {
@@ -107,26 +78,6 @@ class MainViewModel(private val repo: AllRepos) : ViewModel() {
                     hourlyTime = hourlyTime,
                     hourlyWeatherStatus = hourlyWeatherStatus,
                     hourlyHumidity = hourlyHumidity,
-                )
-
-                weatherDataText.value = WeatherDataText(
-                    currentTemp = formatTemperatureText(currentTemp),
-                    currentLocation = currentLocation,
-                    currentWeatherStatus = formatWeatherCodeToText(currentWeatherStatus ?: 0),
-                    currentMinTemp = formatTemperatureText(currentMinTemp),
-                    currentMaxTemp = formatTemperatureText(currentMaxTemp),
-                    currentSunriseTime = formatTime(currentSunriseTime),
-                    currentSunrisePercentage = getPercentageOfDay(currentSunriseTime),
-                    currentSunsetTime = formatTime(currentSunsetTime),
-                    currentSunsetPercentage = getPercentageOfDay(currentSunsetTime),
-                    weeklyMinTemp = weeklyMinTemp.map { formatTemperatureText(it) },
-                    weeklyMaxTemp = weeklyMaxTemp.map { formatTemperatureText(it) },
-                    weeklyDay =  weeklyDay.map { formatDay(it) },
-                    weeklyWeatherStatus = weeklyWeatherStatus.map { formatWeatherCodeToIcon(it) },
-                    hourlyTemperature = hourlyTemperature.map { formatTemperatureText(it) },
-                    hourlyTime = hourlyTime,
-                    hourlyWeatherStatus = hourlyWeatherStatus,
-                    hourlyHumidity = hourlyHumidity.map { formatRelativeHumidityText(it) },
                 )
             } catch (e: Exception) {
                 // Handle errors appropriately
