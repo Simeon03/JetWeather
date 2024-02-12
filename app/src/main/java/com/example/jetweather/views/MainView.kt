@@ -1,6 +1,5 @@
 package com.example.jetweather.views
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -24,7 +23,6 @@ import com.example.jetweather.views.currentweather.CurrentWeatherView
 import com.example.jetweather.views.dailyweather.DailyWeatherView
 import com.example.jetweather.views.hourlyweather.HourlyWeatherView
 
-@SuppressLint("StateFlowValueCalledInComposition")
 @Composable
 fun FullMainView(model: Model) {
     val isLoading by model.weatherDataLoading.collectAsState()
