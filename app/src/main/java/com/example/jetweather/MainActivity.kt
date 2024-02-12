@@ -13,6 +13,7 @@ import com.example.jetweather.model.api.OpenMeteo
 import com.example.jetweather.repos.main.MainRepo
 import com.example.jetweather.ui.theme.JetWeatherTheme
 import com.example.jetweather.viewmodel.MainViewModel
+import com.example.jetweather.viewmodel.Model
 import com.example.jetweather.views.FullMainView
 
 class MainActivity : ComponentActivity() {
@@ -28,10 +29,11 @@ class MainActivity : ComponentActivity() {
         )
         val weatherRepository = MainRepo(weatherApi, googleMapsApi)
         val viewModel = MainViewModel(weatherRepository)
+        val model = Model(viewModel)
 
         setContent {
             JetWeatherTheme {
-                FullMainView(viewModel = viewModel)
+                FullMainView(model = model)
             }
         }
     }
@@ -40,8 +42,8 @@ class MainActivity : ComponentActivity() {
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
-    lateinit var viewModel: MainViewModel
+    lateinit var model: Model
     JetWeatherTheme {
-        FullMainView(viewModel = viewModel)
+        FullMainView(model = model)
     }
 }

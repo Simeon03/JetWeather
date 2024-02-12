@@ -8,11 +8,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.jetweather.helpers.views.CardGradientBg
-import com.example.jetweather.viewmodel.MainViewModel
+import com.example.jetweather.viewmodel.Model
 import com.example.jetweather.views.hourlyweather.layouts.HourlyWeatherInfo
 
 @Composable
-fun HourlyWeatherView(viewModel: MainViewModel) {
+fun HourlyWeatherView(model: Model) {
     CardGradientBg {
         LazyRow(
             modifier = Modifier
@@ -21,7 +21,7 @@ fun HourlyWeatherView(viewModel: MainViewModel) {
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             items(24) { index ->
-                HourlyWeatherInfo(viewModel = viewModel, index = index)
+                HourlyWeatherInfo(model = model, index = index)
             }
         }
     }

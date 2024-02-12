@@ -8,11 +8,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.jetweather.helpers.views.CardGradientBg
-import com.example.jetweather.viewmodel.MainViewModel
+import com.example.jetweather.viewmodel.Model
 import com.example.jetweather.views.dailyweather.layouts.DailyWeatherInfo
 
 @Composable
-fun DailyWeatherView(viewModel: MainViewModel) {
+fun DailyWeatherView(model: Model) {
     CardGradientBg {
         Column(
             modifier = Modifier.padding(12.dp),
@@ -20,7 +20,7 @@ fun DailyWeatherView(viewModel: MainViewModel) {
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             for (i in 0..6) {
-                DailyWeatherInfo(viewModel = viewModel, index = i)
+                DailyWeatherInfo(model = model, index = i)
             }
         }
     }
