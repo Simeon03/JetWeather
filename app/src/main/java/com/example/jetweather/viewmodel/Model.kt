@@ -27,6 +27,10 @@ class Model(private val viewModel: MainViewModel) {
         formatTemperatureText(weatherData.currentTemp)
     }
 
+    val currentApparentTemp by lazy {
+        formatTemperatureText(weatherData.currentApparentTemp)
+    }
+
     val currentMinTemp by lazy {
         formatTemperatureText(weatherData.currentMinTemp)
     }

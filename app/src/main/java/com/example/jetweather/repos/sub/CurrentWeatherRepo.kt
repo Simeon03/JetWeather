@@ -6,6 +6,8 @@ interface CurrentWeatherRepo {
 
     fun fetchCurrentTemperature(): Flow<Float>
 
+    fun fetchCurrentApparentTemperature(): Flow<Float>
+
     fun fetchCurrentWeatherStatus(): Flow<Int?>
 
     fun fetchCurrentMinTemp(): Flow<Float>

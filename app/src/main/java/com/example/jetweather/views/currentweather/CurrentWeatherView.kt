@@ -9,6 +9,7 @@ fun CurrentWeatherView(model: Model) {
     CurrentWeatherInfo(
         currentLocation = model.currentLocation,
         currentTemp = model.currentTemp,
+        currentApparentTemp = model.currentApparentTemp,
         currentWeatherStatus = model.currentWeatherStatus,
         currentMinTemp = model.currentMinTemp,
         currentMaxTemp = model.currentMaxTemp,

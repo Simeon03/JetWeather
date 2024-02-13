@@ -11,7 +11,7 @@ fun DrawScope.fullBar(
     barSize: Size,
     cornerRadius: Dp
 ) {
-    val gradientColors = listOf(Color.DarkGray.copy(alpha = 0.9f), Color.DarkGray.copy(alpha = 0.9f))
+    val gradientColors = listOf(Color.White.copy(alpha = 0.2f), Color.White.copy(alpha = 0f))
     val outerGradient = Brush.horizontalGradient(colors = gradientColors)
 
     drawRoundRect(

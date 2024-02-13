@@ -32,6 +32,14 @@ class MainRepo(
         )
     }.flowOn(Dispatchers.IO)
 
+    override fun fetchCurrentApparentTemperature(): Flow<Float> = flow<Float> {
+        handleResponse(
+            response = weatherApi.getCurrentWeather(LATITUDE, LONGITUDE),
+            onSuccess = { weatherData -> emit(weatherData.currentWeatherStatus.apparentTemperature) },
+            onError = { emit(0f) }
+        )
+    }.flowOn(Dispatchers.IO)
+
     override fun fetchCurrentWeatherStatus(): Flow<Int?> = flow {
         handleResponse(
             response = weatherApi.getCurrentWeather(LATITUDE, LONGITUDE),

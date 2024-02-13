@@ -26,6 +26,7 @@ val Typography = Typography(
         letterSpacing = 0.sp
     ),
     titleSmall = TextStyle(
+        color = Color.White,
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.SemiBold,
         fontSize = 20.sp,

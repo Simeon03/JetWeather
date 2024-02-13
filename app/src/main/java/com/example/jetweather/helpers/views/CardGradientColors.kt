@@ -2,14 +2,13 @@ package com.example.jetweather.helpers.views
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Brush
-import com.example.jetweather.ui.theme.Gradient1
-import com.example.jetweather.ui.theme.Gradient2
+import androidx.compose.ui.graphics.Color
 
 @Composable
 fun cardGradientColors(): Brush {
     val gradientColors = listOf(
-        Gradient1.copy(alpha = 0.5f),
-        Gradient2.copy(alpha = 0.5f)
+        Color.Black.copy(alpha = 0.4f),
+        Color.Black.copy(alpha = 0.3f)
     )
-    return Brush.verticalGradient(gradientColors)
+    return Brush.linearGradient(gradientColors)
 }

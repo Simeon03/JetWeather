@@ -1,16 +1,20 @@
 package com.example.jetweather.helpers.views
 
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Card
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 
 @Composable
 fun CardGradientBg(
     content: @Composable () -> Unit
 ) {
     Card(
-        shape = RoundedCornerShape(12.dp)
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(Color.Transparent)
     ) {
         BoxGradientBg {
             content()

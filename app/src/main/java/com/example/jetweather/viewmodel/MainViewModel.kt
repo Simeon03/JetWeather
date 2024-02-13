@@ -15,6 +15,7 @@ import kotlinx.coroutines.launch
 
 data class WeatherData(
     val currentTemp: Float = FLOAT,
+    val currentApparentTemp: Float = FLOAT,
     val currentLocation: String = STRING,
     val currentWeatherStatus: Int? = INT,
     val currentMinTemp: Float = FLOAT,
@@ -45,6 +46,7 @@ class MainViewModel(private val repo: AllRepos) : ViewModel() {
             isLoading.value = true
             try {
                 val currentTemp = repo.fetchCurrentTemperature().first()
+                val currentApparentTemp = repo.fetchCurrentApparentTemperature().first()
                 val currentLocation = repo.fetchCurrentLocation().first()
                 val currentWeatherStatus = repo.fetchCurrentWeatherStatus().first()
                 val currentMinTemp = repo.fetchCurrentMinTemp().first()
@@ -64,6 +66,7 @@ class MainViewModel(private val repo: AllRepos) : ViewModel() {
 
                 weatherData.value = WeatherData(
                     currentTemp = currentTemp,
+                    currentApparentTemp = currentApparentTemp,
                     currentLocation = currentLocation,
                     currentWeatherStatus = currentWeatherStatus,
                     currentMinTemp = currentMinTemp,
