@@ -8,9 +8,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.jetweather.constants.Api.OPEN_METEO_BASE_URL
 import com.example.jetweather.model.OpenMeteo
 import com.example.jetweather.model.RetrofitInstance
-import com.example.jetweather.repos.main.DefaultCurrentWeatherRepository
-import com.example.jetweather.repos.main.DefaultHourlyWeatherRepository
-import com.example.jetweather.repos.main.DefaultWeeklyWeatherRepository
+import com.example.jetweather.repos.sub.DefaultCurrentWeatherRepository
+import com.example.jetweather.repos.sub.DefaultHourlyWeatherRepository
+import com.example.jetweather.repos.sub.DefaultWeeklyWeatherRepository
 import com.example.jetweather.ui.theme.JetWeatherTheme
 import com.example.jetweather.viewmodel.CurrentWeatherViewModel
 import com.example.jetweather.viewmodel.HourlyWeatherViewModel
@@ -22,9 +22,8 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val weatherApi = RetrofitInstance.get(OPEN_METEO_BASE_URL).create(
-            OpenMeteo::class.java
-        )
+        val weatherApi = RetrofitInstance.get(OPEN_METEO_BASE_URL).create(OpenMeteo::class.java)
+
         val currentWeatherRepository = DefaultCurrentWeatherRepository(weatherApi)
         val weeklyWeatherRepository = DefaultWeeklyWeatherRepository(weatherApi)
         val hourlyWeatherRepository = DefaultHourlyWeatherRepository(weatherApi)
