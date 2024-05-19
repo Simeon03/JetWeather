@@ -11,7 +11,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.jetweather.ui.theme.Gradient1
+import com.example.jetweather.ui.theme.primaryP90
 import com.example.jetweather.viewmodel.CurrentWeatherViewModel
 import com.example.jetweather.viewmodel.HourlyWeatherViewModel
 import com.example.jetweather.viewmodel.WeeklyWeatherViewModel
@@ -32,7 +32,7 @@ fun FullMainView(
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Gradient1)
+                .background(primaryP90)
         ) {
             LazyColumn(
                 modifier = Modifier.padding(20.dp),

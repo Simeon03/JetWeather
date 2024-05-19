@@ -57,7 +57,7 @@ fun JetWeatherTheme(
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
-            window.statusBarColor = Gradient1.toArgb()
+            window.statusBarColor = primaryP90.toArgb()
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = false
         }
     }

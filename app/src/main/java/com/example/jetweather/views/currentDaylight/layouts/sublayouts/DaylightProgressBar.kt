@@ -4,9 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.dp
 import com.example.jetweather.helpers.views.customprogressbar.CustomProgressBar
 import com.example.jetweather.helpers.views.customprogressbar.ProgressBarContainer
-import com.example.jetweather.ui.theme.SunGradient1
-import com.example.jetweather.ui.theme.SunGradient2
-import com.example.jetweather.ui.theme.SunGradient3
+import com.example.jetweather.ui.theme.primaryP60
 
 @Composable
 fun DaylightProgressBar(
@@ -15,7 +13,7 @@ fun DaylightProgressBar(
     currentTimePercentage: Float
 ) {
     val barHeight = 16.dp
-    val sunlightGradientColors = listOf(SunGradient1, SunGradient2, SunGradient3)
+    val sunlightGradientColors = listOf(primaryP60, primaryP60)
 
     ProgressBarContainer(barHeight = barHeight) {
         CustomProgressBar(
