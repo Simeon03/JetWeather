@@ -16,10 +16,10 @@ fun DaylightView(viewModel: CurrentWeatherViewModel) {
 
     BoxGradientBg {
         Daylight(
-            sunriseTime = formatTime(viewModel.currentSunriseTime),
-            sunrisePercentage = getPercentageOfDay(viewModel.currentSunriseTime),
-            sunsetTime = formatTime(viewModel.currentSunsetTime),
-            sunsetPercentage = getPercentageOfDay(viewModel.currentSunsetTime),
+            sunriseTime = formatTime(viewModel.sunriseTime),
+            sunrisePercentage = getPercentageOfDay(viewModel.sunriseTime),
+            sunsetTime = formatTime(viewModel.sunsetTime),
+            sunsetPercentage = getPercentageOfDay(viewModel.sunsetTime),
             currentTimePercentage = getCurrentTimePercentage()
         )
     }

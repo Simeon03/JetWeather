@@ -2,7 +2,7 @@ package com.example.jetweather.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.jetweather.repos.main.DefaultWeeklyWeatherRepository
+import com.example.jetweather.repos.sub.DefaultWeeklyWeatherRepository
 import com.example.jetweather.weatherdata.WeeklyWeatherData
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.first
@@ -23,16 +23,16 @@ class WeeklyWeatherViewModel(
         viewModelScope.launch {
             isLoading.value = true
             try {
-                val weeklyMinTemp = repo.fetchWeeklyMinTemp().first()
-                val weeklyMaxTemp = repo.fetchWeeklyMaxTemp().first()
-                val weeklyDay = repo.fetchWeeklyDay().first()
-                val weeklyWeatherStatus = repo.fetchWeeklyWeatherStatus().first()
+                val weeklyMinTemp = repo.fetchMinTemp().first()
+                val weeklyMaxTemp = repo.fetchMaxTemp().first()
+                val weeklyDay = repo.fetchDay().first()
+                val weeklyWeatherStatus = repo.fetchWeatherStatus().first()
 
                 weeklyWeatherData.value = WeeklyWeatherData(
-                    weeklyMinTemp = weeklyMinTemp,
-                    weeklyMaxTemp = weeklyMaxTemp,
-                    weeklyDay = weeklyDay,
-                    weeklyWeatherStatus = weeklyWeatherStatus,
+                    minTemp = weeklyMinTemp,
+                    maxTemp = weeklyMaxTemp,
+                    day = weeklyDay,
+                    weatherStatus = weeklyWeatherStatus,
                 )
             } finally {
                 isLoading.value = false

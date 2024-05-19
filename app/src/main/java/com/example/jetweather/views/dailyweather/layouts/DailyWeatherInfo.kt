@@ -13,10 +13,10 @@ fun DailyWeatherInfo(index: Int, viewModel: WeeklyWeatherViewModel) {
     val viewModel by viewModel.weeklyWeatherData.collectAsState()
 
     DailyWeather(
-        minTemp = viewModel.weeklyMinTemp.map { formatTemperatureText(it) }[index],
-        maxTemp = viewModel.weeklyMaxTemp.map { formatTemperatureText(it) }[index],
-        date = viewModel.weeklyDay.map { formatDay(it) }[index],
-        weatherCode = viewModel.weeklyWeatherStatus.map { DataFormatter.formatWeatherCodeToIcon(it) }[index],
+        minTemp = viewModel.minTemp.map { formatTemperatureText(it) }[index],
+        maxTemp = viewModel.maxTemp.map { formatTemperatureText(it) }[index],
+        date = viewModel.day.map { formatDay(it) }[index],
+        weatherCode = viewModel.weatherStatus.map { DataFormatter.formatWeatherCodeToIcon(it) }[index],
     )
 
 }

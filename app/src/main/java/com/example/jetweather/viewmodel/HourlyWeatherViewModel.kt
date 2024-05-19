@@ -2,7 +2,7 @@ package com.example.jetweather.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.jetweather.repos.main.DefaultHourlyWeatherRepository
+import com.example.jetweather.repos.sub.DefaultHourlyWeatherRepository
 import com.example.jetweather.weatherdata.HourlyWeatherData
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.first
@@ -23,16 +23,16 @@ class HourlyWeatherViewModel(
         viewModelScope.launch {
             isLoading.value = true
             try {
-                val hourlyTemperature = repo.fetchHourlyTemperature().first()
-                val hourlyTime = repo.fetchHourlyTime().first()
-                val hourlyWeatherStatus = repo.fetchHourlyWeatherStatus().first()
-                val hourlyHumidity = repo.fetchHourlyHumidity().first()
+                val hourlyTemperature = repo.fetchTemp().first()
+                val hourlyTime = repo.fetchTime().first()
+                val hourlyWeatherStatus = repo.fetchWeatherStatus().first()
+                val hourlyHumidity = repo.fetchHumidity().first()
 
                 hourlyWeatherData.value = HourlyWeatherData(
-                    hourlyTemperature = hourlyTemperature,
-                    hourlyTime = hourlyTime,
-                    hourlyWeatherStatus = hourlyWeatherStatus,
-                    hourlyHumidity = hourlyHumidity,
+                    temperature = hourlyTemperature,
+                    time = hourlyTime,
+                    weatherStatus = hourlyWeatherStatus,
+                    humidity = hourlyHumidity,
                 )
             } finally {
                 isLoading.value = false

@@ -11,19 +11,19 @@ import kotlinx.coroutines.flow.flowOn
 
 interface CurrentWeatherRepo {
 
-    fun fetchCurrentTemperature(): Flow<Float>
+    fun fetchTemp(): Flow<Float>
 
-    fun fetchCurrentApparentTemperature(): Flow<Float>
+    fun fetchApparentTemp(): Flow<Float>
 
-    fun fetchCurrentWeatherStatus(): Flow<Int?>
+    fun fetchWeatherStatus(): Flow<Int?>
 
-    fun fetchCurrentMinTemp(): Flow<Float>
+    fun fetchMinTemp(): Flow<Float>
 
-    fun fetchCurrentMaxTemp(): Flow<Float>
+    fun fetchMaxTemp(): Flow<Float>
 
-    fun fetchCurrentSunsetTime(): Flow<String>
+    fun fetchSunsetTime(): Flow<String>
 
-    fun fetchCurrentSunriseTime(): Flow<String>
+    fun fetchSunriseTime(): Flow<String>
 
 }
 
@@ -31,7 +31,7 @@ class DefaultCurrentWeatherRepository(
     private val weatherApi: OpenMeteo
 ): CurrentWeatherRepo, LocationRepo, MainRepoHelpers() {
 
-    override fun fetchCurrentTemperature(): Flow<Float> = flow {
+    override fun fetchTemp(): Flow<Float> = flow {
         handleResponse(
             response = weatherApi.getCurrentWeather(Main.LATITUDE, Main.LONGITUDE),
             onSuccess = { weatherData -> emit(weatherData.currentWeatherStatus.temperature) },
@@ -42,7 +42,7 @@ class DefaultCurrentWeatherRepository(
         )}")
     }.flowOn(Dispatchers.IO)
 
-    override fun fetchCurrentApparentTemperature(): Flow<Float> = flow {
+    override fun fetchApparentTemp(): Flow<Float> = flow {
         handleResponse(
             response = weatherApi.getCurrentWeather(Main.LATITUDE, Main.LONGITUDE),
             onSuccess = { weatherData -> emit(weatherData.currentWeatherStatus.apparentTemperature) },
@@ -50,7 +50,7 @@ class DefaultCurrentWeatherRepository(
         )
     }.flowOn(Dispatchers.IO)
 
-    override fun fetchCurrentWeatherStatus(): Flow<Int?> = flow {
+    override fun fetchWeatherStatus(): Flow<Int?> = flow {
         handleResponse(
             response = weatherApi.getCurrentWeather(Main.LATITUDE, Main.LONGITUDE),
             onSuccess = { weatherData -> emit(weatherData.currentWeatherStatus.weatherCode) },
@@ -58,7 +58,7 @@ class DefaultCurrentWeatherRepository(
         )
     }.flowOn(Dispatchers.IO)
 
-    override fun fetchCurrentMinTemp(): Flow<Float> = flow {
+    override fun fetchMinTemp(): Flow<Float> = flow {
         handleResponse(
             response = weatherApi.getCurrentWeather(Main.LATITUDE, Main.LONGITUDE),
             onSuccess = { weatherData -> emit(weatherData.currentWeather.minTemperature[0]) },
@@ -66,7 +66,7 @@ class DefaultCurrentWeatherRepository(
         )
     }.flowOn(Dispatchers.IO)
 
-    override fun fetchCurrentMaxTemp(): Flow<Float> = flow {
+    override fun fetchMaxTemp(): Flow<Float> = flow {
         handleResponse(
             response = weatherApi.getCurrentWeather(Main.LATITUDE, Main.LONGITUDE),
             onSuccess = { weatherData -> emit(weatherData.currentWeather.maxTemperature[0]) },
@@ -74,7 +74,7 @@ class DefaultCurrentWeatherRepository(
         )
     }.flowOn(Dispatchers.IO)
 
-    override fun fetchCurrentSunsetTime(): Flow<String> = flow {
+    override fun fetchSunsetTime(): Flow<String> = flow {
         handleResponse(
             response = weatherApi.getCurrentWeather(Main.LATITUDE, Main.LONGITUDE),
             onSuccess = { weatherData -> emit(weatherData.currentWeather.sunsetTime[0]) },
@@ -82,7 +82,7 @@ class DefaultCurrentWeatherRepository(
         )
     }.flowOn(Dispatchers.IO)
 
-    override fun fetchCurrentSunriseTime(): Flow<String> = flow {
+    override fun fetchSunriseTime(): Flow<String> = flow {
         handleResponse(
             response = weatherApi.getCurrentWeather(Main.LATITUDE, Main.LONGITUDE),
             onSuccess = { weatherData -> emit(weatherData.currentWeather.sunriseTime[0]) },

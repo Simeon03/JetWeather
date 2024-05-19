@@ -3,12 +3,12 @@ package com.example.jetweather.weatherdata
 import com.example.jetweather.constants.Placeholder
 
 data class CurrentWeatherData(
-    val currentTemp: Float = Placeholder.FLOAT,
-    val currentApparentTemp: Float = Placeholder.FLOAT,
-    val currentLocation: String = Placeholder.STRING,
-    val currentWeatherStatus: Int? = Placeholder.INT,
-    val currentMinTemp: Float = Placeholder.FLOAT,
-    val currentMaxTemp: Float = Placeholder.FLOAT,
-    val currentSunriseTime: String = Placeholder.STRING,
-    val currentSunsetTime: String = Placeholder.STRING,
+    val temp: Float = Placeholder.FLOAT,
+    val apparentTemp: Float = Placeholder.FLOAT,
+    val location: String = Placeholder.STRING,
+    val weatherStatus: Int? = Placeholder.INT,
+    val minTemp: Float = Placeholder.FLOAT,
+    val maxTemp: Float = Placeholder.FLOAT,
+    val sunriseTime: String = Placeholder.STRING,
+    val sunsetTime: String = Placeholder.STRING,
 )

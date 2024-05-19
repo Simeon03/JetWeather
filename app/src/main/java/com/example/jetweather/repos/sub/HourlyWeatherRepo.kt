@@ -10,13 +10,13 @@ import kotlinx.coroutines.flow.flowOn
 
 interface HourlyWeatherRepo {
 
-    fun fetchHourlyTemperature(): Flow<List<Float>>
+    fun fetchTemp(): Flow<List<Float>>
 
-    fun fetchHourlyTime(): Flow<List<String>>
+    fun fetchTime(): Flow<List<String>>
 
-    fun fetchHourlyWeatherStatus(): Flow<List<Int>>
+    fun fetchWeatherStatus(): Flow<List<Int>>
 
-    fun fetchHourlyHumidity(): Flow<List<Int>>
+    fun fetchHumidity(): Flow<List<Int>>
 
 }
 
@@ -24,7 +24,7 @@ class DefaultHourlyWeatherRepository(
     private val weatherApi: OpenMeteo
 ): MainRepoHelpers(), HourlyWeatherRepo {
 
-    override fun fetchHourlyTemperature(): Flow<List<Float>> = flow {
+    override fun fetchTemp(): Flow<List<Float>> = flow {
         handleResponse(
             response = weatherApi.getHourlyData(Main.LATITUDE, Main.LONGITUDE),
             onSuccess = { hourlyData ->
@@ -36,7 +36,7 @@ class DefaultHourlyWeatherRepository(
         )
     }.flowOn(Dispatchers.IO)
 
-    override fun fetchHourlyTime(): Flow<List<String>> = flow {
+    override fun fetchTime(): Flow<List<String>> = flow {
         handleResponse(
             response = weatherApi.getHourlyData(Main.LATITUDE, Main.LONGITUDE),
             onSuccess = { hourlyData ->
@@ -48,7 +48,7 @@ class DefaultHourlyWeatherRepository(
         )
     }.flowOn(Dispatchers.IO)
 
-    override fun fetchHourlyWeatherStatus(): Flow<List<Int>> = flow {
+    override fun fetchWeatherStatus(): Flow<List<Int>> = flow {
         handleResponse(
             response = weatherApi.getHourlyData(Main.LATITUDE, Main.LONGITUDE),
             onSuccess = { weatherData -> emit(weatherData.hourly.weatherCode) },
@@ -56,7 +56,7 @@ class DefaultHourlyWeatherRepository(
         )
     }.flowOn(Dispatchers.IO)
 
-    override fun fetchHourlyHumidity(): Flow<List<Int>> = flow {
+    override fun fetchHumidity(): Flow<List<Int>> = flow {
         handleResponse(
             response = weatherApi.getHourlyData(Main.LATITUDE, Main.LONGITUDE),
             onSuccess = { weatherData -> emit(weatherData.hourly.relativeHumidity) },

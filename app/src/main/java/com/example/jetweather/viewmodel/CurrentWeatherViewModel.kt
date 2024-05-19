@@ -2,7 +2,7 @@ package com.example.jetweather.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.jetweather.repos.main.DefaultCurrentWeatherRepository
+import com.example.jetweather.repos.sub.DefaultCurrentWeatherRepository
 import com.example.jetweather.weatherdata.CurrentWeatherData
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.first
@@ -24,24 +24,24 @@ class CurrentWeatherViewModel(
             isLoading.value = true
             try {
 
-                val currentTemp = repo.fetchCurrentTemperature().first()
-                val currentApparentTemp = repo.fetchCurrentApparentTemperature().first()
-                val currentWeatherStatus = repo.fetchCurrentWeatherStatus().first()
+                val currentTemp = repo.fetchTemp().first()
+                val currentApparentTemp = repo.fetchApparentTemp().first()
+                val currentWeatherStatus = repo.fetchWeatherStatus().first()
                 val currentLocation = repo.fetchCurrentLocation().first()
-                val currentMinTemp = repo.fetchCurrentMinTemp().first()
-                val currentMaxTemp = repo.fetchCurrentMaxTemp().first()
-                val currentSunriseTime = repo.fetchCurrentSunriseTime().first()
-                val currentSunsetTime = repo.fetchCurrentSunsetTime().first()
+                val currentMinTemp = repo.fetchMinTemp().first()
+                val currentMaxTemp = repo.fetchMaxTemp().first()
+                val currentSunriseTime = repo.fetchSunriseTime().first()
+                val currentSunsetTime = repo.fetchSunsetTime().first()
 
                 currentWeatherData.value = CurrentWeatherData(
-                    currentTemp = currentTemp,
-                    currentApparentTemp = currentApparentTemp,
-                    currentWeatherStatus = currentWeatherStatus,
-                    currentLocation = currentLocation,
-                    currentMinTemp = currentMinTemp,
-                    currentMaxTemp = currentMaxTemp,
-                    currentSunriseTime = currentSunriseTime,
-                    currentSunsetTime = currentSunsetTime,
+                    temp = currentTemp,
+                    apparentTemp = currentApparentTemp,
+                    weatherStatus = currentWeatherStatus,
+                    location = currentLocation,
+                    minTemp = currentMinTemp,
+                    maxTemp = currentMaxTemp,
+                    sunriseTime = currentSunriseTime,
+                    sunsetTime = currentSunsetTime,
                 )
             } finally {
                 isLoading.value = false

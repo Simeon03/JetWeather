@@ -15,9 +15,9 @@ fun HourlyWeatherInfo(
     val viewModel by viewModel.hourlyWeatherData.collectAsState()
 
     HourlyWeather(
-        hours = viewModel.hourlyTime[index],
-        temps = viewModel.hourlyTemperature.map { DataFormatter.formatTemperatureText(it) }[index],
-        weatherStatus = viewModel.hourlyWeatherStatus[index],
-        relativeHumidity = viewModel.hourlyHumidity.map { formatRelativeHumidityText(it) }[index]
+        hours = viewModel.time[index],
+        temps = viewModel.temperature.map { DataFormatter.formatTemperatureText(it) }[index],
+        weatherStatus = viewModel.weatherStatus[index],
+        relativeHumidity = viewModel.humidity.map { formatRelativeHumidityText(it) }[index]
     )
 }

@@ -10,13 +10,13 @@ import kotlinx.coroutines.flow.flowOn
 
 interface WeeklyWeatherRepo {
 
-    fun fetchWeeklyMinTemp(): Flow<List<Float>>
+    fun fetchMinTemp(): Flow<List<Float>>
 
-    fun fetchWeeklyMaxTemp(): Flow<List<Float>>
+    fun fetchMaxTemp(): Flow<List<Float>>
 
-    fun fetchWeeklyDay(): Flow<List<String>>
+    fun fetchDay(): Flow<List<String>>
 
-    fun fetchWeeklyWeatherStatus(): Flow<List<Int>>
+    fun fetchWeatherStatus(): Flow<List<Int>>
 
 }
 
@@ -24,7 +24,7 @@ class DefaultWeeklyWeatherRepository(
     private val weatherApi: OpenMeteo
 ): MainRepoHelpers(), WeeklyWeatherRepo {
 
-    override fun fetchWeeklyMinTemp(): Flow<List<Float>> = flow {
+    override fun fetchMinTemp(): Flow<List<Float>> = flow {
         handleResponse(
             response = weatherApi.getWeeklyWeather(Main.LATITUDE, Main.LONGITUDE),
             onSuccess = { weeklyWeatherData -> emit(weeklyWeatherData.dailyTemperature.minTemperature) },
@@ -32,7 +32,7 @@ class DefaultWeeklyWeatherRepository(
         )
     }.flowOn(Dispatchers.IO)
 
-    override fun fetchWeeklyMaxTemp(): Flow<List<Float>> = flow {
+    override fun fetchMaxTemp(): Flow<List<Float>> = flow {
         handleResponse(
             response = weatherApi.getWeeklyWeather(Main.LATITUDE, Main.LONGITUDE),
             onSuccess = { weeklyWeatherData -> emit(weeklyWeatherData.dailyTemperature.maxTemperature) },
@@ -40,7 +40,7 @@ class DefaultWeeklyWeatherRepository(
         )
     }.flowOn(Dispatchers.IO)
 
-    override fun fetchWeeklyDay(): Flow<List<String>> = flow {
+    override fun fetchDay(): Flow<List<String>> = flow {
         handleResponse(
             response = weatherApi.getWeeklyWeather(Main.LATITUDE, Main.LONGITUDE),
             onSuccess = { weeklyWeatherData -> emit(weeklyWeatherData.dailyTemperature.time) },
@@ -48,7 +48,7 @@ class DefaultWeeklyWeatherRepository(
         )
     }.flowOn(Dispatchers.IO)
 
-    override fun fetchWeeklyWeatherStatus(): Flow<List<Int>> = flow {
+    override fun fetchWeatherStatus(): Flow<List<Int>> = flow {
         handleResponse(
             response = weatherApi.getWeeklyWeather(Main.LATITUDE, Main.LONGITUDE),
             onSuccess = { weeklyWeatherData -> emit(weeklyWeatherData.dailyTemperature.weatherCode) },
