@@ -38,7 +38,6 @@ fun CurrentWeatherInfo(
         ) {
             CurrentLocation(text = currentLocation)
             CurrentTemp(text = currentTemp)
-//            CurrentApparentTemp(text = "Feels like $currentApparentTemp")
             CurrentWeatherStatus(text = currentWeatherStatus)
             CurrentMinMaxTemp(minTemp = "L:$currentMinTemp", maxTemp = "H:$currentMaxTemp")
         }

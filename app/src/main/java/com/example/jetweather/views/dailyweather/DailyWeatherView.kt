@@ -21,12 +21,13 @@ fun DailyWeatherView(viewModel: WeeklyWeatherViewModel) {
             containerColor = primaryP80,
         ),
         shape = RoundedCornerShape(24.dp),
-        ) {
+    ) {
         Column(
             modifier = Modifier.padding(12.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
+            CardChip()
             for (i in 0..6) {
                 DailyWeatherInfo(index = i, viewModel = viewModel)
             }
