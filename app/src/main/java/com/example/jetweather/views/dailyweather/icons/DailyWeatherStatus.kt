@@ -6,7 +6,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import com.example.jetweather.helpers.DataFormatter.formatWeatherCodeToText
-import com.example.jetweather.helpers.DataFormatter.weatherIcon
+import com.example.jetweather.helpers.DataFormatter.getWeatherIcon
 
 @Composable
 fun DailyWeatherStatus(
@@ -14,8 +14,8 @@ fun DailyWeatherStatus(
     modifier: Modifier
 ) {
     Icon(
-        painter = painterResource(id = weatherIcon(weatherCode)),
-        contentDescription = formatWeatherCodeToText(weatherCode),
+        painter = painterResource(id = weatherCode.getWeatherIcon()),
+        contentDescription = weatherCode.formatWeatherCodeToText(),
         tint = Color.Unspecified,
         modifier = modifier
     )

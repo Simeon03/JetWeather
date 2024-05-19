@@ -3,7 +3,7 @@ package com.example.jetweather.views.currentDaylight
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import com.example.jetweather.helpers.DataFormatter.formatTime
+import com.example.jetweather.helpers.DataFormatter.fetchTime
 import com.example.jetweather.helpers.DataFormatter.getCurrentTimePercentage
 import com.example.jetweather.helpers.DataFormatter.getPercentageOfDay
 import com.example.jetweather.helpers.views.BoxGradientBg
@@ -16,10 +16,10 @@ fun DaylightView(viewModel: CurrentWeatherViewModel) {
 
     BoxGradientBg {
         Daylight(
-            sunriseTime = formatTime(viewModel.sunriseTime),
-            sunrisePercentage = getPercentageOfDay(viewModel.sunriseTime),
-            sunsetTime = formatTime(viewModel.sunsetTime),
-            sunsetPercentage = getPercentageOfDay(viewModel.sunsetTime),
+            sunriseTime = viewModel.sunriseTime.fetchTime(),
+            sunrisePercentage = viewModel.sunriseTime.getPercentageOfDay(),
+            sunsetTime = viewModel.sunsetTime.fetchTime(),
+            sunsetPercentage = viewModel.sunsetTime.getPercentageOfDay(),
             currentTimePercentage = getCurrentTimePercentage()
         )
     }
