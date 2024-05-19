@@ -5,7 +5,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Card
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import com.example.jetweather.ui.theme.Gradient1
 
 @Composable
 fun CardGradientBg(
@@ -14,7 +14,7 @@ fun CardGradientBg(
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .background(Color.Transparent)
+            .background(Gradient1)
     ) {
         BoxGradientBg {
             content()

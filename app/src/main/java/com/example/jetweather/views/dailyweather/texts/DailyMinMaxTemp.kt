@@ -3,8 +3,8 @@ package com.example.jetweather.views.dailyweather.texts
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
+import com.example.jetweather.ui.theme.Gradient3
 import com.example.jetweather.ui.theme.Typography
 
 @Composable
@@ -17,6 +17,6 @@ fun DailyMinMaxTemp(
         modifier = modifier,
         style = Typography.titleSmall,
         textAlign = TextAlign.End,
-        color = Color.LightGray
+        color = Gradient3
     )
 }

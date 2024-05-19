@@ -10,13 +10,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.unit.dp
 import com.example.jetweather.ui.theme.Gradient1
-import com.example.jetweather.ui.theme.Gradient2
-import com.example.jetweather.ui.theme.Gradient3
-import com.example.jetweather.ui.theme.Gradient4
-import com.example.jetweather.ui.theme.Gradient5
 import com.example.jetweather.viewmodel.CurrentWeatherViewModel
 import com.example.jetweather.viewmodel.HourlyWeatherViewModel
 import com.example.jetweather.viewmodel.WeeklyWeatherViewModel
@@ -33,17 +28,11 @@ fun FullMainView(
 ) {
     val isLoading by current.isLoading.collectAsState()
 
-    val gradient = Brush.verticalGradient(
-        colors = listOf(Gradient1, Gradient2, Gradient3, Gradient4, Gradient5),
-        startY = 0f,
-        endY = Float.POSITIVE_INFINITY
-    )
-
     if (!isLoading) {
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(gradient)
+                .background(Gradient1)
         ) {
             LazyColumn(
                 modifier = Modifier.padding(20.dp),
