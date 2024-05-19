@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 class WeeklyWeatherViewModel(
-    private val repo: DefaultWeeklyWeatherRepository,
+    private val weeklyWeather: DefaultWeeklyWeatherRepository,
 ) : ViewModel() {
 
     var weeklyWeatherData = MutableStateFlow(WeeklyWeatherData())
@@ -23,17 +23,19 @@ class WeeklyWeatherViewModel(
         viewModelScope.launch {
             isLoading.value = true
             try {
-                val weeklyMinTemp = repo.fetchMinTemp().first()
-                val weeklyMaxTemp = repo.fetchMaxTemp().first()
-                val weeklyDay = repo.fetchDay().first()
-                val weeklyWeatherStatus = repo.fetchWeatherStatus().first()
+                weeklyWeather.apply {
+                    val weeklyMinTemp = fetchMinTemp().first()
+                    val weeklyMaxTemp = fetchMaxTemp().first()
+                    val weeklyDay = fetchDay().first()
+                    val weeklyWeatherStatus = fetchWeatherStatus().first()
 
-                weeklyWeatherData.value = WeeklyWeatherData(
-                    minTemp = weeklyMinTemp,
-                    maxTemp = weeklyMaxTemp,
-                    day = weeklyDay,
-                    weatherStatus = weeklyWeatherStatus,
-                )
+                    weeklyWeatherData.value = WeeklyWeatherData(
+                        minTemp = weeklyMinTemp,
+                        maxTemp = weeklyMaxTemp,
+                        day = weeklyDay,
+                        weatherStatus = weeklyWeatherStatus,
+                    )
+                }
             } finally {
                 isLoading.value = false
             }

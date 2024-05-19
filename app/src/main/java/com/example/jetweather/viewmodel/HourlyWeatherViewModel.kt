@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 class HourlyWeatherViewModel(
-    private val repo: DefaultHourlyWeatherRepository,
+    private val hourlyWeather: DefaultHourlyWeatherRepository,
 ) : ViewModel() {
 
     var hourlyWeatherData = MutableStateFlow(HourlyWeatherData())
@@ -23,17 +23,19 @@ class HourlyWeatherViewModel(
         viewModelScope.launch {
             isLoading.value = true
             try {
-                val hourlyTemperature = repo.fetchTemp().first()
-                val hourlyTime = repo.fetchTime().first()
-                val hourlyWeatherStatus = repo.fetchWeatherStatus().first()
-                val hourlyHumidity = repo.fetchHumidity().first()
+                hourlyWeather.apply {
+                    val hourlyTemperature = fetchTemp().first()
+                    val hourlyTime = fetchTime().first()
+                    val hourlyWeatherStatus = fetchWeatherStatus().first()
+                    val hourlyHumidity = fetchHumidity().first()
 
-                hourlyWeatherData.value = HourlyWeatherData(
-                    temperature = hourlyTemperature,
-                    time = hourlyTime,
-                    weatherStatus = hourlyWeatherStatus,
-                    humidity = hourlyHumidity,
-                )
+                    hourlyWeatherData.value = HourlyWeatherData(
+                        temperature = hourlyTemperature,
+                        time = hourlyTime,
+                        weatherStatus = hourlyWeatherStatus,
+                        humidity = hourlyHumidity,
+                    )
+                }
             } finally {
                 isLoading.value = false
             }

@@ -50,6 +50,7 @@ fun GreetingPreview() {
     lateinit var viewModel: CurrentWeatherViewModel
     lateinit var weeklyWeatherViewModel: WeeklyWeatherViewModel
     lateinit var hourlyWeatherViewModel: HourlyWeatherViewModel
+
     JetWeatherTheme {
         FullMainView(
             current = viewModel,
