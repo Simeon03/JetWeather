@@ -1,4 +1,4 @@
-package com.example.jetweather.model.api
+package com.example.jetweather.model
 
 import com.example.jetweather.data.weather.CurrentWeather
 import com.example.jetweather.data.weather.HourlyWeather

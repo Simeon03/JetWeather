@@ -18,14 +18,20 @@ import com.example.jetweather.ui.theme.Gradient3
 import com.example.jetweather.ui.theme.Gradient4
 import com.example.jetweather.ui.theme.Gradient5
 import com.example.jetweather.viewmodel.CurrentWeatherViewModel
-import com.example.jetweather.viewmodel.Model
+import com.example.jetweather.viewmodel.HourlyWeatherViewModel
 import com.example.jetweather.viewmodel.WeeklyWeatherViewModel
+import com.example.jetweather.views.currentDaylight.DaylightView
 import com.example.jetweather.views.currentweather.CurrentWeatherView
 import com.example.jetweather.views.dailyweather.DailyWeatherView
+import com.example.jetweather.views.hourlyweather.HourlyWeatherView
 
 @Composable
-fun FullMainView(model: Model, viewModel: CurrentWeatherViewModel, weeklyWeatherViewModel: WeeklyWeatherViewModel) {
-    val isLoading by model.weatherDataLoading.collectAsState()
+fun FullMainView(
+    current: CurrentWeatherViewModel,
+    weeklyWeatherViewModel: WeeklyWeatherViewModel,
+    hourlyWeatherViewModel: HourlyWeatherViewModel
+) {
+    val isLoading by current.isLoading.collectAsState()
 
     val gradient = Brush.verticalGradient(
         colors = listOf(Gradient1, Gradient2, Gradient3, Gradient4, Gradient5),
@@ -33,20 +39,20 @@ fun FullMainView(model: Model, viewModel: CurrentWeatherViewModel, weeklyWeather
         endY = Float.POSITIVE_INFINITY
     )
 
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(gradient)
-    ) {
-        if (!isLoading) {
+    if (!isLoading) {
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(gradient)
+        ) {
             LazyColumn(
                 modifier = Modifier.padding(20.dp),
                 verticalArrangement = Arrangement.spacedBy(32.dp)
             ) {
-                item { CurrentWeatherView(viewModel = viewModel) }
+                item { CurrentWeatherView(viewModel = current) }
                 item { DailyWeatherView(viewModel = weeklyWeatherViewModel) }
-//                item { HourlyWeatherView(model = model) }
-//                item { DaylightView(model = model) }
+                item { HourlyWeatherView(viewModel = hourlyWeatherViewModel) }
+                item { DaylightView(viewModel = current) }
             }
         }
     }
