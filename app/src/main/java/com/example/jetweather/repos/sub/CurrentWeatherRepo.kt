@@ -1,9 +1,8 @@
 package com.example.jetweather.repos.sub
 
-import android.util.Log
 import com.example.jetweather.constants.Main
 import com.example.jetweather.model.OpenMeteo
-import com.example.jetweather.repos.main.MainRepoHelpers
+import com.example.jetweather.repos.MainRepoHelpers
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -37,9 +36,6 @@ class DefaultCurrentWeatherRepository(
             onSuccess = { weatherData -> emit(weatherData.currentWeatherStatus.temperature) },
             onError = { emit(0f) }
         )
-        Log.d("DefaultCurrentWeatherRepository", "Current Temperature: ${weatherApi.getCurrentWeather(
-            Main.LATITUDE, Main.LONGITUDE
-        )}")
     }.flowOn(Dispatchers.IO)
 
     override fun fetchApparentTemp(): Flow<Float> = flow {

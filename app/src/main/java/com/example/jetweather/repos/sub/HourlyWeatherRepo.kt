@@ -2,7 +2,7 @@ package com.example.jetweather.repos.sub
 
 import com.example.jetweather.constants.Main
 import com.example.jetweather.model.OpenMeteo
-import com.example.jetweather.repos.main.MainRepoHelpers
+import com.example.jetweather.repos.MainRepoHelpers
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

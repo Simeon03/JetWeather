@@ -1,4 +1,4 @@
-package com.example.jetweather.repos.main
+package com.example.jetweather.repos
 
 import com.example.jetweather.data.weather.HourlyWeather
 import retrofit2.Response
