@@ -10,10 +10,14 @@ import com.example.jetweather.constants.Api.OPEN_METEO_BASE_URL
 import com.example.jetweather.model.RetrofitInstance
 import com.example.jetweather.model.api.GoogleMaps
 import com.example.jetweather.model.api.OpenMeteo
+import com.example.jetweather.repos.main.DefaultCurrentWeatherRepository
+import com.example.jetweather.repos.main.DefaultWeeklyWeatherRepository
 import com.example.jetweather.repos.main.MainRepo
 import com.example.jetweather.ui.theme.JetWeatherTheme
+import com.example.jetweather.viewmodel.CurrentWeatherViewModel
 import com.example.jetweather.viewmodel.MainViewModel
 import com.example.jetweather.viewmodel.Model
+import com.example.jetweather.viewmodel.WeeklyWeatherViewModel
 import com.example.jetweather.views.FullMainView
 
 class MainActivity : ComponentActivity() {
@@ -28,12 +32,18 @@ class MainActivity : ComponentActivity() {
             GoogleMaps::class.java
         )
         val weatherRepository = MainRepo(weatherApi, googleMapsApi)
+        val currentWeatherRepository = DefaultCurrentWeatherRepository(weatherApi)
+        val weeklyWeatherRepository = DefaultWeeklyWeatherRepository(weatherApi)
+
         val viewModel = MainViewModel(weatherRepository)
+
+        val currentViewModel = CurrentWeatherViewModel(currentWeatherRepository)
+        val weeklyWeatherViewModel = WeeklyWeatherViewModel(weeklyWeatherRepository)
         val model = Model(viewModel)
 
         setContent {
             JetWeatherTheme {
-                FullMainView(model = model)
+                FullMainView(model = model, viewModel = currentViewModel, weeklyWeatherViewModel = weeklyWeatherViewModel)
             }
         }
     }
@@ -43,7 +53,9 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun GreetingPreview() {
     lateinit var model: Model
+    lateinit var viewModel: CurrentWeatherViewModel
+    lateinit var weeklyWeatherViewModel: WeeklyWeatherViewModel
     JetWeatherTheme {
-        FullMainView(model = model)
+        FullMainView(model = model, viewModel = viewModel, weeklyWeatherViewModel = weeklyWeatherViewModel)
     }
 }

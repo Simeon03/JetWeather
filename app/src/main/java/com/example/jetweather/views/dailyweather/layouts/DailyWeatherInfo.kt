@@ -1,14 +1,22 @@
 package com.example.jetweather.views.dailyweather.layouts
 
 import androidx.compose.runtime.Composable
-import com.example.jetweather.viewmodel.Model
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import com.example.jetweather.helpers.DataFormatter
+import com.example.jetweather.helpers.DataFormatter.formatDay
+import com.example.jetweather.helpers.DataFormatter.formatTemperatureText
+import com.example.jetweather.viewmodel.WeeklyWeatherViewModel
 
 @Composable
-fun DailyWeatherInfo(model: Model, index: Int) {
+fun DailyWeatherInfo(index: Int, viewModel: WeeklyWeatherViewModel) {
+    val viewModel by viewModel.weeklyWeatherData.collectAsState()
+
     DailyWeather(
-        minTemp = model.weeklyMinTemp[index],
-        maxTemp = model.weeklyMaxTemp[index],
-        date = model.weeklyDays[index],
-        weatherCode = model.weeklyWeatherStatus[index],
+        minTemp = viewModel.weeklyMinTemp.map { formatTemperatureText(it) }[index],
+        maxTemp = viewModel.weeklyMaxTemp.map { formatTemperatureText(it) }[index],
+        date = viewModel.weeklyDay.map { formatDay(it) }[index],
+        weatherCode = viewModel.weeklyWeatherStatus.map { DataFormatter.formatWeatherCodeToIcon(it) }[index],
     )
+
 }

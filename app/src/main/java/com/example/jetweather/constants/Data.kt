@@ -15,7 +15,7 @@ object Data {
     const val DAILY_UNITS = "daily_units"
 
     const val TEMPERATURE = "temperature_2m"
-    const val APPARENT_TEMPERATURE = "apparent_temperature_2m"
+    const val APPARENT_TEMPERATURE = "apparent_temperature"
     const val MAX_TEMPERATURE = "temperature_2m_max"
     const val MIN_TEMPERATURE = "temperature_2m_min"
 
