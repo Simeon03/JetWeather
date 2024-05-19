@@ -12,7 +12,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.jetweather.ui.theme.primaryP40
-import com.example.jetweather.views.currentweather.texts.CurrentApparentTemp
 import com.example.jetweather.views.currentweather.texts.CurrentLocation
 import com.example.jetweather.views.currentweather.texts.CurrentMinMaxTemp
 import com.example.jetweather.views.currentweather.texts.CurrentTemp
@@ -22,7 +21,6 @@ import com.example.jetweather.views.currentweather.texts.CurrentWeatherStatus
 fun CurrentWeatherInfo(
     currentLocation: String,
     currentTemp: String,
-    currentApparentTemp: String,
     currentWeatherStatus: String,
     currentMinTemp: String,
     currentMaxTemp: String,
@@ -40,9 +38,9 @@ fun CurrentWeatherInfo(
         ) {
             CurrentLocation(text = currentLocation)
             CurrentTemp(text = currentTemp)
-            CurrentApparentTemp(text = "Feels like $currentApparentTemp")
+//            CurrentApparentTemp(text = "Feels like $currentApparentTemp")
             CurrentWeatherStatus(text = currentWeatherStatus)
-            CurrentMinMaxTemp(text = "$currentMinTemp/$currentMaxTemp")
+            CurrentMinMaxTemp(minTemp = "L:$currentMinTemp", maxTemp = "H:$currentMaxTemp")
         }
     }
 }

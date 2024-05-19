@@ -15,7 +15,6 @@ fun CurrentWeatherView(viewModel: CurrentWeatherViewModel) {
     CurrentWeatherInfo(
         currentLocation = viewModel.location,
         currentTemp = viewModel.temp.roundTemp(),
-        currentApparentTemp = viewModel.apparentTemp.roundTemp(),
         currentWeatherStatus = viewModel.weatherStatus?.formatWeatherCodeToText() ?: "",
         currentMinTemp = viewModel.minTemp.roundTemp(),
         currentMaxTemp = viewModel.maxTemp.roundTemp(),

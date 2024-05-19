@@ -55,7 +55,7 @@ object DataFormatter {
             0 -> "Clear Sky" // Sunny
             1 -> "Clear" // Sunny
             2 -> "Partly Cloudy" // Cloudy
-            3 -> "Overcast" // Cloudy
+            3 -> "Cloudy" // Cloudy
             45 -> "Fog" // Foggy
             48 -> "Fog" // Foggy
             51 -> "Light Drizzle"
