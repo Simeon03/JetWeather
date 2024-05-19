@@ -9,8 +9,8 @@ import java.util.Locale
 
 object DataFormatter {
 
-    fun formatTemperatureText(temp: Float): String {
-        val roundedTemp = temp.toInt()
+    fun Float.roundTemp(): String {
+        val roundedTemp = this.toInt()
         return "$roundedTemp°"
     }
 
