@@ -6,7 +6,7 @@ import java.time.LocalDateTime
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 
-open class MainRepoHelpers {
+open class RepoHelpers {
     suspend fun <T> handleResponse(
         response: Response<T>,
         onSuccess: suspend (T) -> Unit,

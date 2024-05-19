@@ -2,7 +2,7 @@ package com.example.jetweather.repos.sub
 
 import com.example.jetweather.constants.Main
 import com.example.jetweather.model.OpenMeteo
-import com.example.jetweather.repos.MainRepoHelpers
+import com.example.jetweather.repos.RepoHelpers
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -22,7 +22,7 @@ interface HourlyWeatherRepo {
 
 class DefaultHourlyWeatherRepository(
     private val weatherApi: OpenMeteo
-): MainRepoHelpers(), HourlyWeatherRepo {
+): RepoHelpers(), HourlyWeatherRepo {
 
     override fun fetchTemp(): Flow<List<Float>> = flow {
         handleResponse(

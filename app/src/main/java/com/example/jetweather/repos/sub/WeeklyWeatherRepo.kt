@@ -2,7 +2,7 @@ package com.example.jetweather.repos.sub
 
 import com.example.jetweather.constants.Main
 import com.example.jetweather.model.OpenMeteo
-import com.example.jetweather.repos.MainRepoHelpers
+import com.example.jetweather.repos.RepoHelpers
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -22,7 +22,7 @@ interface WeeklyWeatherRepo {
 
 class DefaultWeeklyWeatherRepository(
     private val weatherApi: OpenMeteo
-): MainRepoHelpers(), WeeklyWeatherRepo {
+): RepoHelpers(), WeeklyWeatherRepo {
 
     override fun fetchMinTemp(): Flow<List<Float>> = flow {
         handleResponse(
