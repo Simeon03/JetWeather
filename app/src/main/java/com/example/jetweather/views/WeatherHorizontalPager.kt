@@ -1,16 +1,16 @@
-package com.example.jetweather.views.dailyweather
+package com.example.jetweather.views
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.unit.dp
 import com.example.jetweather.viewmodel.CurrentWeatherViewModel
 import com.example.jetweather.viewmodel.HourlyWeatherViewModel
 import com.example.jetweather.viewmodel.WeeklyWeatherViewModel
-import com.example.jetweather.views.currentDaylight.DaylightView
-import com.example.jetweather.views.hourlyweather.HourlyWeatherView
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -21,34 +21,21 @@ fun WeatherHorizontalPager(
 ) {
     val pagerState = rememberPagerState(pageCount = { 2 })
 
-    Column {
-        toggleButtons(pagerState)
-
+    Column(
+        verticalArrangement = Arrangement.spacedBy(16.dp),
+    ) {
+        WeatherToggleButtonsBar(pagerState)
         HorizontalPager(
             state = pagerState,
-            verticalAlignment = Alignment.Top
+            verticalAlignment = Alignment.Top,
+            pageSpacing = 16.dp,
         ) { page ->
             when (page) {
-                0 -> WeeklyWeatherCards(weekly)
-                1 -> DailyWeatherCards(hourly, current)
+                0 -> DailyWeatherCards(hourly, current)
+                1 -> WeeklyWeatherCards(weekly)
             }
         }
-
     }
 }
 
-@Composable
-fun WeeklyWeatherCards(weekly: WeeklyWeatherViewModel) {
-    DailyWeatherView(viewModel = weekly)
-}
 
-@Composable
-fun DailyWeatherCards(
-    hourly: HourlyWeatherViewModel,
-    current: CurrentWeatherViewModel
-) {
-    Column {
-        HourlyWeatherView(viewModel = hourly)
-        DaylightView(viewModel = current)
-    }
-}

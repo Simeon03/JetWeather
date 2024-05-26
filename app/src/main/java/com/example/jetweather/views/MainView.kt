@@ -16,7 +16,6 @@ import com.example.jetweather.viewmodel.CurrentWeatherViewModel
 import com.example.jetweather.viewmodel.HourlyWeatherViewModel
 import com.example.jetweather.viewmodel.WeeklyWeatherViewModel
 import com.example.jetweather.views.currentweather.CurrentWeatherView
-import com.example.jetweather.views.dailyweather.WeatherHorizontalPager
 
 @Composable
 fun FullMainView(
