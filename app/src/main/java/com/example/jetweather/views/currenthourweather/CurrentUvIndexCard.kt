@@ -17,10 +17,10 @@ import com.example.jetweather.views.CardChip
 import com.example.jetweather.views.WeatherCard
 
 @Composable
-fun CurrentUvIndexCard(viewModel: CurrentHourWeatherViewModel) {
-    val viewModel by viewModel.currentHourWeatherData.collectAsState()
+fun CurrentUvIndexCard(viewModel: CurrentHourWeatherViewModel, modifier: Modifier = Modifier) {
+    val currentHourWeather by viewModel.currentHourWeatherData.collectAsState()
 
-    WeatherCard {
+    WeatherCard(modifier = modifier) {
         Column(
             modifier = Modifier.fillMaxWidth().padding(12.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -30,7 +30,7 @@ fun CurrentUvIndexCard(viewModel: CurrentHourWeatherViewModel) {
                 text = "UV Index",
                 iconId = R.drawable.cloud,
             )
-            Text(text = viewModel.uvIndex.toString())
+            Text(text = currentHourWeather.uvIndex.toString())
         }
     }
 }
