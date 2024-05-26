@@ -9,6 +9,7 @@ import com.example.jetweather.viewmodel.CurrentWeatherViewModel
 import com.example.jetweather.viewmodel.HourlyWeatherViewModel
 import com.example.jetweather.views.currentDaylight.DaylightView
 import com.example.jetweather.views.currenthourweather.CurrentUvIndexCard
+import com.example.jetweather.views.currenthourweather.CurrentVisibilityCard
 import com.example.jetweather.views.hourlyweather.HourlyWeatherView
 
 @Composable
@@ -23,5 +24,6 @@ fun DailyWeatherCards(
         HourlyWeatherView(viewModel = hourly)
         DaylightView(viewModel = current)
         CurrentUvIndexCard(viewModel = currentHour)
+        CurrentVisibilityCard(viewModel = currentHour)
     }
 }
