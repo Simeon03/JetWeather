@@ -39,6 +39,27 @@ object DataFormatter {
         return (hour + (minute / 60)) / 24
     }
 
+    fun Int.getUvIndexStatus(): String {
+        return when (this) {
+            in 0..2 -> "Low"
+            in 3..5 -> "Moderate"
+            in 6..7 -> "High"
+            in 8..10 -> "Very High"
+            else -> "Extreme"
+        }
+    }
+
+    fun Int.getVisibilityStatus(): String {
+        return when (this) {
+            in 0..800 -> "Extremely Poor"
+            in 801..1600 -> "Very Poor"
+            in 1601..5000 -> "Poor"
+            in 5001..10000 -> "Moderate"
+            in 10001..16000 -> "Good"
+            else -> "Clear"
+        }
+    }
+
     fun Int.getWeatherIcon(): Int {
         return when (this) {
             0, 1 -> R.drawable.sunny

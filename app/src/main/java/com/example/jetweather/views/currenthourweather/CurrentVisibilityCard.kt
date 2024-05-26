@@ -12,6 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.jetweather.R
+import com.example.jetweather.helpers.DataFormatter.getVisibilityStatus
 import com.example.jetweather.viewmodel.CurrentHourWeatherViewModel
 import com.example.jetweather.views.CardChip
 import com.example.jetweather.views.WeatherCard
@@ -30,7 +31,7 @@ fun CurrentVisibilityCard(viewModel: CurrentHourWeatherViewModel, modifier: Modi
                 text = "Visibility",
                 iconId = R.drawable.cloud,
             )
-            Text(text = currentHourWeather.visibility.toString())
+            Text(text = currentHourWeather.visibility.getVisibilityStatus())
         }
     }
 }

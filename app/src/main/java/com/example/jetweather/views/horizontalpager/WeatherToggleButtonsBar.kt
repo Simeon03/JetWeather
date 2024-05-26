@@ -25,12 +25,14 @@ fun WeatherToggleButtonsBar(pagerState: PagerState) {
             pagerState = pagerState,
             page = 0,
             text = "Today",
+            modifier = Modifier.weight(1f),
         )
         WeatherToggleButton(
             scope = scope,
             pagerState = pagerState,
             page = 1,
             text = "Weekly",
+            modifier = Modifier.weight(1f),
         )
     }
 }
