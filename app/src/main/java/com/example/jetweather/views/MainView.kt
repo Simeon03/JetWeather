@@ -15,10 +15,8 @@ import com.example.jetweather.ui.theme.primaryP90
 import com.example.jetweather.viewmodel.CurrentWeatherViewModel
 import com.example.jetweather.viewmodel.HourlyWeatherViewModel
 import com.example.jetweather.viewmodel.WeeklyWeatherViewModel
-import com.example.jetweather.views.currentDaylight.DaylightView
 import com.example.jetweather.views.currentweather.CurrentWeatherView
-import com.example.jetweather.views.dailyweather.DailyWeatherView
-import com.example.jetweather.views.hourlyweather.HourlyWeatherView
+import com.example.jetweather.views.dailyweather.WeatherHorizontalPager
 
 @Composable
 fun FullMainView(
@@ -39,9 +37,7 @@ fun FullMainView(
                 verticalArrangement = Arrangement.spacedBy(32.dp)
             ) {
                 item { CurrentWeatherView(viewModel = current) }
-                item { DailyWeatherView(viewModel = weeklyWeatherViewModel) }
-                item { HourlyWeatherView(viewModel = hourlyWeatherViewModel) }
-                item { DaylightView(viewModel = current) }
+                item { WeatherHorizontalPager(weeklyWeatherViewModel, hourlyWeatherViewModel, current) }
             }
         }
     }
