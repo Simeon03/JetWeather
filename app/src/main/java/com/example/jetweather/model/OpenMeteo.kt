@@ -1,5 +1,6 @@
 package com.example.jetweather.model
 
+import com.example.jetweather.data.weather.CurrentHourWeather
 import com.example.jetweather.data.weather.CurrentWeather
 import com.example.jetweather.data.weather.HourlyWeather
 import com.example.jetweather.data.weather.WeeklyWeather
@@ -35,6 +36,15 @@ interface OpenMeteo {
         @Query(FORECAST_DAYS) forecastDays: Int = 2,
     ): Response<HourlyWeather>
 
+    @GET(ENDPOINT)
+    suspend fun getCurrentHourData(
+        @Query(LATITUDE) latitude: Float,
+        @Query(LONGITUDE) longitude: Float,
+        @Query(HOURLY) hourly: String = "cloud_cover,visibility,uv_index",
+        @Query(FORECAST_DAYS) forecastDays: Int = 1,
+        @Query(FORECAST_HOURS) forecastHours: Int = 1,
+    ): Response<CurrentHourWeather>
+
     companion object {
         const val ENDPOINT = "/v1/forecast?"
         const val LATITUDE = "latitude"
@@ -42,6 +52,7 @@ interface OpenMeteo {
         const val DAILY = "daily"
         const val CURRENT = "current"
         const val FORECAST_DAYS = "forecast_days"
+        const val FORECAST_HOURS = "forecast_hours"
         const val TIMEZONE = "timezone"
         const val HOURLY = "hourly"
     }

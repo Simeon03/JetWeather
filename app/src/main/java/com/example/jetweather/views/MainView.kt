@@ -12,6 +12,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.jetweather.ui.theme.primaryP90
+import com.example.jetweather.viewmodel.CurrentHourWeatherViewModel
 import com.example.jetweather.viewmodel.CurrentWeatherViewModel
 import com.example.jetweather.viewmodel.HourlyWeatherViewModel
 import com.example.jetweather.viewmodel.WeeklyWeatherViewModel
@@ -22,7 +23,8 @@ import com.example.jetweather.views.horizontalpager.WeatherHorizontalPager
 fun FullMainView(
     current: CurrentWeatherViewModel,
     weeklyWeatherViewModel: WeeklyWeatherViewModel,
-    hourlyWeatherViewModel: HourlyWeatherViewModel
+    hourlyWeatherViewModel: HourlyWeatherViewModel,
+    currentHour: CurrentHourWeatherViewModel,
 ) {
     val isLoading by current.isLoading.collectAsState()
 
@@ -37,7 +39,7 @@ fun FullMainView(
                 verticalArrangement = Arrangement.spacedBy(32.dp)
             ) {
                 item { CurrentWeatherView(viewModel = current) }
-                item { WeatherHorizontalPager(weeklyWeatherViewModel, hourlyWeatherViewModel, current) }
+                item { WeatherHorizontalPager(weeklyWeatherViewModel, hourlyWeatherViewModel, current, currentHour) }
             }
         }
     }

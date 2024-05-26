@@ -23,4 +23,7 @@ object Data {
     const val WEATHER_CODE = "weather_code"
     const val TIME = "time"
     const val HUMIDITY = "relative_humidity_2m"
+
+    const val HOURLY_UNITS = "hourly_units"
+    const val HOURLY = "hourly"
 }

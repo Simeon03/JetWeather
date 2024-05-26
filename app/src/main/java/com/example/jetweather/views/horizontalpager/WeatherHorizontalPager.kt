@@ -8,6 +8,7 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.unit.dp
+import com.example.jetweather.viewmodel.CurrentHourWeatherViewModel
 import com.example.jetweather.viewmodel.CurrentWeatherViewModel
 import com.example.jetweather.viewmodel.HourlyWeatherViewModel
 import com.example.jetweather.viewmodel.WeeklyWeatherViewModel
@@ -17,7 +18,8 @@ import com.example.jetweather.viewmodel.WeeklyWeatherViewModel
 fun WeatherHorizontalPager(
     weekly: WeeklyWeatherViewModel,
     hourly: HourlyWeatherViewModel,
-    current: CurrentWeatherViewModel
+    current: CurrentWeatherViewModel,
+    currentHour: CurrentHourWeatherViewModel,
 ) {
     val pagerState = rememberPagerState(pageCount = { 2 })
 
@@ -31,7 +33,7 @@ fun WeatherHorizontalPager(
             pageSpacing = 16.dp,
         ) { page ->
             when (page) {
-                0 -> DailyWeatherCards(hourly, current)
+                0 -> DailyWeatherCards(hourly, current, currentHour)
                 1 -> WeeklyWeatherCards(weekly)
             }
         }
