@@ -1,4 +1,4 @@
-package com.example.jetweather.views
+package com.example.jetweather.views.horizontalpager
 
 import androidx.compose.runtime.Composable
 import com.example.jetweather.viewmodel.WeeklyWeatherViewModel

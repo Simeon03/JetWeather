@@ -1,4 +1,4 @@
-package com.example.jetweather.views
+package com.example.jetweather.views.horizontalpager
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
