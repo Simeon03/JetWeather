@@ -22,6 +22,7 @@ import com.example.jetweather.ui.theme.primaryP90
 
 @Composable
 fun CardChip(
+    modifier: Modifier = Modifier,
     text: String,
     iconId: Int,
 ) {
