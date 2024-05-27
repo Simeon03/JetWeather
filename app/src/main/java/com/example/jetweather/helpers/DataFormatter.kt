@@ -11,8 +11,6 @@ object DataFormatter {
 
     fun Int.formatWeatherCodeToText(): Int = this.weatherCodeToText()
 
-    fun Int.formatWeatherCodeToIcon(): Int = this.getWeatherIcon()
-
     fun String.getPercentageOfDay(): Float = LocalDateTime.parse(this).getPercentageFromHour()
 
     fun getCurrentTimePercentage(): Float = LocalDateTime.now().getPercentageFromHour()
