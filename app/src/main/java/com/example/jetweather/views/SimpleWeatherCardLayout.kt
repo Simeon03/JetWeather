@@ -1,4 +1,4 @@
-package com.example.jetweather.views.layout
+package com.example.jetweather.views
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -10,14 +10,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.example.jetweather.R
 import com.example.jetweather.ui.theme.Typography
 import com.example.jetweather.ui.theme.primaryP10
-import com.example.jetweather.views.CardChip
 
 @Composable
-fun CurrentUvIndexInfo(
-    currentUvIndex: String,
+fun SimpleWeatherCardLayout(
+    cardChipText: String,
+    cardChipIconId: Int,
+    valueText: String,
 ) {
     Column(
         modifier = Modifier.fillMaxWidth().padding(16.dp),
@@ -25,11 +25,11 @@ fun CurrentUvIndexInfo(
         verticalArrangement = Arrangement.spacedBy(6.dp),
     ) {
         CardChip(
-            text = "UV Index",
-            iconId = R.drawable.cloud,
+            text = cardChipText,
+            iconId = cardChipIconId,
         )
         Text(
-            text = currentUvIndex,
+            text = valueText,
             style = Typography.headlineSmall,
             fontWeight = FontWeight.Bold,
             color = primaryP10,
