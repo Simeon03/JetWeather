@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.toSize
 import com.example.jetweather.ui.theme.primaryP40
 import com.example.jetweather.ui.theme.primaryP70
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import kotlin.math.roundToInt
 
@@ -54,13 +55,7 @@ fun WeatherToggleButtonsBar(pagerState: PagerState) {
         .fillMaxWidth()
         .background(primaryP40, RoundedCornerShape(100.dp))
     ) {
-        Box(
-            modifier = Modifier
-                .offset { offset }
-                .background(primaryP70, RoundedCornerShape(100.dp))
-                .width(with(LocalDensity.current) { buttonSize.width.toDp() })
-                .height(with(LocalDensity.current) { buttonSize.height.toDp() })
-        )
+        AnimatedMovingBox(offset = offset, size = buttonSize)
 
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -69,12 +64,7 @@ fun WeatherToggleButtonsBar(pagerState: PagerState) {
             WeatherToggleButton(
                 text = "Today",
                 onClick = {
-                    scope.launch {
-                        pagerState.animateScrollToPage(0)
-                    }
-                    if (pagerState.currentPage == 1) {
-                        moved = !moved
-                    }
+                    onButtonClick(scope, pagerState, 0, moved) { moved = it }
                 },
                 modifier = Modifier.weight(1f).onGloballyPositioned { coordinates ->
                     buttonSize = coordinates.size.toSize()
@@ -83,18 +73,40 @@ fun WeatherToggleButtonsBar(pagerState: PagerState) {
             WeatherToggleButton(
                 text = "Weekly",
                 onClick = {
-                    scope.launch {
-                        pagerState.animateScrollToPage(1)
-                    }
-                    if (pagerState.currentPage == 0) {
-                        moved = !moved
-                    }
+                    onButtonClick(scope, pagerState, 1, moved) { moved = it }
                 },
                 modifier = Modifier.weight(1f).onGloballyPositioned { coordinates ->
                     buttonSize = coordinates.size.toSize()
                 },
             )
         }
+    }
+}
+
+@Composable
+fun AnimatedMovingBox(offset: IntOffset, size: Size) {
+    Box(
+        modifier = Modifier
+            .offset { offset }
+            .background(primaryP70, RoundedCornerShape(100.dp))
+            .width(with(LocalDensity.current) { size.width.toDp() })
+            .height(with(LocalDensity.current) { size.height.toDp() })
+    )
+}
+
+@OptIn(ExperimentalFoundationApi::class)
+fun onButtonClick(
+    scope: CoroutineScope,
+    pagerState: PagerState,
+    page: Int,
+    moved: Boolean,
+    updateMovedState: (Boolean) -> Unit
+) {
+    scope.launch {
+        pagerState.animateScrollToPage(page)
+    }
+    if (pagerState.currentPage != page) {
+        updateMovedState(!moved)
     }
 }
 
