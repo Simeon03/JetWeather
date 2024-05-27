@@ -22,7 +22,7 @@ fun CurrentWeatherInfo(
     currentMaxTemp: String,
 ) {
     Column(
-        modifier = Modifier.fillMaxWidth().padding(12.dp),
+        modifier = Modifier.fillMaxWidth().padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
