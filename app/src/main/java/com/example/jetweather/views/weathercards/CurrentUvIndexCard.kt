@@ -14,6 +14,8 @@ fun CurrentUvIndexCard(viewModel: CurrentHourWeatherViewModel, modifier: Modifie
     val currentHourWeather by viewModel.currentHourWeatherData.collectAsState()
 
     WeatherCard(modifier = modifier) {
-        CurrentUvIndexInfo(currentUvIndex = currentHourWeather.uvIndex.toInt().getUvIndexStatus())
+        CurrentUvIndexInfo(
+            currentUvIndex = currentHourWeather.uvIndex.toInt().getUvIndexStatus()
+        )
     }
 }

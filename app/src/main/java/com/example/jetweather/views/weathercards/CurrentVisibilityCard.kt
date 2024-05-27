@@ -14,6 +14,8 @@ fun CurrentVisibilityCard(viewModel: CurrentHourWeatherViewModel, modifier: Modi
     val currentHourWeather by viewModel.currentHourWeatherData.collectAsState()
 
     WeatherCard(modifier = modifier) {
-        CurrentVisibilityInfo(visibility = currentHourWeather.visibility.getVisibilityStatus())
+        CurrentVisibilityInfo(
+            visibility = currentHourWeather.visibility.getVisibilityStatus()
+        )
     }
 }

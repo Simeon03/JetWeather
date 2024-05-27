@@ -12,7 +12,7 @@ import com.example.jetweather.views.text.DailyMinMaxTemp
 import com.example.jetweather.views.text.Day
 
 @Composable
-fun DailyWeatherRow(
+fun DailyWeather(
     minTemp: String,
     maxTemp: String,
     date: String,

@@ -1,21 +1,41 @@
 package com.example.jetweather.views.layout
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import com.example.jetweather.R
 import com.example.jetweather.helpers.DataFormatter.fetchDay
-import com.example.jetweather.helpers.DataFormatter.formatWeatherCodeToIcon
 import com.example.jetweather.helpers.DataFormatter.roundTemp
-import com.example.jetweather.viewmodel.WeeklyWeatherViewModel
+import com.example.jetweather.views.CardChip
 
 @Composable
-fun DailyWeatherInfo(index: Int, viewModel: WeeklyWeatherViewModel) {
-    val viewModel by viewModel.weeklyWeatherData.collectAsState()
+fun DailyWeatherInfo(
+    minTemp: List<Float>,
+    maxTemp: List<Float>,
+    date: List<String>,
+    weatherCode: List<Int>,
+) {
+    Column(
+        modifier = Modifier.padding(12.dp),
+        horizontalAlignment = Alignment.Start,
+        verticalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+        CardChip(
+            text = "Day forecast",
+            iconId = R.drawable.cloud,
+        )
 
-    DailyWeatherRow(
-        minTemp = viewModel.minTemp.map { it.roundTemp() }[index],
-        maxTemp = viewModel.maxTemp.map { it.roundTemp() }[index],
-        date = viewModel.day.map { it.fetchDay() }[index],
-        weatherCode = viewModel.weatherStatus.map { it.formatWeatherCodeToIcon() }[index],
-    )
+        for (i in 0..6) {
+            DailyWeather(
+                minTemp = minTemp[i].roundTemp(),
+                maxTemp = maxTemp[i].roundTemp(),
+                date = date[i].fetchDay(),
+                weatherCode = weatherCode[i],
+            )
+        }
+    }
 }

@@ -12,7 +12,7 @@ import com.example.jetweather.views.text.HourlyWeatherHour
 import com.example.jetweather.views.text.HourlyWeatherTemp
 
 @Composable
-fun HourlyWeatherColumn(
+fun HourlyWeather(
     hours: String,
     temps: String,
     weatherStatus: Int,
