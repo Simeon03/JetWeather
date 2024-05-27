@@ -11,10 +11,10 @@ import androidx.compose.ui.unit.dp
 import com.example.jetweather.viewmodel.CurrentHourWeatherViewModel
 import com.example.jetweather.viewmodel.CurrentWeatherViewModel
 import com.example.jetweather.viewmodel.HourlyWeatherViewModel
-import com.example.jetweather.views.currentDaylight.DaylightView
-import com.example.jetweather.views.currenthourweather.CurrentUvIndexCard
-import com.example.jetweather.views.currenthourweather.CurrentVisibilityCard
-import com.example.jetweather.views.hourlyweather.HourlyWeatherView
+import com.example.jetweather.views.weathercards.CurrentUvIndexCard
+import com.example.jetweather.views.weathercards.CurrentVisibilityCard
+import com.example.jetweather.views.weathercards.DaylightCard
+import com.example.jetweather.views.weathercards.HourlyWeatherCard
 
 @Composable
 fun DailyWeatherCards(
@@ -25,8 +25,8 @@ fun DailyWeatherCards(
     Column(
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
-        HourlyWeatherView(viewModel = hourly)
-        DaylightView(viewModel = current)
+        HourlyWeatherCard(viewModel = hourly)
+        DaylightCard(viewModel = current)
 
         Row(
             horizontalArrangement = Arrangement.SpaceEvenly,

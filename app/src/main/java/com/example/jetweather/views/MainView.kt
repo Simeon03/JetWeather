@@ -16,8 +16,8 @@ import com.example.jetweather.viewmodel.CurrentHourWeatherViewModel
 import com.example.jetweather.viewmodel.CurrentWeatherViewModel
 import com.example.jetweather.viewmodel.HourlyWeatherViewModel
 import com.example.jetweather.viewmodel.WeeklyWeatherViewModel
-import com.example.jetweather.views.currentweather.CurrentWeatherView
 import com.example.jetweather.views.horizontalpager.WeatherHorizontalPager
+import com.example.jetweather.views.weathercards.CurrentWeatherCard
 
 @Composable
 fun FullMainView(
@@ -38,7 +38,7 @@ fun FullMainView(
                 modifier = Modifier.padding(20.dp),
                 verticalArrangement = Arrangement.spacedBy(32.dp)
             ) {
-                item { CurrentWeatherView(viewModel = current) }
+                item { CurrentWeatherCard(viewModel = current) }
                 item { WeatherHorizontalPager(weeklyWeatherViewModel, hourlyWeatherViewModel, current, currentHour) }
             }
         }
