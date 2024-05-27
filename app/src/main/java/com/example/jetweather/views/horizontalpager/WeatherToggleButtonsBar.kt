@@ -24,9 +24,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.toSize
+import com.example.jetweather.R
 import com.example.jetweather.ui.theme.primaryP40
 import com.example.jetweather.ui.theme.primaryP70
 import kotlinx.coroutines.CoroutineScope
@@ -63,22 +65,26 @@ fun WeatherToggleButtonsBar(pagerState: PagerState) {
             horizontalArrangement = Arrangement.spacedBy(spacing, Alignment.CenterHorizontally),
         ) {
             WeatherToggleButton(
-                text = "Today",
+                text = stringResource(id = R.string.today),
                 onClick = {
                     onButtonClick(scope, pagerState, 0) { moved = it }
                 },
-                modifier = Modifier.weight(1f).onGloballyPositioned { coordinates ->
-                    buttonSize = coordinates.size.toSize()
-                },
+                modifier = Modifier
+                    .weight(1f)
+                    .onGloballyPositioned { coordinates ->
+                        buttonSize = coordinates.size.toSize()
+                    },
             )
             WeatherToggleButton(
-                text = "Weekly",
+                text = stringResource(id = R.string.weekly),
                 onClick = {
                     onButtonClick(scope, pagerState, 1) { moved = it }
                 },
-                modifier = Modifier.weight(1f).onGloballyPositioned { coordinates ->
-                    buttonSize = coordinates.size.toSize()
-                },
+                modifier = Modifier
+                    .weight(1f)
+                    .onGloballyPositioned { coordinates ->
+                        buttonSize = coordinates.size.toSize()
+                    },
             )
         }
     }

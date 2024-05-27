@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import com.example.jetweather.R
 import com.example.jetweather.helpers.DataFormatter.getUvIndexStatus
 import com.example.jetweather.viewmodel.CurrentHourWeatherViewModel
@@ -16,9 +17,9 @@ fun CurrentUvIndexCard(viewModel: CurrentHourWeatherViewModel, modifier: Modifie
 
     WeatherCard(modifier = modifier) {
         SimpleWeatherCardLayout(
-            cardChipText = "UV Index",
+            cardChipText = stringResource(id = R.string.uv_index),
             cardChipIconId = R.drawable.cloud,
-            valueText = currentHourWeather.uvIndex.toInt().getUvIndexStatus(),
+            valueText = stringResource(currentHourWeather.uvIndex.toInt().getUvIndexStatus()),
         )
     }
 }

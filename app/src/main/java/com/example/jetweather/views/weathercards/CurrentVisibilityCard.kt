@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import com.example.jetweather.R
 import com.example.jetweather.helpers.DataFormatter.getVisibilityStatus
 import com.example.jetweather.viewmodel.CurrentHourWeatherViewModel
@@ -16,9 +17,9 @@ fun CurrentVisibilityCard(viewModel: CurrentHourWeatherViewModel, modifier: Modi
 
     WeatherCard(modifier = modifier) {
         SimpleWeatherCardLayout(
-            cardChipText = "Visibility",
+            cardChipText = stringResource(id = R.string.visibility),
             cardChipIconId = R.drawable.cloud,
-            valueText = currentHourWeather.visibility.getVisibilityStatus(),
+            valueText = stringResource(currentHourWeather.visibility.getVisibilityStatus()),
         )
     }
 }

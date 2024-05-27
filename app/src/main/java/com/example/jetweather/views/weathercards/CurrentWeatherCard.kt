@@ -3,6 +3,7 @@ package com.example.jetweather.views.weathercards
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.res.stringResource
 import com.example.jetweather.helpers.DataFormatter.formatWeatherCodeToText
 import com.example.jetweather.helpers.DataFormatter.roundTemp
 import com.example.jetweather.ui.theme.primaryP40
@@ -18,7 +19,7 @@ fun CurrentWeatherCard(viewModel: CurrentWeatherViewModel) {
         CurrentWeatherInfo(
             currentLocation = viewModel.location,
             currentTemp = viewModel.temp.roundTemp(),
-            currentWeatherStatus = viewModel.weatherStatus?.formatWeatherCodeToText() ?: "",
+            currentWeatherStatus = stringResource(viewModel.weatherStatus?.formatWeatherCodeToText() ?: 0),
             currentMinTemp = viewModel.minTemp.roundTemp(),
             currentMaxTemp = viewModel.maxTemp.roundTemp(),
         )
