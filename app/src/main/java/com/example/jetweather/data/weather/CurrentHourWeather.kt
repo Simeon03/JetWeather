@@ -21,5 +21,5 @@ data class CurrentHourData(
     @SerializedName("time") val time: List<String>,
     @SerializedName("cloud_cover") val cloudCover: List<Int>,
     @SerializedName("visibility") val visibility: List<Int>,
-    @SerializedName("uv_index") val uvIndex: List<Int>,
+    @SerializedName("uv_index") val uvIndex: List<Float>,
 )

@@ -31,7 +31,7 @@ fun CurrentUvIndexCard(viewModel: CurrentHourWeatherViewModel, modifier: Modifie
                 text = "UV Index",
                 iconId = R.drawable.cloud,
             )
-            Text(text = currentHourWeather.uvIndex.getUvIndexStatus())
+            Text(text = currentHourWeather.uvIndex.toInt().getUvIndexStatus())
         }
     }
 }

@@ -14,7 +14,7 @@ interface CurrentHourWeatherRepository {
 
     fun fetchVisibility(): Flow<Int>
 
-    fun fetchUvIndex(): Flow<Int>
+    fun fetchUvIndex(): Flow<Float>
 
 }
 
@@ -38,11 +38,11 @@ class DefaultCurrentHourWeatherRepository(
         )
     }.flowOn(Dispatchers.IO)
 
-    override fun fetchUvIndex(): Flow<Int> = flow {
+    override fun fetchUvIndex(): Flow<Float> = flow {
         handleResponse(
             response = weatherApi.getCurrentHourData(Main.LATITUDE, Main.LONGITUDE),
             onSuccess = { weatherData -> emit(weatherData.data.uvIndex[0]) },
-            onError = { emit(0) }
+            onError = { emit(0f) }
         )
     }.flowOn(Dispatchers.IO)
 
