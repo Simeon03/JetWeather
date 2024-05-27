@@ -17,7 +17,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.jetweather.R
 import com.example.jetweather.ui.theme.Typography
-import com.example.jetweather.ui.theme.primaryP10
+import com.example.jetweather.ui.theme.primaryP40
 import com.example.jetweather.ui.theme.primaryP90
 
 @Composable
@@ -32,7 +32,7 @@ fun CardChip(
                 color = primaryP90,
                 shape = RoundedCornerShape(100.dp)
             )
-            .padding(8.dp),
+            .padding(8.dp, 4.dp),
         horizontalArrangement = Arrangement.spacedBy(4.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -42,14 +42,14 @@ fun CardChip(
                 .size(18.dp),
             painter = painterResource(id = iconId),
             contentDescription = "",
-            tint = primaryP10,
+            tint = primaryP40,
         )
         Text(
             modifier = Modifier.align(Alignment.CenterVertically),
             text = text,
             style = Typography.bodyMedium,
-            color = primaryP10,
-            fontWeight = FontWeight.Bold,
+            color = primaryP40,
+            fontWeight = FontWeight.Normal,
         )
     }
 }
