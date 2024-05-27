@@ -14,6 +14,7 @@ import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -36,17 +37,17 @@ import kotlin.math.roundToInt
 @Composable
 fun WeatherToggleButtonsBar(pagerState: PagerState) {
     val scope = rememberCoroutineScope()
-    var moved by remember { mutableStateOf(false) }
+    var moved by remember { mutableIntStateOf(0) }
     var buttonSize by remember { mutableStateOf(Size.Zero) }
 
     val spacing = 8.dp
     val spacingPx = with(LocalDensity.current) { spacing.toPx() }
 
     val offset by animateIntOffsetAsState(
-        targetValue = if (moved) {
-            IntOffset((buttonSize.width + spacingPx).roundToInt(), 0)
-        } else {
-            IntOffset.Zero
+        targetValue = when (pagerState.currentPage) {
+            0 -> IntOffset.Zero
+            1 -> IntOffset((buttonSize.width + spacingPx).roundToInt(), 0)
+            else -> IntOffset.Zero
         },
         label = "offset"
     )
@@ -64,7 +65,7 @@ fun WeatherToggleButtonsBar(pagerState: PagerState) {
             WeatherToggleButton(
                 text = "Today",
                 onClick = {
-                    onButtonClick(scope, pagerState, 0, moved) { moved = it }
+                    onButtonClick(scope, pagerState, 0) { moved = it }
                 },
                 modifier = Modifier.weight(1f).onGloballyPositioned { coordinates ->
                     buttonSize = coordinates.size.toSize()
@@ -73,7 +74,7 @@ fun WeatherToggleButtonsBar(pagerState: PagerState) {
             WeatherToggleButton(
                 text = "Weekly",
                 onClick = {
-                    onButtonClick(scope, pagerState, 1, moved) { moved = it }
+                    onButtonClick(scope, pagerState, 1) { moved = it }
                 },
                 modifier = Modifier.weight(1f).onGloballyPositioned { coordinates ->
                     buttonSize = coordinates.size.toSize()
@@ -99,14 +100,11 @@ fun onButtonClick(
     scope: CoroutineScope,
     pagerState: PagerState,
     page: Int,
-    moved: Boolean,
-    updateMovedState: (Boolean) -> Unit
+    updateMovedState: (Int) -> Unit
 ) {
     scope.launch {
         pagerState.animateScrollToPage(page)
     }
-    if (pagerState.currentPage != page) {
-        updateMovedState(!moved)
-    }
+    updateMovedState(pagerState.currentPage)
 }
 
