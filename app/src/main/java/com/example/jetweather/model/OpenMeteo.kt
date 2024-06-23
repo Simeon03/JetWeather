@@ -12,8 +12,8 @@ interface OpenMeteo {
 
     @GET(ENDPOINT)
     suspend fun getCurrentWeather(
-        @Query(LATITUDE) latitude: Float,
-        @Query(LONGITUDE) longitude: Float,
+        @Query(LATITUDE) latitude: Double,
+        @Query(LONGITUDE) longitude: Double,
         @Query(CURRENT) current: String = "temperature_2m,apparent_temperature,weather_code",
         @Query(DAILY) daily: String = "temperature_2m_max,temperature_2m_min,sunrise,sunset",
         @Query(TIMEZONE) timezone: String = "auto",
@@ -22,24 +22,24 @@ interface OpenMeteo {
 
     @GET(ENDPOINT)
     suspend fun getWeeklyWeather(
-        @Query(LATITUDE) latitude: Float,
-        @Query(LONGITUDE) longitude: Float,
+        @Query(LATITUDE) latitude: Double,
+        @Query(LONGITUDE) longitude: Double,
         @Query(TIMEZONE) timezone: String = "auto",
         @Query(DAILY) daily: String = "weather_code,temperature_2m_max,temperature_2m_min",
     ): Response<WeeklyWeather>
 
     @GET(ENDPOINT)
     suspend fun getHourlyData(
-        @Query(LATITUDE) latitude: Float,
-        @Query(LONGITUDE) longitude: Float,
+        @Query(LATITUDE) latitude: Double,
+        @Query(LONGITUDE) longitude: Double,
         @Query(HOURLY) hourly: String = "temperature_2m,relative_humidity_2m,weather_code",
         @Query(FORECAST_DAYS) forecastDays: Int = 2,
     ): Response<HourlyWeather>
 
     @GET(ENDPOINT)
     suspend fun getCurrentHourData(
-        @Query(LATITUDE) latitude: Float,
-        @Query(LONGITUDE) longitude: Float,
+        @Query(LATITUDE) latitude: Double,
+        @Query(LONGITUDE) longitude: Double,
         @Query(HOURLY) hourly: String = "cloud_cover,visibility,uv_index",
         @Query(FORECAST_DAYS) forecastDays: Int = 1,
         @Query(FORECAST_HOURS) forecastHours: Int = 1,

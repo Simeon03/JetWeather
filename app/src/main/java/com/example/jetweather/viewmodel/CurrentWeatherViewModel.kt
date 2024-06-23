@@ -27,7 +27,7 @@ class CurrentWeatherViewModel(
                     val currentTemp = fetchTemp().first()
                     val currentApparentTemp = fetchApparentTemp().first()
                     val currentWeatherStatus = fetchWeatherStatus().first()
-                    val currentLocation = fetchCurrentLocation().first()
+                    val currentLocation = "Berlin" // TODO get location API
                     val currentMinTemp = fetchMinTemp().first()
                     val currentMaxTemp = fetchMaxTemp().first()
                     val currentSunriseTime = fetchSunriseTime().first()
