@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.jetweather.constants.Api.OPEN_METEO_BASE_URL
 import com.example.jetweather.constants.Api.TOM_TOM_BASE_URL
+import com.example.jetweather.model.LocationProvider
 import com.example.jetweather.model.OpenMeteo
 import com.example.jetweather.model.RetrofitInstance
 import com.example.jetweather.model.TomTom
@@ -39,8 +40,9 @@ class MainActivity : ComponentActivity() {
         val locationRepo = DefaultLocationRepository(this.applicationContext, this, fusedLocationProviderClient)
 
         val currentLocationViewModel = CurrentLocationViewModel(locationRepo)
+        val locationProvider = LocationProvider(currentLocationViewModel)
 
-        val currentWeatherRepository = DefaultCurrentWeatherRepository(weatherApi, locationApi, currentLocationViewModel)
+        val currentWeatherRepository = DefaultCurrentWeatherRepository(weatherApi, locationApi, locationProvider)
         val weeklyWeatherRepository = DefaultWeeklyWeatherRepository(weatherApi, currentLocationViewModel)
         val hourlyWeatherRepository = DefaultHourlyWeatherRepository(weatherApi, currentLocationViewModel)
         val currentHourWeatherRepository = DefaultCurrentHourWeatherRepository(weatherApi, currentLocationViewModel)
