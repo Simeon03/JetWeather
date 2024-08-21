@@ -3,6 +3,7 @@ package com.example.jetweather.repos.sub
 import com.example.jetweather.model.LocationProvider
 import com.example.jetweather.model.OpenMeteo
 import com.example.jetweather.model.TomTom
+import com.example.jetweather.repos.BaseWeatherRepository
 import kotlinx.coroutines.flow.Flow
 
 interface CurrentWeatherRepo {
@@ -29,7 +30,7 @@ class DefaultCurrentWeatherRepository(
     private val weatherApi: OpenMeteo,
     private val geolocationApi: TomTom,
     locationProvider: LocationProvider,
-): CurrentWeatherRepo, BaseWeatherRepository(locationProvider) {
+): BaseWeatherRepository(locationProvider), CurrentWeatherRepo {
 
     override fun fetchTemp(): Flow<Float> = handleResponseNew(
         response = { lat, long -> weatherApi.getCurrentWeather(lat, long) },

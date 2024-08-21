@@ -2,6 +2,7 @@ package com.example.jetweather.repos.sub
 
 import com.example.jetweather.model.LocationProvider
 import com.example.jetweather.model.OpenMeteo
+import com.example.jetweather.repos.BaseWeatherRepository
 import kotlinx.coroutines.flow.Flow
 
 interface HourlyWeatherRepo {
