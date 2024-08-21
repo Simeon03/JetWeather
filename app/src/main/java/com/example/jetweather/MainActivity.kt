@@ -45,9 +45,9 @@ class MainActivity : ComponentActivity() {
             val currentLocationViewModel = CurrentLocationViewModel(locationRepo)
 
             val currentWeatherRepository = DefaultCurrentWeatherRepository(weatherApi, locationApi, currentLocationViewModel)
-            val weeklyWeatherRepository = DefaultWeeklyWeatherRepository(weatherApi)
-            val hourlyWeatherRepository = DefaultHourlyWeatherRepository(weatherApi)
-            val currentHourWeatherRepository = DefaultCurrentHourWeatherRepository(weatherApi)
+            val weeklyWeatherRepository = DefaultWeeklyWeatherRepository(weatherApi, currentLocationViewModel)
+            val hourlyWeatherRepository = DefaultHourlyWeatherRepository(weatherApi, currentLocationViewModel)
+            val currentHourWeatherRepository = DefaultCurrentHourWeatherRepository(weatherApi, currentLocationViewModel)
 
             val currentViewModel = CurrentWeatherViewModel(currentWeatherRepository)
             val weeklyWeatherViewModel = WeeklyWeatherViewModel(weeklyWeatherRepository)

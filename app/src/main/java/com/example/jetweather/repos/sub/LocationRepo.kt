@@ -21,7 +21,7 @@ interface LocationRepo {
 class DefaultLocationRepository(
     private val context: Context,
     private val activity: Activity,
-    private val fusedLocationProviderClient: FusedLocationProviderClient
+    private val fusedLocationProviderClient: FusedLocationProviderClient,
 ) : LocationRepo {
 
     override fun fetchCurrentLocation(): Flow<Pair<Double, Double>> = flow {
