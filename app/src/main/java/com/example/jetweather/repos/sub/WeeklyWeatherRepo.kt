@@ -1,13 +1,8 @@
 package com.example.jetweather.repos.sub
 
+import com.example.jetweather.model.LocationProvider
 import com.example.jetweather.model.OpenMeteo
-import com.example.jetweather.repos.RepoHelpers
-import com.example.jetweather.viewmodel.CurrentLocationViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flatMapLatest
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
 
 interface WeeklyWeatherRepo {
 
@@ -23,48 +18,30 @@ interface WeeklyWeatherRepo {
 
 class DefaultWeeklyWeatherRepository(
     private val weatherApi: OpenMeteo,
-    currentLocationViewModel: CurrentLocationViewModel,
-): RepoHelpers(), WeeklyWeatherRepo {
+    locationProvider: LocationProvider,
+): BaseWeatherRepository(locationProvider), WeeklyWeatherRepo {
 
-    private val locationFlow = currentLocationViewModel.currentLocationData
+    override fun fetchMinTemp(): Flow<List<Float>> = handleResponseNew(
+        response = { lat, long -> weatherApi.getWeeklyWeather(lat, long) },
+        transform = { weeklyWeatherData -> weeklyWeatherData.dailyTemperature.minTemperature },
+        defaultValue = emptyList<Float>()
+    )
 
-    override fun fetchMinTemp(): Flow<List<Float>> = locationFlow.flatMapLatest { (lat, long) ->
-        flow {
-            handleResponse(
-                response = weatherApi.getWeeklyWeather(lat, long),
-                onSuccess = { weeklyWeatherData -> emit(weeklyWeatherData.dailyTemperature.minTemperature) },
-                onError = { emit(emptyList<Float>()) }
-            )
-        }
-    }.flowOn(Dispatchers.IO)
+    override fun fetchMaxTemp(): Flow<List<Float>> = handleResponseNew(
+        response = { lat, long -> weatherApi.getWeeklyWeather(lat, long) },
+        transform = { weeklyWeatherData -> weeklyWeatherData.dailyTemperature.maxTemperature },
+        defaultValue = emptyList<Float>()
+    )
 
-    override fun fetchMaxTemp(): Flow<List<Float>> = locationFlow.flatMapLatest { (lat, long) ->
-        flow {
-            handleResponse(
-                response = weatherApi.getWeeklyWeather(lat, long),
-                onSuccess = { weeklyWeatherData -> emit(weeklyWeatherData.dailyTemperature.maxTemperature) },
-                onError = { emit(emptyList<Float>()) }
-            )
-        }
-    }.flowOn(Dispatchers.IO)
+    override fun fetchDay(): Flow<List<String>> = handleResponseNew(
+        response = { lat, long -> weatherApi.getWeeklyWeather(lat, long) },
+        transform = { weeklyWeatherData -> weeklyWeatherData.dailyTemperature.time },
+        defaultValue = emptyList<String>()
+    )
 
-    override fun fetchDay(): Flow<List<String>> = locationFlow.flatMapLatest { (lat, long) ->
-        flow {
-            handleResponse(
-                response = weatherApi.getWeeklyWeather(lat, long),
-                onSuccess = { weeklyWeatherData -> emit(weeklyWeatherData.dailyTemperature.time) },
-                onError = { emit(emptyList<String>()) }
-            )
-        }
-    }.flowOn(Dispatchers.IO)
-
-    override fun fetchWeatherStatus(): Flow<List<Int>> = locationFlow.flatMapLatest { (lat, long) ->
-        flow {
-            handleResponse(
-                response = weatherApi.getWeeklyWeather(lat, long),
-                onSuccess = { weeklyWeatherData -> emit(weeklyWeatherData.dailyTemperature.weatherCode) },
-                onError = { emit(emptyList<Int>()) }
-            )
-        }
-    }.flowOn(Dispatchers.IO)
+    override fun fetchWeatherStatus(): Flow<List<Int>> = handleResponseNew(
+        response = { lat, long -> weatherApi.getWeeklyWeather(lat, long) },
+        transform = { weeklyWeatherData -> weeklyWeatherData.dailyTemperature.weatherCode },
+        defaultValue = emptyList<Int>()
+    )
 }
