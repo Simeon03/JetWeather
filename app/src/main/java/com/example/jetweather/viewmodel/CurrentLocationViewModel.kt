@@ -12,25 +12,20 @@ class CurrentLocationViewModel(
     private val currentLocation: DefaultLocationRepository,
 ) : ViewModel() {
 
-    var currentLocationData = MutableStateFlow(CurrentLocationData())
     private var isLoading = MutableStateFlow(true)
+    var currentLocationData = MutableStateFlow(CurrentLocationData())
 
-    init {
-        fetchWeatherData()
-    }
+    init { fetchLocationData() }
 
-    private fun fetchWeatherData() {
+    private fun fetchLocationData() {
         viewModelScope.launch {
             isLoading.value = true
             try {
-                currentLocation.apply {
-                    val location = fetchCurrentLocation().first()
-
-                    currentLocationData.value = CurrentLocationData(
-                        latitude = location.first,
-                        longitude = location.second,
-                    )
-                }
+                val coordinates = currentLocation.fetchCurrentLocation().first()
+                currentLocationData.value = CurrentLocationData(
+                    latitude = coordinates.first,
+                    longitude = coordinates.second,
+                )
             } finally {
                 isLoading.value = false
             }
