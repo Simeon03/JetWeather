@@ -19,7 +19,7 @@ class CurrentWeatherViewModel(
         fetchWeatherData()
     }
 
-    private fun fetchWeatherData() {
+    fun fetchWeatherData() {
         viewModelScope.launch {
             isLoading.value = true
             try {

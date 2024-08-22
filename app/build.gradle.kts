@@ -94,4 +94,6 @@ dependencies {
     // Debug Implementation
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+
+    implementation("com.google.accompanist:accompanist-swiperefresh:0.26.2-beta")
 }

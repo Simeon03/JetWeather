@@ -13,13 +13,13 @@ class WeeklyWeatherViewModel(
 ) : ViewModel() {
 
     var weeklyWeatherData = MutableStateFlow(WeeklyWeatherData())
-    private var isLoading = MutableStateFlow(true)
+    var isLoading = MutableStateFlow(true)
 
     init {
         fetchWeatherData()
     }
 
-    private fun fetchWeatherData() {
+    fun fetchWeatherData() {
         viewModelScope.launch {
             isLoading.value = true
             try {

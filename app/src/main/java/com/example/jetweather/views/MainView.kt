@@ -18,6 +18,8 @@ import com.example.jetweather.viewmodel.HourlyWeatherViewModel
 import com.example.jetweather.viewmodel.WeeklyWeatherViewModel
 import com.example.jetweather.views.horizontalpager.WeatherHorizontalPager
 import com.example.jetweather.views.weathercards.CurrentWeatherCard
+import com.google.accompanist.swiperefresh.SwipeRefresh
+import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 
 @Composable
 fun FullMainView(
@@ -26,20 +28,36 @@ fun FullMainView(
     hourlyWeatherViewModel: HourlyWeatherViewModel,
     currentHour: CurrentHourWeatherViewModel,
 ) {
-    val isLoading by current.isLoading.collectAsState()
+    val isLoadingCurrent by current.isLoading.collectAsState()
+    val isLoadingWeekly by weeklyWeatherViewModel.isLoading.collectAsState()
+    val isLoadingHourly by hourlyWeatherViewModel.isLoading.collectAsState()
+    val isLoadingCurrentHour by currentHour.isLoading.collectAsState()
 
-    if (!isLoading) {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(primaryP90)
-        ) {
-            LazyColumn(
-                modifier = Modifier.padding(20.dp),
-                verticalArrangement = Arrangement.spacedBy(32.dp)
+    val isRefreshing = isLoadingCurrent || isLoadingWeekly || isLoadingHourly || isLoadingCurrentHour
+
+
+    SwipeRefresh(
+        state = rememberSwipeRefreshState(isRefreshing = isRefreshing),
+        onRefresh = {
+            current.fetchWeatherData()
+            weeklyWeatherViewModel.fetchWeatherData()
+            hourlyWeatherViewModel.fetchWeatherData()
+            currentHour.fetchWeatherData()
+        }
+    ) {
+        if (!isRefreshing) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(primaryP90)
             ) {
-                item { CurrentWeatherCard(viewModel = current) }
-                item { WeatherHorizontalPager(weeklyWeatherViewModel, hourlyWeatherViewModel, current, currentHour) }
+                LazyColumn(
+                    modifier = Modifier.padding(20.dp),
+                    verticalArrangement = Arrangement.spacedBy(32.dp)
+                ) {
+                    item { CurrentWeatherCard(viewModel = current) }
+                    item { WeatherHorizontalPager(weeklyWeatherViewModel, hourlyWeatherViewModel, current, currentHour) }
+                }
             }
         }
     }
