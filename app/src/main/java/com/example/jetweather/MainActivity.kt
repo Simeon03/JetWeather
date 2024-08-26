@@ -16,13 +16,13 @@ import com.example.jetweather.repos.sub.DefaultCurrentWeatherRepository
 import com.example.jetweather.repos.sub.DefaultHourlyWeatherRepository
 import com.example.jetweather.repos.sub.DefaultLocationRepository
 import com.example.jetweather.repos.sub.DefaultWeeklyWeatherRepository
+import com.example.jetweather.screens.HomeScreen
 import com.example.jetweather.ui.theme.JetWeatherTheme
 import com.example.jetweather.viewmodel.CurrentHourWeatherViewModel
 import com.example.jetweather.viewmodel.CurrentLocationViewModel
 import com.example.jetweather.viewmodel.CurrentWeatherViewModel
 import com.example.jetweather.viewmodel.HourlyWeatherViewModel
 import com.example.jetweather.viewmodel.WeeklyWeatherViewModel
-import com.example.jetweather.views.FullMainView
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 
@@ -54,7 +54,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             JetWeatherTheme {
-                FullMainView(
+                HomeScreen(
                     current = currentViewModel,
                     weeklyWeatherViewModel = weeklyWeatherViewModel,
                     hourlyWeatherViewModel = hourlyWeatherViewModel,
@@ -74,7 +74,7 @@ fun GreetingPreview() {
     lateinit var currentHourWeatherViewModel: CurrentHourWeatherViewModel
 
     JetWeatherTheme {
-        FullMainView(
+        HomeScreen(
             current = viewModel,
             weeklyWeatherViewModel = weeklyWeatherViewModel,
             hourlyWeatherViewModel = hourlyWeatherViewModel,

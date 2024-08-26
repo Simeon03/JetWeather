@@ -63,6 +63,7 @@ allprojects {
 }
 
 dependencies {
+    implementation("androidx.navigation:navigation-compose:2.7.7")
     val composeVersion = "2024.08.00"
     val lifecycleVersion = "2.8.4"
     val coroutinesVersion = "1.8.0"
