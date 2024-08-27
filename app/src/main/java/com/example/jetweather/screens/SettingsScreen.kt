@@ -12,11 +12,12 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.jetweather.R
 import com.example.jetweather.ui.theme.primaryP90
+import com.example.jetweather.viewmodel.CurrentWeatherViewModel
 import com.example.jetweather.views.TemperatureSelection
 import com.example.jetweather.views.buttons.SettingsNavigationButton
 
 @Composable
-fun SettingsScreen(navController: NavController) {
+fun SettingsScreen(navController: NavController, viewModel: CurrentWeatherViewModel) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -31,7 +32,7 @@ fun SettingsScreen(navController: NavController) {
                 description = "Settings",
                 onClick = { navController.popBackStack() }
             )
-            TemperatureSelection()
+            TemperatureSelection(viewModel)
         }
     }
 }

@@ -19,22 +19,25 @@ abstract class BaseWeatherRepository(locationProvider: LocationProvider) {
     private val locationFlow: StateFlow<CurrentLocationData> = locationProvider.locationFlow
 
     fun <T, R> handleResponseNew(
-        response: suspend (lat: Double, long: Double) -> Response<T>,
+        response: suspend (lat: Double, long: Double, unit: String) -> Response<T>,
         transform: (T) -> R,
-        defaultValue: R
+        defaultValue: R,
+        temperatureUnit: Flow<String>
     ): Flow<R> {
         return locationFlow.flatMapLatest { (lat, long) ->
-            flow {
-                val data = response(lat, long)
-                if (data.isSuccessful) {
-                    val body = data.body()
-                    if (body != null) {
-                        emit(transform(body))
+            temperatureUnit.flatMapLatest { unit ->  // Collect the temperature unit
+                flow {
+                    val data = response(lat, long, unit)  // Pass the temperature unit to the API call
+                    if (data.isSuccessful) {
+                        val body = data.body()
+                        if (body != null) {
+                            emit(transform(body))
+                        } else {
+                            emit(defaultValue)
+                        }
                     } else {
                         emit(defaultValue)
                     }
-                } else {
-                    emit(defaultValue)
                 }
             }
         }.flowOn(Dispatchers.IO)

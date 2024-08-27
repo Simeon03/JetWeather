@@ -14,6 +14,7 @@ interface OpenMeteo {
     suspend fun getCurrentWeather(
         @Query(LATITUDE) latitude: Double,
         @Query(LONGITUDE) longitude: Double,
+        @Query("temperature_unit") temperatureUnit: String,
         @Query(CURRENT) current: String = "temperature_2m,apparent_temperature,weather_code",
         @Query(DAILY) daily: String = "temperature_2m_max,temperature_2m_min,sunrise,sunset",
         @Query(TIMEZONE) timezone: String = "auto",

@@ -29,7 +29,7 @@ fun HomeScreen(
             )
         }
         composable("settings") {
-            SettingsScreen(navController = navController)
+            SettingsScreen(navController = navController, viewModel = current)
         }
     }
     
