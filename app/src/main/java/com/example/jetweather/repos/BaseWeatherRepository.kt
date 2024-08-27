@@ -27,9 +27,9 @@ abstract class BaseWeatherRepository(locationProvider: LocationProvider) {
         temperatureUnit: Flow<String>
     ): Flow<R> {
         return locationFlow.flatMapLatest { (lat, long) ->
-            temperatureUnit.flatMapLatest { unit ->  // Collect the temperature unit
+            temperatureUnit.flatMapLatest { unit ->
                 flow {
-                    val data = response(lat, long, unit)  // Pass the temperature unit to the API call
+                    val data = response(lat, long, unit)
                     if (data.isSuccessful) {
                         val body = data.body()
                         if (body != null) {
