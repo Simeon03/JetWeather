@@ -27,28 +27,28 @@ class DefaultWeeklyWeatherRepository(
     private val temperatureUnit: Flow<String> = userPreferencesRepository.temperatureUnit
 
     override fun fetchMinTemp(): Flow<List<Float>> = handleResponseNew(
-        response = { lat, long, unit -> weatherApi.getWeeklyWeather(lat, long) },
+        response = { lat, long, unit -> weatherApi.getWeeklyWeather(lat, long, unit) },
         transform = { weeklyWeatherData -> weeklyWeatherData.dailyTemperature.minTemperature },
         defaultValue = emptyList<Float>(),
         temperatureUnit = temperatureUnit,
     )
 
     override fun fetchMaxTemp(): Flow<List<Float>> = handleResponseNew(
-        response = { lat, long, unit -> weatherApi.getWeeklyWeather(lat, long) },
+        response = { lat, long, unit -> weatherApi.getWeeklyWeather(lat, long, unit) },
         transform = { weeklyWeatherData -> weeklyWeatherData.dailyTemperature.maxTemperature },
         defaultValue = emptyList<Float>(),
         temperatureUnit = temperatureUnit,
     )
 
     override fun fetchDay(): Flow<List<String>> = handleResponseNew(
-        response = { lat, long, unit -> weatherApi.getWeeklyWeather(lat, long) },
+        response = { lat, long, unit -> weatherApi.getWeeklyWeather(lat, long, unit) },
         transform = { weeklyWeatherData -> weeklyWeatherData.dailyTemperature.time },
         defaultValue = emptyList<String>(),
         temperatureUnit = temperatureUnit,
     )
 
     override fun fetchWeatherStatus(): Flow<List<Int>> = handleResponseNew(
-        response = { lat, long, unit -> weatherApi.getWeeklyWeather(lat, long) },
+        response = { lat, long, unit -> weatherApi.getWeeklyWeather(lat, long, unit) },
         transform = { weeklyWeatherData -> weeklyWeatherData.dailyTemperature.weatherCode },
         defaultValue = emptyList<Int>(),
         temperatureUnit = temperatureUnit,

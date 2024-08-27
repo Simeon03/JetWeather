@@ -27,7 +27,7 @@ class DefaultHourlyWeatherRepository(
     private val temperatureUnit: Flow<String> = userPreferencesRepository.temperatureUnit
 
     override fun fetchTemp(): Flow<List<Float>> = handleResponseNew(
-        response = { lat, long, unit -> weatherApi.getHourlyData(lat, long) },
+        response = { lat, long, unit -> weatherApi.getHourlyData(lat, long, unit) },
         transform = { hourlyData ->
             val pos = getNextDayHours(hourlyData)
             val removedBeforeTimes = hourlyData.hourly.temperature.subList(pos, pos + 24)
@@ -38,7 +38,7 @@ class DefaultHourlyWeatherRepository(
     )
 
     override fun fetchTime(): Flow<List<String>> = handleResponseNew(
-        response = { lat, long, unit -> weatherApi.getHourlyData(lat, long) },
+        response = { lat, long, unit -> weatherApi.getHourlyData(lat, long, unit) },
         transform = { hourlyData ->
             val pos = getNextDayHours(hourlyData)
             formattedHoursTime(hourlyData).subList(pos, pos + 24)
@@ -48,14 +48,14 @@ class DefaultHourlyWeatherRepository(
     )
 
     override fun fetchWeatherStatus(): Flow<List<Int>> = handleResponseNew(
-        response = { lat, long, unit -> weatherApi.getHourlyData(lat, long) },
+        response = { lat, long, unit -> weatherApi.getHourlyData(lat, long, unit) },
         transform = { it.hourly.weatherCode },
         defaultValue = emptyList<Int>(),
         temperatureUnit = temperatureUnit,
     )
 
     override fun fetchHumidity(): Flow<List<Int>> = handleResponseNew(
-        response = { lat, long, unit -> weatherApi.getHourlyData(lat, long) },
+        response = { lat, long, unit -> weatherApi.getHourlyData(lat, long, unit) },
         transform = { it.hourly.relativeHumidity },
         defaultValue = emptyList<Int>(),
         temperatureUnit = temperatureUnit,

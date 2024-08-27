@@ -25,6 +25,7 @@ interface OpenMeteo {
     suspend fun getWeeklyWeather(
         @Query(LATITUDE) latitude: Double,
         @Query(LONGITUDE) longitude: Double,
+        @Query("temperature_unit") temperatureUnit: String,
         @Query(TIMEZONE) timezone: String = "auto",
         @Query(DAILY) daily: String = "weather_code,temperature_2m_max,temperature_2m_min",
     ): Response<WeeklyWeather>
@@ -33,6 +34,7 @@ interface OpenMeteo {
     suspend fun getHourlyData(
         @Query(LATITUDE) latitude: Double,
         @Query(LONGITUDE) longitude: Double,
+        @Query("temperature_unit") temperatureUnit: String,
         @Query(HOURLY) hourly: String = "temperature_2m,relative_humidity_2m,weather_code",
         @Query(FORECAST_DAYS) forecastDays: Int = 2,
     ): Response<HourlyWeather>
@@ -41,6 +43,7 @@ interface OpenMeteo {
     suspend fun getCurrentHourData(
         @Query(LATITUDE) latitude: Double,
         @Query(LONGITUDE) longitude: Double,
+        @Query("temperature_unit") temperatureUnit: String,
         @Query(HOURLY) hourly: String = "cloud_cover,visibility,uv_index",
         @Query(FORECAST_DAYS) forecastDays: Int = 1,
         @Query(FORECAST_HOURS) forecastHours: Int = 1,
