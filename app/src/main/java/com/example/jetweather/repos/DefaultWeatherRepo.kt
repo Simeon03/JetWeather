@@ -15,16 +15,19 @@ import java.time.LocalDateTime
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 
-abstract class BaseWeatherRepository(locationProvider: LocationProvider) {
+class DefaultWeatherRepo(
+    locationProvider: LocationProvider,
+    userPreferencesRepository: UserPreferencesRepository,
+) {
 
     private val locationFlow: StateFlow<CurrentLocationData> = locationProvider.locationFlow
+    private val temperatureUnit: Flow<String> = userPreferencesRepository.temperatureUnit
 
     @OptIn(ExperimentalCoroutinesApi::class)
     fun <T, R> handleResponse(
         response: suspend (lat: Double, long: Double, unit: String) -> Response<T>,
         transform: (T) -> R,
         defaultValue: R,
-        temperatureUnit: Flow<String>
     ): Flow<R> {
         return locationFlow.flatMapLatest { (lat, long) ->
             temperatureUnit.flatMapLatest { unit ->

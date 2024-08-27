@@ -11,6 +11,7 @@ import com.example.jetweather.model.LocationProvider
 import com.example.jetweather.model.OpenMeteo
 import com.example.jetweather.model.RetrofitInstance
 import com.example.jetweather.model.TomTom
+import com.example.jetweather.repos.DefaultWeatherRepo
 import com.example.jetweather.repos.UserPreferencesRepository
 import com.example.jetweather.repos.sub.DefaultCurrentHourWeatherRepository
 import com.example.jetweather.repos.sub.DefaultCurrentWeatherRepository
@@ -43,11 +44,12 @@ class MainActivity : ComponentActivity() {
         val currentLocationViewModel = CurrentLocationViewModel(locationRepo)
         val locationProvider = LocationProvider(currentLocationViewModel)
         val userPreferencesRepository = UserPreferencesRepository(this)
+        val defaultWeatherRepo = DefaultWeatherRepo(locationProvider, userPreferencesRepository)
 
-        val currentWeatherRepository = DefaultCurrentWeatherRepository(weatherApi, locationApi, locationProvider, userPreferencesRepository)
-        val weeklyWeatherRepository = DefaultWeeklyWeatherRepository(weatherApi, locationProvider, userPreferencesRepository)
-        val hourlyWeatherRepository = DefaultHourlyWeatherRepository(weatherApi, locationProvider, userPreferencesRepository)
-        val currentHourWeatherRepository = DefaultCurrentHourWeatherRepository(weatherApi, locationProvider, userPreferencesRepository)
+        val currentWeatherRepository = DefaultCurrentWeatherRepository(weatherApi, locationApi, defaultWeatherRepo)
+        val weeklyWeatherRepository = DefaultWeeklyWeatherRepository(weatherApi, defaultWeatherRepo)
+        val hourlyWeatherRepository = DefaultHourlyWeatherRepository(weatherApi, defaultWeatherRepo)
+        val currentHourWeatherRepository = DefaultCurrentHourWeatherRepository(weatherApi, defaultWeatherRepo)
 
         val currentViewModel = CurrentWeatherViewModel(currentWeatherRepository, userPreferencesRepository)
         val weeklyWeatherViewModel = WeeklyWeatherViewModel(weeklyWeatherRepository)

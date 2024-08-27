@@ -1,10 +1,8 @@
 package com.example.jetweather.repos.sub
 
-import com.example.jetweather.model.LocationProvider
 import com.example.jetweather.model.OpenMeteo
 import com.example.jetweather.model.TomTom
-import com.example.jetweather.repos.BaseWeatherRepository
-import com.example.jetweather.repos.UserPreferencesRepository
+import com.example.jetweather.repos.DefaultWeatherRepo
 import kotlinx.coroutines.flow.Flow
 
 interface CurrentWeatherRepo {
@@ -30,66 +28,55 @@ interface CurrentWeatherRepo {
 class DefaultCurrentWeatherRepository(
     private val weatherApi: OpenMeteo,
     private val geolocationApi: TomTom,
-    locationProvider: LocationProvider,
-    userPreferencesRepository: UserPreferencesRepository,
-): BaseWeatherRepository(locationProvider), CurrentWeatherRepo {
+    private val weatherRepo: DefaultWeatherRepo,
+): CurrentWeatherRepo {
 
-    private val temperatureUnit: Flow<String> = userPreferencesRepository.temperatureUnit
-
-    override fun fetchTemp(): Flow<Float> = handleResponse(
+    override fun fetchTemp(): Flow<Float> = weatherRepo.handleResponse(
         response = { lat, long, unit -> weatherApi.getCurrentWeather(lat, long, unit) },
         transform = { weatherData -> weatherData.currentWeatherStatus.temperature },
         defaultValue = 0f,
-        temperatureUnit = temperatureUnit,
     )
 
-    override fun fetchApparentTemp(): Flow<Float> = handleResponse(
+    override fun fetchApparentTemp(): Flow<Float> = weatherRepo.handleResponse(
         response = { lat, long, unit -> weatherApi.getCurrentWeather(lat, long, unit) },
         transform = { weatherData -> weatherData.currentWeatherStatus.apparentTemperature },
         defaultValue = 0f,
-        temperatureUnit = temperatureUnit,
     )
 
-    override fun fetchWeatherStatus(): Flow<Int?> = handleResponse(
+    override fun fetchWeatherStatus(): Flow<Int?> = weatherRepo.handleResponse(
         response = { lat, long, unit -> weatherApi.getCurrentWeather(lat, long, unit) },
         transform = { weatherData -> weatherData.currentWeatherStatus.weatherCode },
         defaultValue = 0,
-        temperatureUnit = temperatureUnit,
     )
 
-    override fun fetchMinTemp(): Flow<Float> = handleResponse(
+    override fun fetchMinTemp(): Flow<Float> = weatherRepo.handleResponse(
         response = { lat, long, unit -> weatherApi.getCurrentWeather(lat, long, unit) },
         transform = { weatherData -> weatherData.currentWeather.minTemperature[0] },
         defaultValue = 0f,
-        temperatureUnit = temperatureUnit,
     )
 
-    override fun fetchMaxTemp(): Flow<Float> = handleResponse(
+    override fun fetchMaxTemp(): Flow<Float> = weatherRepo.handleResponse(
         response = { lat, long, unit -> weatherApi.getCurrentWeather(lat, long, unit) },
         transform = { weatherData -> weatherData.currentWeather.maxTemperature[0] },
         defaultValue = 0f,
-        temperatureUnit = temperatureUnit,
     )
 
-    override fun fetchSunsetTime(): Flow<String> = handleResponse(
+    override fun fetchSunsetTime(): Flow<String> = weatherRepo.handleResponse(
         response = { lat, long, unit -> weatherApi.getCurrentWeather(lat, long, unit) },
         transform = { weatherData -> weatherData.currentWeather.sunsetTime[0] },
         defaultValue = "",
-        temperatureUnit = temperatureUnit,
     )
 
-    override fun fetchSunriseTime(): Flow<String> = handleResponse(
+    override fun fetchSunriseTime(): Flow<String> = weatherRepo.handleResponse(
         response = { lat, long, unit -> weatherApi.getCurrentWeather(lat, long, unit) },
         transform = { weatherData -> weatherData.currentWeather.sunriseTime[0] },
         defaultValue = "",
-        temperatureUnit = temperatureUnit,
     )
 
-    override fun fetchCurrentCity(): Flow<String> = handleResponse(
+    override fun fetchCurrentCity(): Flow<String> = weatherRepo.handleResponse(
         response = { lat, long, _ -> geolocationApi.getLocation(lat, long) },
         transform = { locationData -> locationData.addresses[0].address.city },
         defaultValue = "",
-        temperatureUnit = temperatureUnit,
     )
 }
 
