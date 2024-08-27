@@ -35,5 +35,4 @@ fun SimpleWeatherCardLayout(
             color = primaryP10,
         )
     }
-
 }
