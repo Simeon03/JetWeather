@@ -1,5 +1,6 @@
 package com.example.jetweather.repos.sub
 
+import android.content.Context
 import com.example.jetweather.model.OpenMeteo
 import com.example.jetweather.repos.DefaultWeatherRepo
 import kotlinx.coroutines.flow.Flow
@@ -17,6 +18,7 @@ interface HourlyWeatherRepo {
 }
 
 class DefaultHourlyWeatherRepository(
+    private val context: Context,
     private val weatherApi: OpenMeteo,
     private val weatherRepo: DefaultWeatherRepo,
 ): HourlyWeatherRepo {
@@ -24,7 +26,7 @@ class DefaultHourlyWeatherRepository(
     override fun fetchTemp(): Flow<List<Float>> = weatherRepo.handleResponse(
         response = { lat, long, unit -> weatherApi.getHourlyData(lat, long, unit) },
         transform = { hourlyData ->
-            val pos = weatherRepo.getNextDayHours(hourlyData)
+            val pos = weatherRepo.getNextDayHours(context, hourlyData)
             val removedBeforeTimes = hourlyData.hourly.temperature.subList(pos, pos + 24)
             removedBeforeTimes.map { it }
         },
@@ -34,8 +36,8 @@ class DefaultHourlyWeatherRepository(
     override fun fetchTime(): Flow<List<String>> = weatherRepo.handleResponse(
         response = { lat, long, unit -> weatherApi.getHourlyData(lat, long, unit) },
         transform = { hourlyData ->
-            val pos = weatherRepo.getNextDayHours(hourlyData)
-            weatherRepo.formattedHoursTime(hourlyData).subList(pos, pos + 24)
+            val pos = weatherRepo.getNextDayHours(context, hourlyData)
+            weatherRepo.formattedHoursTime(context, hourlyData).subList(pos, pos + 24)
         },
         defaultValue = emptyList<String>(),
     )
