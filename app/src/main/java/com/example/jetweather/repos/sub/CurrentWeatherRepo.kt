@@ -36,56 +36,56 @@ class DefaultCurrentWeatherRepository(
 
     private val temperatureUnit: Flow<String> = userPreferencesRepository.temperatureUnit
 
-    override fun fetchTemp(): Flow<Float> = handleResponseNew(
+    override fun fetchTemp(): Flow<Float> = handleResponse(
         response = { lat, long, unit -> weatherApi.getCurrentWeather(lat, long, unit) },
         transform = { weatherData -> weatherData.currentWeatherStatus.temperature },
         defaultValue = 0f,
         temperatureUnit = temperatureUnit,
     )
 
-    override fun fetchApparentTemp(): Flow<Float> = handleResponseNew(
+    override fun fetchApparentTemp(): Flow<Float> = handleResponse(
         response = { lat, long, unit -> weatherApi.getCurrentWeather(lat, long, unit) },
         transform = { weatherData -> weatherData.currentWeatherStatus.apparentTemperature },
         defaultValue = 0f,
         temperatureUnit = temperatureUnit,
     )
 
-    override fun fetchWeatherStatus(): Flow<Int?> = handleResponseNew(
+    override fun fetchWeatherStatus(): Flow<Int?> = handleResponse(
         response = { lat, long, unit -> weatherApi.getCurrentWeather(lat, long, unit) },
         transform = { weatherData -> weatherData.currentWeatherStatus.weatherCode },
         defaultValue = 0,
         temperatureUnit = temperatureUnit,
     )
 
-    override fun fetchMinTemp(): Flow<Float> = handleResponseNew(
+    override fun fetchMinTemp(): Flow<Float> = handleResponse(
         response = { lat, long, unit -> weatherApi.getCurrentWeather(lat, long, unit) },
         transform = { weatherData -> weatherData.currentWeather.minTemperature[0] },
         defaultValue = 0f,
         temperatureUnit = temperatureUnit,
     )
 
-    override fun fetchMaxTemp(): Flow<Float> = handleResponseNew(
+    override fun fetchMaxTemp(): Flow<Float> = handleResponse(
         response = { lat, long, unit -> weatherApi.getCurrentWeather(lat, long, unit) },
         transform = { weatherData -> weatherData.currentWeather.maxTemperature[0] },
         defaultValue = 0f,
         temperatureUnit = temperatureUnit,
     )
 
-    override fun fetchSunsetTime(): Flow<String> = handleResponseNew(
+    override fun fetchSunsetTime(): Flow<String> = handleResponse(
         response = { lat, long, unit -> weatherApi.getCurrentWeather(lat, long, unit) },
         transform = { weatherData -> weatherData.currentWeather.sunsetTime[0] },
         defaultValue = "",
         temperatureUnit = temperatureUnit,
     )
 
-    override fun fetchSunriseTime(): Flow<String> = handleResponseNew(
+    override fun fetchSunriseTime(): Flow<String> = handleResponse(
         response = { lat, long, unit -> weatherApi.getCurrentWeather(lat, long, unit) },
         transform = { weatherData -> weatherData.currentWeather.sunriseTime[0] },
         defaultValue = "",
         temperatureUnit = temperatureUnit,
     )
 
-    override fun fetchCurrentCity(): Flow<String> = handleResponseNew(
+    override fun fetchCurrentCity(): Flow<String> = handleResponse(
         response = { lat, long, _ -> geolocationApi.getLocation(lat, long) },
         transform = { locationData -> locationData.addresses[0].address.city },
         defaultValue = "",

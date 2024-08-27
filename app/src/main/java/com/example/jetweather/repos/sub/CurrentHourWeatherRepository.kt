@@ -24,21 +24,21 @@ class DefaultCurrentHourWeatherRepository(
 
     private val temperatureUnit: Flow<String> = userPreferencesRepository.temperatureUnit
 
-    override fun fetchCloudCover(): Flow<Int> = handleResponseNew(
+    override fun fetchCloudCover(): Flow<Int> = handleResponse(
         response = { lat, long, unit -> weatherApi.getCurrentHourData(lat, long, unit) },
         transform = { weatherData -> weatherData.data.cloudCover[0] },
         defaultValue = 0,
         temperatureUnit = temperatureUnit,
     )
 
-    override fun fetchVisibility(): Flow<Int> = handleResponseNew(
+    override fun fetchVisibility(): Flow<Int> = handleResponse(
         response = { lat, long, unit -> weatherApi.getCurrentHourData(lat, long, unit) },
         transform = { weatherData -> weatherData.data.visibility[0] },
         defaultValue = 0,
         temperatureUnit = temperatureUnit,
     )
 
-    override fun fetchUvIndex(): Flow<Float> = handleResponseNew(
+    override fun fetchUvIndex(): Flow<Float> = handleResponse(
         response = { lat, long, unit -> weatherApi.getCurrentHourData(lat, long, unit) },
         transform = { weatherData -> weatherData.data.uvIndex[0] },
         defaultValue = 0f,

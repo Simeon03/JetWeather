@@ -4,6 +4,7 @@ import com.example.jetweather.data.weather.HourlyWeather
 import com.example.jetweather.model.LocationProvider
 import com.example.jetweather.weatherdata.CurrentLocationData
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.flatMapLatest
@@ -18,7 +19,8 @@ abstract class BaseWeatherRepository(locationProvider: LocationProvider) {
 
     private val locationFlow: StateFlow<CurrentLocationData> = locationProvider.locationFlow
 
-    fun <T, R> handleResponseNew(
+    @OptIn(ExperimentalCoroutinesApi::class)
+    fun <T, R> handleResponse(
         response: suspend (lat: Double, long: Double, unit: String) -> Response<T>,
         transform: (T) -> R,
         defaultValue: R,
