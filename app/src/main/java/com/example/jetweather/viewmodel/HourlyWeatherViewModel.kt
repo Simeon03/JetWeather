@@ -28,12 +28,14 @@ class HourlyWeatherViewModel(
                     val hourlyTime = fetchTime().first()
                     val hourlyWeatherStatus = fetchWeatherStatus().first()
                     val hourlyHumidity = fetchHumidity().first()
+                    val hourlyPrecipitationProbability = fetchPrecipitationProbability().first()
 
                     hourlyWeatherData.value = HourlyWeatherData(
                         temperature = hourlyTemperature,
                         time = hourlyTime,
                         weatherStatus = hourlyWeatherStatus,
                         humidity = hourlyHumidity,
+                        hourlyPrecipitationProbability = hourlyPrecipitationProbability
                     )
                 }
             } finally {

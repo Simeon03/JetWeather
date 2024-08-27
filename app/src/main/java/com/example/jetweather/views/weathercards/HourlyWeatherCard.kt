@@ -16,7 +16,7 @@ fun HourlyWeatherCard(viewModel: HourlyWeatherViewModel) {
             hours = viewModel.time,
             temps = viewModel.temperature,
             weatherStatus = viewModel.weatherStatus,
-            relativeHumidity = viewModel.humidity
+            precipitationProbability = viewModel.hourlyPrecipitationProbability
         )
     }
 }

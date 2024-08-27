@@ -15,6 +15,8 @@ interface HourlyWeatherRepo {
 
     fun fetchHumidity(): Flow<List<Int>>
 
+    fun fetchPrecipitationProbability(): Flow<List<Int>>
+
 }
 
 class DefaultHourlyWeatherRepository(
@@ -51,6 +53,12 @@ class DefaultHourlyWeatherRepository(
     override fun fetchHumidity(): Flow<List<Int>> = weatherRepo.handleResponse(
         response = { lat, long, unit -> weatherApi.getHourlyData(lat, long, unit) },
         transform = { it.hourly.relativeHumidity },
+        defaultValue = emptyList<Int>(),
+    )
+
+    override fun fetchPrecipitationProbability(): Flow<List<Int>> = weatherRepo.handleResponse(
+        response = { lat, long, unit -> weatherApi.getHourlyData(lat, long, unit) },
+        transform = { it.hourly.precipitationProbability },
         defaultValue = emptyList<Int>(),
     )
 }

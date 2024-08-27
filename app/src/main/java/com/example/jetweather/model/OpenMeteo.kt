@@ -35,7 +35,7 @@ interface OpenMeteo {
         @Query(LATITUDE) latitude: Double,
         @Query(LONGITUDE) longitude: Double,
         @Query(TEMP_UNIT) temperatureUnit: String,
-        @Query(HOURLY) hourly: String = "temperature_2m,relative_humidity_2m,weather_code",
+        @Query(HOURLY) hourly: String = "temperature_2m,relative_humidity_2m,weather_code,precipitation_probability",
         @Query(FORECAST_DAYS) forecastDays: Int = 2,
     ): Response<HourlyWeather>
 

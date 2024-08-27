@@ -9,7 +9,7 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.jetweather.views.icon.WeatherIcon
-import com.example.jetweather.views.text.HourlyRelativeHumidity
+import com.example.jetweather.views.text.HourlyPrecipitationProbability
 import com.example.jetweather.views.text.HourlyWeatherHour
 import com.example.jetweather.views.text.HourlyWeatherTemp
 
@@ -31,7 +31,9 @@ fun HourlyWeather(
             size = 32.dp,
             modifier = modifier
         )
-        HourlyRelativeHumidity(text = relativeHumidity)
+        if (relativeHumidity.replace("%", "").toInt() > 9) {
+            HourlyPrecipitationProbability(text = relativeHumidity)
+        }
         HourlyWeatherTemp(text = temps)
     }
 }
@@ -43,6 +45,6 @@ fun HourlyWeatherPreview() {
         hours = "12:00",
         temps = "25°",
         weatherStatus = 3,
-        relativeHumidity = "50%",
+        relativeHumidity = "0%",
     )
 }

@@ -26,4 +26,6 @@ object Data {
 
     const val HOURLY_UNITS = "hourly_units"
     const val HOURLY = "hourly"
+
+    const val PRECIPITATION_PROBABILITY = "precipitation_probability"
 }

@@ -15,7 +15,7 @@ fun HourlyWeatherInfo(
     hours: List<String>,
     temps: List<Float>,
     weatherStatus: List<Int>,
-    relativeHumidity: List<Int>
+    precipitationProbability: List<Int>
 ) {
     LazyRow(
         modifier = Modifier
@@ -28,7 +28,7 @@ fun HourlyWeatherInfo(
                 hours = hours[index],
                 temps = temps[index].roundTemp(),
                 weatherStatus = weatherStatus[index],
-                relativeHumidity = relativeHumidity[index].roundPercent()
+                relativeHumidity = precipitationProbability[index].roundPercent()
             )
         }
     }

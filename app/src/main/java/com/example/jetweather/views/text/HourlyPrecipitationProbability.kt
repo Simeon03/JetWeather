@@ -7,7 +7,7 @@ import com.example.jetweather.ui.theme.Typography
 import com.example.jetweather.ui.theme.primaryP10
 
 @Composable
-fun HourlyRelativeHumidity(text: String) {
+fun HourlyPrecipitationProbability(text: String) {
     Text(
         text = text,
         style = Typography.labelLarge,
