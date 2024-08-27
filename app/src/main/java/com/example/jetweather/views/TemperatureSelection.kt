@@ -23,11 +23,17 @@ import androidx.compose.ui.unit.dp
 import com.example.jetweather.ui.theme.primaryP10
 import com.example.jetweather.ui.theme.primaryP60
 import com.example.jetweather.viewmodel.CurrentWeatherViewModel
+import com.example.jetweather.viewmodel.HourlyWeatherViewModel
+import com.example.jetweather.viewmodel.WeeklyWeatherViewModel
 
 @Composable
-fun TemperatureSelection(viewModel: CurrentWeatherViewModel) {
+fun TemperatureSelection(
+    current: CurrentWeatherViewModel,
+    hourly: HourlyWeatherViewModel,
+    weekly: WeeklyWeatherViewModel,
+) {
     val radioOptions = listOf("celsius", "fahrenheit")
-    val selectedOption by viewModel.temperatureUnit.collectAsState(initial = radioOptions[0])
+    val selectedOption by current.temperatureUnit.collectAsState(initial = radioOptions[0])
 
     Column(Modifier.selectableGroup()) {
         radioOptions.forEach { text ->
@@ -37,7 +43,12 @@ fun TemperatureSelection(viewModel: CurrentWeatherViewModel) {
                     .height(56.dp)
                     .selectable(
                         selected = (text == selectedOption),
-                        onClick = { viewModel.saveTemperatureUnit(text) }, // Update the ViewModel when selected
+                        onClick = {
+                            current.saveTemperatureUnit(text)
+                            current.fetchWeatherData()
+                            hourly.fetchWeatherData()
+                            weekly.fetchWeatherData()
+                        },
                         role = Role.RadioButton
                     )
                     .padding(horizontal = 16.dp),

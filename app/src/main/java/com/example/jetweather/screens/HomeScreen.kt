@@ -12,8 +12,8 @@ import com.example.jetweather.viewmodel.WeeklyWeatherViewModel
 @Composable
 fun HomeScreen(
     current: CurrentWeatherViewModel,
-    weeklyWeatherViewModel: WeeklyWeatherViewModel,
-    hourlyWeatherViewModel: HourlyWeatherViewModel,
+    weekly: WeeklyWeatherViewModel,
+    hourly: HourlyWeatherViewModel,
     currentHour: CurrentHourWeatherViewModel,
 ) {
     val navController = rememberNavController()
@@ -23,13 +23,13 @@ fun HomeScreen(
             WeatherScreen(
                 navController = navController,
                 current = current,
-                weekly = weeklyWeatherViewModel,
-                hourly = hourlyWeatherViewModel,
+                weekly = weekly,
+                hourly = hourly,
                 currentHour = currentHour
             )
         }
         composable("settings") {
-            SettingsScreen(navController = navController, viewModel = current)
+            SettingsScreen(navController = navController, current = current, hourly = hourly, weekly = weekly)
         }
     }
     

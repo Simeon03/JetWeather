@@ -43,6 +43,7 @@ class MainActivity : ComponentActivity() {
 
         val currentLocationViewModel = CurrentLocationViewModel(locationRepo)
         val locationProvider = LocationProvider(currentLocationViewModel)
+
         val userPreferencesRepository = UserPreferencesRepository(this)
         val defaultWeatherRepo = DefaultWeatherRepo(locationProvider, userPreferencesRepository)
 
@@ -60,8 +61,8 @@ class MainActivity : ComponentActivity() {
             JetWeatherTheme {
                 HomeScreen(
                     current = currentViewModel,
-                    weeklyWeatherViewModel = weeklyWeatherViewModel,
-                    hourlyWeatherViewModel = hourlyWeatherViewModel,
+                    weekly = weeklyWeatherViewModel,
+                    hourly = hourlyWeatherViewModel,
                     currentHour = currentWeatherViewModel,
                 )
             }
@@ -80,8 +81,8 @@ fun GreetingPreview() {
     JetWeatherTheme {
         HomeScreen(
             current = viewModel,
-            weeklyWeatherViewModel = weeklyWeatherViewModel,
-            hourlyWeatherViewModel = hourlyWeatherViewModel,
+            weekly = weeklyWeatherViewModel,
+            hourly = hourlyWeatherViewModel,
             currentHour = currentHourWeatherViewModel,
         )
     }
