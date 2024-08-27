@@ -5,6 +5,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Devices
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.jetweather.views.icon.WeatherIcon
 import com.example.jetweather.views.text.HourlyRelativeHumidity
@@ -32,4 +34,15 @@ fun HourlyWeather(
         HourlyRelativeHumidity(text = relativeHumidity)
         HourlyWeatherTemp(text = temps)
     }
+}
+
+@Preview(device = Devices.PIXEL_4_XL, showBackground = false)
+@Composable
+fun HourlyWeatherPreview() {
+    HourlyWeather(
+        hours = "12:00",
+        temps = "25°",
+        weatherStatus = 3,
+        relativeHumidity = "50%",
+    )
 }

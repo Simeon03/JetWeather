@@ -9,7 +9,8 @@ import com.example.jetweather.ui.theme.primaryP10
 fun HourlyWeatherHour(text: String) {
     Text(
         text = text,
-        style = Typography.titleSmall,
+        style = Typography.bodyMedium,
+        fontWeight = Typography.titleSmall.fontWeight,
         color = primaryP10
     )
 }
