@@ -1,8 +1,10 @@
-package com.example.jetweather.views.text
+package com.example.jetweather.views.layout
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
+import com.example.jetweather.views.text.DaylightLabel
+import com.example.jetweather.views.text.DaylightTime
 
 @Composable
 fun DaylightLabelTime(
