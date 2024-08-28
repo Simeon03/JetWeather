@@ -12,7 +12,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.jetweather.R
 import com.example.jetweather.helpers.DataFormatter.getUvIndexStatus
-import com.example.jetweather.ui.theme.Typography
+import com.example.jetweather.ui.theme.DefaultWeatherTypography
 import com.example.jetweather.ui.theme.primaryP0
 import com.example.jetweather.ui.theme.primaryP10
 import com.example.jetweather.ui.theme.primaryP20
@@ -65,7 +65,7 @@ fun UvIndexInfo(
     Column(
         verticalArrangement = Arrangement.spacedBy(4.dp),
     ) {
-        Text(text = title, color = Color.White, style = Typography.labelLarge)
-        Text(text = description, color = Color.Gray, style = Typography.bodyMedium)
+        Text(text = title, color = Color.White, style = DefaultWeatherTypography.normalBold)
+        Text(text = description, color = Color.Gray, style = DefaultWeatherTypography.small)
     }
 }

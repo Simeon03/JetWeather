@@ -4,14 +4,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
-import com.example.jetweather.ui.theme.Typography
+import com.example.jetweather.ui.theme.DefaultWeatherTypography
 
 @Composable
 fun CurrentLocation(text: String) {
     Text(
         text = text,
         textAlign = TextAlign.Center,
-        style = Typography.headlineLarge,
-        color = Color.White
+        style = DefaultWeatherTypography.large,
     )
 }

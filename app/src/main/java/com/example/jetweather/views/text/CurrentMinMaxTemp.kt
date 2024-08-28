@@ -7,7 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.example.jetweather.ui.theme.Typography
+import com.example.jetweather.ui.theme.DefaultWeatherTypography
 
 @Composable
 fun CurrentMinMaxTemp(minTemp: String, maxTemp: String) {
@@ -16,15 +16,13 @@ fun CurrentMinMaxTemp(minTemp: String, maxTemp: String) {
     ) {
         Text(
             text = minTemp,
-            style = Typography.headlineSmall,
-            fontWeight = FontWeight.Bold,
+            style = DefaultWeatherTypography.largeBold,
             color = Color.White
         )
 
         Text(
             text = maxTemp,
-            style = Typography.headlineSmall,
-            fontWeight = FontWeight.Bold,
+            style = DefaultWeatherTypography.largeBold,
             color = Color.White
         )
     }
