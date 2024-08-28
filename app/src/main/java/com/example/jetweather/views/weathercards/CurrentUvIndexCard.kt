@@ -63,9 +63,7 @@ fun UvIndexInfo(
     title: String,
     description: String,
 ) {
-    Column(
-        verticalArrangement = Arrangement.spacedBy(4.dp),
-    ) {
+    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
         Text(text = title, color = Color.White, style = Typography.bodyMedium, fontWeight = FontWeight.Bold)
         Text(text = description, color = Color.Gray, style = Typography.labelMedium)
     }

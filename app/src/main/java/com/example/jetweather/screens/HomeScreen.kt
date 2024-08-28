@@ -20,17 +20,21 @@ fun HomeScreen(
     
     NavHost(navController = navController, startDestination = "weather") {
         composable("weather") {
-            WeatherScreen(
+            WeatherRefreshScreen(
                 navController = navController,
                 current = current,
                 weekly = weekly,
                 hourly = hourly,
-                currentHour = currentHour
+                currentHour = currentHour,
             )
         }
         composable("settings") {
-            SettingsScreen(navController = navController, current = current, hourly = hourly, weekly = weekly)
+            SettingsScreen(
+                navController = navController,
+                current = current,
+                hourly = hourly,
+                weekly = weekly,
+            )
         }
     }
-    
 }

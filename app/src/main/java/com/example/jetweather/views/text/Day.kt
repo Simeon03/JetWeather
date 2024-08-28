@@ -15,8 +15,8 @@ fun Day(
     Text(
         text = text,
         modifier = modifier,
-        style = Typography.bodyMedium,
-        textAlign = TextAlign.Start,
         color = MaterialTheme.colorScheme.primary,
+        textAlign = TextAlign.Start,
+        style = Typography.bodyMedium,
     )
 }
