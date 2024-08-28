@@ -6,8 +6,8 @@ import com.example.jetweather.R
 import com.example.jetweather.viewmodel.CurrentWeatherViewModel
 import com.example.jetweather.viewmodel.HourlyWeatherViewModel
 import com.example.jetweather.viewmodel.WeeklyWeatherViewModel
-import com.example.jetweather.views.TemperatureSelection
-import com.example.jetweather.views.ThemeSelection
+import com.example.jetweather.views.selections.TemperatureSelection
+import com.example.jetweather.views.selections.ThemeSelection
 import com.example.jetweather.views.text.CurrentLocation
 
 @Composable

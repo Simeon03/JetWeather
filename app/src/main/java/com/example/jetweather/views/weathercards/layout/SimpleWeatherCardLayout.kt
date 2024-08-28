@@ -1,4 +1,4 @@
-package com.example.jetweather.views
+package com.example.jetweather.views.weathercards.layout
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.example.jetweather.ui.theme.Typography
+import com.example.jetweather.views.component.CardChip
 
 @Composable
 fun SimpleWeatherCardLayout(

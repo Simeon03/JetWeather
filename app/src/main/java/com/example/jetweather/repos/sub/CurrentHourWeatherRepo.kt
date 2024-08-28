@@ -4,7 +4,7 @@ import com.example.jetweather.model.OpenMeteo
 import com.example.jetweather.repos.DefaultWeatherRepo
 import kotlinx.coroutines.flow.Flow
 
-interface CurrentHourWeatherRepository {
+interface CurrentHourWeatherRepo {
 
     fun fetchCloudCover(): Flow<Int>
 
@@ -14,10 +14,10 @@ interface CurrentHourWeatherRepository {
 
 }
 
-class DefaultCurrentHourWeatherRepository(
+class DefaultCurrentHourWeatherRepo(
     private val weatherApi: OpenMeteo,
     private val weatherRepo: DefaultWeatherRepo,
-): CurrentHourWeatherRepository {
+): CurrentHourWeatherRepo {
 
     override fun fetchCloudCover(): Flow<Int> = weatherRepo.handleResponse(
         response = { lat, long, unit -> weatherApi.getCurrentHourData(lat, long, unit) },

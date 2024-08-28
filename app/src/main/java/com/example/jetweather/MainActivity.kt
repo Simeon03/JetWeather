@@ -16,8 +16,8 @@ import com.example.jetweather.model.OpenMeteo
 import com.example.jetweather.model.RetrofitInstance
 import com.example.jetweather.model.TomTom
 import com.example.jetweather.repos.DefaultWeatherRepo
-import com.example.jetweather.repos.UserPreferencesRepository
-import com.example.jetweather.repos.sub.DefaultCurrentHourWeatherRepository
+import com.example.jetweather.repos.UserPreferencesRepo
+import com.example.jetweather.repos.sub.DefaultCurrentHourWeatherRepo
 import com.example.jetweather.repos.sub.DefaultCurrentWeatherRepository
 import com.example.jetweather.repos.sub.DefaultHourlyWeatherRepository
 import com.example.jetweather.repos.sub.DefaultLocationRepository
@@ -49,22 +49,22 @@ class MainActivity : ComponentActivity() {
         val currentLocationViewModel = CurrentLocationViewModel(locationRepo)
         val locationProvider = LocationProvider(currentLocationViewModel)
 
-        val userPreferencesRepository = UserPreferencesRepository(this)
-        val defaultWeatherRepo = DefaultWeatherRepo(locationProvider, userPreferencesRepository)
+        val userPreferencesRepo = UserPreferencesRepo(this)
+        val defaultWeatherRepo = DefaultWeatherRepo(locationProvider, userPreferencesRepo)
 
         val currentWeatherRepository = DefaultCurrentWeatherRepository(weatherApi, locationApi, defaultWeatherRepo)
         val weeklyWeatherRepository = DefaultWeeklyWeatherRepository(weatherApi, defaultWeatherRepo)
         val hourlyWeatherRepository = DefaultHourlyWeatherRepository(this.applicationContext, weatherApi, defaultWeatherRepo)
-        val currentHourWeatherRepository = DefaultCurrentHourWeatherRepository(weatherApi, defaultWeatherRepo)
+        val currentHourWeatherRepository = DefaultCurrentHourWeatherRepo(weatherApi, defaultWeatherRepo)
 
-        val currentViewModel = CurrentWeatherViewModel(currentWeatherRepository, userPreferencesRepository)
+        val currentViewModel = CurrentWeatherViewModel(currentWeatherRepository, userPreferencesRepo)
         val weeklyWeatherViewModel = WeeklyWeatherViewModel(weeklyWeatherRepository)
         val hourlyWeatherViewModel = HourlyWeatherViewModel(hourlyWeatherRepository)
         val currentWeatherViewModel = CurrentHourWeatherViewModel(currentHourWeatherRepository)
 
         setContent {
             MainScreen(
-                userPreferencesRepository = userPreferencesRepository,
+                userPreferencesRepo = userPreferencesRepo,
                 current = currentViewModel,
                 weekly = weeklyWeatherViewModel,
                 hourly = hourlyWeatherViewModel,
@@ -76,13 +76,13 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun MainScreen(
-    userPreferencesRepository: UserPreferencesRepository,
+    userPreferencesRepo: UserPreferencesRepo,
     current: CurrentWeatherViewModel,
     weekly: WeeklyWeatherViewModel,
     hourly: HourlyWeatherViewModel,
     currentHour: CurrentHourWeatherViewModel
 ) {
-    val themePreference by userPreferencesRepository.themePreference.collectAsState(initial = "system_default")
+    val themePreference by userPreferencesRepo.themePreference.collectAsState(initial = "system_default")
 
     JetWeatherTheme(themePreference = themePreference) {
         HomeScreen(
@@ -97,14 +97,14 @@ fun MainScreen(
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
-    lateinit var userPreferencesRepository: UserPreferencesRepository
+    lateinit var userPreferencesRepo: UserPreferencesRepo
     lateinit var viewModel: CurrentWeatherViewModel
     lateinit var weeklyWeatherViewModel: WeeklyWeatherViewModel
     lateinit var hourlyWeatherViewModel: HourlyWeatherViewModel
     lateinit var currentHourWeatherViewModel: CurrentHourWeatherViewModel
 
     MainScreen(
-        userPreferencesRepository = userPreferencesRepository,
+        userPreferencesRepo = userPreferencesRepo,
         current = viewModel,
         weekly = weeklyWeatherViewModel,
         hourly = hourlyWeatherViewModel,

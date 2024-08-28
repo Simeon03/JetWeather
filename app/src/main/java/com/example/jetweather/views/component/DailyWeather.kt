@@ -1,4 +1,4 @@
-package com.example.jetweather.views.layout
+package com.example.jetweather.views.component
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row

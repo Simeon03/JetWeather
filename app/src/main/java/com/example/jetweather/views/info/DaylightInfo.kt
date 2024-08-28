@@ -1,4 +1,4 @@
-package com.example.jetweather.views.layout
+package com.example.jetweather.views.info
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.jetweather.R
+import com.example.jetweather.views.component.DaylightLabelTime
 
 @Composable
 fun DaylightInfo(

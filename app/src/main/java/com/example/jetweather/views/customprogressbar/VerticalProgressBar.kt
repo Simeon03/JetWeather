@@ -1,4 +1,4 @@
-package com.example.jetweather.views.layout
+package com.example.jetweather.views.customprogressbar
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Arrangement

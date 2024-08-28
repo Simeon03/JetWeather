@@ -8,18 +8,18 @@ import androidx.compose.ui.res.stringResource
 import com.example.jetweather.R
 import com.example.jetweather.helpers.DataFormatter.getVisibilityStatus
 import com.example.jetweather.viewmodel.CurrentHourWeatherViewModel
-import com.example.jetweather.views.SimpleWeatherCardLayout
-import com.example.jetweather.views.WeatherCard
+import com.example.jetweather.views.weathercards.layout.SimpleWeatherCardLayout
+import com.example.jetweather.views.weathercards.layout.WeatherCard
 
 @Composable
 fun CurrentVisibilityCard(viewModel: CurrentHourWeatherViewModel, modifier: Modifier = Modifier) {
-    val currentHourWeather by viewModel.currentHourWeatherData.collectAsState()
+    val currentHour by viewModel.currentHourWeatherData.collectAsState()
 
     WeatherCard(modifier = modifier) {
         SimpleWeatherCardLayout(
             cardChipText = stringResource(id = R.string.visibility),
             cardChipIconId = R.drawable.cloud,
-            valueText = stringResource(currentHourWeather.visibility.getVisibilityStatus()),
+            valueText = stringResource(currentHour.visibility.getVisibilityStatus()),
         )
     }
 }

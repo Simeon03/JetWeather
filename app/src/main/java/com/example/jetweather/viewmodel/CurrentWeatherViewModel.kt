@@ -2,7 +2,7 @@ package com.example.jetweather.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.jetweather.repos.UserPreferencesRepository
+import com.example.jetweather.repos.UserPreferencesRepo
 import com.example.jetweather.repos.sub.DefaultCurrentWeatherRepository
 import com.example.jetweather.weatherdata.CurrentWeatherData
 import kotlinx.coroutines.flow.Flow
@@ -12,11 +12,11 @@ import kotlinx.coroutines.launch
 
 class CurrentWeatherViewModel(
     private val currentWeather: DefaultCurrentWeatherRepository,
-    private val userPreferencesRepository: UserPreferencesRepository,
+    private val userPreferencesRepo: UserPreferencesRepo,
 ) : ViewModel() {
 
-    val temperatureUnit: Flow<String> = userPreferencesRepository.temperatureUnit
-    val themePreference: Flow<String> = userPreferencesRepository.themePreference
+    val temperatureUnit: Flow<String> = userPreferencesRepo.temperatureUnit
+    val themePreference: Flow<String> = userPreferencesRepo.themePreference
     var currentWeatherData = MutableStateFlow(CurrentWeatherData())
     var isLoading = MutableStateFlow(true)
 
@@ -58,13 +58,13 @@ class CurrentWeatherViewModel(
 
     fun saveTemperatureUnit(unit: String) {
         viewModelScope.launch {
-            userPreferencesRepository.saveTemperatureUnit(unit)
+            userPreferencesRepo.saveTemperatureUnit(unit)
         }
     }
 
     fun saveThemePreference(theme: String) {
         viewModelScope.launch {
-            userPreferencesRepository.saveThemePreference(theme)
+            userPreferencesRepo.saveThemePreference(theme)
         }
     }
 }

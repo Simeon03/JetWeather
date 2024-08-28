@@ -19,11 +19,11 @@ import java.time.format.DateTimeFormatter
 
 class DefaultWeatherRepo(
     locationProvider: LocationProvider,
-    userPreferencesRepository: UserPreferencesRepository,
+    userPreferencesRepo: UserPreferencesRepo,
 ) {
 
     private val locationFlow: StateFlow<CurrentLocationData> = locationProvider.locationFlow
-    private val temperatureUnit: Flow<String> = userPreferencesRepository.temperatureUnit
+    private val temperatureUnit: Flow<String> = userPreferencesRepo.temperatureUnit
 
     @OptIn(ExperimentalCoroutinesApi::class)
     fun <T, R> handleResponse(

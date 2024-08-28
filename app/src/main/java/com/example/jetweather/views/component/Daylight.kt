@@ -1,4 +1,4 @@
-package com.example.jetweather.views.layout
+package com.example.jetweather.views.component
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.example.jetweather.views.customprogressbar.DaylightProgressBar
+import com.example.jetweather.views.info.DaylightInfo
 
 @Composable
 fun Daylight(

@@ -20,9 +20,9 @@ import com.example.jetweather.ui.theme.primaryP20
 import com.example.jetweather.ui.theme.primaryP30
 import com.example.jetweather.ui.theme.primaryP40
 import com.example.jetweather.viewmodel.CurrentHourWeatherViewModel
-import com.example.jetweather.views.ClickableWeatherCard
-import com.example.jetweather.views.SimpleWeatherCardLayout
-import com.example.jetweather.views.layout.VerticalProgressBar
+import com.example.jetweather.views.customprogressbar.VerticalProgressBar
+import com.example.jetweather.views.weathercards.layout.ClickableWeatherCard
+import com.example.jetweather.views.weathercards.layout.SimpleWeatherCardLayout
 
 @Composable
 fun CurrentUvIndexCard(viewModel: CurrentHourWeatherViewModel, modifier: Modifier = Modifier) {

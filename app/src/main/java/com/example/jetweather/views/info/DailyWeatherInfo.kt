@@ -1,4 +1,4 @@
-package com.example.jetweather.views.layout
+package com.example.jetweather.views.info
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -10,7 +10,8 @@ import androidx.compose.ui.unit.dp
 import com.example.jetweather.R
 import com.example.jetweather.helpers.DataFormatter.fetchDay
 import com.example.jetweather.helpers.DataFormatter.roundTemp
-import com.example.jetweather.views.CardChip
+import com.example.jetweather.views.component.CardChip
+import com.example.jetweather.views.component.DailyWeather
 
 @Composable
 fun DailyWeatherInfo(

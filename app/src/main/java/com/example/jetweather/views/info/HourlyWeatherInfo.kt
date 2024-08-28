@@ -1,4 +1,4 @@
-package com.example.jetweather.views.layout
+package com.example.jetweather.views.info
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -9,6 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.jetweather.helpers.DataFormatter.roundPercent
 import com.example.jetweather.helpers.DataFormatter.roundTemp
+import com.example.jetweather.views.component.HourlyWeather
 
 @Composable
 fun HourlyWeatherInfo(

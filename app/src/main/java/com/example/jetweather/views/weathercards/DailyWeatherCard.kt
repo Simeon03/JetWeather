@@ -4,19 +4,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import com.example.jetweather.viewmodel.WeeklyWeatherViewModel
-import com.example.jetweather.views.WeatherCard
-import com.example.jetweather.views.layout.DailyWeatherInfo
+import com.example.jetweather.views.info.DailyWeatherInfo
+import com.example.jetweather.views.weathercards.layout.WeatherCard
 
 @Composable
 fun DailyWeatherCard(viewModel: WeeklyWeatherViewModel) {
-    val viewModel by viewModel.weeklyWeatherData.collectAsState()
+    val daily by viewModel.weeklyWeatherData.collectAsState()
 
     WeatherCard {
         DailyWeatherInfo(
-            minTemp = viewModel.minTemp,
-            maxTemp = viewModel.maxTemp,
-            date = viewModel.day,
-            weatherCode = viewModel.weatherStatus,
+            minTemp = daily.minTemp,
+            maxTemp = daily.maxTemp,
+            date = daily.day,
+            weatherCode = daily.weatherStatus,
         )
     }
 }

@@ -2,14 +2,14 @@ package com.example.jetweather.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.jetweather.repos.sub.DefaultCurrentHourWeatherRepository
+import com.example.jetweather.repos.sub.DefaultCurrentHourWeatherRepo
 import com.example.jetweather.weatherdata.CurrentHourWeatherData
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 class CurrentHourWeatherViewModel(
-    private val currentWeather: DefaultCurrentHourWeatherRepository,
+    private val currentWeather: DefaultCurrentHourWeatherRepo,
 ) : ViewModel() {
 
     var currentHourWeatherData = MutableStateFlow(CurrentHourWeatherData())

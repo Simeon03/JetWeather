@@ -1,4 +1,4 @@
-package com.example.jetweather.helpers.views.customprogressbar
+package com.example.jetweather.views.customprogressbar
 
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
