@@ -8,8 +8,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.example.jetweather.ui.theme.DefaultWeatherTypography
+import com.example.jetweather.ui.theme.Typography
 import com.example.jetweather.ui.theme.primaryP10
 
 @Composable
@@ -29,7 +30,8 @@ fun SimpleWeatherCardLayout(
         )
         Text(
             text = valueText,
-            style = DefaultWeatherTypography.largeBold,
+            style = Typography.titleMedium,
+            fontWeight = FontWeight.Bold,
             color = primaryP10,
         )
     }

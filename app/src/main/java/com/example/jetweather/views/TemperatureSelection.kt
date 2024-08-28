@@ -19,7 +19,7 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.capitalize
 import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.unit.dp
-import com.example.jetweather.ui.theme.DefaultWeatherTypography
+import com.example.jetweather.ui.theme.Typography
 import com.example.jetweather.ui.theme.primaryP10
 import com.example.jetweather.ui.theme.primaryP60
 import com.example.jetweather.viewmodel.CurrentWeatherViewModel
@@ -64,7 +64,7 @@ fun TemperatureSelection(
                 )
                 Text(
                     text = text.capitalize(Locale.current),
-                    style = DefaultWeatherTypography.normal,
+                    style = Typography.bodyMedium,
                     color = primaryP10,
                     modifier = Modifier.padding(start = 16.dp)
                 )
