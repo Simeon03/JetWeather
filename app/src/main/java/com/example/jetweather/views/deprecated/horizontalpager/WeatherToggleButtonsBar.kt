@@ -1,4 +1,4 @@
-package com.example.jetweather.views.horizontalpager
+package com.example.jetweather.views.deprecated.horizontalpager
 
 import androidx.compose.animation.core.animateIntOffsetAsState
 import androidx.compose.foundation.ExperimentalFoundationApi

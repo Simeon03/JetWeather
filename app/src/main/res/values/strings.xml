@@ -2,8 +2,8 @@
     <string name="app_name">JetWeather</string>
     <string name="today">Today</string>
     <string name="weekly">Weekly</string>
-    <string name="uv_index">UV Index</string>
-    <string name="visibility">Visibility</string>
+    <string name="uv_index">UV INDEX</string>
+    <string name="visibility">VISIBILITY</string>
 
     <!-- Daylight Info Labels-->
     <string name="sunrise">Sunrise</string>

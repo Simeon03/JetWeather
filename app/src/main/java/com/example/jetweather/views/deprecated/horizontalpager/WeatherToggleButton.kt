@@ -1,4 +1,4 @@
-package com.example.jetweather.views.horizontalpager
+package com.example.jetweather.views.deprecated.horizontalpager
 
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton

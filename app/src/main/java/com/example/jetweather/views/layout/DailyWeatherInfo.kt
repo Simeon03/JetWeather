@@ -25,7 +25,7 @@ fun DailyWeatherInfo(
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         CardChip(
-            text = "Weekly Forecast",
+            text = "WEEKLY FORECAST",
             iconId = R.drawable.cloud,
         )
 

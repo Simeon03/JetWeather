@@ -17,7 +17,6 @@ fun Day(
         text = text,
         modifier = modifier,
         style = Typography.bodyMedium,
-        fontWeight = FontWeight.Bold,
         textAlign = TextAlign.Start,
         color = primaryP10,
     )

@@ -1,4 +1,4 @@
-package com.example.jetweather.views.horizontalpager
+package com.example.jetweather.views.deprecated.horizontalpager
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -22,18 +22,20 @@ fun DailyWeatherCards(
     current: CurrentWeatherViewModel,
     currentHour: CurrentHourWeatherViewModel,
 ) {
-    Column(
-        verticalArrangement = Arrangement.spacedBy(16.dp),
-    ) {
+    Column(verticalArrangement = Arrangement.spacedBy(16.dp),) {
         HourlyWeatherCard(viewModel = hourly)
         DaylightCard(viewModel = current)
+        CurrentCards(viewModel = currentHour)
+    }
+}
 
-        Row(
-            horizontalArrangement = Arrangement.SpaceEvenly,
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            CurrentUvIndexCard(viewModel = currentHour, modifier = Modifier.weight(1f).padding(end = 8.dp))
-            CurrentVisibilityCard(viewModel = currentHour, modifier = Modifier.weight(1f).padding(start = 8.dp))
-        }
+@Composable
+fun CurrentCards(viewModel: CurrentHourWeatherViewModel) {
+    Row(
+        horizontalArrangement = Arrangement.SpaceEvenly,
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        CurrentUvIndexCard(viewModel = viewModel, modifier = Modifier.weight(1f).padding(end = 8.dp))
+        CurrentVisibilityCard(viewModel = viewModel, modifier = Modifier.weight(1f).padding(start = 8.dp))
     }
 }
