@@ -1,12 +1,11 @@
 package com.example.jetweather.views.text
 
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import com.example.jetweather.ui.theme.Typography
-import com.example.jetweather.ui.theme.primaryP10
 
 @Composable
 fun Day(
@@ -18,6 +17,6 @@ fun Day(
         modifier = modifier,
         style = Typography.bodyMedium,
         textAlign = TextAlign.Start,
-        color = primaryP10,
+        color = MaterialTheme.colorScheme.primary,
     )
 }

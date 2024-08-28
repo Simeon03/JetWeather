@@ -16,6 +16,7 @@ class CurrentWeatherViewModel(
 ) : ViewModel() {
 
     val temperatureUnit: Flow<String> = userPreferencesRepository.temperatureUnit
+    val themePreference: Flow<String> = userPreferencesRepository.themePreference
     var currentWeatherData = MutableStateFlow(CurrentWeatherData())
     var isLoading = MutableStateFlow(true)
 
@@ -58,6 +59,12 @@ class CurrentWeatherViewModel(
     fun saveTemperatureUnit(unit: String) {
         viewModelScope.launch {
             userPreferencesRepository.saveTemperatureUnit(unit)
+        }
+    }
+
+    fun saveThemePreference(theme: String) {
+        viewModelScope.launch {
+            userPreferencesRepository.saveThemePreference(theme)
         }
     }
 }

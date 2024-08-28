@@ -15,6 +15,8 @@ fun CustomProgressBar(
     indicatorPos: Float,
     barHeight: Dp,
     subBarGradientColor: List<Color>,
+    indicatorColor: Color,
+    fullBarColor: Color,
 ) {
     Canvas(modifier = Modifier.fillMaxSize()) {
         val barsCornerRadius = 100.dp
@@ -27,6 +29,7 @@ fun CustomProgressBar(
         fullBar(
             barSize = fullBarSize,
             cornerRadius = barsCornerRadius,
+            fullBarColor = fullBarColor,
         )
 
         subBar(
@@ -34,13 +37,14 @@ fun CustomProgressBar(
             offset = subBarOffset,
             size = fullBarSize,
             cornerRadius = barsCornerRadius,
-            gradientColors = subBarGradientColor
+            gradientColors = subBarGradientColor,
         )
 
         indicator(
             indicatorPos,
             indicatorRadius,
-            fullBarSize
+            fullBarSize,
+            indicatorColor,
         )
     }
 }

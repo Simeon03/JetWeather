@@ -8,9 +8,9 @@ import androidx.compose.ui.graphics.drawscope.DrawScope
 fun DrawScope.indicator(
     pos: Float,
     radius: Float,
-    size: Size
+    size: Size,
+    indicatorColor: Color,
 ) {
-    val indicatorColor = Color.White
     val indicatorRadius = radius / 2
     val indicatorPosX = pos * 1
     val indicatorPosY = size.height / 2

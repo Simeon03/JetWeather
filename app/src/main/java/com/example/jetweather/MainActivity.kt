@@ -1,9 +1,13 @@
 package com.example.jetweather
 
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.jetweather.constants.Api.OPEN_METEO_BASE_URL
 import com.example.jetweather.constants.Api.TOM_TOM_BASE_URL
@@ -32,6 +36,7 @@ class MainActivity : ComponentActivity() {
 
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
 
+    @RequiresApi(Build.VERSION_CODES.S)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -58,32 +63,51 @@ class MainActivity : ComponentActivity() {
         val currentWeatherViewModel = CurrentHourWeatherViewModel(currentHourWeatherRepository)
 
         setContent {
-            JetWeatherTheme {
-                HomeScreen(
-                    current = currentViewModel,
-                    weekly = weeklyWeatherViewModel,
-                    hourly = hourlyWeatherViewModel,
-                    currentHour = currentWeatherViewModel,
-                )
-            }
+            MainScreen(
+                userPreferencesRepository = userPreferencesRepository,
+                current = currentViewModel,
+                weekly = weeklyWeatherViewModel,
+                hourly = hourlyWeatherViewModel,
+                currentHour = currentWeatherViewModel
+            )
         }
+    }
+}
+
+@Composable
+fun MainScreen(
+    userPreferencesRepository: UserPreferencesRepository,
+    current: CurrentWeatherViewModel,
+    weekly: WeeklyWeatherViewModel,
+    hourly: HourlyWeatherViewModel,
+    currentHour: CurrentHourWeatherViewModel
+) {
+    val themePreference by userPreferencesRepository.themePreference.collectAsState(initial = "system_default")
+
+    JetWeatherTheme(themePreference = themePreference) {
+        HomeScreen(
+            current = current,
+            weekly = weekly,
+            hourly = hourly,
+            currentHour = currentHour,
+        )
     }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
+    lateinit var userPreferencesRepository: UserPreferencesRepository
     lateinit var viewModel: CurrentWeatherViewModel
     lateinit var weeklyWeatherViewModel: WeeklyWeatherViewModel
     lateinit var hourlyWeatherViewModel: HourlyWeatherViewModel
     lateinit var currentHourWeatherViewModel: CurrentHourWeatherViewModel
 
-    JetWeatherTheme {
-        HomeScreen(
-            current = viewModel,
-            weekly = weeklyWeatherViewModel,
-            hourly = hourlyWeatherViewModel,
-            currentHour = currentHourWeatherViewModel,
-        )
-    }
+    MainScreen(
+        userPreferencesRepository = userPreferencesRepository,
+        current = viewModel,
+        weekly = weeklyWeatherViewModel,
+        hourly = hourlyWeatherViewModel,
+        currentHour = currentHourWeatherViewModel,
+    )
 }

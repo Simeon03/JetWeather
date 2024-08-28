@@ -6,16 +6,17 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.jetweather.R
-import com.example.jetweather.ui.theme.primaryP90
 import com.example.jetweather.viewmodel.CurrentWeatherViewModel
 import com.example.jetweather.viewmodel.HourlyWeatherViewModel
 import com.example.jetweather.viewmodel.WeeklyWeatherViewModel
 import com.example.jetweather.views.TemperatureSelection
+import com.example.jetweather.views.ThemeSelection
 import com.example.jetweather.views.buttons.SettingsNavigationButton
 
 @Composable
@@ -28,7 +29,7 @@ fun SettingsScreen(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(primaryP90)
+            .background(MaterialTheme.colorScheme.primaryContainer)
     ) {
         Column(
             modifier = Modifier.padding(horizontal = 20.dp),
@@ -40,6 +41,7 @@ fun SettingsScreen(
                 onClick = { navController.popBackStack() }
             )
             TemperatureSelection(current, hourly, weekly)
+            ThemeSelection(current, hourly, weekly)
         }
     }
 }

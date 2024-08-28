@@ -1,70 +1,100 @@
 package com.example.jetweather.ui.theme
 
 import android.app.Activity
-import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.dynamicDarkColorScheme
-import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
+    primary = Color.White,
+    primaryContainer = Color.Black,
+    secondaryContainer = Color(0xFF252525),
+    onSecondaryContainer = Color(0xFFBFC8CA),
+    tertiary = Color(0xFF5D5D5D),
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
+    primary = Color.Black,
+    primaryContainer = Color.White,
+    secondaryContainer = Color(0xFFE2E2E2),
+    onSecondaryContainer = Color(0xFF313131),
+    tertiary = Color(0xFFABABAB),
+)
 
-    /* Other default colors to override
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
-    onPrimary = Color.White,
-    onSecondary = Color.White,
-    onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
-    */
+private val DynamicColorScheme = ColorScheme(
+    primary = primaryP10,
+    onPrimary = Color.Unspecified,
+    primaryContainer = primaryP90,
+    onPrimaryContainer = Color.Unspecified,
+    inversePrimary = Color.Unspecified,
+    secondary = primaryP60,
+    onSecondary = Color.Unspecified,
+    secondaryContainer = primaryP80,
+    onSecondaryContainer = primaryP60,
+    tertiary = primaryP70,
+    onTertiary = Color.Unspecified,
+    tertiaryContainer = Color.Unspecified,
+    onTertiaryContainer = Color.Unspecified,
+    background = Color.Unspecified,
+    onBackground = Color.Unspecified,
+    surface = Color.Unspecified,
+    onSurface = Color.Unspecified,
+    surfaceVariant = Color.Unspecified,
+    onSurfaceVariant = Color.Unspecified,
+    surfaceTint = Color.Unspecified,
+    inverseSurface = Color.Unspecified,
+    inverseOnSurface = Color.Unspecified,
+    error = Color.Unspecified,
+    onError = Color.Unspecified,
+    errorContainer = Color.Unspecified,
+    onErrorContainer = Color.Unspecified,
+    outline = Color.Unspecified,
+    outlineVariant = Color.Unspecified,
+    scrim = Color.Unspecified
 )
 
 @Composable
 fun JetWeatherTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
+    themePreference: String,
     content: @Composable () -> Unit
 ) {
-    val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-        }
-
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme
+    val colorScheme = when (themePreference) {
+        "dark" -> DarkColorScheme
+        "light" -> LightColorScheme
+        "dynamic" -> DynamicColorScheme
+        else -> if (isSystemInDarkTheme()) DarkColorScheme else LightColorScheme
     }
-    val view = LocalView.current
-    if (!view.isInEditMode) {
-        SideEffect {
-            val window = (view.context as Activity).window
-            window.statusBarColor = primaryP90.toArgb()
-            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = false
-        }
+
+    val lightStatusBars = when (themePreference) {
+        "dark" -> false
+        "light" -> true
+        "dynamic" -> false
+        else -> !isSystemInDarkTheme()
     }
 
     MaterialTheme(
         colorScheme = colorScheme,
         typography = Typography,
-        content = content
+        content = {
+            val view = LocalView.current
+            val context = LocalContext.current
+            LaunchedEffect(colorScheme.primaryContainer) {
+                val window = (context as? Activity)?.window
+                window?.let {
+                    window.statusBarColor = colorScheme.primaryContainer.toArgb()
+                    WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = lightStatusBars
+                }
+            }
+            content()
+        }
     )
 }

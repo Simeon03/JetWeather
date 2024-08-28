@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarColors
 import androidx.compose.runtime.Composable
@@ -19,7 +20,6 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.jetweather.R
 import com.example.jetweather.ui.theme.primaryP10
-import com.example.jetweather.ui.theme.primaryP90
 import com.example.jetweather.viewmodel.CurrentHourWeatherViewModel
 import com.example.jetweather.viewmodel.CurrentWeatherViewModel
 import com.example.jetweather.viewmodel.HourlyWeatherViewModel
@@ -64,7 +64,7 @@ fun WeatherScreen(
         if (!isRefreshing) {
             Box(modifier = Modifier
                     .fillMaxSize()
-                    .background(primaryP90)
+                    .background(MaterialTheme.colorScheme.primaryContainer)
             ) {
                 Column {
                     WeatherTopAppBar(navController, currentData)
@@ -83,7 +83,7 @@ fun WeatherTopAppBar(navController: NavController, currentData: CurrentWeatherDa
         colors = TopAppBarColors(
             containerColor = Color.Transparent,
             scrolledContainerColor = Color.Unspecified,
-            navigationIconContentColor = primaryP10,
+            navigationIconContentColor = MaterialTheme.colorScheme.primary,
             titleContentColor = primaryP10,
             actionIconContentColor = Color.Unspecified,
         ),
