@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.jetweather.R
 import com.example.jetweather.helpers.DataFormatter.fetchDay
@@ -26,7 +27,7 @@ fun DailyWeatherInfo(
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         CardChip(
-            text = "WEEKLY FORECAST",
+            text = stringResource(id = R.string.weekly_weather_forecast),
             iconId = R.drawable.cloud,
         )
 

@@ -55,4 +55,7 @@
     <string name="weather_code_99">Thunderstorm with Heavy Hail</string>
     <string name="weather_code_other">Unknown</string>
 
+    <string name="weekly_weather_forecast">WEEKLY FORECAST</string>
+    <string name="ok">OK</string>
+
 </resources>

@@ -12,6 +12,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
+import com.example.jetweather.R
 
 @Composable
 fun ClickableWeatherCard(
@@ -34,7 +36,7 @@ fun ClickableWeatherCard(
             onDismissRequest = { showDialog = false },
             title = { Text(text = dialogTitle) },
             text = { dialogContent() },
-            confirmButton = { TextButton(onClick = { showDialog = false }) { Text("OK") } }
+            confirmButton = { TextButton(onClick = { showDialog = false }) { Text(stringResource(R.string.ok)) } }
         )
     }
 }
