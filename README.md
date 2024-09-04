@@ -13,7 +13,7 @@ A simple, user-friendly weather application built for Android using Jetpack Comp
 - [ ] Supports searching for multiple cities. 
 - [ ] Adaptive UI for different screen sizes (mobile & tablet). 
 
-## Screenshots
+## 📸 Screenshots
 **TBD**
 
 ## 🛠 Tech stack
@@ -72,7 +72,7 @@ cd weather-app
 - Select an emulator or physical device. 
 - Click on the Run button in Android Studio, or use Shift + F10.
 
-## API Key Setup:
+## 🔑 API Key Setup:
 
 ### Open Meteo API
 No API key is needed. 
@@ -94,7 +94,7 @@ tomtom_api=API_KEY
 buildConfigField("String", "TOMTOM_API_KEY", "\"$tomtom_api\"")
 ```
 
-## Permissions
+## 👍 Permissions
 You might need to enable internet permissions and grant location permissions:
 
 Add this to your `AndroidManifest.xml` file:
