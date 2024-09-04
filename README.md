@@ -2,7 +2,7 @@
 
 A simple, user-friendly weather application built for Android using Jetpack Compose for UI, Retrofit for network requests, TomTom to fetch the user's current location, and Open Meteo API for real-time weather data.
 
-## Features
+## 📱 Features
 - [x] Real-time weather data
 - [x] Real-time weather updates for any city using the Open Meteo API.
 - [x] Reverse geolocation to fetch the user's current location using TomTom API.
@@ -16,14 +16,14 @@ A simple, user-friendly weather application built for Android using Jetpack Comp
 ## Screenshots
 **TBD**
 
-## Tech stack
+## 🛠 Tech stack
 - **Jetpack Compose**: Used for building the UI in a declarative way. 
 - **Retrofit**: For making network requests to fetch weather data from the Open Meteo API. 
 - **Kotlin Coroutines**: For handling asynchronous operations, ensuring smooth performance. 
 - **ViewModel & Flow**: To handle the UI's data in a lifecycle-aware manner. 
 - **Material 3 Design**: Following Google's Material Design guidelines to create a clean, modern UI.
 
-## API Reference
+## 🌐 API Reference
 
 ### Open Meteo API
 This app uses the Open Meteo API to fetch real-time weather data.
@@ -50,7 +50,7 @@ https://api.tomtom.com/search/2/reverseGeocode/51.6259881,-0.0449538.json?key={A
 - `key={API_KEY}`: Your TomTom API key.
 - `radius=100`: Radius in meters to search for the user's location.
 
-## Setup & Installation
+## ⚙️ Setup & Installation
 
 ### Prerequisites
 - Android Studio Bumblebee (or newer)
