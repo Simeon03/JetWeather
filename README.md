@@ -1,6 +1,6 @@
 # 🌦 JetWeather 
 
-A simple, user-friendly weather application built for Android using Jetpack Compose for UI, Retrofit for network requests, and Open Meteo API for real-time weather data.
+A simple, user-friendly weather application built for Android using Jetpack Compose for UI, Retrofit for network requests, TomTom to fetch the user's current location, and Open Meteo API for real-time weather data.
 
 ## Features
 - [x] Real-time weather data
@@ -14,7 +14,7 @@ A simple, user-friendly weather application built for Android using Jetpack Comp
 - [ ] Adaptive UI for different screen sizes (mobile & tablet). 
 
 ## Screenshots
-TBD
+**TBD**
 
 ## Tech stack
 - **Jetpack Compose**: Used for building the UI in a declarative way. 
@@ -36,7 +36,7 @@ https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=tem
 - `longitude`: Longitude of the city.
 - `hourly=temperature_2m`: Show the hourly temperature.
 
-For more detailed API documentation, visit the (Open Meteo Documentation)[https://open-meteo.com/en/docs].
+For more detailed API documentation, visit the [Open Meteo Documentation](https://open-meteo.com/en/docs).
 
 ### TomTom API
 This app uses the TomTom API for reverse geolocation to fetch the user's current location.
@@ -108,15 +108,15 @@ Add this to your `AndroidManifest.xml` file:
 ## 🧱 Architecture
 The project follows the MVVM (Model-View-ViewModel) architecture pattern, ensuring a clean separation of concerns.
 
-- Model: Handles data operations (e.g., Retrofit for fetching data).
-- ViewModel: Provides data to the UI and handles logic.
-- View: The UI built with Jetpack Compose, observing the ViewModel for changes.
+- **Model**: Handles data operations (e.g., Retrofit for fetching data).
+- **ViewModel**: Provides data to the UI and handles logic.
+- **View**: The UI built with Jetpack Compose, observing the ViewModel for changes.
 
 ## 🧪 Testing
-TBD
+**TBD**
 
 ## 🚀 Continuous Integration
-TBD
+**TBD**
 
 ## 🛠 Dependencies
 - [Jetpack Compose](https://developer.android.com/compose)
@@ -126,7 +126,7 @@ TBD
 - [Material 3 Design Components](https://m3.material.io/)
 
 ## 📝 License
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the **MIT License** - see the LICENSE file for details.
 
 ## 📧 Contact
-TBD
+**TBD**
