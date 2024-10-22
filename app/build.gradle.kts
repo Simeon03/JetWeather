@@ -107,8 +107,11 @@ dependencies {
 
     // Unit Testing
     testImplementation("junit:junit:$junitVersion")
+    testImplementation("org.mockito:mockito-core:4.6.1")
     testImplementation("androidx.arch.core:core-testing:2.2.0")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:4.0.0")
+    androidTestImplementation("org.mockito:mockito-android:4.0.0")
 
     // Android Instrumentation Testing
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
@@ -123,4 +126,6 @@ dependencies {
     // Datastore
     implementation("androidx.datastore:datastore:1.1.1")
     implementation("androidx.datastore:datastore-preferences:1.1.1")
+
+
 }

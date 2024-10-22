@@ -17,6 +17,9 @@
       <SelectionState runConfigName="CurrentUvIndexInfoPreview">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
+      <SelectionState runConfigName="DefaultCurrentHourWeatherRepoTestCase">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
     </selectionStates>
   </component>
 </project>
