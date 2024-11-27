@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -19,7 +20,6 @@ import com.example.jetweather.repos.UserPreferencesRepo
 import com.example.jetweather.repos.sub.DefaultCurrentHourWeatherRepo
 import com.example.jetweather.repos.sub.DefaultCurrentWeatherRepository
 import com.example.jetweather.repos.sub.DefaultHourlyWeatherRepository
-import com.example.jetweather.repos.sub.DefaultLocationRepository
 import com.example.jetweather.repos.sub.DefaultWeeklyWeatherRepository
 import com.example.jetweather.screens.HomeScreen
 import com.example.jetweather.ui.theme.JetWeatherTheme
@@ -28,14 +28,12 @@ import com.example.jetweather.viewmodel.CurrentLocationViewModel
 import com.example.jetweather.viewmodel.CurrentWeatherViewModel
 import com.example.jetweather.viewmodel.HourlyWeatherViewModel
 import com.example.jetweather.viewmodel.WeeklyWeatherViewModel
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
+    private val currentLocationViewModel: CurrentLocationViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,10 +42,6 @@ class MainActivity : ComponentActivity() {
         val weatherApi = RetrofitInstance.get(OPEN_METEO_BASE_URL).create(OpenMeteo::class.java)
         val locationApi = RetrofitInstance.get(TOM_TOM_BASE_URL).create(TomTom::class.java)
 
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
-        val locationRepo = DefaultLocationRepository(this.applicationContext, this, fusedLocationProviderClient)
-
-        val currentLocationViewModel = CurrentLocationViewModel(locationRepo)
         val locationProvider = LocationProvider(currentLocationViewModel)
 
         val userPreferencesRepo = UserPreferencesRepo(this)

@@ -1,16 +1,17 @@
 package com.example.jetweather.repos.sub
 
-import android.app.Activity
 import android.content.Context
 import android.content.pm.PackageManager
 import androidx.core.app.ActivityCompat
 import com.example.jetweather.constants.Main
 import com.google.android.gms.location.FusedLocationProviderClient
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.tasks.await
+import javax.inject.Inject
 
 interface LocationRepo {
 
@@ -18,9 +19,8 @@ interface LocationRepo {
 
 }
 
-class DefaultLocationRepository(
-    private val context: Context,
-    private val activity: Activity,
+class DefaultLocationRepository @Inject constructor(
+    @ApplicationContext private val context: Context,
     private val fusedLocationProviderClient: FusedLocationProviderClient,
 ) : LocationRepo {
 
@@ -40,7 +40,6 @@ class DefaultLocationRepository(
         )
 
         return if (permission != PackageManager.PERMISSION_GRANTED) {
-            requestLocationPermission()
             null
         } else {
             val location = fusedLocationProviderClient.lastLocation.await()
@@ -50,13 +49,5 @@ class DefaultLocationRepository(
                 null
             }
         }
-    }
-
-    private fun requestLocationPermission() {
-        ActivityCompat.requestPermissions(
-            activity,
-            arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),
-            44
-        )
     }
 }
