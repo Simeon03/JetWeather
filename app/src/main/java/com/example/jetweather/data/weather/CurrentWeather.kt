@@ -1,18 +1,18 @@
 package com.example.jetweather.data.weather
 
-import com.example.jetweather.constants.Data.APPARENT_TEMPERATURE
-import com.example.jetweather.constants.Data.CURRENT_UNITS
-import com.example.jetweather.constants.Data.CURRENT_WEATHER_STATUS
-import com.example.jetweather.constants.Data.DAILY_UNITS
-import com.example.jetweather.constants.Data.DAILY_WEATHER
-import com.example.jetweather.constants.Data.LATITUDE
-import com.example.jetweather.constants.Data.LONGITUDE
-import com.example.jetweather.constants.Data.MAX_TEMP_UNIT
-import com.example.jetweather.constants.Data.MIN_TEMP_UNIT
-import com.example.jetweather.constants.Data.TEMPERATURE
-import com.example.jetweather.constants.Data.TIME
-import com.example.jetweather.constants.Data.TIMEZONE
-import com.example.jetweather.constants.Data.WEATHER_CODE
+import com.jetweather.core.constants.Data.APPARENT_TEMPERATURE
+import com.jetweather.core.constants.Data.CURRENT_UNITS
+import com.jetweather.core.constants.Data.CURRENT_WEATHER_STATUS
+import com.jetweather.core.constants.Data.DAILY_UNITS
+import com.jetweather.core.constants.Data.DAILY_WEATHER
+import com.jetweather.core.constants.Data.LATITUDE
+import com.jetweather.core.constants.Data.LONGITUDE
+import com.jetweather.core.constants.Data.MAX_TEMP_UNIT
+import com.jetweather.core.constants.Data.MIN_TEMP_UNIT
+import com.jetweather.core.constants.Data.TEMPERATURE
+import com.jetweather.core.constants.Data.TIME
+import com.jetweather.core.constants.Data.TIMEZONE
+import com.jetweather.core.constants.Data.WEATHER_CODE
 import com.google.gson.annotations.SerializedName
 
 data class CurrentWeather(

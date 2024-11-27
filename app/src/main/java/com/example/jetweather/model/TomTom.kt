@@ -1,8 +1,8 @@
 package com.example.jetweather.model
 
 import com.jetweather.BuildConfig
-import com.example.jetweather.constants.Api.REVERSE_GEOCODE_QUERY
-import com.example.jetweather.constants.Api.TOM_TOM_BASE_URL
+import com.jetweather.core.constants.Api.REVERSE_GEOCODE_QUERY
+import com.jetweather.core.constants.Api.TOM_TOM_BASE_URL
 import com.google.gson.annotations.SerializedName
 import retrofit2.Response
 import retrofit2.http.GET

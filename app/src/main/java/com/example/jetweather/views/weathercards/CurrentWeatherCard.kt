@@ -6,8 +6,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.jetweather.helpers.DataFormatter.formatWeatherCodeToText
-import com.example.jetweather.helpers.DataFormatter.roundTemp
+import com.jetweather.core.helpers.DataFormatter.formatWeatherCodeToText
+import com.jetweather.core.helpers.DataFormatter.roundTemp
 import com.example.jetweather.viewmodel.CurrentWeatherViewModel
 import com.example.jetweather.views.info.CurrentWeatherInfo
 import com.example.jetweather.views.weathercards.layout.WeatherCard

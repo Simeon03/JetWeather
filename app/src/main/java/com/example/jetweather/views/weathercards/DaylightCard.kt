@@ -4,9 +4,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.jetweather.helpers.DataFormatter.fetchTime
-import com.example.jetweather.helpers.DataFormatter.getCurrentTimePercentage
-import com.example.jetweather.helpers.DataFormatter.getPercentageOfDay
+import com.jetweather.core.helpers.DataFormatter.fetchTime
+import com.jetweather.core.helpers.DataFormatter.getCurrentTimePercentage
+import com.jetweather.core.helpers.DataFormatter.getPercentageOfDay
 import com.example.jetweather.viewmodel.CurrentWeatherViewModel
 import com.example.jetweather.views.component.Daylight
 import com.example.jetweather.views.weathercards.layout.WeatherCard

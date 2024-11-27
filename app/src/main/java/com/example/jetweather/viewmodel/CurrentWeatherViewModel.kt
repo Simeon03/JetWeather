@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.jetweather.repos.UserPreferencesRepo
 import com.example.jetweather.repos.sub.DefaultCurrentWeatherRepository
-import com.example.jetweather.weatherdata.CurrentWeatherData
+import com.jetweather.core.weatherdata.CurrentWeatherData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow

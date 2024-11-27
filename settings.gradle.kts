@@ -17,3 +17,4 @@ rootProject.name = "JetWeather"
 include(":app")
 include(":features")
 include(":features:currentweather")
+include(":core")

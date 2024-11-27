@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- UV Index Status-->
+    <string name="uv_low">Low</string>
+    <string name="uv_moderate">Moderate</string>
+    <string name="uv_high">High</string>
+    <string name="uv_very_high">Very High</string>
+    <string name="uv_extreme">Extreme</string>
+
+    <!-- Visibility Status-->
+    <string name="visibility_extremely_poor">Extremely Poor</string>
+    <string name="visibility_very_poor">Very Poor</string>
+    <string name="visibility_poor">Poor</string>
+    <string name="visibility_moderate">Moderate</string>
+    <string name="visibility_good">Good</string>
+    <string name="visibility_clear">Clear</string>
+
+    <!-- Weather Status-->
+    <string name="weather_code_0">Clear Sky</string>
+    <string name="weather_code_1">Clear</string>
+    <string name="weather_code_2">Partly Cloudy</string>
+    <string name="weather_code_3">Cloudy</string>
+    <string name="weather_code_45">Fog</string>
+    <string name="weather_code_48">Fog</string>
+    <string name="weather_code_51">Light Drizzle</string>
+    <string name="weather_code_53">Drizzle</string>
+    <string name="weather_code_55">Heavy Drizzle</string>
+    <string name="weather_code_56">Light Freezing Drizzle</string>
+    <string name="weather_code_57">Dense Freezing Drizzle</string>
+    <string name="weather_code_61">Slight Rain</string>
+    <string name="weather_code_63">Rain</string>
+    <string name="weather_code_65">Heavy Rain</string>
+    <string name="weather_code_66">Light Freezing Rain</string>
+    <string name="weather_code_67">Dense Freezing Rain</string>
+    <string name="weather_code_71">Light Snowfall</string>
+    <string name="weather_code_73">Snowfall</string>
+    <string name="weather_code_75">Heavy Snowfall</string>
+    <string name="weather_code_77">Snow Grains</string>
+    <string name="weather_code_80">Light Rain Showers</string>
+    <string name="weather_code_81">Rain Showers</string>
+    <string name="weather_code_82">Heavy Rain Showers</string>
+    <string name="weather_code_85">Light Snow Showers</string>
+    <string name="weather_code_86">Heavy Snow Showers</string>
+    <string name="weather_code_95">Thunderstorm</string>
+    <string name="weather_code_96">Thunderstorm with Slight Hail</string>
+    <string name="weather_code_99">Thunderstorm with Heavy Hail</string>
+    <string name="weather_code_other">Unknown</string>
+
+</resources>

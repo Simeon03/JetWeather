@@ -1,14 +1,14 @@
 package com.example.jetweather.data.weather
 
-import com.example.jetweather.constants.Data.HOURLY_WEATHER
-import com.example.jetweather.constants.Data.HUMIDITY
-import com.example.jetweather.constants.Data.LATITUDE
-import com.example.jetweather.constants.Data.LONGITUDE
-import com.example.jetweather.constants.Data.PRECIPITATION_PROBABILITY
-import com.example.jetweather.constants.Data.TEMPERATURE
-import com.example.jetweather.constants.Data.TIME
-import com.example.jetweather.constants.Data.TIMEZONE
-import com.example.jetweather.constants.Data.WEATHER_CODE
+import com.jetweather.core.constants.Data.HOURLY_WEATHER
+import com.jetweather.core.constants.Data.HUMIDITY
+import com.jetweather.core.constants.Data.LATITUDE
+import com.jetweather.core.constants.Data.LONGITUDE
+import com.jetweather.core.constants.Data.PRECIPITATION_PROBABILITY
+import com.jetweather.core.constants.Data.TEMPERATURE
+import com.jetweather.core.constants.Data.TIME
+import com.jetweather.core.constants.Data.TIMEZONE
+import com.jetweather.core.constants.Data.WEATHER_CODE
 import com.google.gson.annotations.SerializedName
 
 data class HourlyWeather(

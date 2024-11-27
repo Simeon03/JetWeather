@@ -1,6 +1,6 @@
 package com.example.jetweather.data.weather
 
-import com.example.jetweather.constants.Data
+import com.jetweather.core.constants.Data
 import com.google.gson.annotations.SerializedName
 
 data class CurrentHourWeather(

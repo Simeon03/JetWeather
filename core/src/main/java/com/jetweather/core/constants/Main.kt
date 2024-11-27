@@ -1,4 +1,4 @@
-package com.example.jetweather.constants
+package com.jetweather.core.constants
 
 object Main {
     const val LATITUDE: Double = 52.52

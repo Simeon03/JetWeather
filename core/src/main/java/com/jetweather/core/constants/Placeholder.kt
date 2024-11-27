@@ -1,4 +1,4 @@
-package com.example.jetweather.constants
+package com.jetweather.core.constants
 
 object Placeholder {
     const val STRING = "Fetch"

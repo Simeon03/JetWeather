@@ -1,6 +1,6 @@
-package com.example.jetweather.weatherdata
+package com.jetweather.core.weatherdata
 
-import com.example.jetweather.constants.Main
+import com.jetweather.core.constants.Main
 
 data class CurrentLocationData(
     val latitude: Double = Main.LATITUDE,

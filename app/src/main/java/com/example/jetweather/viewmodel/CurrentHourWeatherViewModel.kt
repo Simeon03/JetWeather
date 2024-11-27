@@ -3,7 +3,7 @@ package com.example.jetweather.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.jetweather.repos.sub.DefaultCurrentHourWeatherRepo
-import com.example.jetweather.weatherdata.CurrentHourWeatherData
+import com.jetweather.core.weatherdata.CurrentHourWeatherData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.first

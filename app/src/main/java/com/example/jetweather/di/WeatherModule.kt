@@ -1,8 +1,8 @@
 package com.example.jetweather.di
 
 import android.content.Context
-import com.example.jetweather.constants.Api.OPEN_METEO_BASE_URL
-import com.example.jetweather.constants.Api.TOM_TOM_BASE_URL
+import com.jetweather.core.constants.Api.OPEN_METEO_BASE_URL
+import com.jetweather.core.constants.Api.TOM_TOM_BASE_URL
 import com.example.jetweather.model.OpenMeteo
 import com.example.jetweather.model.RetrofitInstance
 import com.example.jetweather.model.TomTom

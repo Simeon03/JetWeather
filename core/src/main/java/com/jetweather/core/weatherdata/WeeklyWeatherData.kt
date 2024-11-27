@@ -1,6 +1,6 @@
-package com.example.jetweather.weatherdata
+package com.jetweather.core.weatherdata
 
-import com.example.jetweather.constants.Placeholder
+import com.jetweather.core.constants.Placeholder
 
 data class WeeklyWeatherData(
     val minTemp: List<Float> = Placeholder.LIST_FLOAT,

@@ -8,8 +8,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
-import com.example.jetweather.helpers.DataFormatter.formatWeatherCodeToText
-import com.example.jetweather.helpers.DataFormatter.getWeatherIcon
+import com.jetweather.core.helpers.DataFormatter.formatWeatherCodeToText
+import com.jetweather.core.helpers.DataFormatter.getWeatherIcon
 
 @Composable
 fun WeatherIcon(
