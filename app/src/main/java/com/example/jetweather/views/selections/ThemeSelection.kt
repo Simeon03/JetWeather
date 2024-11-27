@@ -21,6 +21,7 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.capitalize
 import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.jetweather.ui.theme.Typography
 import com.example.jetweather.viewmodel.CurrentWeatherViewModel
 import com.example.jetweather.viewmodel.HourlyWeatherViewModel
@@ -28,11 +29,11 @@ import com.example.jetweather.viewmodel.WeeklyWeatherViewModel
 import kotlinx.coroutines.launch
 
 @Composable
-fun ThemeSelection(
-    current: CurrentWeatherViewModel,
-    hourly: HourlyWeatherViewModel,
-    weekly: WeeklyWeatherViewModel,
-) {
+fun ThemeSelection() {
+    val current: CurrentWeatherViewModel = hiltViewModel()
+    val hourly: HourlyWeatherViewModel = hiltViewModel()
+    val weekly: WeeklyWeatherViewModel = hiltViewModel()
+
     val coroutineScope = rememberCoroutineScope()
     val radioOptions = listOf("system_default", "dark", "light", "dynamic")
     val selectedOption by current.themePreference.collectAsState(initial = radioOptions[0])

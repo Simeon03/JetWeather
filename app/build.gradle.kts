@@ -123,6 +123,7 @@ dependencies {
 
     implementation(libs.dagger)
     implementation(libs.hilt.android)
+    implementation(libs.androidx.hilt.navigation.compose)
 
     // Annotation Processors (via KSP)
     ksp(libs.dagger.compiler)

@@ -20,17 +20,18 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.capitalize
 import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.jetweather.ui.theme.Typography
 import com.example.jetweather.viewmodel.CurrentWeatherViewModel
 import com.example.jetweather.viewmodel.HourlyWeatherViewModel
 import com.example.jetweather.viewmodel.WeeklyWeatherViewModel
 
 @Composable
-fun TemperatureSelection(
-    current: CurrentWeatherViewModel,
-    hourly: HourlyWeatherViewModel,
-    weekly: WeeklyWeatherViewModel,
-) {
+fun TemperatureSelection() {
+    val current: CurrentWeatherViewModel = hiltViewModel()
+    val hourly: HourlyWeatherViewModel = hiltViewModel()
+    val weekly: WeeklyWeatherViewModel = hiltViewModel()
+
     val radioOptions = listOf("celsius", "fahrenheit")
     val selectedOption by current.temperatureUnit.collectAsState(initial = radioOptions[0])
 

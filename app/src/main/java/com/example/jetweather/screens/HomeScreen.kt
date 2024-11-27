@@ -31,9 +31,6 @@ fun HomeScreen(
         composable("settings") {
             SettingsScreen(
                 navController = navController,
-                current = current,
-                hourly = hourly,
-                weekly = weekly,
             )
         }
     }
