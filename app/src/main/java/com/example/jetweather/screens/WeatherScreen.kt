@@ -5,7 +5,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.jetweather.R
+import com.example.jetweather.R
 import com.example.jetweather.viewmodel.CurrentWeatherViewModel
 import com.example.jetweather.views.deprecated.horizontalpager.CurrentCards
 import com.example.jetweather.views.deprecated.horizontalpager.WeeklyWeatherCards

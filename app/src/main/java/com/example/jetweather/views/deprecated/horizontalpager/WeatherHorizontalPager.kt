@@ -1,5 +1,6 @@
 package com.example.jetweather.views.deprecated.horizontalpager
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.pager.HorizontalPager

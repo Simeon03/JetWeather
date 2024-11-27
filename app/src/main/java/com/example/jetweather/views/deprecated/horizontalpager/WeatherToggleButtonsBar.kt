@@ -28,7 +28,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.toSize
-import com.jetweather.R
+import com.example.jetweather.R
 import com.example.jetweather.ui.theme.primaryP40
 import com.example.jetweather.ui.theme.primaryP70
 import kotlinx.coroutines.CoroutineScope

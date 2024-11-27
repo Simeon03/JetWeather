@@ -9,11 +9,11 @@ plugins {
 }
 
 android {
-    namespace = "com.jetweather"
+    namespace = "com.example.jetweather"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.jetweather"
+        applicationId = "com.example.jetweather"
         minSdk = 26
         //noinspection OldTargetApi
         targetSdk = 34
@@ -64,8 +64,6 @@ allprojects {
 }
 
 dependencies {
-    implementation(project(":features"))
-
     implementation(libs.androidx.navigation.compose)
 
     // AndroidX Core

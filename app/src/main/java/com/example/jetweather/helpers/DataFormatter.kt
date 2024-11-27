@@ -1,6 +1,6 @@
 package com.example.jetweather.helpers
 
-import com.jetweather.R
+import com.example.jetweather.R
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
