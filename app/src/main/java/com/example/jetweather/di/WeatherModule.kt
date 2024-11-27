@@ -6,7 +6,9 @@ import com.example.jetweather.constants.Api.TOM_TOM_BASE_URL
 import com.example.jetweather.model.OpenMeteo
 import com.example.jetweather.model.RetrofitInstance
 import com.example.jetweather.model.TomTom
+import com.example.jetweather.repos.sub.DefaultHourlyWeatherRepository
 import com.example.jetweather.repos.sub.DefaultLocationRepository
+import com.example.jetweather.repos.sub.HourlyWeatherRepo
 import com.example.jetweather.repos.sub.LocationRepo
 import com.example.jetweather.viewmodel.CurrentLocationViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -69,6 +71,11 @@ abstract class ImplementationModule {
     abstract fun bindLocationRepo(
         defaultLocationRepository: DefaultLocationRepository
     ): LocationRepo
+
+    @Binds
+    abstract fun bindHourlyWeatherRepo(
+        defaultHourlyWeatherRepository: DefaultHourlyWeatherRepository
+    ): HourlyWeatherRepo
 }
 
 @Module

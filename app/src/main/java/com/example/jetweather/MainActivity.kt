@@ -35,6 +35,8 @@ class MainActivity : ComponentActivity() {
 
     private val currentViewModel: CurrentWeatherViewModel by viewModels()
 
+    private val hourlyWeatherViewModel: HourlyWeatherViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -47,10 +49,8 @@ class MainActivity : ComponentActivity() {
         val defaultWeatherRepo = DefaultWeatherRepo(locationProvider, userPreferencesRepo)
 
         val weeklyWeatherRepository = DefaultWeeklyWeatherRepository(weatherApi, defaultWeatherRepo)
-        val hourlyWeatherRepository = DefaultHourlyWeatherRepository(this.applicationContext, weatherApi, defaultWeatherRepo)
 
         val weeklyWeatherViewModel = WeeklyWeatherViewModel(weeklyWeatherRepository)
-        val hourlyWeatherViewModel = HourlyWeatherViewModel(hourlyWeatherRepository)
 
         setContent {
             MainScreen(

@@ -3,7 +3,9 @@ package com.example.jetweather.repos.sub
 import android.content.Context
 import com.example.jetweather.model.OpenMeteo
 import com.example.jetweather.repos.DefaultWeatherRepo
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
 interface HourlyWeatherRepo {
 
@@ -19,11 +21,11 @@ interface HourlyWeatherRepo {
 
 }
 
-class DefaultHourlyWeatherRepository(
-    private val context: Context,
+class DefaultHourlyWeatherRepository @Inject constructor(
+    @ApplicationContext private val context: Context,
     private val weatherApi: OpenMeteo,
-    private val weatherRepo: DefaultWeatherRepo,
-): HourlyWeatherRepo {
+    private val weatherRepo: DefaultWeatherRepo
+) : HourlyWeatherRepo {
 
     override fun fetchTemp(): Flow<List<Float>> = weatherRepo.handleResponse(
         response = { lat, long, unit -> weatherApi.getHourlyData(lat, long, unit) },

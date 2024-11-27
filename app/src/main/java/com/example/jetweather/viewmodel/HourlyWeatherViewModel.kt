@@ -4,12 +4,15 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.jetweather.repos.sub.DefaultHourlyWeatherRepository
 import com.example.jetweather.weatherdata.HourlyWeatherData
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class HourlyWeatherViewModel(
-    private val hourlyWeather: DefaultHourlyWeatherRepository,
+@HiltViewModel
+class HourlyWeatherViewModel @Inject constructor(
+    private val hourlyWeather: DefaultHourlyWeatherRepository
 ) : ViewModel() {
 
     var hourlyWeatherData = MutableStateFlow(HourlyWeatherData())
