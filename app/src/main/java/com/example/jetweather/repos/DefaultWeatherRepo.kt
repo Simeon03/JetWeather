@@ -16,10 +16,11 @@ import retrofit2.Response
 import java.time.LocalDateTime
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
+import javax.inject.Inject
 
-class DefaultWeatherRepo(
+class DefaultWeatherRepo @Inject constructor(
     locationProvider: LocationProvider,
-    userPreferencesRepo: UserPreferencesRepo,
+    userPreferencesRepo: UserPreferencesRepo
 ) {
 
     private val locationFlow: StateFlow<CurrentLocationData> = locationProvider.locationFlow

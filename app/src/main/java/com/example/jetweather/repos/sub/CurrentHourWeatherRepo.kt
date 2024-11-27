@@ -3,6 +3,7 @@ package com.example.jetweather.repos.sub
 import com.example.jetweather.model.OpenMeteo
 import com.example.jetweather.repos.DefaultWeatherRepo
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
 interface CurrentHourWeatherRepo {
 
@@ -14,10 +15,10 @@ interface CurrentHourWeatherRepo {
 
 }
 
-class DefaultCurrentHourWeatherRepo(
+class DefaultCurrentHourWeatherRepo @Inject constructor(
     private val weatherApi: OpenMeteo,
-    private val weatherRepo: DefaultWeatherRepo,
-): CurrentHourWeatherRepo {
+    private val weatherRepo: DefaultWeatherRepo
+) : CurrentHourWeatherRepo {
 
     override fun fetchCloudCover(): Flow<Int> = weatherRepo.handleResponse(
         response = { lat, long, unit -> weatherApi.getCurrentHourData(lat, long, unit) },

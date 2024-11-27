@@ -8,6 +8,7 @@ import com.example.jetweather.model.RetrofitInstance
 import com.example.jetweather.model.TomTom
 import com.example.jetweather.repos.sub.DefaultLocationRepository
 import com.example.jetweather.repos.sub.LocationRepo
+import com.example.jetweather.viewmodel.CurrentLocationViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import dagger.Binds
@@ -68,4 +69,16 @@ abstract class ImplementationModule {
     abstract fun bindLocationRepo(
         defaultLocationRepository: DefaultLocationRepository
     ): LocationRepo
+}
+
+@Module
+@InstallIn(ActivityRetainedComponent::class)
+object ViewModelModule {
+
+    @Provides
+    fun provideCurrentLocationViewModel(
+        locationRepo: LocationRepo
+    ): CurrentLocationViewModel {
+        return CurrentLocationViewModel(locationRepo)
+    }
 }
