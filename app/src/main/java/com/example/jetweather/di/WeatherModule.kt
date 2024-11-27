@@ -8,8 +8,10 @@ import com.example.jetweather.model.RetrofitInstance
 import com.example.jetweather.model.TomTom
 import com.example.jetweather.repos.sub.DefaultHourlyWeatherRepository
 import com.example.jetweather.repos.sub.DefaultLocationRepository
+import com.example.jetweather.repos.sub.DefaultWeeklyWeatherRepository
 import com.example.jetweather.repos.sub.HourlyWeatherRepo
 import com.example.jetweather.repos.sub.LocationRepo
+import com.example.jetweather.repos.sub.WeeklyWeatherRepo
 import com.example.jetweather.viewmodel.CurrentLocationViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -76,6 +78,11 @@ abstract class ImplementationModule {
     abstract fun bindHourlyWeatherRepo(
         defaultHourlyWeatherRepository: DefaultHourlyWeatherRepository
     ): HourlyWeatherRepo
+
+    @Binds
+    abstract fun bindWeeklyWeatherRepo(
+        defaultWeeklyWeatherRepository: DefaultWeeklyWeatherRepository
+    ): WeeklyWeatherRepo
 }
 
 @Module

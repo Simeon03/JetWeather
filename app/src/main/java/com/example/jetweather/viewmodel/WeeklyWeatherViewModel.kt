@@ -4,12 +4,15 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.jetweather.repos.sub.DefaultWeeklyWeatherRepository
 import com.example.jetweather.weatherdata.WeeklyWeatherData
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class WeeklyWeatherViewModel(
-    private val weeklyWeather: DefaultWeeklyWeatherRepository,
+@HiltViewModel
+class WeeklyWeatherViewModel @Inject constructor(
+    private val weeklyWeather: DefaultWeeklyWeatherRepository
 ) : ViewModel() {
 
     var weeklyWeatherData = MutableStateFlow(WeeklyWeatherData())

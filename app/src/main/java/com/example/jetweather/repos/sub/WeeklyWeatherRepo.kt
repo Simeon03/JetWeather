@@ -3,6 +3,7 @@ package com.example.jetweather.repos.sub
 import com.example.jetweather.model.OpenMeteo
 import com.example.jetweather.repos.DefaultWeatherRepo
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
 interface WeeklyWeatherRepo {
 
@@ -16,10 +17,10 @@ interface WeeklyWeatherRepo {
 
 }
 
-class DefaultWeeklyWeatherRepository(
+class DefaultWeeklyWeatherRepository @Inject constructor(
     private val weatherApi: OpenMeteo,
-    private val weatherRepo: DefaultWeatherRepo,
-): WeeklyWeatherRepo {
+    private val weatherRepo: DefaultWeatherRepo
+) : WeeklyWeatherRepo {
 
     override fun fetchMinTemp(): Flow<List<Float>> = weatherRepo.handleResponse(
         response = { lat, long, unit -> weatherApi.getWeeklyWeather(lat, long, unit) },
