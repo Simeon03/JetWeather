@@ -3,6 +3,8 @@ package com.example.jetweather.repos.sub
 import android.content.Context
 import com.example.jetweather.model.OpenMeteo
 import com.example.jetweather.repos.DefaultWeatherRepo
+import com.example.jetweather.usecases.formattedHoursTime
+import com.example.jetweather.usecases.getNextDayHours
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
@@ -30,7 +32,7 @@ class DefaultHourlyWeatherRepository @Inject constructor(
     override fun fetchTemp(): Flow<List<Float>> = weatherRepo.handleResponse(
         response = { lat, long, unit -> weatherApi.getHourlyData(lat, long, unit) },
         transform = { hourlyData ->
-            val pos = weatherRepo.getNextDayHours(context, hourlyData)
+            val pos = getNextDayHours(context, hourlyData)
             val removedBeforeTimes = hourlyData.hourly.temperature.subList(pos, pos + 24)
             removedBeforeTimes.map { it }
         },
@@ -40,8 +42,8 @@ class DefaultHourlyWeatherRepository @Inject constructor(
     override fun fetchTime(): Flow<List<String>> = weatherRepo.handleResponse(
         response = { lat, long, unit -> weatherApi.getHourlyData(lat, long, unit) },
         transform = { hourlyData ->
-            val pos = weatherRepo.getNextDayHours(context, hourlyData)
-            weatherRepo.formattedHoursTime(context, hourlyData).subList(pos, pos + 24)
+            val pos = getNextDayHours(context, hourlyData)
+            formattedHoursTime(context, hourlyData).subList(pos, pos + 24)
         },
         defaultValue = emptyList<String>(),
     )
