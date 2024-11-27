@@ -19,8 +19,6 @@ fun WeatherRefreshScreen(navController: NavController) {
     val hourly: HourlyWeatherViewModel = hiltViewModel()
     val currentHour: CurrentHourWeatherViewModel = hiltViewModel()
 
-    val currentData by current.currentWeatherData.collectAsState()
-
     val isLoadingCurrent by current.isLoading.collectAsState()
     val isLoadingWeekly by weekly.isLoading.collectAsState()
     val isLoadingHourly by hourly.isLoading.collectAsState()
@@ -32,16 +30,7 @@ fun WeatherRefreshScreen(navController: NavController) {
         state = rememberSwipeRefreshState(isRefreshing = isRefreshing),
         onRefresh = { refreshWeather(current, weekly, hourly, currentHour) },
     ) {
-        if (!isRefreshing) {
-            WeatherScreen(
-                navController = navController,
-                current = current,
-                weekly = weekly,
-                hourly = hourly,
-                currentHour = currentHour,
-                currentData = currentData,
-            )
-        }
+        if (!isRefreshing) { WeatherScreen(navController = navController) }
     }
 }
 

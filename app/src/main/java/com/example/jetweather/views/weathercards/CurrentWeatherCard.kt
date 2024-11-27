@@ -5,6 +5,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.jetweather.helpers.DataFormatter.formatWeatherCodeToText
 import com.example.jetweather.helpers.DataFormatter.roundTemp
 import com.example.jetweather.viewmodel.CurrentWeatherViewModel
@@ -12,7 +13,8 @@ import com.example.jetweather.views.info.CurrentWeatherInfo
 import com.example.jetweather.views.weathercards.layout.WeatherCard
 
 @Composable
-fun CurrentWeatherCard(viewModel: CurrentWeatherViewModel) {
+fun CurrentWeatherCard() {
+    val viewModel: CurrentWeatherViewModel = hiltViewModel()
     val current by viewModel.currentWeatherData.collectAsState()
 
     WeatherCard(color = Color.Transparent) {

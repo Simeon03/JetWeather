@@ -11,6 +11,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.jetweather.R
 import com.example.jetweather.helpers.DataFormatter.getUvIndexStatus
 import com.example.jetweather.ui.theme.Typography
@@ -25,7 +26,8 @@ import com.example.jetweather.views.weathercards.layout.ClickableWeatherCard
 import com.example.jetweather.views.weathercards.layout.SimpleWeatherCardLayout
 
 @Composable
-fun CurrentUvIndexCard(viewModel: CurrentHourWeatherViewModel, modifier: Modifier = Modifier) {
+fun CurrentUvIndexCard(modifier: Modifier = Modifier) {
+    val viewModel: CurrentHourWeatherViewModel = hiltViewModel()
     val currentHourWeather by viewModel.currentHourWeatherData.collectAsState()
 
     ClickableWeatherCard(

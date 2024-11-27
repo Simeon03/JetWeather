@@ -8,19 +8,9 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.unit.dp
-import com.example.jetweather.viewmodel.CurrentHourWeatherViewModel
-import com.example.jetweather.viewmodel.CurrentWeatherViewModel
-import com.example.jetweather.viewmodel.HourlyWeatherViewModel
-import com.example.jetweather.viewmodel.WeeklyWeatherViewModel
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun WeatherHorizontalPager(
-    weekly: WeeklyWeatherViewModel,
-    hourly: HourlyWeatherViewModel,
-    current: CurrentWeatherViewModel,
-    currentHour: CurrentHourWeatherViewModel,
-) {
+fun WeatherHorizontalPager() {
     val pagerState = rememberPagerState(pageCount = { 2 })
 
     Column(
@@ -33,8 +23,8 @@ fun WeatherHorizontalPager(
             pageSpacing = 16.dp,
         ) { page ->
             when (page) {
-                0 -> DailyWeatherCards(hourly, current, currentHour)
-                1 -> WeeklyWeatherCards(weekly)
+                0 -> DailyWeatherCards()
+                1 -> WeeklyWeatherCards()
             }
         }
     }
