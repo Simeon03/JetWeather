@@ -4,6 +4,7 @@ import com.example.jetweather.model.OpenMeteo
 import com.example.jetweather.model.TomTom
 import com.example.jetweather.repos.DefaultWeatherRepo
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
 interface CurrentWeatherRepo {
 
@@ -25,11 +26,11 @@ interface CurrentWeatherRepo {
 
 }
 
-class DefaultCurrentWeatherRepository(
+class DefaultCurrentWeatherRepository @Inject constructor(
     private val weatherApi: OpenMeteo,
     private val geolocationApi: TomTom,
-    private val weatherRepo: DefaultWeatherRepo,
-): CurrentWeatherRepo {
+    private val weatherRepo: DefaultWeatherRepo
+) : CurrentWeatherRepo {
 
     override fun fetchTemp(): Flow<Float> = weatherRepo.handleResponse(
         response = { lat, long, unit -> weatherApi.getCurrentWeather(lat, long, unit) },

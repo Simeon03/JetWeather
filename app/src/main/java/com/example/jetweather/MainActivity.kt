@@ -10,15 +10,11 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.jetweather.constants.Api.OPEN_METEO_BASE_URL
-import com.example.jetweather.constants.Api.TOM_TOM_BASE_URL
 import com.example.jetweather.model.LocationProvider
 import com.example.jetweather.model.OpenMeteo
 import com.example.jetweather.model.RetrofitInstance
-import com.example.jetweather.model.TomTom
 import com.example.jetweather.repos.DefaultWeatherRepo
 import com.example.jetweather.repos.UserPreferencesRepo
-import com.example.jetweather.repos.sub.DefaultCurrentHourWeatherRepo
-import com.example.jetweather.repos.sub.DefaultCurrentWeatherRepository
 import com.example.jetweather.repos.sub.DefaultHourlyWeatherRepository
 import com.example.jetweather.repos.sub.DefaultWeeklyWeatherRepository
 import com.example.jetweather.screens.HomeScreen
@@ -37,23 +33,22 @@ class MainActivity : ComponentActivity() {
 
     private val currentWeatherViewModel: CurrentHourWeatherViewModel by viewModels()
 
+    private val currentViewModel: CurrentWeatherViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
         val weatherApi = RetrofitInstance.get(OPEN_METEO_BASE_URL).create(OpenMeteo::class.java)
-        val locationApi = RetrofitInstance.get(TOM_TOM_BASE_URL).create(TomTom::class.java)
 
         val locationProvider = LocationProvider(currentLocationViewModel)
 
         val userPreferencesRepo = UserPreferencesRepo(this)
         val defaultWeatherRepo = DefaultWeatherRepo(locationProvider, userPreferencesRepo)
 
-        val currentWeatherRepository = DefaultCurrentWeatherRepository(weatherApi, locationApi, defaultWeatherRepo)
         val weeklyWeatherRepository = DefaultWeeklyWeatherRepository(weatherApi, defaultWeatherRepo)
         val hourlyWeatherRepository = DefaultHourlyWeatherRepository(this.applicationContext, weatherApi, defaultWeatherRepo)
 
-        val currentViewModel = CurrentWeatherViewModel(currentWeatherRepository, userPreferencesRepo)
         val weeklyWeatherViewModel = WeeklyWeatherViewModel(weeklyWeatherRepository)
         val hourlyWeatherViewModel = HourlyWeatherViewModel(hourlyWeatherRepository)
 

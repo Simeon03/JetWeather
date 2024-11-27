@@ -5,14 +5,17 @@ import androidx.lifecycle.viewModelScope
 import com.example.jetweather.repos.UserPreferencesRepo
 import com.example.jetweather.repos.sub.DefaultCurrentWeatherRepository
 import com.example.jetweather.weatherdata.CurrentWeatherData
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class CurrentWeatherViewModel(
+@HiltViewModel
+class CurrentWeatherViewModel @Inject constructor(
     private val currentWeather: DefaultCurrentWeatherRepository,
-    private val userPreferencesRepo: UserPreferencesRepo,
+    private val userPreferencesRepo: UserPreferencesRepo
 ) : ViewModel() {
 
     val temperatureUnit: Flow<String> = userPreferencesRepo.temperatureUnit
