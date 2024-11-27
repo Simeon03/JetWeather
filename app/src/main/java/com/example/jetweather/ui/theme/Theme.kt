@@ -9,7 +9,6 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
@@ -59,7 +58,14 @@ private val DynamicColorScheme = ColorScheme(
     onErrorContainer = Color.Unspecified,
     outline = Color.Unspecified,
     outlineVariant = Color.Unspecified,
-    scrim = Color.Unspecified
+    scrim = Color.Unspecified,
+    surfaceBright = Color.Unspecified,
+    surfaceDim = Color.Unspecified,
+    surfaceContainer = Color.Unspecified,
+    surfaceContainerHigh = Color.Unspecified,
+    surfaceContainerHighest = Color.Unspecified,
+    surfaceContainerLow = Color.Unspecified,
+    surfaceContainerLowest = Color.Unspecified,
 )
 
 @Composable
@@ -90,7 +96,6 @@ fun JetWeatherTheme(
             LaunchedEffect(colorScheme.primaryContainer) {
                 val window = (context as? Activity)?.window
                 window?.let {
-                    window.statusBarColor = colorScheme.primaryContainer.toArgb()
                     WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = lightStatusBars
                 }
             }
