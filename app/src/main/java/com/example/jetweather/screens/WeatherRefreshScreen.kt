@@ -3,6 +3,7 @@ package com.example.jetweather.screens
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.jetweather.viewmodel.CurrentHourWeatherViewModel
 import com.example.jetweather.viewmodel.CurrentWeatherViewModel
@@ -12,13 +13,12 @@ import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 
 @Composable
-fun WeatherRefreshScreen(
-    navController: NavController,
-    current: CurrentWeatherViewModel,
-    weekly: WeeklyWeatherViewModel,
-    hourly: HourlyWeatherViewModel,
-    currentHour: CurrentHourWeatherViewModel,
-) {
+fun WeatherRefreshScreen(navController: NavController) {
+    val current: CurrentWeatherViewModel = hiltViewModel()
+    val weekly: WeeklyWeatherViewModel = hiltViewModel()
+    val hourly: HourlyWeatherViewModel = hiltViewModel()
+    val currentHour: CurrentHourWeatherViewModel = hiltViewModel()
+
     val currentData by current.currentWeatherData.collectAsState()
 
     val isLoadingCurrent by current.isLoading.collectAsState()
