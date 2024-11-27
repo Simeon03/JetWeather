@@ -2,7 +2,7 @@ package com.example.jetweather.screens
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavController
-import com.example.jetweather.R
+import com.jetweather.R
 import com.example.jetweather.views.selections.TemperatureSelection
 import com.example.jetweather.views.selections.ThemeSelection
 import com.example.jetweather.views.text.CurrentLocation

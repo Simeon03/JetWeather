@@ -8,7 +8,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.example.jetweather.R
+import com.jetweather.R
 import com.example.jetweather.helpers.DataFormatter.fetchDay
 import com.example.jetweather.helpers.DataFormatter.roundTemp
 import com.example.jetweather.views.component.CardChip

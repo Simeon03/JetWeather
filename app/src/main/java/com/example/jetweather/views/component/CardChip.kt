@@ -15,7 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.jetweather.R
+import com.jetweather.R
 import com.example.jetweather.ui.theme.Typography
 
 @Composable

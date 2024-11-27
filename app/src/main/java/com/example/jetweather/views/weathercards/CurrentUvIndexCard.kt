@@ -12,7 +12,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.jetweather.R
+import com.jetweather.R
 import com.example.jetweather.helpers.DataFormatter.getUvIndexStatus
 import com.example.jetweather.ui.theme.Typography
 import com.example.jetweather.ui.theme.primaryP0

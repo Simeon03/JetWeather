@@ -1,6 +1,6 @@
 package com.example.jetweather.model
 
-import com.example.jetweather.BuildConfig
+import com.jetweather.BuildConfig
 import com.example.jetweather.constants.Api.REVERSE_GEOCODE_QUERY
 import com.example.jetweather.constants.Api.TOM_TOM_BASE_URL
 import com.google.gson.annotations.SerializedName
