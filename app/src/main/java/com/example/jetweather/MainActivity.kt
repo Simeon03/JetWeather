@@ -30,7 +30,9 @@ import com.example.jetweather.viewmodel.HourlyWeatherViewModel
 import com.example.jetweather.viewmodel.WeeklyWeatherViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
