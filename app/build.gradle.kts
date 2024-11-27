@@ -65,7 +65,6 @@ allprojects {
 
 dependencies {
     implementation(project(":features"))
-    implementation(project(":core"))
 
     implementation(libs.androidx.navigation.compose)
 

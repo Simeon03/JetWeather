@@ -1,4 +1,4 @@
-package com.jetweather.core.weatherdata
+package com.example.jetweather.weatherdata
 
 data class CurrentHourWeatherData(
     val cloudCover: Int = 0,

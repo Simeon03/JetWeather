@@ -7,7 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.jetweather.R
-import com.jetweather.core.helpers.DataFormatter.getVisibilityStatus
+import com.example.jetweather.helpers.DataFormatter.getVisibilityStatus
 import com.example.jetweather.viewmodel.CurrentHourWeatherViewModel
 import com.example.jetweather.views.weathercards.layout.SimpleWeatherCardLayout
 import com.example.jetweather.views.weathercards.layout.WeatherCard

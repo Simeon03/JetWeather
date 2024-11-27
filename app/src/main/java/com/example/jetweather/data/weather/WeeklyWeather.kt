@@ -1,14 +1,14 @@
 package com.example.jetweather.data.weather
 
-import com.jetweather.core.constants.Data.DAILY_UNITS
-import com.jetweather.core.constants.Data.DAILY_WEATHER
-import com.jetweather.core.constants.Data.LATITUDE
-import com.jetweather.core.constants.Data.LONGITUDE
-import com.jetweather.core.constants.Data.MAX_TEMPERATURE
-import com.jetweather.core.constants.Data.MIN_TEMPERATURE
-import com.jetweather.core.constants.Data.TIME
-import com.jetweather.core.constants.Data.TIMEZONE
-import com.jetweather.core.constants.Data.WEATHER_CODE
+import com.example.jetweather.constants.Data.DAILY_UNITS
+import com.example.jetweather.constants.Data.DAILY_WEATHER
+import com.example.jetweather.constants.Data.LATITUDE
+import com.example.jetweather.constants.Data.LONGITUDE
+import com.example.jetweather.constants.Data.MAX_TEMPERATURE
+import com.example.jetweather.constants.Data.MIN_TEMPERATURE
+import com.example.jetweather.constants.Data.TIME
+import com.example.jetweather.constants.Data.TIMEZONE
+import com.example.jetweather.constants.Data.WEATHER_CODE
 import com.google.gson.annotations.SerializedName
 
 data class WeeklyWeather(

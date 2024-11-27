@@ -1,4 +1,4 @@
-package com.jetweather.core.constants
+package com.example.jetweather.constants
 
 object Api {
     const val OPEN_METEO_BASE_URL = "https://api.open-meteo.com/"

@@ -4,7 +4,7 @@ import android.content.Context
 import android.text.format.DateFormat
 import com.example.jetweather.data.weather.HourlyWeather
 import com.example.jetweather.model.LocationProvider
-import com.jetweather.core.weatherdata.CurrentLocationData
+import com.example.jetweather.weatherdata.CurrentLocationData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow

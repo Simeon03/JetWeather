@@ -3,7 +3,7 @@ package com.example.jetweather.repos.sub
 import android.content.Context
 import android.content.pm.PackageManager
 import androidx.core.app.ActivityCompat
-import com.jetweather.core.constants.Main
+import com.example.jetweather.constants.Main
 import com.google.android.gms.location.FusedLocationProviderClient
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers

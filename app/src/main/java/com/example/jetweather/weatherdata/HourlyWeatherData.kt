@@ -1,6 +1,6 @@
-package com.jetweather.core.weatherdata
+package com.example.jetweather.weatherdata
 
-import com.jetweather.core.constants.Placeholder
+import com.example.jetweather.constants.Placeholder
 
 data class HourlyWeatherData(
     val temperature: List<Float> = Placeholder.LIST_FLOAT,
