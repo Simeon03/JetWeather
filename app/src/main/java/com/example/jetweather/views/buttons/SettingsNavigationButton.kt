@@ -14,6 +14,10 @@ fun SettingsNavigationButton(
     onClick: () -> Unit,
 ) {
     IconButton(onClick = onClick) {
-        Icon(painter = painterResource(id = icon), contentDescription = description, tint = MaterialTheme.colorScheme.primary)
+        Icon(
+            painter = painterResource(id = icon),
+            contentDescription = description,
+            tint = MaterialTheme.colorScheme.primary,
+        )
     }
 }
