@@ -7,10 +7,10 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.jetweather.R
 import com.example.jetweather.viewmodel.CurrentWeatherViewModel
-import com.example.jetweather.views.deprecated.horizontalpager.CurrentCards
-import com.example.jetweather.views.deprecated.horizontalpager.WeeklyWeatherCards
 import com.example.jetweather.views.text.CurrentLocation
+import com.example.jetweather.views.weathercards.CurrentCards
 import com.example.jetweather.views.weathercards.CurrentWeatherCard
+import com.example.jetweather.views.weathercards.DailyWeatherCard
 import com.example.jetweather.views.weathercards.DaylightCard
 import com.example.jetweather.views.weathercards.HourlyWeatherCard
 
@@ -27,7 +27,7 @@ fun WeatherScreen(navController: NavController) {
     ) {
         item { CurrentWeatherCard() }
         item { HourlyWeatherCard() }
-        item { WeeklyWeatherCards() }
+        item { DailyWeatherCard() }
         item { DaylightCard() }
         item { CurrentCards() }
     }
