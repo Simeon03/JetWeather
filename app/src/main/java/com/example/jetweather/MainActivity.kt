@@ -9,7 +9,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.jetweather.repos.UserPreferencesRepo
-import com.example.jetweather.screens.HomeScreen
+import com.example.jetweather.ui.screens.HomeScreen
 import com.example.jetweather.ui.theme.JetWeatherTheme
 import dagger.hilt.android.AndroidEntryPoint
 
