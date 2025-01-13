@@ -65,4 +65,3 @@ class DefaultCurrentHourWeatherRepoTestCase {
         assertEquals(5.5f, result, 0.0f)
     }
 }
-}

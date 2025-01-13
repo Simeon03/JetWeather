@@ -11,12 +11,12 @@ import org.junit.Test
 class CurrentWeatherRepoTestCase {
 
     private lateinit var currentWeatherRepo: DefaultCurrentWeatherRepository
-//    private lateinit var weatherApi: OpenMeteo
+    private lateinit var weatherApi: OpenMeteo
 
     @Before
     fun setUp() {
-//        weatherApi = RetrofitInstance.get(Api.OPEN_METEO_BASE_URL).create(OpenMeteo::class.java)
-//        currentWeatherRepo = DefaultCurrentWeatherRepository(weatherApi)
+        weatherApi = RetrofitInstance.get(Api.OPEN_METEO_BASE_URL).create(OpenMeteo::class.java)
+        currentWeatherRepo = DefaultCurrentWeatherRepository(weatherApi)
     }
 
     @Test

@@ -40,7 +40,7 @@ fun TemperatureSelection() {
             Row(
                 Modifier
                     .fillMaxWidth()
-                    .height(56.dp)
+                    .height(40.dp)
                     .selectable(
                         selected = (text == selectedOption),
                         onClick = {
